@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Класс, отвечающий за следование камеры за игроком
+/// </summary>
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform cameraTransform;
@@ -7,6 +10,9 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
+    /// <summary>
+    /// Метод, вызывающийся каждый игровой кадр
+    /// </summary>
     void Update()
     {
         if (cameraTransform != null)
