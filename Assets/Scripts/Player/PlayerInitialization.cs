@@ -48,7 +48,11 @@ public class PlayerInitialization : MonoBehaviour
             soundController
         };
 
-        List<IHealObserver> healObservers = new List<IHealObserver>();
+        List<IHealObserver> healObservers = new List<IHealObserver>
+        {
+            healthDisplay,
+            soundController
+        };
 
         if (healthManager != null)
         {

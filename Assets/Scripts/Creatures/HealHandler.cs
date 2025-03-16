@@ -36,9 +36,13 @@ public class HealHandler : MonoBehaviour
         {
             int currentHealth = manager.GetCurrentHealth();
             int maxHealth = manager.GetMaxHealth();
-            currentHealth = Mathf.Min(currentHealth + healPoints, maxHealth);
-            manager.SetCurrentHealth(currentHealth);
-            NotifyObservers(currentHealth, maxHealth);
+            
+            if (currentHealth != maxHealth)
+            {
+                currentHealth = Mathf.Min(currentHealth + healPoints, maxHealth);
+                manager.SetCurrentHealth(currentHealth);
+                NotifyObservers(currentHealth, maxHealth);
+            }
         }
     }
 

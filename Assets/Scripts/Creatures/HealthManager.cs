@@ -26,7 +26,6 @@ public class HealthManager : MonoBehaviour
             {
                 damageHandler.AddObserver(damageObserver);
             }
-            damageHandler.NotifyObservers(currentHealth, maxHealth);
         }
 
         healHandler = GetComponent<HealHandler>();
@@ -37,7 +36,6 @@ public class HealthManager : MonoBehaviour
             {
                 healHandler.AddObserver(healObserver);
             }
-            healHandler.NotifyObservers(currentHealth, maxHealth);
         }
     }
 
