@@ -15,6 +15,7 @@ public interface IDamageObserver
 /// </summary>
 public class DamageHandler : MonoBehaviour
 {
+    public GameOverScreen gameOverScreen;
     private HealthManager manager;
     private List<IDamageObserver> observers = new List<IDamageObserver>();
 
@@ -39,6 +40,11 @@ public class DamageHandler : MonoBehaviour
             int maxHealth = manager.GetMaxHealth();
             manager.SetCurrentHealth(currentHealth);
             NotifyObservers(currentHealth, maxHealth);
+
+            if(currentHealth <= 0)
+            {
+                Kill();
+            }
         }
     }
 
@@ -63,5 +69,16 @@ public class DamageHandler : MonoBehaviour
         {
             observer.OnDamageTaken(currentHealth, maxHealth);
         }
+    }
+
+    /// <summary>
+    /// Метод, уничтожающий обьект
+    /// </summary>
+    public void Kill()
+    {
+        Destroy(gameObject);
+
+        if(gameOverScreen != null)
+            gameOverScreen.Setup();
     }
 }
