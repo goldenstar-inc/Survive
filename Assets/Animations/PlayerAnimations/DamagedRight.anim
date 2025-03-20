@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DamageSideways
+  m_Name: DamagedRight
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -3233497190988025224, guid: dd83a7a6f1638f64b88b02199a8bd794, type: 3}
+      value: {fileID: -3233497190988025224, guid: ea782373fcc187544ae510e89414f9b9, type: 3}
     - time: 0.16666667
-      value: {fileID: -659901191412711941, guid: 4f79405dd74a6954cb3e04fbb664c4fd, type: 3}
-    - time: 0.33333334
-      value: {fileID: -3233497190988025224, guid: dd83a7a6f1638f64b88b02199a8bd794, type: 3}
+      value: {fileID: -659901191412711941, guid: 435099dd49c2db243a62500a5359fe39, type: 3}
+    - time: 0.35
+      value: {fileID: -3233497190988025224, guid: ea782373fcc187544ae510e89414f9b9, type: 3}
     - time: 0.5
-      value: {fileID: -659901191412711941, guid: 4f79405dd74a6954cb3e04fbb664c4fd, type: 3}
+      value: {fileID: -659901191412711941, guid: 435099dd49c2db243a62500a5359fe39, type: 3}
     - time: 0.6666667
-      value: {fileID: -3233497190988025224, guid: dd83a7a6f1638f64b88b02199a8bd794, type: 3}
+      value: {fileID: -3233497190988025224, guid: ea782373fcc187544ae510e89414f9b9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,11 +52,11 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -3233497190988025224, guid: dd83a7a6f1638f64b88b02199a8bd794, type: 3}
-    - {fileID: -659901191412711941, guid: 4f79405dd74a6954cb3e04fbb664c4fd, type: 3}
-    - {fileID: -3233497190988025224, guid: dd83a7a6f1638f64b88b02199a8bd794, type: 3}
-    - {fileID: -659901191412711941, guid: 4f79405dd74a6954cb3e04fbb664c4fd, type: 3}
-    - {fileID: -3233497190988025224, guid: dd83a7a6f1638f64b88b02199a8bd794, type: 3}
+    - {fileID: -3233497190988025224, guid: ea782373fcc187544ae510e89414f9b9, type: 3}
+    - {fileID: -659901191412711941, guid: 435099dd49c2db243a62500a5359fe39, type: 3}
+    - {fileID: -3233497190988025224, guid: ea782373fcc187544ae510e89414f9b9, type: 3}
+    - {fileID: -659901191412711941, guid: 435099dd49c2db243a62500a5359fe39, type: 3}
+    - {fileID: -3233497190988025224, guid: ea782373fcc187544ae510e89414f9b9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -81,4 +81,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.6666667
+    functionName: ResetDamageState
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

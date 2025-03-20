@@ -7,14 +7,22 @@ using UnityEngine.Rendering;
 /// </summary>
 public class PlayerAnimationController : MonoBehaviour, IDamageObserver
 {
-    private Animator animator;
+    /// <summary>
+    /// Аниматор, отвечающий за анимирование игрока
+    /// </summary>
+    private Animator playerAnimator;
+
+    /// <summary>
+    /// Текущая позиция курсора
+    /// </summary>
+    private Vector3 currentMousePosition;
 
     /// <summary>
     /// Метод, вызывающийся при старте объекта
     /// </summary>
     void Start()
     {
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -22,46 +30,35 @@ public class PlayerAnimationController : MonoBehaviour, IDamageObserver
     /// </summary>
     public void UpdateMovementAnimation(Vector3 input)
     {
-        if (input != null && animator != null && animator.GetBool("IsDamaged") == false)
-        {            
-            if (input.x != 0)
+        if (input != null && currentMousePosition != null && playerAnimator != null && playerAnimator.GetBool("IsDamaged") == false)
+        {
+            if (input.x != 0 || input.y != 0)
             {
-                animator.SetBool("IsIdle", false);
-                FlipModel(input);
-                animator.Play("WalkingSideways");
-            }
-            else if(input.y != 0)
-            {
-                animator.SetBool("IsIdle", false);
-                if (input.y > 0)
+                currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                playerAnimator.SetBool("IsIdle", false);
+                float angle = Mathf.Atan2(currentMousePosition.y, currentMousePosition.x) * Mathf.Rad2Deg;
+
+                if (angle >= -45 && angle < 45)
                 {
-                    animator.Play("WalkingUp");
+                    playerAnimator.Play("WalkingRight");
                 }
-                else
+                else if (angle >= 45 && angle < 135)
                 {
-                    animator.Play("WalkingDown");
+                    playerAnimator.Play("WalkingUp");
+                }
+                else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135))
+                {
+                    playerAnimator.Play("WalkingLeft");
+                }
+                else if (angle >= -135 && angle < -45)
+                {
+                    playerAnimator.Play("WalkingDown");
                 }
             }
             else
             {
-                animator.SetBool("IsIdle", true);
+                playerAnimator.SetBool("IsIdle", true);
             }
-        }
-    }
-
-    /// <summary>
-    /// Переворачивает спрайт по оси Ox
-    /// </summary>
-    /// <param name="input">Клавиатурный ввод</param>
-    private void FlipModel(Vector3 input) 
-    {
-        if (input.x < 0)
-        {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
     }
 
@@ -72,9 +69,9 @@ public class PlayerAnimationController : MonoBehaviour, IDamageObserver
     /// <param name="maxHealth">Максимальное количество очков здоровья</param>
     public void OnDamageTaken(int currentHealth, int maxHealth)
     {
-        if (animator != null)
+        if (playerAnimator != null)
         {
-            animator.SetBool("IsDamaged", true);
+            playerAnimator.SetBool("IsDamaged", true);
         }
     }
 
@@ -83,9 +80,9 @@ public class PlayerAnimationController : MonoBehaviour, IDamageObserver
     /// </summary>
     public void ResetDamageState()
     {
-        if (animator != null)
+        if (playerAnimator != null)
         {
-            animator.SetBool("IsDamaged", false);
+            playerAnimator.SetBool("IsDamaged", false);
         }
     }
 }
