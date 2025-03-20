@@ -6,11 +6,14 @@ using UnityEngine.Rendering;
 using UnityEngine.Windows.Speech;
 using UnityEngine.UI;
 
+
 /// <summary>
 /// Класс, отвечающий за управление детектором взаимодействий игрока
 /// </summary>
 public class PlayerInteractionDetector : MonoBehaviour
 {
+    public InventoryController inventoryController;
+
     /// <summary>
     /// Компонент "Transform" игрока
     /// </summary>
@@ -87,6 +90,7 @@ public class PlayerInteractionDetector : MonoBehaviour
         if (interactableInRange != null)
         {
             interactableInRange.Interact();
+            inventoryController.AddItemToInventory(interactableInRange.Ge);
         }
     }
 
