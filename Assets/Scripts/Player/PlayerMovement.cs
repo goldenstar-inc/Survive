@@ -5,11 +5,35 @@ using UnityEngine;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    /// <summary>
+    /// Скорость игрока
+    /// </summary>
     public float speed = 4f;
 
+    /// <summary>
+    /// Скрипт, отвечающий за управление анимацией игрока
+    /// </summary>
     private PlayerAnimationController animationController;
+
+    /// <summary>
+    /// Компонент Rigidbody2D игрока
+    /// </summary>
     private Rigidbody2D rb;
+
+    /// <summary>
+    /// Вектор ввода
+    /// </summary>
     private Vector2 input;
+
+    /// <summary>
+    /// Время последнего шага
+    /// </summary>
+    private float lastStepTime = 0f;
+
+    /// <summary>
+    /// Интервал между шагами
+    /// </summary>
+    private float stepInterval = 0.5f;
 
     /// <summary>
     /// Метод, вызывающийся при старте объекта
@@ -29,6 +53,12 @@ public class PlayerMovement : MonoBehaviour
         input.y = Input.GetAxisRaw("Vertical");
 
         input.Normalize();
+
+        if (input != Vector2.zero && Time.time - lastStepTime > stepInterval)
+        {
+            PlayFootstepSound();
+            lastStepTime = Time.time;
+        }
     }
 
     /// <summary>
@@ -41,6 +71,17 @@ public class PlayerMovement : MonoBehaviour
         if (animationController != null)
         {
             animationController.UpdateMovementAnimation(input);
+        }
+    }
+
+    /// <summary>
+    /// Проигрывает звук шагов
+    /// </summary>
+    private void PlayFootstepSound()
+    {
+        if (!SoundController.Instance.footstepsAudioSource.isPlaying)
+        {
+            SoundController.Instance.PlayRandomStepSound();
         }
     }
 }

@@ -1,8 +1,8 @@
 /// <summary>
-/// Интерфейсс, содержащий метод взаимодействия
+/// Интерфейс, содержащий метод взаимодействия
 /// </summary>
 public interface IInteractable
 {
+    public string helpPhrase { get; }
     void Interact();
-    string GetHelpPhrase();
 }

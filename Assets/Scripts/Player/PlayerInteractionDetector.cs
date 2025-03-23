@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Windows.Speech;
-using UnityEngine.UI;
-
+using static HelpPhrasesModule;
 
 /// <summary>
 /// Класс, отвечающий за управление детектором взаимодействий игрока
@@ -27,13 +22,14 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// <summary>
     /// Ближайший объект для взаимодействия
     /// </summary>
-    IInteractable interactableInRange = null;
+    object interactableInRange = null;
 
     /// <summary>
     /// Метод, вызывающийся при старте объекта
     /// </summary>
     void Start()
     {
+        inventoryController = FindAnyObjectByType<InventoryController>();
         helpPhrase.enabled = false;
     }
 
@@ -42,7 +38,7 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             TryInteract();
         }
@@ -65,6 +61,11 @@ public class PlayerInteractionDetector : MonoBehaviour
             {
                 interactableInRange = interactable; 
                 ShowHelpPhrase();
+
+                if (interactable is IPickable pickable)
+                {
+                    interactableInRange = pickable;
+                }
             }
         }
     }
@@ -87,23 +88,47 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// </summary>
     private void TryInteract()
     {
-        if (interactableInRange != null)
+        if (interactableInRange != null && interactableInRange is IInteractable interactable)
         {
-            interactableInRange.Interact();
-            inventoryController.AddItemToInventory(interactableInRange.Ge);
+            if (interactable is IPickable)
+            {
+                if (UpdateInventory())
+                {
+                    interactable.Interact();
+                    SoundController.Instance.PlaySound(SoundType.PickUp, SoundController.Instance.inventoryAudioSource);
+                }
+                else
+                {
+                    helpPhrase.text = actionToPhrase[Action.InventoryFull];
+                }
+            }
         }
     }
+
+    /// <summary>
+    /// Метод, обновляющий инвентарь
+    /// </summary>
+    /// <returns>True - если предмет был успешно подобран и передан в инвентарь, иначе - false</returns>
+    private bool UpdateInventory()
+    {
+        if (inventoryController != null && interactableInRange != null && interactableInRange is IPickable pickable)
+        {
+            return inventoryController.AddItemToInventory(pickable);
+        }
+
+        return false;
+    }
+
 
     /// <summary>
     /// Метод, высвечивающий всплывающую подсказку для игрока
     /// </summary>
     private void ShowHelpPhrase()
     {
-        if (helpPhrase != null)
+        if (helpPhrase != null && interactableInRange is IInteractable interactable)
         {
-            helpPhrase.text = interactableInRange.GetHelpPhrase();
+            helpPhrase.text = interactable.helpPhrase;
             helpPhrase.enabled = true;
-            
         }
     }
 

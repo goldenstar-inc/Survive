@@ -17,11 +17,6 @@ public class PlayerInitialization : MonoBehaviour
     public PlayerAnimationController playerAnimationController;
 
     /// <summary>
-    /// Скрипт, отвечающий за воспроизведение звуков
-    /// </summary>
-    public SoundController soundController;
-
-    /// <summary>
     /// Скрипт, отвечающий за управление здоровьем игрока
     /// </summary>
     private HealthManager healthManager;
@@ -44,14 +39,12 @@ public class PlayerInitialization : MonoBehaviour
         List<IDamageObserver> damageObservers = new List<IDamageObserver>
         {
             healthDisplay,
-            playerAnimationController,
-            soundController
+            playerAnimationController
         };
 
         List<IHealObserver> healObservers = new List<IHealObserver>
         {
-            healthDisplay,
-            soundController
+            healthDisplay
         };
 
         if (healthManager != null)

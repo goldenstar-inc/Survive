@@ -4,70 +4,115 @@ using UnityEngine;
 /// <summary>
 /// Класс, отвечающий за управление звуками игрока
 /// </summary>
-public class SoundController : MonoBehaviour, IDamageObserver, IHealObserver
+public class SoundController : MonoBehaviour
 {
-    public Dictionary<string, AudioClip> stateToSound = new Dictionary<string, AudioClip>();
+    /// <summary>
+    /// Текущий экземпляр класса SoundController
+    /// </summary>
+    public static SoundController Instance { get; private set; }
+    
+    /// <summary>
+    /// Словарь, содержащий пару ключ-значение, где ключ - это тип звука, а значение - аудиодорожка
+    /// </summary>
+    public Dictionary<SoundType, AudioClip> stateToSound = new Dictionary<SoundType, AudioClip>();
+    
+    /// <summary>
+    /// Массив аудиодорожек
+    /// </summary>
     public AudioClip[] sounds;
 
-    private AudioSource audioSource;
+    /// <summary>
+    /// Массив звуков шагов
+    /// </summary>
+    public AudioClip[] stepSounds;
 
     /// <summary>
-    /// Метод, вызывающийся при старте объекта
+    /// Массив звуков размахивания холодным оружием
     /// </summary>
-    void Start()
+    public AudioClip[] swingingKnifeSounds;
+
+    /// <summary>
+    /// Экземпляр класса Random
+    /// </summary>
+    private System.Random random = new System.Random();
+    
+    /// <summary>
+    /// Компонент AudioSource для звуков шагов
+    /// </summary>
+    public AudioSource footstepsAudioSource;
+
+    /// <summary>
+    /// Компонент AudioSource для оружия
+    /// </summary>
+    public AudioSource weaponAudioSource;
+
+    /// <summary>
+    /// Компонент AudioSource для инвентаря
+    /// </summary>
+    public AudioSource inventoryAudioSource;
+
+    /// <summary>
+    /// Компонент AudioSource для состояния игрока
+    /// </summary>
+    public AudioSource playerStateAudioSource;
+
+    /// <summary>
+    /// Метод, который вызывается во время загрузки экземпляра сценария
+    /// </summary>
+    void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         InitializeSoundDictionary();
     }
 
     /// <summary>
-    /// Инициализация словаря со звуками
+    /// Инициализирует словарь звуков придавая каждому типу свой звук
     /// </summary>
     private void InitializeSoundDictionary()
     {
         foreach (AudioClip clip in sounds)
         {
-            stateToSound.Add(clip.name, clip);
-        }
-    }
-    
-    /// <summary>
-    /// Метод, проигрывающий звук получения урона игроком
-    /// </summary>
-    /// <param name="currentHealth">Текущее количество очков здоровья</param>
-    /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    public void OnDamageTaken(int currentHealth, int maxHealth)
-    {
-        string state = "BeingDamaged";
-        AudioClip clip = stateToSound[state];
-            
-        if (clip != null)
-        {
-            PlayAudioClip(clip);
+            if (System.Enum.TryParse(clip.name, out SoundType soundType))
+            {
+                stateToSound[soundType] = clip;
+            }
+            else
+            {
+                Debug.LogWarning($"Звук {clip.name} не соответствует ни одному значению в SoundType.");
+            }
         }
     }
 
     /// <summary>
-    /// Метод, проигрывающий звук восстановления очков здоровья игроком
+    /// Метод, проигрывающий звук, если тип звука имеет аудиодорожку
     /// </summary>
-    /// <param name="currentHealth">Текущее количество очков здоровья</param>
-    /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    public void OnHealApplied(int currentHealth, int maxHealth)
+    /// <param name="soundType">Тип звука</param>
+    
+    public void PlaySound(SoundType soundType, AudioSource audioSource)
     {
-        string state = "BeingHealed";
-        AudioClip clip = stateToSound[state];
-                
-        if (clip != null)
+        if (stateToSound.TryGetValue(soundType, out AudioClip clip))
         {
-            PlayAudioClip(clip);
+            PlayAudioClip(clip, audioSource);
+        }
+        else
+        {
+            Debug.LogError($"Звук для типа {soundType} не найден!");
         }
     }
-    
+
     /// <summary>
     /// Функция, воспроизводящая переданный звук
     /// </summary>
     /// <param name="clip">Переданный звук</param>
-    public void PlayAudioClip(AudioClip clip)
+    private void PlayAudioClip(AudioClip clip, AudioSource audioSource)
     {
         if (audioSource != null && clip != null)
         {
@@ -75,4 +120,47 @@ public class SoundController : MonoBehaviour, IDamageObserver, IHealObserver
             audioSource.Play();
         }
     }
+
+    /// <summary>
+    /// Проигрывает случайный звук шагов
+    /// </summary>
+    public void PlayRandomStepSound()
+    {
+        if (stepSounds.Length == 0)
+        {
+            Debug.LogError("Массив stepSounds пуст!");
+            return;
+        }
+
+        int index = random.Next(stepSounds.Length);
+        PlayAudioClip(stepSounds[index], footstepsAudioSource);
+    }
+
+    /// <summary>
+    /// Проигрывает случайный звук шагов
+    /// </summary>
+    public void PlayRandomSwingingKnifeSound()
+    {
+        if (swingingKnifeSounds.Length == 0)
+        {
+            Debug.LogError("Массив swingingKnifeSounds пуст!");
+            return;
+        }
+
+        int index = random.Next(swingingKnifeSounds.Length);
+        PlayAudioClip(swingingKnifeSounds[index], weaponAudioSource);
+    }
+}
+
+/// <summary>
+/// Enum, содержащий все типы звуков
+/// </summary>
+public enum SoundType
+{
+    BeingDamaged,
+    BeingHealed,
+    Select,
+    PickUp,
+    Drop,
+    Steps
 }

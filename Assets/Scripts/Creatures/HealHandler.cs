@@ -30,7 +30,8 @@ public class HealHandler : MonoBehaviour
     /// Метод, уменьшающий количество очков здоровья игрока на переданное значение урона
     /// </summary>
     /// <param name="healPoints">Значение урона</param>
-    public void Heal(int healPoints)
+    /// <returns>True - если игрок здоровье было изменено, иначе - false</returns>
+    public bool Heal(int healPoints)
     {
         if (manager != null)
         {
@@ -42,8 +43,10 @@ public class HealHandler : MonoBehaviour
                 currentHealth = Mathf.Min(currentHealth + healPoints, maxHealth);
                 manager.SetCurrentHealth(currentHealth);
                 NotifyObservers(currentHealth, maxHealth);
+                return true;
             }
         }
+        return false;
     }
 
     /// <summary>

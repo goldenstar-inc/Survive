@@ -1,46 +1,110 @@
 using System.Collections;
 using UnityEngine;
+using static InventoryController;
 
 /// <summary>
-/// Класс, отвечающий за атаку холодным оружием
+/// пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /// </summary>
 public class KnifeAttack : MonoBehaviour
 {
     /// <summary>
-    /// Переменная, отвечающая за текущий статус атаки
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private bool isAttacking = false;
 
     /// <summary>
-    /// Объект, содержащий анимацию
+    /// пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public GameObject attackingRange;
 
     /// <summary>
-    /// Аниматор, отвечающий за анимацию атаки
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public Animator attackingAnimator;
 
     /// <summary>
-    /// Метод, меняющий видимость объекта
+    /// РЎРєСЂРёРїС‚, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РёРЅРІРµРЅС‚Р°СЂСЊ РёРіСЂРѕРєР°
+    /// </summary>
+    private InventoryController inventoryController;
+
+    /// <summary>
+    /// пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private void ChangeVisibility() => attackingRange.SetActive(isAttacking);
 
     /// <summary>
-    /// Метод, вызывающийся каждый игровой кадр
+    /// Р’СЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РїСЂРѕРёРіСЂС‹РІР°РЅРёСЏ Р·РІСѓРєР°
+    /// </summary>
+    private float lastSwingTime = 0f;
+
+    /// <summary>
+    /// РРЅС‚РµСЂРІР°Р» РјРµР¶РґСѓ Р·РІСѓРєР°РјРё
+    /// </summary>
+    private float swingInterval = 0.1f;
+
+    /// <summary>
+    /// РњРµС‚РѕРґ, РІС‹Р·С‹РІР°СЋС‰РёР№СЃСЏ РїСЂРё СЃС‚Р°СЂС‚Рµ РѕР±СЉРµРєС‚Р°
+    /// </summary>
+    private void Start()
+    {
+        inventoryController = GetComponent<InventoryController>();
+
+        if (inventoryController == null)
+        {
+            Debug.LogWarning("InventoryController not loaded");
+        }
+    }
+
+    /// <summary>
+    /// РњРµС‚РѕРґ, РІС‹Р·С‹РІР°СЋС‰РёР№СЃСЏ РєР°Р¶РґС‹Р№ РёРіСЂРѕРІРѕР№ РєР°РґСЂ
     /// </summary>
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        if (Input.GetMouseButton(0) && !isAttacking)
         {
-            isAttacking = true;
-            ChangeVisibility();
+            if (inventoryController.GetCurrentPickableItem() != null)
+            {
+                if (inventoryController.GetCurrentPickableItem().UniqueName == PickableItems.Knife)
+                { 
+                    isAttacking = true;
+                    ChangeVisibility();
+
+                    if (Time.time - lastSwingTime > swingInterval)
+                    {
+                        PlaySwingingKnifeSound();
+                        lastSwingTime = Time.time;
+                    }
+                }
+            }
         }
 
         if (isAttacking && attackingAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             isAttacking = false;
             ChangeVisibility();
+        }
+    }
+
+    private void Attack()
+    {
+        isAttacking = true;
+        ChangeVisibility();
+
+        if (Time.time - lastSwingTime > swingInterval)
+        {
+            PlaySwingingKnifeSound();
+            lastSwingTime = Time.time;
+        }
+    }
+
+    /// <summary>
+    /// РџСЂРѕРёРіСЂС‹РІР°РµС‚ Р·РІСѓРє СЂР°Р·РјР°С…РёРІР°РЅРёСЏ С…РѕР»РѕРґРЅС‹Рј РѕСЂСѓР¶РёРµРј
+    /// </summary>
+    private void PlaySwingingKnifeSound()
+    {
+        if (!SoundController.Instance.weaponAudioSource.isPlaying)
+        {
+            SoundController.Instance.PlayRandomSwingingKnifeSound();
         }
     }
 }
