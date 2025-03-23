@@ -5,13 +5,8 @@ using static InventoryController;
 /// <summary>
 /// �����, ���������� �� ����� �������� �������
 /// </summary>
-public class KnifeAttack : MonoBehaviour
+public class KnifeAttack : MonoBehaviour, IAttackScript
 {
-    /// <summary>
-    /// ����������, ���������� �� ������� ������ �����
-    /// </summary>
-    private bool isAttacking = false;
-
     /// <summary>
     /// ������, ���������� ��������
     /// </summary>
@@ -21,16 +16,6 @@ public class KnifeAttack : MonoBehaviour
     /// ��������, ���������� �� �������� �����
     /// </summary>
     public Animator attackingAnimator;
-
-    /// <summary>
-    /// Скрипт, представляющий инвентарь игрока
-    /// </summary>
-    private InventoryController inventoryController;
-
-    /// <summary>
-    /// �����, �������� ��������� �������
-    /// </summary>
-    private void ChangeVisibility() => attackingRange.SetActive(isAttacking);
 
     /// <summary>
     /// Время последнего проигрывания звука
@@ -43,60 +28,19 @@ public class KnifeAttack : MonoBehaviour
     private float swingInterval = 0.1f;
 
     /// <summary>
-    /// Метод, вызывающийся при старте объекта
+    /// Коллайдер атаки
     /// </summary>
-    private void Start()
-    {
-        inventoryController = GetComponent<InventoryController>();
-
-        if (inventoryController == null)
-        {
-            Debug.LogWarning("InventoryController not loaded");
-        }
-    }
+    public CircleCollider2D attackingCollider2D;
 
     /// <summary>
-    /// Метод, вызывающийся каждый игровой кадр
+    /// Метод атаки ножом
     /// </summary>
-    private void Update()
+    public void Attack()
     {
-        if (Input.GetMouseButton(0) && !isAttacking)
-        {
-            if (inventoryController.GetCurrentPickableItem() != null)
-            {
-                if (inventoryController.GetCurrentPickableItem().UniqueName == PickableItems.Knife)
-                { 
-                    isAttacking = true;
-                    ChangeVisibility();
-
-                    if (Time.time - lastSwingTime > swingInterval)
-                    {
-                        PlaySwingingKnifeSound();
-                        lastSwingTime = Time.time;
-                    }
-                }
-            }
-        }
-
-        if (isAttacking && attackingAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-        {
-            isAttacking = false;
-            ChangeVisibility();
-        }
+        EnableAnimation();
+        PlaySwingingKnifeSound();
     }
-
-    private void Attack()
-    {
-        isAttacking = true;
-        ChangeVisibility();
-
-        if (Time.time - lastSwingTime > swingInterval)
-        {
-            PlaySwingingKnifeSound();
-            lastSwingTime = Time.time;
-        }
-    }
-
+    
     /// <summary>
     /// Проигрывает звук размахивания холодным оружием
     /// </summary>
@@ -104,7 +48,48 @@ public class KnifeAttack : MonoBehaviour
     {
         if (!SoundController.Instance.weaponAudioSource.isPlaying)
         {
-            SoundController.Instance.PlayRandomSwingingKnifeSound();
+            if (Time.time - lastSwingTime > swingInterval)
+            {
+                SoundController.Instance.PlayRandomSwingingKnifeSound();
+                lastSwingTime = Time.time;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Функция, включающая анимацию атаки
+    /// </summary>
+    public void EnableAnimation() 
+    {
+        attackingCollider2D.enabled = true;
+        attackingAnimator.SetBool("IsAttacking", true);
+    }
+
+    /// <summary>
+    /// Функция, выключающая анимацию атаки
+    /// </summary>
+    public void DisableAnimation() 
+    {
+        attackingCollider2D.enabled = false;
+        attackingAnimator.SetBool("IsAttacking", false);
+    }
+
+    /// <summary>
+    /// Функция, применяемая при контакте с триггером
+    /// </summary>
+    /// <param name="collision">Коллизия триггера</param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                DamageHandler damageHandler = collision.GetComponent<DamageHandler>();
+                if (damageHandler != null)
+                {
+                    damageHandler.TakeDamage(Knife.damage);
+                }
+            }
         }
     }
 }

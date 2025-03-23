@@ -5,7 +5,7 @@ using static InventoryController;
 /// <summary>
 /// Класс, представляющий объект: "аптечка"
 /// </summary>
-public class Medkit : MonoBehaviour, IInteractable, IPickable
+public class Medkit : MonoBehaviour, IInteractable, IPickable, IUsable
 {
     /// <summary>
     /// Спрайт ножа в инвентаре
@@ -28,9 +28,13 @@ public class Medkit : MonoBehaviour, IInteractable, IPickable
     public Sprite inventoryImage => medkitInventoryImage;
 
     /// <summary>
+    /// Скрипт, реализующий механику использования аптечки
+    /// </summary>
+    public IUseScript script => FindAnyObjectByType<MedkitUse>();
+
+    /// <summary>
     /// Метод, обеспечивающий взаимодействие с объектом
     /// </summary>
-
     public void Interact()
     {
         Destroy(gameObject);

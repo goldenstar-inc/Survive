@@ -15,6 +15,7 @@ public interface IDamageObserver
 /// </summary>
 public class DamageHandler : MonoBehaviour
 {
+    public SoundType damagedCreatureSound;
     public GameOverScreen gameOverScreen;
     private HealthManager manager;
     private List<IDamageObserver> observers = new List<IDamageObserver>();
@@ -40,7 +41,7 @@ public class DamageHandler : MonoBehaviour
             int maxHealth = manager.GetMaxHealth();
             manager.SetCurrentHealth(currentHealth);
             NotifyObservers(currentHealth, maxHealth);
-            SoundController.Instance.PlaySound(SoundType.BeingDamaged, SoundController.Instance.playerStateAudioSource);
+            SoundController.Instance.PlaySound(damagedCreatureSound, SoundController.Instance.playerStateAudioSource);
             if(currentHealth <= 0)
             {
                 Kill();

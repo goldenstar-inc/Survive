@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 901933793069096313}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9563661, y: -0.40032178, z: -0.06376843}
+  m_LocalPosition: {x: -4.980419, y: -2.6260815, z: -0.06376843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42,9 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7695727845230967376}
   - component: {fileID: 1641767280840815965}
-  - component: {fileID: 3863662476258099220}
   - component: {fileID: 7354450217516751555}
   - component: {fileID: 2007813746113647353}
+  - component: {fileID: 1883717219250777800}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -122,19 +122,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3863662476258099220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2221384160462356905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 408813a2696e3db4cae2e427b036285a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knifeInventoryImage: {fileID: -8275616929961906424, guid: 74de333025002094a991b341b11a4815, type: 3}
 --- !u!95 &7354450217516751555
 Animator:
   serializedVersion: 7
@@ -193,3 +180,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.375
+--- !u!114 &1883717219250777800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2221384160462356905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408813a2696e3db4cae2e427b036285a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knifeInventoryImage: {fileID: -8275616929961906424, guid: 74de333025002094a991b341b11a4815, type: 3}
+  damage: 7
+  attackSpeed: 3

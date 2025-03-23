@@ -31,30 +31,27 @@ public class Knife : MonoBehaviour, IInteractable, IPickable, IWeapon
     /// <summary>
     /// Урон ножа
     /// </summary>
-    public float damage = 7;
+    public static int damage = 7;
 
     /// <summary>
     /// Свойство, хранящее урон оружия
     /// </summary>
-    public float Damage => damage;
+    public int Damage => damage;
 
     /// <summary>
     /// Скорость атаки ножа
     /// </summary>
-    public float attackSpeed = 3;
+    public static int attackSpeed = 3;
 
     /// <summary>
     /// Свойство, хранящее скорость атаки оружия
     /// </summary>
-    public float AttackSpeed => attackSpeed;
+    public int AttackSpeed => attackSpeed;
 
     /// <summary>
-    /// Метод атаки
+    /// Свойство, передающее метод атаки
     /// </summary>
-    public void Attack()
-    {
-        
-    }
+    public IAttackScript script => FindAnyObjectByType<KnifeAttack>();
 
     /// <summary>
     /// Метод, обеспечивающий взаимодействие с объектом

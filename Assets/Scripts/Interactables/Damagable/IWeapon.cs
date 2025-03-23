@@ -2,22 +2,22 @@ using static InventoryController;
 using UnityEngine;
 
 /// <summary>
-/// Интерфейс, содержащий свойство - тип поднимаемого объекта
+/// Интерфейс для оружий
 /// </summary>
 public interface IWeapon : IPickable
 {
     /// <summary>
     /// Урон
     /// </summary>
-    public float Damage { get; }
+    public int Damage { get; }
 
     /// <summary>
     /// Скорость атаки
     /// </summary>
-    public float AttackSpeed { get; }
+    public int AttackSpeed { get; }
 
     /// <summary>
-    /// Метод атаки оружия
+    /// Скрипт атаки для оружия
     /// </summary>
-    public void Attack();
+    public IAttackScript script { get; }
 }

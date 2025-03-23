@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using static InventoryController;
 
 /// <summary>
@@ -21,11 +22,6 @@ public abstract class Item
     {
         UniqueName = name;
     }
-
-    /// <summary>
-    /// Абстрактный метод использования предмета
-    /// </summary>
-    public abstract void Use();
 }
 
 /// <summary>
@@ -44,9 +40,9 @@ public class DamagableItem : Item
     public float AttackSpeed { get; set; }
 
     /// <summary>
-    /// Делегат, хранящий функцию атаки
+    /// Скрипт, хранящий функцию атаки
     /// </summary>
-    public Action PerformAttack;
+    public IAttackScript AttackScript;
 
     /// <summary>
     /// Конструктор класса DamagableItem
@@ -54,18 +50,11 @@ public class DamagableItem : Item
     /// <param name="name">Уникальное имя</param>
     /// <param name="damage">Урон</param>
     /// <param name="attackSpeed">Скорость атаки</param>
-    public DamagableItem(PickableItems name, float damage, float attackSpeed) : base (name)
+    public DamagableItem(PickableItems name, float damage, float attackSpeed, IAttackScript attackScript) : base (name)
     {
         Damage = damage;
         AttackSpeed = attackSpeed;
-    }
-
-    /// <summary>
-    /// Переопределенный метод использования предмета
-    /// </summary>
-    public override void Use()
-    {
-        PerformAttack();
+        AttackScript = attackScript;
     }
 }
 
@@ -80,21 +69,19 @@ public class StackableItem : Item
     public int Quanity { get; set; }
     
     /// <summary>
+    /// Скрипт, хранящий функцию использования предмета
+    /// </summary>
+    public IUseScript UseScript;
+
+    /// <summary>
     /// Конструктор класса StackableItem
     /// </summary>
     /// <param name="name">Уникальное имя</param>
     /// <param name="quanity">Количество</param>
-    public StackableItem(PickableItems name, int quanity) : base(name)
+    public StackableItem(PickableItems name, int quanity, IUseScript useScript) : base(name)
     {
         Quanity = quanity;
-    }
-
-    /// <summary>
-    /// Переопределенный метод использования предмета
-    /// </summary>
-    public override void Use()
-    {
-        throw new System.NotImplementedException();
+        UseScript = useScript;
     }
 }
 
