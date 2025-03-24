@@ -102,6 +102,11 @@ public class PlayerInteractionDetector : MonoBehaviour
                     helpPhrase.text = actionToPhrase[Action.InventoryFull];
                 }
             }
+            else
+            {
+                interactable.Interact();
+                SoundController.Instance.PlaySound(SoundType.PickUp, SoundController.Instance.inventoryAudioSource);
+            }
         }
     }
 

@@ -33,6 +33,16 @@ public class Medkit : MonoBehaviour, IInteractable, IPickable, IUsable
     public IUseScript script => FindAnyObjectByType<MedkitUse>();
 
     /// <summary>
+    /// Свойство, возвращающее количество данного предмета
+    /// </summary>
+    public int Quanity { get; set; }
+
+    /// <summary>
+    /// Метод, вызывающийся при старте объекта
+    /// </summary>
+    private void Start() => Quanity = 1;
+
+    /// <summary>
     /// Метод, обеспечивающий взаимодействие с объектом
     /// </summary>
     public void Interact()

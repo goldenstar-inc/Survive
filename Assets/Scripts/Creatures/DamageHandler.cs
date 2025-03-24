@@ -15,6 +15,7 @@ public interface IDamageObserver
 /// </summary>
 public class DamageHandler : MonoBehaviour
 {
+    public GameObject moneyPrefab;
     public SoundType damagedCreatureSound;
     public GameOverScreen gameOverScreen;
     private HealthManager manager;
@@ -83,5 +84,18 @@ public class DamageHandler : MonoBehaviour
         {
             gameOverScreen.Setup();
         }
+
+        if (moneyPrefab != null)
+        {
+            DropMoney();
+        }
+    }
+
+    /// <summary>
+    /// Метод, отвечающий за выпадение денег
+    /// </summary>
+    private void DropMoney()
+    {
+        Instantiate(moneyPrefab, transform.position , Quaternion.identity);
     }
 }

@@ -40,19 +40,47 @@ public class PlayerAnimationController : MonoBehaviour, IDamageObserver
 
                 if (angle >= -45 && angle < 45)
                 {
-                    playerAnimator.Play("WalkingRight");
+                    if (playerAnimator.GetBool("IsAttacking"))
+                    {
+                        playerAnimator.Play("ArmlessWalkingRight");
+                    }   
+                    else
+                    {
+                        playerAnimator.Play("WalkingRight");
+                    }
                 }
                 else if (angle >= 45 && angle < 135)
                 {
-                    playerAnimator.Play("WalkingUp");
+                    if (playerAnimator.GetBool("IsAttacking"))
+                    {
+                        playerAnimator.Play("ArmlessWalkingUp");
+                    }   
+                    else
+                    {
+                        playerAnimator.Play("WalkingUp");
+                    }
                 }
                 else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135))
                 {
-                    playerAnimator.Play("WalkingLeft");
+                    if (playerAnimator.GetBool("IsAttacking"))
+                    {
+                        playerAnimator.Play("ArmlessWalkingLeft");
+                    }
+                    else
+                    {
+                        playerAnimator.Play("WalkingLeft");
+                    }
                 }
                 else if (angle >= -135 && angle < -45)
                 {
-                    playerAnimator.Play("WalkingDown");
+                    if (playerAnimator.GetBool("IsAttacking"))
+                    {
+                        playerAnimator.Play("ArmlessWalkingDown");
+                    }   
+                    else
+                    {
+                        playerAnimator.Play("WalkingDown");
+                    }
                 }
             }
             else

@@ -48,14 +48,9 @@ public class Pistol : MonoBehaviour, IInteractable, IPickable, IWeapon
     public int AttackSpeed => attackSpeed;
 
     /// <summary>
-    /// Скрипт, хранящий метод атаки
-    /// </summary>
-    public IAttackScript pistolAttackScript;
-
-    /// <summary>
     /// Свойство, передающее метод атаки
     /// </summary>
-    public IAttackScript script => pistolAttackScript;
+    public IAttackScript script => FindAnyObjectByType<PistolAttack>();
 
     /// <summary>
     /// �����, �������������� �������������� � ��������
