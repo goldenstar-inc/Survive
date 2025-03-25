@@ -9,8 +9,8 @@ public class PistolBullet : MonoBehaviour
     /// <summary>
     /// Урон пули пистолета
     /// </summary>
-    private int damage => Pistol.damage;
-    
+    public int damage => Pistol.damage;
+
     /// <summary>
     /// Метод, срабатывающий при входе в триггер 
     /// </summary>
@@ -26,6 +26,7 @@ public class PistolBullet : MonoBehaviour
                 if (damageHandler != null)
                 {
                     damageHandler.TakeDamage(damage);
+                    Destroy(gameObject);
                 }
             }
         }

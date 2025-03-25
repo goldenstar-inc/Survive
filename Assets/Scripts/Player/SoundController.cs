@@ -162,5 +162,9 @@ public enum SoundType
     Select,
     PickUp,
     Drop,
-    Steps
+    Steps,
+    ShotgunShot,
+    PistolShot,
+    Coke,
+    Medicine
 }

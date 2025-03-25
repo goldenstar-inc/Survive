@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 2512867315313822301}
   - component: {fileID: 3440056687455435813}
   - component: {fileID: 7423804756568482568}
+  - component: {fileID: 3027159898630168956}
+  - component: {fileID: 8332997739307295690}
+  - component: {fileID: 8509469743014124825}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -190,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd340cecd9129f4fa651726f3e342f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zombieAnimationController: {fileID: 8332997739307295690}
 --- !u!114 &3440056687455435813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +221,54 @@ MonoBehaviour:
   moneyPrefab: {fileID: 6258729319954115926, guid: 1c2c874ca1f0bdb4da3d57a00ef39410, type: 3}
   damagedCreatureSound: 3
   gameOverScreen: {fileID: 0}
+--- !u!95 &3027159898630168956
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079689751734497547}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f90f8a796cdd854995242d196ab20e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8332997739307295690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079689751734497547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f911a6dc26d99d94dbc641ccb62866ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8509469743014124825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079689751734497547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad7b6ebbae129f4badc3b92fba144b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 5
+  moveSpeed: 2
 --- !u!1 &8331600043279015808
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PistolAttack : MonoBehaviour, IAttackScript
 {
+
+    /// <summary>
+    /// Компонент AmmoHandler
+    /// </summary>
     public AmmoHandler ammoHandler;
 
     /// <summary>
@@ -100,6 +104,7 @@ public class PistolAttack : MonoBehaviour, IAttackScript
             timeSinceLastShot = Time.time;
             ammoHandler.ConsumeAmmo();
             Destroy(bulletInstance, lifeTime);
+            SoundController.Instance.PlaySound(SoundType.PistolShot, SoundController.Instance.weaponAudioSource);
         }
     }
 

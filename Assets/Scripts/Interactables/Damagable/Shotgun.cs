@@ -30,7 +30,7 @@ public class Shotgun : MonoBehaviour, IInteractable, IPickable, IWeapon
     /// <summary>
     /// Урон ножа
     /// </summary>
-    public int damage = 30;
+    public static int damage = 30;
 
     /// <summary>
     /// Свойство, хранящее урон оружия
@@ -48,14 +48,9 @@ public class Shotgun : MonoBehaviour, IInteractable, IPickable, IWeapon
     public float AttackSpeed => attackSpeed;
 
     /// <summary>
-    /// Скрипт, хранящий метод атаки
-    /// </summary>
-    public IAttackScript shotgunAttackScript;
-
-    /// <summary>
     /// Свойство, передающее метод атаки
     /// </summary>
-    public IAttackScript script => shotgunAttackScript;
+    public IAttackScript script => FindAnyObjectByType<ShotgunAttack>();
 
     /// <summary>
     /// �����, �������������� �������������� � ��������
