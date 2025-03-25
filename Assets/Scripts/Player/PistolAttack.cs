@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PistolAttack : MonoBehaviour, IAttackScript
 {
+    public AmmoHandler ammoHandler;
+
     /// <summary>
     /// Аниматор игрока
     /// </summary>
@@ -78,8 +80,11 @@ public class PistolAttack : MonoBehaviour, IAttackScript
     /// </summary>
     public void Attack()
     {
-        EnableAttacking();
-        Shoot();
+        if (Time.time - timeSinceLastShot > attackSpeed && ammoHandler.currentAmmo > 0)
+        {
+            EnableAttacking();
+            Shoot();
+        }
     }
 
     /// <summary>
@@ -89,14 +94,12 @@ public class PistolAttack : MonoBehaviour, IAttackScript
     {
         if (bulletPrefab != null && shotStartPoint != null)
         {
-            if (Time.time - timeSinceLastShot > attackSpeed)
-            {
-                GameObject bulletInstance = Instantiate(bulletPrefab, shotStartPoint.transform.position, shotStartPoint.transform.rotation);
-                Rigidbody2D bulletPrefabRB = bulletInstance.GetComponentInChildren<Rigidbody2D>();
-                bulletPrefabRB.linearVelocity = shotStartPoint.transform.right * bulletSpeed;
-                timeSinceLastShot = Time.time;
-                Destroy(bulletInstance, lifeTime);
-            }
+            GameObject bulletInstance = Instantiate(bulletPrefab, shotStartPoint.transform.position, shotStartPoint.transform.rotation);
+            Rigidbody2D bulletPrefabRB = bulletInstance.GetComponentInChildren<Rigidbody2D>();
+            bulletPrefabRB.linearVelocity = shotStartPoint.transform.right * bulletSpeed;
+            timeSinceLastShot = Time.time;
+            ammoHandler.ConsumeAmmo();
+            Destroy(bulletInstance, lifeTime);
         }
     }
 

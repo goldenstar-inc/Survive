@@ -19,7 +19,6 @@ public class PistolBullet : MonoBehaviour
     {
         if (collision != null)
         {
-            Debug.Log(collision.gameObject.tag);
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 DamageHandler damageHandler = collision.GetComponent<DamageHandler>();

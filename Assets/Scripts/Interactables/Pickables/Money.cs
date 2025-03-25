@@ -1,6 +1,7 @@
 using UnityEngine;
 using static HelpPhrasesModule;
 using static InventoryController;
+
 /// <summary>
 /// Класс, представляющий объект: "Деньги"
 /// </summary>
