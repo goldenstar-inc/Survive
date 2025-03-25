@@ -30,7 +30,7 @@ public class Pistol : MonoBehaviour, IInteractable, IPickable, IWeapon
     /// <summary>
     /// Урон ножа
     /// </summary>
-    public int damage = 10;
+    public static int damage = 20;
 
     /// <summary>
     /// Свойство, хранящее урон оружия
@@ -38,14 +38,14 @@ public class Pistol : MonoBehaviour, IInteractable, IPickable, IWeapon
     public int Damage => damage;
 
     /// <summary>
-    /// Скорость атаки ножа
+    /// Скорость выстрелов
     /// </summary>
-    public int attackSpeed = 2;
+    public static float attackSpeed =  0.3f;
 
     /// <summary>
     /// Свойство, хранящее скорость атаки оружия
     /// </summary>
-    public int AttackSpeed => attackSpeed;
+    public float AttackSpeed => attackSpeed;
 
     /// <summary>
     /// Свойство, передающее метод атаки

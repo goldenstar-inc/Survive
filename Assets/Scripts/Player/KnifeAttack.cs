@@ -23,9 +23,14 @@ public class KnifeAttack : MonoBehaviour, IAttackScript
     private float lastSwingTime = 0f;
 
     /// <summary>
+    /// Урон с ножа
+    /// </summary>
+    public int damage = Knife.damage;
+
+    /// <summary>
     /// Интервал между звуками
     /// </summary>
-    private float swingInterval = 0.1f;
+    public float attackSpeed => Knife.attackSpeed;
 
     /// <summary>
     /// Коллайдер атаки
@@ -48,7 +53,7 @@ public class KnifeAttack : MonoBehaviour, IAttackScript
     {
         if (!SoundController.Instance.weaponAudioSource.isPlaying)
         {
-            if (Time.time - lastSwingTime > swingInterval)
+            if (Time.time - lastSwingTime > attackSpeed)
             {
                 SoundController.Instance.PlayRandomSwingingKnifeSound();
                 lastSwingTime = Time.time;
@@ -84,10 +89,11 @@ public class KnifeAttack : MonoBehaviour, IAttackScript
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
+                Debug.Log(damage);
                 DamageHandler damageHandler = collision.GetComponent<DamageHandler>();
                 if (damageHandler != null)
                 {
-                    damageHandler.TakeDamage(Knife.damage);
+                    damageHandler.TakeDamage(damage);
                 }
             }
         }

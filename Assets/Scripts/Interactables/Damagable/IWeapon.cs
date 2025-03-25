@@ -14,7 +14,7 @@ public interface IWeapon : IPickable
     /// <summary>
     /// Скорость атаки
     /// </summary>
-    public int AttackSpeed { get; }
+    public float AttackSpeed { get; }
 
     /// <summary>
     /// Скрипт атаки для оружия

@@ -31,7 +31,7 @@ public class Knife : MonoBehaviour, IInteractable, IPickable, IWeapon
     /// <summary>
     /// Урон ножа
     /// </summary>
-    public static int damage = 7;
+    public static int damage = 10;
 
     /// <summary>
     /// Свойство, хранящее урон оружия
@@ -39,14 +39,14 @@ public class Knife : MonoBehaviour, IInteractable, IPickable, IWeapon
     public int Damage => damage;
 
     /// <summary>
-    /// Скорость атаки ножа
+    /// Скорость выстрелов
     /// </summary>
-    public static int attackSpeed = 3;
+    public static float attackSpeed =  0.1f;
 
     /// <summary>
     /// Свойство, хранящее скорость атаки оружия
     /// </summary>
-    public int AttackSpeed => attackSpeed;
+    public float AttackSpeed => attackSpeed;
 
     /// <summary>
     /// Свойство, передающее метод атаки

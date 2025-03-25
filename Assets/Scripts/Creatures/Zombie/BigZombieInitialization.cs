@@ -18,7 +18,7 @@ public class BigZombieInitialization : MonoBehaviour
 
         if (healthManager != null)
         {
-            maxHealth = 28;
+            maxHealth = 100;
             healthManager.Initialize(maxHealth, new List<IDamageObserver>(), new List<IHealObserver>());
         }
     }
