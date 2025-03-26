@@ -14,7 +14,8 @@ public static class HelpPhrasesModule
     {
         { Action.PickUp, "PICK UP [F]" },
         { Action.Open, "OPEN [T]" },
-        { Action.InventoryFull, "INVENTORY FULL" }
+        { Action.InventoryFull, "INVENTORY FULL" },
+        { Action.Buy, "BUY RANDOM STUFF [F]" }
     };
 
     /// <summary>
@@ -24,6 +25,7 @@ public static class HelpPhrasesModule
     {
         PickUp,
         Open,
-        InventoryFull
+        InventoryFull,
+        Buy,
     }
 }

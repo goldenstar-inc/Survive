@@ -13,7 +13,7 @@ public class MedicineUse : MonoBehaviour, IUseScript
     /// <summary>
     /// Количество очков, на которое аптечка восполняет здоровье
     /// </summary>
-    private int healPoints = 1;
+    private int healPoints = 2;
 
     /// <summary>
     /// Метод, вызывающийся при старте объекта

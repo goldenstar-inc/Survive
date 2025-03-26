@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -50,5 +51,19 @@ public class MoneyHandler : MonoBehaviour
     /// <summary>
     /// Метод, вызывающийся для добавления денег к балансу
     /// </summary>
-    public void AddMoney(int amount) => Balance += amount;
+    public void AddMoney(int amount) 
+    {
+        Balance += amount;
+        UpdateUI();
+    }
+
+    /// <summary>
+    /// Метод, вызывающийся для оплаты 
+    /// </summary>
+    public void Pay(int amount)
+    {
+        Balance -= amount;
+        Balance = Math.Max(0, Balance);
+        UpdateUI();
+    }
 }

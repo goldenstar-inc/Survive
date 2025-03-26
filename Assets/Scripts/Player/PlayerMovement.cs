@@ -4,11 +4,21 @@ using UnityEngine;
 /// Класс, отвечающий за передвижение игрока
 /// </summary>
 public class PlayerMovement : MonoBehaviour
-{
+{   
+    /// <summary>
+    /// Скорость игрока по умолчанию
+    /// </summary>
+    public const float WALKING_PLAYER_SPEED = 4f;
+
+    /// <summary>
+    /// Скорость игрока по умолчанию
+    /// </summary>
+    public const float RUNNING_PLAYER_SPEED = 6f;
+
     /// <summary>
     /// Скорость игрока
     /// </summary>
-    public float speed = 4f;
+    public float speed = WALKING_PLAYER_SPEED;
 
     /// <summary>
     /// Скрипт, отвечающий за управление анимацией игрока
@@ -31,9 +41,19 @@ public class PlayerMovement : MonoBehaviour
     private float lastStepTime = 0f;
 
     /// <summary>
+    /// Интервал между шагами по умолчанию
+    /// </summary>
+    private const float WALKING_STEP_INTERVAL = 0.5f;
+
+    /// <summary>
+    /// Интервал между шагами по умолчанию
+    /// </summary>
+    private const float RUNNING_STEP_INTERVAL = 0.3f;
+
+    /// <summary>
     /// Интервал между шагами
     /// </summary>
-    private float stepInterval = 0.5f;
+    private float stepInterval = WALKING_STEP_INTERVAL;
 
     /// <summary>
     /// Метод, вызывающийся при старте объекта
@@ -49,6 +69,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = RUNNING_PLAYER_SPEED;
+            stepInterval = RUNNING_STEP_INTERVAL;
+        }
+        else
+        {
+            speed = WALKING_PLAYER_SPEED;
+            stepInterval = WALKING_STEP_INTERVAL;
+        }
+
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
 

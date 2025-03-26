@@ -84,10 +84,21 @@ public class PistolAttack : MonoBehaviour, IAttackScript
     /// </summary>
     public void Attack()
     {
-        if (Time.time - timeSinceLastShot > attackSpeed && ammoHandler.currentAmmo > 0)
+        if (Time.time - timeSinceLastShot > attackSpeed)
         {
-            EnableAttacking();
-            Shoot();
+            if (ammoHandler.currentAmmo > 0)
+            {
+                EnableAttacking();
+                Shoot();
+            }
+            else
+            {
+                SoundController.Instance.PlaySound(SoundType.EmptyMag, SoundController.Instance.weaponAudioSource);
+            }
+        }
+        else
+        {
+            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.weaponAudioSource);
         }
     }
 

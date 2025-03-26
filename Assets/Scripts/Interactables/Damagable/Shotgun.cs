@@ -40,7 +40,7 @@ public class Shotgun : MonoBehaviour, IInteractable, IPickable, IWeapon
     /// <summary>
     /// Скорость атаки ножа
     /// </summary>
-    public float attackSpeed = 1f;
+    public static float attackSpeed = 3f;
 
     /// <summary>
     /// Свойство, хранящее скорость атаки оружия

@@ -41,7 +41,15 @@ public class Ammo : MonoBehaviour, IInteractable, IAmountable
     /// </summary>
     public void Interact()
     {
-        Destroy(gameObject);
-        ammoHandler.CollectAmmo(quanity);
+        if (ammoHandler.currentAmmo != ammoHandler.maxAmmo)
+        {
+            Destroy(gameObject);
+            ammoHandler.CollectAmmo(quanity);
+            SoundController.Instance.PlaySound(SoundType.Bullet, SoundController.Instance.inventoryAudioSource);
+        }
+        else
+        {
+            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.inventoryAudioSource);
+        }
     }
 }

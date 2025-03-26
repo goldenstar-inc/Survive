@@ -18,8 +18,7 @@ public class Money : MonoBehaviour, IInteractable
     public void Interact()
     {
         Destroy(gameObject);
-
         MoneyHandler.Instance.AddMoney(Random.Range(20, 50));
-        MoneyHandler.Instance.UpdateUI();
+        SoundController.Instance.PlaySound(SoundType.Money, SoundController.Instance.inventoryAudioSource);
     }
 }

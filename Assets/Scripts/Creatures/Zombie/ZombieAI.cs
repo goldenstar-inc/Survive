@@ -13,7 +13,7 @@ public class ZombieAI : MonoBehaviour
     // Скорость передвижения зомби
     public float moveSpeed = 2f;
 
-    // Флаг, указывающий, находится ли игрок в радиусе видимости
+    // Флаг, указыва    ющий, находится ли игрок в радиусе видимости
     private bool isPlayerInRadius = false;
 
     void Start()
@@ -23,21 +23,24 @@ public class ZombieAI : MonoBehaviour
     }
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        isPlayerInRadius = distanceToPlayer <= detectionRadius;
-
-        Vector2 direction = (player.position - transform.position).normalized;
-
-        if (isPlayerInRadius)
+        if (player != null)
         {
-            MoveTowardsPlayer(direction);
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+            isPlayerInRadius = distanceToPlayer <= detectionRadius;
+
+            Vector2 direction = (player.position - transform.position).normalized;
+
+            if (isPlayerInRadius)
+            {
+                MoveTowardsPlayer(direction);
+            }
+            else
+            {
+                direction = Vector2.zero;
+            }
+            controller.UpdateMovementAnimation(direction);
         }
-        else
-        {
-            direction = Vector2.zero;
-        }
-        controller.UpdateMovementAnimation(direction);
     }
 
     private void MoveTowardsPlayer(Vector2 direction)

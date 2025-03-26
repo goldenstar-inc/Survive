@@ -25,7 +25,6 @@ public class ZombieAnimationController : MonoBehaviour, IDamageObserver
     {
         if (input != null && zombieAnimator != null && zombieAnimator.GetBool("IsDamaged") == false)
         {
-            Debug.Log(input.x + " " + input.y + " " + input.z);
             if (input.x != 0 || input.y != 0)
             {
                 zombieAnimator.SetBool("IsIdle", false);

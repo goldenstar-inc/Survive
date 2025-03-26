@@ -57,6 +57,11 @@ public class SoundController : MonoBehaviour
     public AudioSource playerStateAudioSource;
 
     /// <summary>
+    /// Компонент AudioSource для дилера
+    /// </summary>
+    public AudioSource dealerAudioSource;
+
+    /// <summary>
     /// Метод, который вызывается во время загрузки экземпляра сценария
     /// </summary>
     void Awake()
@@ -166,5 +171,11 @@ public enum SoundType
     ShotgunShot,
     PistolShot,
     Coke,
-    Medicine
+    Medicine,
+    EmptyMag,
+    NotReady,
+    Bullet,
+    Money,
+    DealerSpeech,
+    DamagedZombie
 }

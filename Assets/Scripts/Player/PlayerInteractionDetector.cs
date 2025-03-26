@@ -102,10 +102,14 @@ public class PlayerInteractionDetector : MonoBehaviour
                     helpPhrase.text = actionToPhrase[Action.InventoryFull];
                 }
             }
-            else
+            else if (interactable is IUsable)
             {
                 interactable.Interact();
                 SoundController.Instance.PlaySound(SoundType.PickUp, SoundController.Instance.inventoryAudioSource);
+            }
+            else
+            {
+                interactable.Interact();
             }
         }
     }
