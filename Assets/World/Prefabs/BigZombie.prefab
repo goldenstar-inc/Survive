@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6710815579575528775}
   - component: {fileID: 2512867315313822301}
   - component: {fileID: 3440056687455435813}
-  - component: {fileID: 7423804756568482568}
   - component: {fileID: 3027159898630168956}
   - component: {fileID: 8332997739307295690}
   - component: {fileID: 8509469743014124825}
@@ -194,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd340cecd9129f4fa651726f3e342f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthManager: {fileID: 0}
   zombieAnimationController: {fileID: 8332997739307295690}
 --- !u!114 &3440056687455435813
 MonoBehaviour:
@@ -207,21 +207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d67814fa22ef94e981c9ca19eadf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7423804756568482568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3079689751734497547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7fb4cd01f214974e94489419d0f0305, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  maxHealth: 100
   moneyPrefab: {fileID: 6258729319954115926, guid: 1c2c874ca1f0bdb4da3d57a00ef39410, type: 3}
-  damagedCreatureSound: 15
   gameOverScreen: {fileID: 0}
+  damagedCreatureSound: 15
 --- !u!95 &3027159898630168956
 Animator:
   serializedVersion: 7
@@ -256,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f911a6dc26d99d94dbc641ccb62866ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zombieHealthManager: {fileID: 3440056687455435813}
 --- !u!114 &8509469743014124825
 MonoBehaviour:
   m_ObjectHideFlags: 0

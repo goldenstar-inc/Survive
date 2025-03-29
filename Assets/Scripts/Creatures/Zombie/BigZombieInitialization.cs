@@ -6,7 +6,7 @@ public class BigZombieInitialization : MonoBehaviour
     /// <summary>
     /// Скрипт, отвечающий за управление здоровьем большого зомби
     /// </summary>
-    private HealthManager healthManager;
+    [SerializeField] HealthManager healthManager;
 
     public ZombieAnimationController zombieAnimationController;
     
@@ -18,15 +18,9 @@ public class BigZombieInitialization : MonoBehaviour
     {
         healthManager = GetComponent<HealthManager>();
 
-        List<IDamageObserver> damageObservers = new List<IDamageObserver>
-        {
-            zombieAnimationController
-        };
-
         if (healthManager != null)
         {
             maxHealth = 100;
-            healthManager.Initialize(maxHealth, damageObservers, new List<IHealObserver>());
         }
     }
 }

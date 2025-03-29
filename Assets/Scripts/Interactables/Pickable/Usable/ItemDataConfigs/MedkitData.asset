@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MedkitData
+  m_EditorClassIdentifier: Assembly-CSharp::StackableItemData
+  Prefab: {fileID: 4548729846932909487, guid: c088409187a47734bbb68faa3b7d47af, type: 3}
+  InventoryImage: {fileID: 5899977706764660743, guid: 7bcdb39e74f421541a76aac4c98d98fe, type: 3}
+  Name: 4
+  Description: Just a medkit.
+  MaxQuantity: 2

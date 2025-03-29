@@ -1,21 +1,32 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class GameOverScreen : MonoBehaviour
 {
+    [SerializeField] HealthManager playerHealthManager;
+    [SerializeField] GameObject gameOverScreen;
+
     /// <summary>
-    /// Метод, выводящий экран "Game Over"
+    /// Р’РєР»СЋС‡РµРЅРёРµ СЌРєСЂР°РЅР° "Game Over"
     /// </summary>
     public void Setup()
     {
-        gameObject.SetActive(true);
+        gameOverScreen.SetActive(true);
     }
 
     /// <summary>
-    /// Метод, начинающий игру заново, при нажатии на кнопку "Restart"
+    /// РљРЅРѕРїРєР° РїРµСЂРµР·Р°РіСЂСѓР·РєРё РёРіСЂС‹
     /// </summary>
     public void RestartButton()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    void OnEnable()
+    {
+        playerHealthManager.OnDeath += Setup;
+    }
+    void OnDisable()
+    {
+        playerHealthManager.OnDeath -= Setup;
     }
 }
