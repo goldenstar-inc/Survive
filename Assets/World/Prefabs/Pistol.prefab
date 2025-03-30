@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 4009109151611956838}
   - component: {fileID: 8222251285194713024}
   - component: {fileID: 3365437026851033796}
-  - component: {fileID: 5962376839274179901}
-  - component: {fileID: 3247360538529377937}
+  - component: {fileID: 7863475624862050297}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -149,7 +148,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.375
---- !u!114 &5962376839274179901
+--- !u!114 &7863475624862050297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,28 +157,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 188922582376875431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ed94cf15d2a8fa4a87c308029ede68c, type: 3}
+  m_Script: {fileID: 11500000, guid: 16ebd976e0fcd3f42bae561f39093a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoHandler: {fileID: 0}
-  playerAnimationController: {fileID: 0}
-  pistolAnimatorController: {fileID: 0}
-  shotStartPoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  attackSpeed: 20
---- !u!114 &3247360538529377937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188922582376875431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ff06038d342ed4d92fb52554a75fcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: c5607b790bee0c44ebf85cda998a4fba, type: 2}
+  data: {fileID: 11400000, guid: 48f12542809e0e64aa8a7a91d96dd6e9, type: 2}
 --- !u!1 &2754018163563420593
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310f74845cc45d14e958ca201863efc7, type: 3}
+  m_Name: MedicineData
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6192780169557577017, guid: f2c913a7cdff86444a957d003a685e25, type: 3}
+  InventoryImage: {fileID: 9208150451487685380, guid: 0c43543807e7bac4eaefcb5b7e6ccfbd, type: 3}
+  Name: 6
+  Description: Delicious, sour vitamins. LOVE THAT!
+  MaxQuantity: 6
+  UseDuration: 3
+  HealPoints: 1
