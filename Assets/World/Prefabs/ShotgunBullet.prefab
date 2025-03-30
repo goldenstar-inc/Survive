@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1122090440930801634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2480887, y: 0.20456333, z: 0.08635438}
+  m_LocalPosition: {x: 0.536, y: 0.20456333, z: 0.08635438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4437745871082047680}
   - component: {fileID: 5498976231723856206}
   - component: {fileID: 8502348327178085878}
-  - component: {fileID: 6360660722597969021}
+  - component: {fileID: 152983458203938712}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 2378662525852656275}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2480887, y: -0.20456333, z: -0.08635438}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 101
   m_Sprite: {fileID: -1261281480696210388, guid: 09b8dd89b99dd104e932ad34a0b8cf83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -195,7 +195,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6360660722597969021
+--- !u!114 &152983458203938712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,6 +204,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2378662525852656275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0c12617d6b47f43a173da2b80a0059, type: 3}
+  m_Script: {fileID: 11500000, guid: 00cd05cc334ee7e40bf0f05869936b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

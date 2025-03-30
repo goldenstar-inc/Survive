@@ -16,9 +16,4 @@ public class ItemData : ScriptableObject
 
     [Tooltip("Item description")] 
     public string Description;
-
-    public virtual void Use()
-    {
-        Debug.Log("Bein' used");
-    }
 }

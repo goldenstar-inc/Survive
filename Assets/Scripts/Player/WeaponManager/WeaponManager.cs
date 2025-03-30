@@ -3,15 +3,26 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public IAttackScript currentWeapon { get; private set; }
-
-    public void SetCurrentWeapon(IAttackScript selectedWeapon)
+    public static WeaponManager Instance { get; private set; }
+    [SerializeField] Transform attackStartPoint;
+    public void Awake()
     {
-        currentWeapon = selectedWeapon;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(Instance);
+        }
     }
 
-    public void Attack()
+    /// <summary>
+    /// Возврает точку атаки
+    /// </summary>
+    /// <returns>Точку атаки</returns>
+    public Transform GetAttackStartPoint()
     {
-        currentWeapon.Attack();
+        return attackStartPoint;
     }
 }
