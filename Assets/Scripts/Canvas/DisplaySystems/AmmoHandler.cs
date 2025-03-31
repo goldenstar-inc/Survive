@@ -4,46 +4,26 @@ using UnityEngine.UI;
 
 public class AmmoHandler : MonoBehaviour
 {
-    public static AmmoHandler Instance { get; set; }
-
-    public Image[] ammoImages;
+    [SerializeField] public int maxAmmo;
 
     public int currentAmmo { get; private set; }
-
-    public int maxAmmo { get; private set; }
+    public event Action<int, int> OnConsume;
+    public event Action<int, int> OnCollect;
 
     void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            currentAmmo = 0;
-            maxAmmo = ammoImages.Length;
-            ShowCurrentAmmo();
-        }
-        else
-        {
-            Destroy(Instance);
-        }
+        currentAmmo = 0;
     }
     
     public void ConsumeAmmo()
     {
         currentAmmo = Math.Max(0, currentAmmo - 1);
-        ShowCurrentAmmo();
+        OnConsume?.Invoke(currentAmmo, maxAmmo);
     }
 
     public void CollectAmmo(int amount)
     {
         currentAmmo = Math.Min(maxAmmo, currentAmmo + amount);
-        ShowCurrentAmmo();
-    }
-
-    public void ShowCurrentAmmo()
-    {
-        for (int i = 0; i < ammoImages.Length; i++)
-        {
-            ammoImages[i].enabled = i < currentAmmo;
-        }
+        OnCollect?.Invoke(currentAmmo, maxAmmo);
     }
 }

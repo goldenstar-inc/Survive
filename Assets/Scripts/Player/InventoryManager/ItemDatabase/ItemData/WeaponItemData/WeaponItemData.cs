@@ -8,5 +8,5 @@ public class WeaponItemData : ItemData
 
     [Tooltip("Cooldown of an attack")] 
     [SerializeField, Range(0.1f, 10f)] public float AttackCooldown;
-    [SerializeField] public Animator Animator;
+    [SerializeField] public AnimatorOverrideController Animator;
 }

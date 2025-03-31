@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,25 +11,34 @@ public class EquippedGun : IUseScript
     /// <summary>
     /// Конфиг оружия
     /// </summary>
-    private Animator gunAnimator;
-    private Transform shotStartPoint;
     private RangedWeaponItemData data;
+    private Animator playerAnimator;
+    private AmmoHandler ammoHandler;
+    private Transform shotStartPoint;
     private GameObject bulletPrefab;
     private int damage;
     private float bulletVelocity;
     private float bulletLifeTime;
+    private float attackCooldown;
     private SoundType shotSound;
     private float timeSinceLastShot = 0f;
     public void Initialize(RangedWeaponItemData data)
     {
         shotStartPoint = WeaponManager.Instance.GetAttackStartPoint();
-        gunAnimator = data.Animator;
         this.data = data;
         bulletPrefab = data.BulletPrefab;
         damage = data.Damage;
         bulletVelocity = data.BulletVelocity;
         bulletLifeTime = data.BulletLifeTime;
         shotSound = data.ShotSound;
+        attackCooldown = data.AttackCooldown;
+
+        Animator weaponAnimator = WeaponManager.Instance.GetWeaponAnimator();
+        
+        if (weaponAnimator != null)
+        {
+            weaponAnimator.runtimeAnimatorController = data.Animator;
+        }
     }
 
     /// <summary>
@@ -36,9 +46,10 @@ public class EquippedGun : IUseScript
     /// </summary>
     public bool Use()
     {
-        if (Time.time - timeSinceLastShot > data.AttackCooldown)
+        if (Time.time - timeSinceLastShot > attackCooldown)
         {
             Shoot();
+            WeaponManager.Instance.PlayAttackAnimation();
             return true;
         }
         else
@@ -58,15 +69,6 @@ public class EquippedGun : IUseScript
             BulletSpawner.Instance.SpawnBullet(bulletPrefab, shotStartPoint, damage, bulletVelocity, bulletLifeTime);
             timeSinceLastShot = Time.time;
             SoundController.Instance.PlaySound(shotSound, SoundController.Instance.weaponAudioSource);
-            EnableAttacking();
         }
-    }
-
-    /// <summary>
-    /// Метод, включающий атакующее положение игрока
-    /// </summary>
-    public void EnableAttacking()
-    {
-        gunAnimator.SetTrigger("IsAttacking");
     }
 }

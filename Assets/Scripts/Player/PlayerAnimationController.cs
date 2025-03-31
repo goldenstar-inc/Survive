@@ -116,12 +116,29 @@ public class PlayerAnimationController : MonoBehaviour
         }
     }
 
+    public void EnableAttackingState()
+    {
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("IsAttacking", true);
+        }
+    }
+
+    public void DisableAttackingState()
+    {
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("IsAttacking", false);
+        }
+    }
     void OnEnable()
     {
         playerHealthManager.OnTakeDamage += OnDamageTaken;
+        WeaponManager.Instance.OnAttack += EnableAttackingState;
     }
     void OnDisable()
     {
         playerHealthManager.OnTakeDamage -= OnDamageTaken;
+        WeaponManager.Instance.OnAttack -= EnableAttackingState;
     }
 }

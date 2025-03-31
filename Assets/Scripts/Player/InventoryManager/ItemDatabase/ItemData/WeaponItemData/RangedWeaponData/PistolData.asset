@@ -18,7 +18,7 @@ MonoBehaviour:
   Description: Glock-18. Sweet!
   Damage: 25
   AttackCooldown: 0.5
-  Animator: {fileID: 3050069814278127027, guid: c0186b83d6647c044a0cb1d13721e54b, type: 3}
+  Animator: {fileID: 22100000, guid: eacf865baeeec01418ea62edc2c2c284, type: 2}
   BulletPrefab: {fileID: 4503826973908181090, guid: 2afcae5d1e5c9c64d826592a0be81376, type: 3}
   BulletVelocity: 10
   BulletLifeTime: 7
