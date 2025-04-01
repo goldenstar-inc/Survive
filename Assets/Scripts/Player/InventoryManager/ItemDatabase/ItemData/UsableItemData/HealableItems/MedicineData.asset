@@ -18,4 +18,5 @@ MonoBehaviour:
   Description: Delicious, sour vitamins. LOVE THAT!
   MaxQuantity: 6
   UseDuration: 3
-  HealPoints: 1
+  Sound: 9
+  HealPoints: 2

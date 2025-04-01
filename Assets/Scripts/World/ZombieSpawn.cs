@@ -18,11 +18,7 @@ public class ZombieSpawn : MonoBehaviour
     /// </summary>
     public float ZombiesToSpawn;
 
-    private HealthManager healthManager;
-
-    private GameObject spawnedZombie;
-
-    void Initialize()
+    void Start()
     {
         RandomSpawn();
     }
@@ -44,13 +40,10 @@ public class ZombieSpawn : MonoBehaviour
                 if (!tilemap.HasTile(randomCell))
                 {
                     Vector3 spawnPosition = tilemap.CellToWorld(randomCell) + new Vector3(0.5f, 0.5f, 0);
-                    spawnedZombie = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+                    Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
                     break;
                 }
             }
-
-            HealthManager healthManager = spawnedZombie.GetComponentInChildren<HealthManager>();
-            healthManager.Initialize();
         }
     }
 

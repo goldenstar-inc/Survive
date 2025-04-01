@@ -10,7 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AmmoHandler))]
 public class WeaponManager : MonoBehaviour
-{
+    {
     [SerializeField] Transform attackStartPoint;
     public event Action OnAttack;
     public static WeaponManager Instance { get; private set; }

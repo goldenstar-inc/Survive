@@ -133,8 +133,8 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void OnEnable()
     {
-        playerHealthManager.OnTakeDamage += OnDamageTaken;
-        WeaponManager.Instance.OnAttack += EnableAttackingState;
+        // playerHealthManager.OnTakeDamage += OnDamageTaken;
+        // WeaponManager.Instance.OnAttack += EnableAttackingState;
     }
     void OnDisable()
     {

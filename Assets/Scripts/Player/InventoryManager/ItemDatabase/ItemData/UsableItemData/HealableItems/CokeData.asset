@@ -18,4 +18,5 @@ MonoBehaviour:
   Description: 
   MaxQuantity: 6
   UseDuration: 2
+  Sound: 8
   HealPoints: 1

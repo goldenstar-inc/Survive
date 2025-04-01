@@ -18,4 +18,5 @@ MonoBehaviour:
   Description: Just a medkit.
   MaxQuantity: 2
   UseDuration: 10
+  Sound: 1
   HealPoints: 3
