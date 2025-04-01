@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class AmmoHandler : MonoBehaviour
 {
     [SerializeField] public int maxAmmo;
-
     public int currentAmmo { get; private set; }
     public event Action<int, int> OnConsume;
     public event Action<int, int> OnCollect;

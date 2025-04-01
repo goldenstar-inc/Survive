@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+public class HealthManager : InitializableBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private GameObject moneyPrefab;
@@ -19,7 +19,7 @@ public class HealthManager : MonoBehaviour
     /// Метод, инициализирующий здоровье игрока
     /// </summary>
     /// <param name="maxHealth">Максимальное кличество очков здоровья</param>
-    public void Start()
+    public override void Initialize()
     {
         SetCurrentHealth(maxHealth);
     }

@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
+/// <summary>
+/// Класс, отвечающий за управление атакой игрока
+/// </summary>
+
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AmmoHandler))]
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] Transform attackStartPoint;
     public event Action OnAttack;
     public static WeaponManager Instance { get; private set; }
-    [SerializeField] Transform attackStartPoint;
     private Animator animator;
+    private AmmoHandler ammoHandler;
     public void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             animator = GetComponent<Animator>();
+            ammoHandler = GetComponent<AmmoHandler>();
         }
         else
         {
@@ -34,6 +42,10 @@ public class WeaponManager : MonoBehaviour
     public Animator GetWeaponAnimator()
     {
         return animator;
+    }
+    public AmmoHandler GetAmmoHandlerScript()
+    {
+        return ammoHandler;
     }
 
     /// <summary>

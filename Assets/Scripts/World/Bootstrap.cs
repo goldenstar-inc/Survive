@@ -1,18 +1,18 @@
 using UnityEngine;
+using static ItemConfigsLoader;
 
 public class Bootstrap : MonoBehaviour
 {
-    [SerializeField] public ItemDatabase configs;
+    [SerializeField] ItemDatabase configs;
+    [SerializeField] InitializableBehaviour[] initializables;
+
     private void Start()
     {
-        if (configs == null)
-        {
-            Debug.LogError("Item configs not loaded");
-        }
-        else
-        {
-            ItemConfigsLoader.Initialize(configs.Items);
-        }
+        ItemConfigsLoader.Initialize(configs.Items);
 
+        foreach (InitializableBehaviour initializable in initializables)
+        {
+            initializable.Initialize();
+        }
     }
 }

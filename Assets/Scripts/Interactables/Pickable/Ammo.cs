@@ -11,16 +11,16 @@ public class Ammo : MonoBehaviour, IInteractable, IAmountable
     /// <summary>
     /// Количество патронов
     /// </summary>
-    private int quanity;
+    [SerializeField] public int quantity;
 
     /// <summary>
     /// Свойство, возвращающее количество патронов
     /// </summary>
-    public int Quantity => quanity;
+    public int Quantity => quantity;
 
     private void Start()
     {
-        ammoHandler = FindAnyObjectByType<AmmoHandler>();
+        ammoHandler = WeaponManager.Instance.GetAmmoHandlerScript();
         if (ammoHandler == null)
         {
             Debug.LogError("AmmoHandler not found in the scene!");
@@ -35,17 +35,17 @@ public class Ammo : MonoBehaviour, IInteractable, IAmountable
         if (ammoHandler.currentAmmo != ammoHandler.maxAmmo)
         {
             Destroy(gameObject);
-            ammoHandler.CollectAmmo(quanity);
+            ammoHandler.CollectAmmo(quantity);
             SoundController.Instance.PlaySound(SoundType.Bullet, SoundController.Instance.inventoryAudioSource);
         }
         else
         {
-            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.inventoryAudioSource);
+            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.errorAudioSource);
         }
     }
 
     public void SetQuantity(int quantity)
     {
-        throw new System.NotImplementedException();
+        this.quantity = quantity;
     }
 }

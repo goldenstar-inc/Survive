@@ -34,7 +34,8 @@ public class EquippedGun : IUseScript
         attackCooldown = data.AttackCooldown;
 
         Animator weaponAnimator = WeaponManager.Instance.GetWeaponAnimator();
-        
+        ammoHandler = WeaponManager.Instance.GetAmmoHandlerScript();
+
         if (weaponAnimator != null)
         {
             weaponAnimator.runtimeAnimatorController = data.Animator;
@@ -48,15 +49,18 @@ public class EquippedGun : IUseScript
     {
         if (Time.time - timeSinceLastShot > attackCooldown)
         {
-            Shoot();
-            WeaponManager.Instance.PlayAttackAnimation();
-            return true;
+            int currentAmmo = ammoHandler.currentAmmo;
+            if (currentAmmo > 0)
+            {
+                Shoot();
+                ammoHandler?.ConsumeAmmo();
+                WeaponManager.Instance.PlayAttackAnimation();
+                return true;
+            }
         }
-        else
-        {
-            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.weaponAudioSource);
-            return false;
-        }
+
+        SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.errorAudioSource);
+        return false;
     }
 
     /// <summary>

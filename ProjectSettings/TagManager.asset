@@ -44,5 +44,38 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 1786278273
+    locked: 0
+  - name: Roads
+    uniqueID: 2974161177
+    locked: 0
+  - name: Decoration
+    uniqueID: 1800492325
+    locked: 0
+  - name: Interactables
+    uniqueID: 2713197171
+    locked: 0
+  - name: Creatures
+    uniqueID: 1634527211
+    locked: 0
+  - name: Player
+    uniqueID: 148808251
+    locked: 0
+  - name: EquippedWeapon
+    uniqueID: 2790504565
+    locked: 0
+  - name: BackPlayer
+    uniqueID: 2084986055
+    locked: 0
+  - name: UI
+    uniqueID: 2836950373
+    locked: 0
+  - name: HUD
+    uniqueID: 2903041365
+    locked: 0
+  - name: Gameover
+    uniqueID: 1276216297
+    locked: 0
   m_RenderingLayers:
   - Default

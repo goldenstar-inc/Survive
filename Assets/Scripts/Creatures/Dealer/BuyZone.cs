@@ -62,7 +62,7 @@ public class BuyZone : MonoBehaviour, IInteractable
         }
         else
         {
-            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.weaponAudioSource);
+            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.errorAudioSource);
         }
     }
 

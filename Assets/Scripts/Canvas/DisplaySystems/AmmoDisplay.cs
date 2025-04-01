@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
-using static EquippedGun;
+
+/// <summary>
+/// Класс, отображающий количество патронов игрока
+/// </summary>
 public class AmmoDisplay : MonoBehaviour
 {
-    [SerializeField] AmmoHandler playerAmmoHandler;
     [SerializeField] Image[] ammo;
-
+    [SerializeField] AmmoHandler playerAmmoHandler;
     public void UpdateAmmoBar(int currentAmmo, int maxAmmo)
     {
         for (int i = 0; i < maxAmmo; i++)
@@ -13,17 +15,15 @@ public class AmmoDisplay : MonoBehaviour
             ammo[i].enabled = i < currentAmmo;
         }
     }
-
-    public void Initialize()
+    public void Start()
     {
-        UpdateAmmoBar(0, 6);
+        UpdateAmmoBar(0, playerAmmoHandler.maxAmmo);
     }
 
     void OnEnable()
     {
         playerAmmoHandler.OnConsume += UpdateAmmoBar;
         playerAmmoHandler.OnCollect += UpdateAmmoBar;
-        
     }
     void OnDisable()
     {

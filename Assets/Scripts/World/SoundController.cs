@@ -62,6 +62,11 @@ public class SoundController : MonoBehaviour
     public AudioSource dealerAudioSource;
 
     /// <summary>
+    /// Компонент AudioSource для дилера
+    /// </summary>
+    public AudioSource errorAudioSource;
+
+    /// <summary>
     /// Метод, который вызывается во время загрузки экземпляра сценария
     /// </summary>
     void Awake()
