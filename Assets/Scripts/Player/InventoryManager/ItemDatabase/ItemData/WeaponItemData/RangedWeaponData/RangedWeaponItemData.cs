@@ -1,3 +1,4 @@
+using UnityEditor.Search;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RangedWeaponItemData", menuName = "Items/Ranged Weapon Item Data")]
@@ -7,10 +8,10 @@ public class RangedWeaponItemData : WeaponItemData
     public GameObject BulletPrefab;
 
     [Tooltip("Скорость пули")] 
-    public float BulletVelocity;
+    [SerializeField, Range(10, 100)] public float BulletVelocity;
 
     [Tooltip("Время жизни пули")] 
-    public float BulletLifeTime;
+    [SerializeField, Range(1, 10)] public float BulletLifeTime;
 
     [Tooltip("Звук выстрела")] 
     public SoundType ShotSound;

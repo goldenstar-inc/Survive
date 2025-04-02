@@ -8,11 +8,11 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private GameObject moneyPrefab;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private SoundType damagedCreatureSound;
+    [SerializeField] private float invincibleCooldown;
     public event Action<int, int> OnTakeDamage;
     public event Action<int, int> OnHeal;
     public event Action OnDeath;
     public int currentHealth { get; private set; }
-    private float invincibleCooldown = 1.5f;
     private float timeSinceLastDamageTaken = 0f;
     
     /// <summary>

@@ -136,7 +136,7 @@ public class PlayerInteractionDetector : MonoBehaviour
     {
         if (helpPhrase != null && interactableInRange is IInteractable interactable)
         {
-            //helpPhrase.text = interactable.helpPhrase;
+            helpPhrase.text = actionToPhrase[Action.PickUp];
             helpPhrase.enabled = true;
         }
     }

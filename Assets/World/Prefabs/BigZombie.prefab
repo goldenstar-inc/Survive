@@ -211,6 +211,7 @@ MonoBehaviour:
   moneyPrefab: {fileID: 6258729319954115926, guid: 1c2c874ca1f0bdb4da3d57a00ef39410, type: 3}
   gameOverScreen: {fileID: 0}
   damagedCreatureSound: 15
+  invincibleCooldown: 0.5
 --- !u!95 &3027159898630168956
 Animator:
   serializedVersion: 7
@@ -258,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad7b6ebbae129f4badc3b92fba144b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 5
+  detectionRadius: 3
   moveSpeed: 2
 --- !u!61 &1978997559852985534
 BoxCollider2D:

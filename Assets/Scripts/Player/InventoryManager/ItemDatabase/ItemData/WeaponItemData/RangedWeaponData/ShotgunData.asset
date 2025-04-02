@@ -20,6 +20,6 @@ MonoBehaviour:
   AttackCooldown: 1
   Animator: {fileID: 22100000, guid: 9aa40403939727b4d9cc0a26551e1ac5, type: 2}
   BulletPrefab: {fileID: 1122090440930801634, guid: 5a818b607c4c6984aae5c2cdc11de0c4, type: 3}
-  BulletVelocity: 8
-  BulletLifeTime: 5
+  BulletVelocity: 50
+  BulletLifeTime: 3
   ShotSound: 6

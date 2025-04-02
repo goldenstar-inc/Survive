@@ -16,7 +16,7 @@ public class WeaponManager : MonoBehaviour
     public static WeaponManager Instance { get; private set; }
     private Animator animator;
     private AmmoHandler ammoHandler;
-    public void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -26,7 +26,7 @@ public class WeaponManager : MonoBehaviour
         }
         else
         {
-            Destroy(Instance);
+            Destroy(gameObject);
         }
     }
 

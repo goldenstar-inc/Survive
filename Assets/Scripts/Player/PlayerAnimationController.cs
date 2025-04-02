@@ -25,6 +25,8 @@ public class PlayerAnimationController : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        playerHealthManager.OnTakeDamage += OnDamageTaken;
+        WeaponManager.Instance.OnAttack += EnableAttackingState;
     }
 
     /// <summary>
@@ -130,11 +132,6 @@ public class PlayerAnimationController : MonoBehaviour
         {
             playerAnimator.SetBool("IsAttacking", false);
         }
-    }
-    void OnEnable()
-    {
-        // playerHealthManager.OnTakeDamage += OnDamageTaken;
-        // WeaponManager.Instance.OnAttack += EnableAttackingState;
     }
     void OnDisable()
     {

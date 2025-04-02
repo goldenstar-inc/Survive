@@ -6,7 +6,7 @@ public class BigZombieInitialization : MonoBehaviour
     /// <summary>
     /// Скрипт, отвечающий за управление здоровьем большого зомби
     /// </summary>
-    [SerializeField] HealthManager healthManager;
+    private HealthManager healthManager;
 
     public ZombieAnimationController zombieAnimationController;
     
