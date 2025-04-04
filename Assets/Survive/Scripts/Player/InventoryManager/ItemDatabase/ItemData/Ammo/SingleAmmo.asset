@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027ebd2b525f51e4ba4f54d92f6bdf26, type: 3}
+  m_Name: SingleAmmo
+  m_EditorClassIdentifier: 
+  Name: 9
+  Prefab: {fileID: 3690118918252715936, guid: 577be60483f249a4b96f486a34fa6870, type: 3}
