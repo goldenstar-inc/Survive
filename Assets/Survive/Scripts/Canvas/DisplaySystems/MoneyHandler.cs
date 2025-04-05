@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -7,11 +8,6 @@ using UnityEngine;
 /// </summary>
 public class MoneyHandler : MonoBehaviour
 {
-    /// <summary>
-    /// Текущий экземпляр класса MoneyHandler
-    /// </summary>
-    public static MoneyHandler Instance { get; private set; }
-
     /// <summary>
     /// Текстовое поле баланса игрока
     /// </summary>
@@ -23,24 +19,12 @@ public class MoneyHandler : MonoBehaviour
     public int Balance; 
 
     /// <summary>
-    /// Метод, вызывающийся при старте объекта
-    /// </summary>
-    private void Start() => Balance = 0;
-
-    /// <summary>
     /// Метод, который вызывается во время загрузки экземпляра сценария
     /// </summary>
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            UpdateUI();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Balance = 0;
+        UpdateUI();
     }
 
     /// <summary>

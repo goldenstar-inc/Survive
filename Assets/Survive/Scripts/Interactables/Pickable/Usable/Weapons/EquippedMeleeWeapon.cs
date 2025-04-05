@@ -3,11 +3,18 @@ using System.Data.Common;
 using Unity.VisualScripting;
 using UnityEngine;
 using static InventoryController;
+using static SoundController;
+
 /// <summary>
 /// Класс отвечающий за атаку ножом
 /// </summary>
 public class EquippedMeleeWeapon : IUseScript
 {
+    /// <summary>
+    /// Информация о взаимодействующем персонаже
+    /// </summary>
+    private IPlayerDataProvider playerData;
+
     /// <summary>
     /// Конфиг оружия
     /// </summary>
@@ -17,8 +24,10 @@ public class EquippedMeleeWeapon : IUseScript
     private float attackCooldown;
     private float timeSinceLastAttack = 0f;
     private Transform shotStartPoint;
-    public void Initialize(MeleeWeaponItemData data)
+    public void Initialize(MeleeWeaponItemData data, IPlayerDataProvider playerData)
     {
+        this.playerData = playerData;
+
         this.data = data;
         damage = data.Damage;
         attackRadius = data.AttackRange;
@@ -41,9 +50,9 @@ public class EquippedMeleeWeapon : IUseScript
         if (Time.time - timeSinceLastAttack > attackCooldown)
         {
             Attack();
+            return true;
         }   
-
-        return true;
+        return false;
     }
 
     private void Attack()
@@ -60,7 +69,7 @@ public class EquippedMeleeWeapon : IUseScript
                 foundEnemy?.TakeDamage(damage);
             }
         }
-        SoundController.Instance.PlayRandomSwingingKnifeSound();
+        playerData.SoundController?.PlayRandomSound(swingingKnifeSounds);
         timeSinceLastAttack = Time.time;
     }
 }

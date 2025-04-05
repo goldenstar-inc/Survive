@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Play : MonoBehaviour
 {
-    [Header("Номер сцены")]
+    [Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     public int sceneNumber;
     public void Transition()
     {

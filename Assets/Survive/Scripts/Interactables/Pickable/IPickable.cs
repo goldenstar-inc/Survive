@@ -9,10 +9,15 @@ public interface IPickable : IInteractable, IAmountable
     /// <summary>
     /// Информация об объекте
     /// </summary>
-    public ItemData Data { get; }
+    public PickableItemData Data { get; }
 
     /// <summary>
     /// Тип поднимаемого объекта
     /// </summary>
     public PickableItems Name { get; }
+
+    /// <summary>
+    /// Звук подбора данного объекта
+    /// </summary>
+    public SoundType PickSound { get; }
 }

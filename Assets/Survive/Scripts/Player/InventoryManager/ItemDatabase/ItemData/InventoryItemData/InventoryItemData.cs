@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InventoryItemData", menuName = "Items/Inventory Item Data")]
-public class InventoryItemData : ItemData
+public class InventoryItemData : PickableItemData
 {
     [Tooltip("Item image in the inventory")] 
     public Sprite InventoryImage;

@@ -9,27 +9,32 @@ public class EquippedHealableItem : IUseScript
     /// <summary>
     /// Скрипт, управляющий здоровьем
     /// </summary>
-    private HealthManager healthManager;
+    private IPlayerDataProvider playerData;
 
     /// <summary>
     /// Количество очков здоровья для лечения
     /// </summary>
     private int healPoints;
-    private SoundType sound;
-    public void Initialize(HealableItemData data, HealthManager healthManager)
+    private SoundType useSound;
+    public void Initialize(HealableItemData data, IPlayerDataProvider playerData)
     {
-        this.healthManager = healthManager;
+        this.playerData = playerData;
         healPoints = data.HealPoints;
-        sound = data.Sound;
+        useSound = data.Sound;
     }
 
     public bool Use()
     {
-        if (healthManager != null && healthManager.currentHealth != healthManager.maxHealth)
+        if (playerData != null)
         {
-            ApplyHeal();
-            SoundController.Instance.PlaySound(sound, SoundController.Instance.inventoryAudioSource);
-            return true;
+            HealthManager healthManager = playerData.HealthManager;
+
+            if (healthManager != null)
+            {
+                ApplyHeal(healthManager);
+                playerData.SoundController?.PlaySound(useSound);
+                return true;
+            }
         }
 
         return false;
@@ -38,7 +43,7 @@ public class EquippedHealableItem : IUseScript
     /// <summary>
     /// Метод лечения
     /// </summary>
-    private void ApplyHeal()
+    private void ApplyHeal(HealthManager healthManager)
     {
         if (healthManager != null)
         {

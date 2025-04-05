@@ -9,9 +9,10 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     /// <summary>
     /// Информация об объекте
     /// </summary>
-    [SerializeField] ItemData data;
-    public ItemData Data => data;
+    [SerializeField] PickableItemData data;
+    public PickableItemData Data => data;
     public PickableItems Name => data.Name;
+    public SoundType PickSound => data.PickSound;
     public int Quantity => quantity;
     private int quantity;
 
@@ -27,9 +28,17 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     /// <summary>
     /// Метод, обеспечивающий взаимодействие с объектом
     /// </summary>
-    public virtual void Interact(IPlayerDataProvider interactor)
+    /// <param name="interactor">Данные о взаимодействующем персонаже</param>
+    /// <returns>True - если взаимодействие произошло успешно, иначе false</returns>
+    public virtual bool Interact(IPlayerDataProvider interactor)
     {
-        Destroy(gameObject);
+        if (interactor != null)
+        {
+            Destroy(gameObject);
+            interactor.SoundController?.PlaySound(PickSound);
+            return true;
+        }
+        return false;
     }
 
     public void SetQuantity(int quantity)

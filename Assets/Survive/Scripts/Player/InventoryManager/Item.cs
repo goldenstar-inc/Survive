@@ -12,7 +12,7 @@ public class Item
     /// <summary>
     /// Конфиг предмета
     /// </summary>
-    public ItemData Data { get; private set; } 
+    public PickableItemData Data { get; private set; } 
     private int quantity;
 
     /// <summary>
@@ -29,7 +29,7 @@ public class Item
     /// </summary>
     /// <param name="data">Конфигурационный файл</param>
     /// <param name="quantity">Колчество данного предмета</param>
-    public Item(ItemData data, int quantity = 1)
+    public Item(PickableItemData data, int quantity = 1)
     {
         Data = data;
         this.quantity = quantity;

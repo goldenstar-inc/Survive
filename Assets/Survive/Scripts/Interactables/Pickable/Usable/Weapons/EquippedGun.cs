@@ -9,6 +9,11 @@ using UnityEngine.InputSystem;
 public class EquippedGun : IUseScript
 {
     /// <summary>
+    /// Информация о взаимодействующем персонаже
+    /// </summary>
+    private IPlayerDataProvider playerData;
+
+    /// <summary>
     /// Конфиг оружия
     /// </summary>
     private RangedWeaponItemData data;
@@ -22,10 +27,12 @@ public class EquippedGun : IUseScript
     private float attackCooldown;
     private SoundType shotSound;
     private float timeSinceLastShot = 0f;
-    public void Initialize(RangedWeaponItemData data)
+    public void Initialize(RangedWeaponItemData data, IPlayerDataProvider playerData)
     {
-        shotStartPoint = WeaponManager.Instance.GetAttackStartPoint();
+        this.playerData = playerData;
+
         this.data = data;
+        shotStartPoint = WeaponManager.Instance.GetAttackStartPoint();
         bulletPrefab = data.BulletPrefab;
         damage = data.Damage;
         bulletVelocity = data.BulletVelocity;
@@ -47,19 +54,21 @@ public class EquippedGun : IUseScript
     /// </summary>
     public bool Use()
     {
-        if (Time.time - timeSinceLastShot > attackCooldown)
+        if (ammoHandler != null)
         {
-            int currentAmmo = ammoHandler.currentAmmo;
-            if (currentAmmo > 0)
+            if (Time.time - timeSinceLastShot > attackCooldown)
             {
-                Shoot();
-                ammoHandler?.ConsumeAmmo();
-                WeaponManager.Instance.PlayAttackAnimation();
-                return true;
+                int currentAmmo = ammoHandler.currentAmmo;
+
+                if (currentAmmo > 0)
+                {
+                    Shoot();
+                    ammoHandler.ConsumeAmmo();
+                    WeaponManager.Instance.PlayAttackAnimation();
+                    return true;
+                }
             }
         }
-
-        SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.errorAudioSource);
         return false;
     }
 
@@ -72,7 +81,7 @@ public class EquippedGun : IUseScript
         {
             BulletSpawner.Instance.SpawnBullet(bulletPrefab, shotStartPoint, damage, bulletVelocity, bulletLifeTime);
             timeSinceLastShot = Time.time;
-            SoundController.Instance.PlaySound(shotSound, SoundController.Instance.weaponAudioSource);
+            playerData.SoundController?.PlaySound(shotSound);
         }
     }
 }

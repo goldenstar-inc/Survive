@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] public int maxHealth;
+    [SerializeField] private SoundController soundController;
     [SerializeField] private GameObject moneyPrefab;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private SoundType damagedCreatureSound;
@@ -39,7 +40,7 @@ public class HealthManager : MonoBehaviour
         {
             currentHealth = Mathf.Max(0, currentHealth - damage);
             SetCurrentHealth(currentHealth);
-            SoundController.Instance.PlaySound(damagedCreatureSound, SoundController.Instance.playerStateAudioSource);
+            soundController?.PlaySound(damagedCreatureSound);
             timeSinceLastDamageTaken = Time.time;
             OnTakeDamage?.Invoke(currentHealth, maxHealth);
             if(currentHealth <= 0)

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99b10f11508fed488433ff0fc21bb01, type: 3}
   m_Name: ShotgunData
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4574501512894558458, guid: 9ba917dd44104d14d82eedaa974f2848, type: 3}
-  InventoryImage: {fileID: 5693247247877351285, guid: 92e50733b6c6f2648883b87217047f0e, type: 3}
   Name: 3
+  Prefab: {fileID: 4574501512894558458, guid: 9ba917dd44104d14d82eedaa974f2848, type: 3}
+  PickSound: 3
+  InventoryImage: {fileID: 5693247247877351285, guid: 92e50733b6c6f2648883b87217047f0e, type: 3}
   Description: One shot - two-pieced.
   Damage: 45
   AttackCooldown: 1

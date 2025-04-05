@@ -1,25 +1,27 @@
 using UnityEngine;
 using static HelpPhrasesModule;
+using static SoundController;
 public class BuyZone : MonoBehaviour, IInteractable
-{
+{  
+    /// <summary>
+    /// Точка спавна предметов
+    /// </summary>
+    [SerializeField] Transform spawnPoint;
+
+    /// <summary>
+    /// Точка для воспроизведения звука
+    /// </summary>
+    [SerializeField] AudioSource audioSource;
+
     /// <summary>
     /// Массив объектов которые могут выпасть
     /// </summary>
     public GameObject[] itemsToDrop;
+
     /// <summary>
     /// Вспомогательная фраза
     /// </summary>
     public string helpPhrase => actionToPhrase[Action.Buy];
-
-    /// <summary>
-    /// Transform игрока
-    /// </summary>
-    private Transform playerTransform;
-
-    /// <summary>
-    /// Transform игрока
-    /// </summary>
-    private MoneyHandler playerMoneyHandler;
 
     /// <summary>
     /// Цена за предмет
@@ -31,39 +33,34 @@ public class BuyZone : MonoBehaviour, IInteractable
     /// </summary>
     private void Start()
     {
-        playerTransform = FindAnyObjectByType<InventoryController>()?.transform;
-        playerMoneyHandler = FindAnyObjectByType<MoneyHandler>();
-        
-        if (playerTransform == null)
+        if (spawnPoint == null)
         {
             Debug.LogWarning("PlayerTransform not set");
-        }
-
-        if (playerMoneyHandler == null)
-        {
-            Debug.LogWarning("PlayerMoneyHandler not set");
         }
     }
 
     /// <summary>
     /// Взаимодействие с объектом
     /// </summary>
-    public void Interact(IPlayerDataProvider interactor)
+    public bool Interact(IPlayerDataProvider interactor)
     {
-        if (playerMoneyHandler.Balance >= ItemPrice)
+        if (interactor != null)
         {
-            playerMoneyHandler.Pay(ItemPrice);
-            DropLoot();
+            MoneyHandler playerMoneyHandler = interactor.MoneyHandler;
 
-            if (!SoundController.Instance.dealerAudioSource.isPlaying)
+            if (playerMoneyHandler != null)
             {
-                SoundController.Instance.PlaySound(SoundType.DealerSpeech, SoundController.Instance.dealerAudioSource);
+                if (playerMoneyHandler.Balance >= ItemPrice)
+                {
+                    playerMoneyHandler.Pay(ItemPrice);
+                    DropLoot();
+                    interactor.SoundController.PlaySound(SoundType.DealerSpeech);
+                    return true;
+                }
             }
         }
-        else
-        {
-            SoundController.Instance.PlaySound(SoundType.NotReady, SoundController.Instance.errorAudioSource);
-        }
+
+        return false;
     }
 
     /// <summary>
@@ -77,7 +74,7 @@ public class BuyZone : MonoBehaviour, IInteractable
             
             if (itemsToDrop[randomInRange] != null)
             {
-                Instantiate(itemsToDrop[randomInRange], playerTransform.position, Quaternion.identity);
+                Instantiate(itemsToDrop[randomInRange], spawnPoint.position, Quaternion.identity);
             }
         }
     }

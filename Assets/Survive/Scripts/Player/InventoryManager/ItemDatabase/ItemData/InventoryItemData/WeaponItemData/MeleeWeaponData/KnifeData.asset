@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7801bff129cfe5c4aa9f3e3da169452a, type: 3}
   m_Name: KnifeData
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 901933793069096313, guid: e26deb283589dd141b243b29ae54e237, type: 3}
-  InventoryImage: {fileID: -8275616929961906424, guid: 74de333025002094a991b341b11a4815, type: 3}
   Name: 1
+  Prefab: {fileID: 901933793069096313, guid: e26deb283589dd141b243b29ae54e237, type: 3}
+  PickSound: 3
+  InventoryImage: {fileID: -8275616929961906424, guid: 74de333025002094a991b341b11a4815, type: 3}
   Description: Cautious! That thing is sharp...
   Damage: 10
   AttackCooldown: 0.18

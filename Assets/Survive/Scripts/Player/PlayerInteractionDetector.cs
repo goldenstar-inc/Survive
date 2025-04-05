@@ -8,7 +8,7 @@ using static HelpPhrasesModule;
 /// </summary>
 public class PlayerInteractionDetector : MonoBehaviour
 {
-    public IPlayerDataProvider data { get; private set; }
+    public IPlayerDataProvider playerData { get; private set; }
     public InventoryController inventoryController;
 
     /// <summary>
@@ -33,7 +33,7 @@ public class PlayerInteractionDetector : MonoBehaviour
     {
         inventoryController = FindAnyObjectByType<InventoryController>();
         helpPhrase.enabled = false;
-        data = GetComponent<IPlayerDataProvider>();
+        playerData = GetComponent<IPlayerDataProvider>();
     }
 
     /// <summary>
@@ -44,11 +44,6 @@ public class PlayerInteractionDetector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             TryInteract();
-        }
-
-        if (interactableInRange != null)
-        {
-            UpdateHelpPhrasePosition();
         }
     }
 
@@ -64,11 +59,6 @@ public class PlayerInteractionDetector : MonoBehaviour
             {
                 interactableInRange = interactable; 
                 ShowHelpPhrase();
-
-                if (interactable is IPickable pickable)
-                {
-                    interactableInRange = pickable;
-                }
             }
         }
     }
@@ -99,8 +89,7 @@ public class PlayerInteractionDetector : MonoBehaviour
                 {
                     if (UpdateInventory())
                     {
-                        interactable.Interact(data);
-                        SoundController.Instance.PlaySound(SoundType.PickUp, SoundController.Instance.inventoryAudioSource);
+                        interactable.Interact(playerData);
                     }
                     else
                     {
@@ -109,8 +98,12 @@ public class PlayerInteractionDetector : MonoBehaviour
                 }
                 else
                 {
-                    interactable.Interact(data);
+                    interactable.Interact(playerData);
                 }
+            }
+            else
+            {
+                interactable.Interact(playerData);
             }
         }
     }

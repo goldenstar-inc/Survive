@@ -3,5 +3,5 @@
 /// </summary>
 public interface IInteractable
 {
-    void Interact(IPlayerDataProvider interactor);
+    bool Interact(IPlayerDataProvider interactor);
 }
