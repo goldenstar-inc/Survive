@@ -8,7 +8,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private SoundController soundController;
     [SerializeField] private GameObject moneyPrefab;
     [SerializeField] private GameOverScreen gameOverScreen;
-    [SerializeField] private SoundType damagedCreatureSound;
+    [SerializeField] private AudioClip damagedCreatureSound;
     [SerializeField] private float invincibleCooldown;
     public event Action<int, int> OnTakeDamage;
     public event Action<int, int> OnHeal;
@@ -40,7 +40,7 @@ public class HealthManager : MonoBehaviour
         {
             currentHealth = Mathf.Max(0, currentHealth - damage);
             SetCurrentHealth(currentHealth);
-            soundController?.PlaySound(damagedCreatureSound);
+            soundController?.PlayAudioClip(damagedCreatureSound);
             timeSinceLastDamageTaken = Time.time;
             OnTakeDamage?.Invoke(currentHealth, maxHealth);
             if(currentHealth <= 0)

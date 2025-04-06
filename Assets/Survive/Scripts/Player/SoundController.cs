@@ -17,16 +17,6 @@ public class SoundController : MonoBehaviour
     public AudioClip[] sounds;
 
     /// <summary>
-    /// Массив звуков шагов
-    /// </summary>
-    public static AudioClip[] stepSounds;
-
-    /// <summary>
-    /// Массив звуков размахивания холодным оружием
-    /// </summary>
-    public static AudioClip[] swingingKnifeSounds;
-
-    /// <summary>
     /// Источник воспроизведения звука
     /// </summary>
     [SerializeField] AudioSource audioSource;
@@ -55,27 +45,6 @@ public class SoundController : MonoBehaviour
             {
                 stateToSound[soundType] = clip;
             }
-            else
-            {
-                Debug.LogWarning($"Звук {clip.name} не соответствует ни одному значению в SoundType.");
-            }
-        }
-    }
-
-    /// <summary>
-    /// Метод, проигрывающий звук, если тип звука имеет аудиодорожку
-    /// </summary>
-    /// <param name="soundType">Тип звука</param>
-    
-    public void PlaySound(SoundType soundType)
-    {
-        if (stateToSound.TryGetValue(soundType, out AudioClip clip))
-        {
-            PlayAudioClip(clip);
-        }
-        else
-        {
-            Debug.LogError($"Звук для типа {soundType} не найден!");
         }
     }
 
@@ -83,7 +52,7 @@ public class SoundController : MonoBehaviour
     /// Функция, воспроизводящая переданный звук
     /// </summary>
     /// <param name="clip">Переданный звук</param>
-    private void PlayAudioClip(AudioClip clip)
+    public void PlayAudioClip(AudioClip clip)
     {
         if (audioSource != null && clip != null)
         {
@@ -96,9 +65,9 @@ public class SoundController : MonoBehaviour
     /// </summary>
     public void PlayRandomSound(AudioClip[] clips)
     {
-        if (stepSounds.Length == 0)
+        if (clips.Length == 0)
         {
-            Debug.LogError("Массив stepSounds пуст!");
+            Debug.LogError("Массив пуст!");
             return;
         }
 

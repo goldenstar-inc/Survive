@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public interface IPlayerDataProvider
 {
+    public PlayerSetting PlayerSetting { get; }
     public HealthManager HealthManager { get; }
     public AmmoHandler AmmoHandler { get; }
     public MoneyHandler MoneyHandler { get; }

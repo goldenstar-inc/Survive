@@ -12,7 +12,7 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     [SerializeField] PickableItemData data;
     public PickableItemData Data => data;
     public PickableItems Name => data.Name;
-    public SoundType PickSound => data.PickSound;
+    public AudioClip PickSound => data.PickSound;
     public int Quantity => quantity;
     private int quantity;
 
@@ -35,7 +35,7 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
         if (interactor != null)
         {
             Destroy(gameObject);
-            interactor.SoundController?.PlaySound(PickSound);
+            interactor.SoundController?.PlayAudioClip(PickSound);
             return true;
         }
         return false;

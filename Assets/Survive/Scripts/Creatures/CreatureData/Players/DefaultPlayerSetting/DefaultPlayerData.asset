@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b7d133fbc61864185b4dfb956b7c31, type: 3}
+  m_Name: DefaultPlayerData
+  m_EditorClassIdentifier: 
+  Type: 2
+  Name: Jonhy
+  HealthComponent: {fileID: 11400000, guid: 8229eb33486bb5b48aa9674e185e52e9, type: 2}
+  CreatureDetectorComponent: {fileID: 11400000, guid: deaf897fb8207814ca0d84ea13451bd0, type: 2}
+  RunComponent: {fileID: 11400000, guid: 3f3dd1f1e196db645a564dafc5cd60e9, type: 2}
+  MaxAmmo: 6

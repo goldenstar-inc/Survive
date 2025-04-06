@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 5
   Prefab: {fileID: 6702012564942233851, guid: 9d7d901321be2814ba27f7311906220d, type: 3}
-  PickSound: 3
+  PickSound: {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   InventoryImage: {fileID: -3203698370349515110, guid: e7f218207cc44414f814b23cd8a6f212, type: 3}
   Description: 
   MaxQuantity: 6
   UseDuration: 2
-  Sound: 8
+  Sound: {fileID: 8300000, guid: 6e7421ecb435faf459f4405c52d7ee7f, type: 3}
   HealPoints: 1

@@ -19,5 +19,5 @@ public interface IPickable : IInteractable, IAmountable
     /// <summary>
     /// Звук подбора данного объекта
     /// </summary>
-    public SoundType PickSound { get; }
+    public AudioClip PickSound { get; }
 }

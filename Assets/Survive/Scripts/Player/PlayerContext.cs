@@ -1,6 +1,9 @@
 using UnityEngine;
 public class PlayerContext : MonoBehaviour, IPlayerDataProvider
 {
+    [Tooltip("Конфиг игрока")]
+    [SerializeField] PlayerSetting playerSetting;
+
     [Tooltip("Cкрипт управления боеприпасами персонажа")]
     [SerializeField] HealthManager healthManager;
 
@@ -12,9 +15,11 @@ public class PlayerContext : MonoBehaviour, IPlayerDataProvider
 
     [Tooltip("Cкрипт управления звуком персонажа")]
     [SerializeField] SoundController soundController;
+    public PlayerSetting PlayerSetting => playerSetting;
     public HealthManager HealthManager => healthManager;
     public AmmoHandler AmmoHandler => ammoHandler;
     public MoneyHandler MoneyHandler => moneyHandler;
     public SoundController SoundController => soundController;
+    
 }
 

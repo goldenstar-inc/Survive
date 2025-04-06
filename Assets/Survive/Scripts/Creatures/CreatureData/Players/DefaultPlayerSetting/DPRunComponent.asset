@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e759dc7f889ed4e97dac0653534009, type: 3}
+  m_Name: DPRunComponent
+  m_EditorClassIdentifier: 
+  WalkSpeed: 4
+  StepSounds:
+  - {fileID: 8300000, guid: 64c0d100c68c3e442943d0c47ab20fd1, type: 3}
+  - {fileID: 8300000, guid: f4754b7130624844490f5140593e0c41, type: 3}
+  - {fileID: 8300000, guid: 055ee39cebe65984199754bb61eac4cc, type: 3}
+  - {fileID: 8300000, guid: 46fdc3576946dcf47a2d1c2216c1db77, type: 3}
+  - {fileID: 8300000, guid: 4ded4a0ee85df4d4c846338af1000eb7, type: 3}
+  RunSpeed: 6

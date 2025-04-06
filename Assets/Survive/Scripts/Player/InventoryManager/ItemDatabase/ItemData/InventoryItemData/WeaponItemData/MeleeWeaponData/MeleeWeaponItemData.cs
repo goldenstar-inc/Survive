@@ -5,4 +5,7 @@ public class MeleeWeaponItemData : WeaponItemData
 {
     [Tooltip("Attack range")] 
     [SerializeField] public float AttackRange;
+
+    [Tooltip("Attack sound")] 
+    public AudioClip[] SwingSounds;
 }

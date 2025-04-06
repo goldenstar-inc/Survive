@@ -7,5 +7,5 @@ public class UsableItemData: StackableItemData
     [SerializeField, Range(1, 10)] public int UseDuration;
     
     [Tooltip("Usage sound")] 
-    [SerializeField] public SoundType Sound;
+    [SerializeField] public AudioClip Sound;
 }

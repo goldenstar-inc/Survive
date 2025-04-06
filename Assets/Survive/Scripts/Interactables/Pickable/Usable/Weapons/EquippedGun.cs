@@ -25,7 +25,7 @@ public class EquippedGun : IUseScript
     private float bulletVelocity;
     private float bulletLifeTime;
     private float attackCooldown;
-    private SoundType shotSound;
+    private AudioClip shotSound;
     private float timeSinceLastShot = 0f;
     public void Initialize(RangedWeaponItemData data, IPlayerDataProvider playerData)
     {
@@ -81,7 +81,7 @@ public class EquippedGun : IUseScript
         {
             BulletSpawner.Instance.SpawnBullet(bulletPrefab, shotStartPoint, damage, bulletVelocity, bulletLifeTime);
             timeSinceLastShot = Time.time;
-            playerData.SoundController?.PlaySound(shotSound);
+            playerData.SoundController?.PlayAudioClip(shotSound);
         }
     }
 }

@@ -15,7 +15,7 @@ public class EquippedHealableItem : IUseScript
     /// Количество очков здоровья для лечения
     /// </summary>
     private int healPoints;
-    private SoundType useSound;
+    private AudioClip useSound;
     public void Initialize(HealableItemData data, IPlayerDataProvider playerData)
     {
         this.playerData = playerData;
@@ -32,7 +32,7 @@ public class EquippedHealableItem : IUseScript
             if (healthManager != null)
             {
                 ApplyHeal(healthManager);
-                playerData.SoundController?.PlaySound(useSound);
+                playerData.SoundController?.PlayAudioClip(useSound);
                 return true;
             }
         }

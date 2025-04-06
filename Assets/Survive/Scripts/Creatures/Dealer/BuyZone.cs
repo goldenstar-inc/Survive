@@ -27,6 +27,7 @@ public class BuyZone : MonoBehaviour, IInteractable
     /// Цена за предмет
     /// </summary>
     private int ItemPrice = 50;
+    [SerializeField] AudioClip dealerSpeech;
 
     /// <summary>
     /// Старт
@@ -54,7 +55,7 @@ public class BuyZone : MonoBehaviour, IInteractable
                 {
                     playerMoneyHandler.Pay(ItemPrice);
                     DropLoot();
-                    interactor.SoundController.PlaySound(SoundType.DealerSpeech);
+                    interactor.SoundController.PlayAudioClip(dealerSpeech);
                     return true;
                 }
             }

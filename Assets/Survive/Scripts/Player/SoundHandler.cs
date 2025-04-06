@@ -10,7 +10,7 @@ public class SoundHandler : MonoBehaviour
     {
         if (movement != Vector3.zero && Time.time - timeSinceLastStep > stepInterval)
         {
-            playerData.SoundController?.PlayRandomSound(stepSounds);
+            //playerData.SoundController?.PlayRandomSound(stepSounds);
             timeSinceLastStep = Time.time;
         }
     }

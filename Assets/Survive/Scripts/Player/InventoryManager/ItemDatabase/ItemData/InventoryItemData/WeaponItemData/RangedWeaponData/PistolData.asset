@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 2
   Prefab: {fileID: 2754018163563420593, guid: 7755271ac7a65b94c9dd56df11d9a8ed, type: 3}
-  PickSound: 3
+  PickSound: {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   InventoryImage: {fileID: -1773908920937926555, guid: 6da85283d9fbf4c4f8f8a56f48f1debc, type: 3}
   Description: Glock-18. Sweet!
   Damage: 25
@@ -23,4 +23,4 @@ MonoBehaviour:
   BulletPrefab: {fileID: 4503826973908181090, guid: 2afcae5d1e5c9c64d826592a0be81376, type: 3}
   BulletVelocity: 70
   BulletLifeTime: 1
-  ShotSound: 7
+  ShotSound: {fileID: 8300000, guid: 91b57dc8eb19d5741ae5ad3f2f98a2ab, type: 3}

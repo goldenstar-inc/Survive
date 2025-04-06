@@ -15,7 +15,7 @@ public class Money : PickableItem
             {
                 moneyHandler.AddMoney(Random.Range(20, 50));
                 Destroy(gameObject);
-                interactor.SoundController?.PlaySound(PickSound);
+                interactor.SoundController?.PlayAudioClip(PickSound);
                 return true;
             }
         }

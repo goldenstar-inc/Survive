@@ -22,7 +22,7 @@ public class Ammo : PickableItem
                 {
                     handler.CollectAmmo(Quantity);
                     Destroy(gameObject);
-                    interactor.SoundController?.PlaySound(PickSound);
+                    interactor.SoundController?.PlayAudioClip(PickSound);
                     return true;
                 }
             }

@@ -11,5 +11,5 @@ public class PickableItemData : ScriptableObject
     public GameObject Prefab;
 
     [Tooltip("Sound played, when the item is picked up")] 
-    public SoundType PickSound;
+    public AudioClip PickSound;
 }
