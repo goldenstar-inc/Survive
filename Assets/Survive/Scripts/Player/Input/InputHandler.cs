@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] PlayerInput playerInput { get; set; }
-    [SerializeField] PlayerMovement playerMovement { get; set; }
-    [SerializeField] PlayerAnimationController animationController { get; set; }
-    [SerializeField] SoundHandler soundController { get; set; }
+    [SerializeField] PlayerInput playerInput;
+    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PlayerAnimationController animationController;
+    [SerializeField] SoundHandler soundController;
 
     public void Initialize(PlayerInput playerInput, PlayerMovement playerMovement, PlayerAnimationController animationController, SoundHandler soundController)
     {

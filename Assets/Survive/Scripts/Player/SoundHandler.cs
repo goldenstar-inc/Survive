@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class SoundHandler : MonoBehaviour
 {
@@ -7,12 +8,13 @@ public class SoundHandler : MonoBehaviour
     private float stepInterval => setting.RunComponent.StepInterval;
     private float timeSinceLastStep = 0f;
 
-    public void Initialize(AudioClip[] stepSounds, float stepInterval, SoundController soundController)
-    {
-        this.stepSounds = stepSounds;
-        this.stepInterval = stepInterval;
-        this.soundController = soundController;
-    }
+    // TO FIX
+    // public void Initialize(AudioClip[] stepSounds, float stepInterval, SoundController soundController)
+    // {
+    //     this.stepSounds = stepSounds;
+    //     this.stepInterval = stepInterval;
+    //     this.soundController = soundController;
+    // }
 
     public void PlayStepSoundIfNeeded(Vector3 movement)
     {

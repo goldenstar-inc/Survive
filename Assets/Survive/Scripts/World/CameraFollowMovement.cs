@@ -6,12 +6,11 @@ using Zenject;
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
-    private Transform cameraTransform;
+    [SerializeField] Transform cameraTransform;
     public float smoothTime = 0.3f;
 
     private Vector3 velocity = Vector3.zero;
 
-    [Inject]
     public void Initialize(ICameraProvider cameraProvider)
     {
         cameraTransform = cameraProvider.GetCameraTransform();

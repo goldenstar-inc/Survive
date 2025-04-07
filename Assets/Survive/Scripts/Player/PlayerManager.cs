@@ -23,10 +23,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private InventoryController inventoryController;
     private void Start()
     {
-        playerMovement.Initialize(playerRB, walkSpeed, runSpeed);
-        soundHandler.Initialize(stepSounds, stepInterval, soundController);
-        inputHandler.Initialize(playerInput, playerMovement, animationController, soundHandler);
-        playerAnimationController.Initialize(healthManager, playerAnimator);   
-        
+        //playerMovement.Initialize(playerRB, walkSpeed, runSpeed);
+        //soundHandler.Initialize(stepSounds, stepInterval, soundController);
+        //inputHandler.Initialize(playerInput, playerMovement, animationController, soundHandler);
+        //playerAnimationController.Initialize(healthManager, playerAnimator);   
     }
 }

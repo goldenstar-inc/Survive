@@ -9,8 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private float walkSpeed { get; set; }
     private float runSpeed { get; set; }
     private Rigidbody2D playerRB;
+
+    [SerializeField] PlayerSetting setting;
     private ICommandMovement moveCommand;
 
+    // TO FIX
     public void Initialize(Rigidbody2D playerRB, float walkSpeed, float runSpeed)
     {
         if (walkSpeed <= 0f || runSpeed <= 0f)
@@ -29,7 +32,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-
+        this.walkSpeed = setting.RunComponent.WalkSpeed;
+        this.runSpeed = setting.RunComponent.RunSpeed;
+        moveCommand = new MoveCommand(playerRB);
     }
 
     public void Move(Vector3 direction, bool isRunning)

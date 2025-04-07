@@ -1841,6 +1841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2473d65794b794cb7ed8956467f82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setting: {fileID: 11400000, guid: 283a67eee8f24ab4d98c413628839a7a, type: 2}
 --- !u!1 &733212165833458145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,7 +2788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3b694be4ad37d44b3fe3aed7610187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepInterval: 0.3
+  setting: {fileID: 11400000, guid: 283a67eee8f24ab4d98c413628839a7a, type: 2}
+  soundController: {fileID: 7886364789783588168}
 --- !u!114 &2385631208737711664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3039,7 +3041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b6c375d72fd884c892cddb5c1fd314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 1251018280593744722}
+  cameraTransform: {fileID: 0}
   smoothTime: 0.3
 --- !u!224 &2809821476462236575
 RectTransform:
@@ -3130,6 +3132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd35f08f040469f4ab60ebb605fb50fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 1532092239553812717}
+  playerMovement: {fileID: 683363276345918451}
+  animationController: {fileID: 4908471568796633244}
+  soundController: {fileID: 2278830115473870685}
 --- !u!1 &3345693396087154996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4851,7 +4857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52d670f43622d245bfce148943feeb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 6937220612706500987}
   selectedItemImages:
   - {fileID: 6378417452505183944}
   - {fileID: 7681169802961859105}
@@ -5014,11 +5019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4613db88bba8c734b89a441308b103c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSetting: {fileID: 11400000, guid: 283a67eee8f24ab4d98c413628839a7a, type: 2}
-  healthManager: {fileID: 6710524369069985746}
-  ammoHandler: {fileID: 5182533829313427043}
-  moneyHandler: {fileID: 7886364789783588167}
-  soundController: {fileID: 7886364789783588168}
 --- !u!4 &6972402966177226237
 Transform:
   m_ObjectHideFlags: 0
@@ -5046,7 +5046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93bbea32a97670469358c286787103b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryController: {fileID: 6735237612649008173}
   player: {fileID: 3691178367012384775}
   helpPhrase: {fileID: 6587704988984836540}
 --- !u!114 &6999819119441766078
