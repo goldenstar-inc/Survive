@@ -22,9 +22,9 @@ public class PlayerAnimationController : MonoBehaviour
     /// <summary>
     /// Метод, вызывающийся при старте объекта
     /// </summary>
-    void Start()
+    public void Start()
     {
-        playerAnimator = GetComponent<Animator>();
+        this.playerAnimator = GetComponent<Animator>();
         playerHealthManager.OnTakeDamage += OnDamageTaken;
         WeaponManager.Instance.OnAttack += EnableAttackingState;
     }

@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerAnimationController animationController;
-    [SerializeField] private SoundHandler soundController;
+    [SerializeField] PlayerInput playerInput { get; set; }
+    [SerializeField] PlayerMovement playerMovement { get; set; }
+    [SerializeField] PlayerAnimationController animationController { get; set; }
+    [SerializeField] SoundHandler soundController { get; set; }
 
+    public void Initialize(PlayerInput playerInput, PlayerMovement playerMovement, PlayerAnimationController animationController, SoundHandler soundController)
+    {
+        this.playerInput = playerInput;
+        this.playerMovement = playerMovement;
+        this.animationController = animationController;
+        this.soundController = soundController;
+    }
     private void FixedUpdate()
     {
         Vector3 movement = playerInput.GetMovementInput();
@@ -16,6 +23,6 @@ public class InputHandler : MonoBehaviour
 
         animationController.UpdateMovementAnimation(movement);
 
-        // soundController.PlayStepSoundIfNeeded(movement);
+        soundController.PlayStepSoundIfNeeded(movement);
     }
 }

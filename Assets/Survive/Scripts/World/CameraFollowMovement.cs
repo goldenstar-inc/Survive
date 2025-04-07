@@ -1,15 +1,22 @@
 using UnityEngine;
+using Zenject;
 
 /// <summary>
 /// Класс, отвечающий за следование камеры за игроком
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] Transform cameraTransform;
+    private Transform cameraTransform;
     public float smoothTime = 0.3f;
 
     private Vector3 velocity = Vector3.zero;
 
+    [Inject]
+    public void Initialize(ICameraProvider cameraProvider)
+    {
+        cameraTransform = cameraProvider.GetCameraTransform();
+    }
+    
     /// <summary>
     /// Метод, вызывающийся каждый игровой кадр
     /// </summary>

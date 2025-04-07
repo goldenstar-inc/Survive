@@ -9,7 +9,7 @@ using static HelpPhrasesModule;
 public class PlayerInteractionDetector : MonoBehaviour
 {
     public IPlayerDataProvider playerData { get; private set; }
-    public InventoryController inventoryController;
+    public IInventoryController inventoryController;
 
     /// <summary>
     /// Компонент "Transform" игрока
@@ -24,16 +24,16 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// <summary>
     /// Ближайший объект для взаимодействия
     /// </summary>
-    object interactableInRange = null;
+    IInteractable interactableInRange = null;
 
     /// <summary>
     /// Метод, вызывающийся при старте объекта
     /// </summary>
-    void Start()
+    public void Initialize(IInventoryController inventoryController, IPlayerDataProvider playerData)
     {
-        inventoryController = FindAnyObjectByType<InventoryController>();
+        this.inventoryController = inventoryController;
+        this.playerData = playerData;
         helpPhrase.enabled = false;
-        playerData = GetComponent<IPlayerDataProvider>();
     }
 
     /// <summary>

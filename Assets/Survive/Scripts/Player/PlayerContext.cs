@@ -1,5 +1,5 @@
 using UnityEngine;
-public class PlayerContext : MonoBehaviour, IPlayerDataProvider
+public class PlayerContext : IPlayerDataProvider
 {
     [Tooltip("Конфиг игрока")]
     [SerializeField] PlayerSetting playerSetting;

@@ -4,6 +4,6 @@ using UnityEngine;
 public class MovementComponent : ScriptableObject
 {
     public float WalkSpeed;
-
     public AudioClip[] StepSounds;
+    public float StepInterval;
 }

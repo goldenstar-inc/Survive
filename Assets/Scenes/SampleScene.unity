@@ -1841,8 +1841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2473d65794b794cb7ed8956467f82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 4
-  runningSpeed: 6
 --- !u!1 &733212165833458145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,10 +3130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd35f08f040469f4ab60ebb605fb50fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 1532092239553812717}
-  playerMovement: {fileID: 683363276345918451}
-  animationController: {fileID: 4908471568796633244}
-  soundController: {fileID: 2278830115473870685}
 --- !u!1 &3345693396087154996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3572,7 +3566,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -3906,6 +3900,7 @@ GameObject:
   - component: {fileID: 2688518149606327656}
   - component: {fileID: 2568868303397603031}
   - component: {fileID: 4250626755451028015}
+  - component: {fileID: 5052626704375339045}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3913,6 +3908,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5052626704375339045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5052626704375339044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 6df029ab8b103964092a5e1587c2b1c5, type: 2}
 --- !u!114 &5058128993104269571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5298,8 +5310,6 @@ MonoBehaviour:
   nicknameCanvas: {fileID: 1850845773}
   nicknameText: {fileID: 1844629319}
   offset: {x: 0, y: 0.75, z: 0}
-  minGlow: 0
-  maxGlow: 0.3
 --- !u!114 &7995808955623524660
 MonoBehaviour:
   m_ObjectHideFlags: 0
