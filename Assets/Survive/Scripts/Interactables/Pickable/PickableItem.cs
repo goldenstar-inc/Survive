@@ -30,7 +30,7 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     /// </summary>
     /// <param name="interactor">Данные о взаимодействующем персонаже</param>
     /// <returns>True - если взаимодействие произошло успешно, иначе false</returns>
-    public virtual bool Interact(IPlayerDataProvider interactor)
+    public virtual bool Interact(PlayerDataProvider interactor)
     {
         if (interactor != null)
         {

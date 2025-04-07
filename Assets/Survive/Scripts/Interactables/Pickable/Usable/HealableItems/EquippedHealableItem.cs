@@ -9,14 +9,14 @@ public class EquippedHealableItem : IUseScript
     /// <summary>
     /// Скрипт, управляющий здоровьем
     /// </summary>
-    private IPlayerDataProvider playerData;
+    private PlayerDataProvider playerData;
 
     /// <summary>
     /// Количество очков здоровья для лечения
     /// </summary>
     private int healPoints;
     private AudioClip useSound;
-    public void Initialize(HealableItemData data, IPlayerDataProvider playerData)
+    public void Initialize(HealableItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
         healPoints = data.HealPoints;

@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class Money : PickableItem
 {
-    public override bool Interact(IPlayerDataProvider interactor)
+    public override bool Interact(PlayerDataProvider interactor)
     {
         if (interactor != null)
         {

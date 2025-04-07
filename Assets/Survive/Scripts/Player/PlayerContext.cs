@@ -1,5 +1,5 @@
 using UnityEngine;
-public class PlayerContext : IPlayerDataProvider
+public class PlayerContext : PlayerDataProvider
 {
     [Tooltip("Конфиг игрока")]
     [SerializeField] PlayerSetting playerSetting;
@@ -15,11 +15,11 @@ public class PlayerContext : IPlayerDataProvider
 
     [Tooltip("Cкрипт управления звуком персонажа")]
     [SerializeField] SoundController soundController;
-    public PlayerSetting PlayerSetting => playerSetting;
-    public HealthManager HealthManager => healthManager;
-    public AmmoHandler AmmoHandler => ammoHandler;
-    public MoneyHandler MoneyHandler => moneyHandler;
-    public SoundController SoundController => soundController;
+    public override PlayerSetting PlayerSetting => playerSetting;
+    public override HealthManager HealthManager => healthManager;
+    public override AmmoHandler AmmoHandler => ammoHandler;
+    public override MoneyHandler MoneyHandler => moneyHandler;
+    public override SoundController SoundController => soundController;
     
 }
 

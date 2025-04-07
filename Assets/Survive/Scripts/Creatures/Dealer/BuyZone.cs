@@ -43,7 +43,7 @@ public class BuyZone : MonoBehaviour, IInteractable
     /// <summary>
     /// Взаимодействие с объектом
     /// </summary>
-    public bool Interact(IPlayerDataProvider interactor)
+    public bool Interact(PlayerDataProvider interactor)
     {
         if (interactor != null)
         {

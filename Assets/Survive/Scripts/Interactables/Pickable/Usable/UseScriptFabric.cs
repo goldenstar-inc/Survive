@@ -4,7 +4,7 @@ using UnityEngine;
 public static class UseScriptFabric
 {
     ///ПЕРЕДАВАТЬ СЮДА PLAYERCONTEXT
-    public static IUseScript GetUseScript(PickableItemData itemData, IPlayerDataProvider playerData)
+    public static IUseScript GetUseScript(PickableItemData itemData, PlayerDataProvider playerData)
     {
         if (itemData is RangedWeaponItemData rangedWeaponItemData)
         {

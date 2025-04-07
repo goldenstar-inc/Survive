@@ -10,7 +10,7 @@ public class Ammo : PickableItem
     /// <summary>
     /// Переопределенный метод, обеспечивающий взаимодействие с объектом
     /// </summary>
-    public override bool Interact(IPlayerDataProvider interactor)
+    public override bool Interact(PlayerDataProvider interactor)
     {
         if (interactor != null)
         {

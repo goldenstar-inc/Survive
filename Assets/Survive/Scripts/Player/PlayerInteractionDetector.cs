@@ -8,8 +8,8 @@ using static HelpPhrasesModule;
 /// </summary>
 public class PlayerInteractionDetector : MonoBehaviour
 {
-    public IPlayerDataProvider playerData { get; private set; }
-    public IInventoryController inventoryController;
+    [SerializeField] PlayerContext playerData;
+    [SerializeField] InventoryController inventoryController;
 
     /// <summary>
     /// Компонент "Transform" игрока
@@ -29,12 +29,13 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// <summary>
     /// Метод, вызывающийся при старте объекта
     /// </summary>
-    public void Initialize(IInventoryController inventoryController, IPlayerDataProvider playerData)
-    {
-        this.inventoryController = inventoryController;
-        this.playerData = playerData;
-        helpPhrase.enabled = false;
-    }
+    /// TO FIX
+    // public void Initialize(IInventoryController inventoryController, IPlayerDataProvider playerData)
+    // {
+    //     this.inventoryController = inventoryController;
+    //     this.playerData = playerData;
+    //     helpPhrase.enabled = false;
+    // }
 
     /// <summary>
     /// Метод, вызывающийся каждый игровой кадр

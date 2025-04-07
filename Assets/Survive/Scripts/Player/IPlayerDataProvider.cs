@@ -5,11 +5,11 @@ using UnityEngine;
 /// <summary>
 /// Интерфейс, содержащий ссылки на компоненты игрока
 /// </summary>
-public interface IPlayerDataProvider
+public abstract class PlayerDataProvider : MonoBehaviour
 {
-    public PlayerSetting PlayerSetting { get; }
-    public HealthManager HealthManager { get; }
-    public AmmoHandler AmmoHandler { get; }
-    public MoneyHandler MoneyHandler { get; }
-    public SoundController SoundController { get; }
+    public abstract PlayerSetting PlayerSetting { get; }
+    public abstract HealthManager HealthManager { get; }
+    public abstract AmmoHandler AmmoHandler { get; }
+    public abstract MoneyHandler MoneyHandler { get; }
+    public abstract SoundController SoundController { get; }
 }

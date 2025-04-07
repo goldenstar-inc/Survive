@@ -13,7 +13,7 @@ public class EquippedMeleeWeapon : IUseScript
     /// <summary>
     /// Информация о взаимодействующем персонаже
     /// </summary>
-    private IPlayerDataProvider playerData;
+    private PlayerDataProvider playerData;
 
     /// <summary>
     /// Конфиг оружия
@@ -26,7 +26,7 @@ public class EquippedMeleeWeapon : IUseScript
     private Transform shotStartPoint;
     private AudioClip[] swingSounds;
 
-    public void Initialize(MeleeWeaponItemData data, IPlayerDataProvider playerData)
+    public void Initialize(MeleeWeaponItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
 

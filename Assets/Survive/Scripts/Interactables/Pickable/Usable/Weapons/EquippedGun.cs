@@ -11,7 +11,7 @@ public class EquippedGun : IUseScript
     /// <summary>
     /// Информация о взаимодействующем персонаже
     /// </summary>
-    private IPlayerDataProvider playerData;
+    private PlayerDataProvider playerData;
 
     /// <summary>
     /// Конфиг оружия
@@ -27,7 +27,7 @@ public class EquippedGun : IUseScript
     private float attackCooldown;
     private AudioClip shotSound;
     private float timeSinceLastShot = 0f;
-    public void Initialize(RangedWeaponItemData data, IPlayerDataProvider playerData)
+    public void Initialize(RangedWeaponItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
 

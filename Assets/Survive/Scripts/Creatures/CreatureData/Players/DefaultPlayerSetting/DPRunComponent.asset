@@ -19,4 +19,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 055ee39cebe65984199754bb61eac4cc, type: 3}
   - {fileID: 8300000, guid: 46fdc3576946dcf47a2d1c2216c1db77, type: 3}
   - {fileID: 8300000, guid: 4ded4a0ee85df4d4c846338af1000eb7, type: 3}
+  StepInterval: 0.3
   RunSpeed: 6
