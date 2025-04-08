@@ -7,15 +7,19 @@ public class Money : PickableItem
 {
     public override bool Interact(PlayerDataProvider interactor)
     {
-        if (interactor != null)
+        if (interactor != null && interactor is IMoneyProvider moneyProvider)
         {
-            MoneyHandler moneyHandler = interactor.MoneyHandler;
-
+            MoneyHandler moneyHandler = moneyProvider.MoneyHandler;
+            
             if (moneyHandler != null)
             {
                 moneyHandler.AddMoney(Random.Range(20, 50));
                 Destroy(gameObject);
-                interactor.SoundController?.PlayAudioClip(PickSound);
+
+                if (interactor is ISoundProvider soundProvider)
+                {
+                    soundProvider.SoundController?.PlayAudioClip(PickSound);
+                }
                 return true;
             }
         }

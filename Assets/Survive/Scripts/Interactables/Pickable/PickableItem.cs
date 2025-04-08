@@ -35,7 +35,10 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
         if (interactor != null)
         {
             Destroy(gameObject);
-            interactor.SoundController?.PlayAudioClip(PickSound);
+            if (interactor is ISoundProvider soundProvider)
+            {
+                soundProvider.SoundController?.PlayAudioClip(PickSound);
+            }
             return true;
         }
         return false;

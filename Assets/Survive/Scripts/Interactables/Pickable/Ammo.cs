@@ -12,17 +12,20 @@ public class Ammo : PickableItem
     /// </summary>
     public override bool Interact(PlayerDataProvider interactor)
     {
-        if (interactor != null)
+        if (interactor != null && interactor is IAmmoProvider ammoProvider)
         {
-            AmmoHandler handler = interactor.AmmoHandler;
+            AmmoHandler ammoHandler = ammoProvider.AmmoHandler;
 
-            if (handler != null)
+            if (ammoHandler != null)
             {
-                if (handler.currentAmmo != handler.maxAmmo)
+                if (ammoHandler.currentAmmo != ammoHandler.maxAmmo)
                 {
-                    handler.CollectAmmo(Quantity);
+                    ammoHandler.CollectAmmo(1);
                     Destroy(gameObject);
-                    interactor.SoundController?.PlayAudioClip(PickSound);
+                    if (interactor is ISoundProvider soundProvider)
+                    {
+                        soundProvider.SoundController?.PlayAudioClip(PickSound);
+                    }
                     return true;
                 }
             }

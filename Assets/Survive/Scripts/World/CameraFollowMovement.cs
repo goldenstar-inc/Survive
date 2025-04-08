@@ -10,11 +10,6 @@ public class CameraFollow : MonoBehaviour
     public float smoothTime = 0.3f;
 
     private Vector3 velocity = Vector3.zero;
-
-    public void Initialize(ICameraProvider cameraProvider)
-    {
-        cameraTransform = cameraProvider.GetCameraTransform();
-    }
     
     /// <summary>
     /// Метод, вызывающийся каждый игровой кадр

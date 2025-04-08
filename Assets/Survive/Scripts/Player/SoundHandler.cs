@@ -8,14 +8,6 @@ public class SoundHandler : MonoBehaviour
     private float stepInterval => setting.RunComponent.StepInterval;
     private float timeSinceLastStep = 0f;
 
-    // TO FIX
-    // public void Initialize(AudioClip[] stepSounds, float stepInterval, SoundController soundController)
-    // {
-    //     this.stepSounds = stepSounds;
-    //     this.stepInterval = stepInterval;
-    //     this.soundController = soundController;
-    // }
-
     public void PlayStepSoundIfNeeded(Vector3 movement)
     {
         if (movement != Vector3.zero && Time.time - timeSinceLastStep > stepInterval)

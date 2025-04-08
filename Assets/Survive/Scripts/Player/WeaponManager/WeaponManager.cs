@@ -10,24 +10,15 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AmmoHandler))]
 public class WeaponManager : MonoBehaviour
-    {
+{
     [SerializeField] Transform attackStartPoint;
     public event Action OnAttack;
-    public static WeaponManager Instance { get; private set; }
     private Animator animator;
     private AmmoHandler ammoHandler;
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            animator = GetComponent<Animator>();
-            ammoHandler = GetComponent<AmmoHandler>();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        animator = GetComponent<Animator>();
+        ammoHandler = GetComponent<AmmoHandler>();
     }
 
     /// <summary>

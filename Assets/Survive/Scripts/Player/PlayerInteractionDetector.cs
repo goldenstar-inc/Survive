@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.LookDev;
 using static HelpPhrasesModule;
@@ -8,7 +9,7 @@ using static HelpPhrasesModule;
 /// </summary>
 public class PlayerInteractionDetector : MonoBehaviour
 {
-    [SerializeField] PlayerContext playerData;
+    [SerializeField] PlayerDataProvider dataProvider;
     [SerializeField] InventoryController inventoryController;
 
     /// <summary>
@@ -25,17 +26,6 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// Ближайший объект для взаимодействия
     /// </summary>
     IInteractable interactableInRange = null;
-
-    /// <summary>
-    /// Метод, вызывающийся при старте объекта
-    /// </summary>
-    /// TO FIX
-    // public void Initialize(IInventoryController inventoryController, IPlayerDataProvider playerData)
-    // {
-    //     this.inventoryController = inventoryController;
-    //     this.playerData = playerData;
-    //     helpPhrase.enabled = false;
-    // }
 
     /// <summary>
     /// Метод, вызывающийся каждый игровой кадр
@@ -90,7 +80,7 @@ public class PlayerInteractionDetector : MonoBehaviour
                 {
                     if (UpdateInventory())
                     {
-                        interactable.Interact(playerData);
+                        interactable.Interact(dataProvider);
                     }
                     else
                     {
@@ -99,12 +89,12 @@ public class PlayerInteractionDetector : MonoBehaviour
                 }
                 else
                 {
-                    interactable.Interact(playerData);
+                    interactable.Interact(dataProvider);
                 }
             }
             else
             {
-                interactable.Interact(playerData);
+                interactable.Interact(dataProvider);
             }
         }
     }
@@ -137,19 +127,6 @@ public class PlayerInteractionDetector : MonoBehaviour
         {
             helpPhrase.text = actionToPhrase[Action.PickUp];
             helpPhrase.enabled = true;
-        }
-    }
-
-    /// <summary>
-    /// Обновление позиции подсказки
-    /// </summary>
-    private void UpdateHelpPhrasePosition()
-    {
-        if (player != null && helpPhrase != null)
-        {
-            float distanceAbovePlayer = 1f;
-            Vector3 positionAbovePlayer = player.position + new Vector3(0, distanceAbovePlayer, 0);
-            helpPhrase.transform.position = positionAbovePlayer;
         }
     }
 }

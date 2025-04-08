@@ -31,9 +31,12 @@ public class EquippedHealableItem : IUseScript
 
             if (healthManager != null)
             {
-                ApplyHeal(healthManager);
-                playerData.SoundController?.PlayAudioClip(useSound);
-                return true;
+                if (healthManager.currentHealth != healthManager.maxHealth)
+                {
+                    ApplyHeal(healthManager);
+                    playerData.SoundController?.PlayAudioClip(useSound);
+                    return true;
+                }
             }
         }
 
@@ -45,9 +48,6 @@ public class EquippedHealableItem : IUseScript
     /// </summary>
     private void ApplyHeal(HealthManager healthManager)
     {
-        if (healthManager != null)
-        {
-            healthManager.Heal(healPoints);
-        }
+        healthManager?.Heal(healPoints);
     }
 }

@@ -27,26 +27,26 @@ public class EquippedGun : IUseScript
     private float attackCooldown;
     private AudioClip shotSound;
     private float timeSinceLastShot = 0f;
+    private WeaponManager weaponManager;
     public void Initialize(RangedWeaponItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
+        weaponManager = playerData?.WeaponManager;
+        shotStartPoint = weaponManager?.GetAttackStartPoint();
+        Animator weaponAnimator = weaponManager?.GetWeaponAnimator();
+        ammoHandler = weaponManager?.GetAmmoHandlerScript();
+        if (weaponAnimator.runtimeAnimatorController != null)
+        {
+            weaponAnimator.runtimeAnimatorController = data.Animator;
+        }
 
         this.data = data;
-        shotStartPoint = WeaponManager.Instance.GetAttackStartPoint();
         bulletPrefab = data.BulletPrefab;
         damage = data.Damage;
         bulletVelocity = data.BulletVelocity;
         bulletLifeTime = data.BulletLifeTime;
         shotSound = data.ShotSound;
         attackCooldown = data.AttackCooldown;
-
-        Animator weaponAnimator = WeaponManager.Instance.GetWeaponAnimator();
-        ammoHandler = WeaponManager.Instance.GetAmmoHandlerScript();
-
-        if (weaponAnimator != null)
-        {
-            weaponAnimator.runtimeAnimatorController = data.Animator;
-        }
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public class EquippedGun : IUseScript
                 {
                     Shoot();
                     ammoHandler.ConsumeAmmo();
-                    WeaponManager.Instance.PlayAttackAnimation();
+                    playerData.WeaponManager.PlayAttackAnimation();
                     return true;
                 }
             }

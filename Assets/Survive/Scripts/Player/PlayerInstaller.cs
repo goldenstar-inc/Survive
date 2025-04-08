@@ -3,9 +3,23 @@ using Zenject;
 
 public class PlayerInstaller : MonoInstaller
 {
-    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private PlayerSetting playerSetting;
+    [SerializeField] private HealthManager healthManager;
+    [SerializeField] private AmmoHandler ammoHandler;
+    [SerializeField] private MoneyHandler moneyHandler;
+    [SerializeField] private SoundController soundController;
     public override void InstallBindings()
     {
-        Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle().WithArguments(cameraTransform);
+        Container.Bind<PlayerDataProvider>()
+        .To<PlayerDataProvider>()
+        .AsSingle()
+        .WithArguments(
+            playerSetting, 
+            healthManager, 
+            ammoHandler, 
+            moneyHandler, 
+            soundController
+            );
     }
 }

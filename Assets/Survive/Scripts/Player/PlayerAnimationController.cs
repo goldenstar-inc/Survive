@@ -9,6 +9,8 @@ public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] HealthManager playerHealthManager;
 
+    [SerializeField] WeaponManager weaponManager;
+
     /// <summary>
     /// Аниматор, отвечающий за анимирование игрока
     /// </summary>
@@ -26,7 +28,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         this.playerAnimator = GetComponent<Animator>();
         playerHealthManager.OnTakeDamage += OnDamageTaken;
-        WeaponManager.Instance.OnAttack += EnableAttackingState;
+        weaponManager.OnAttack += EnableAttackingState;
     }
 
     /// <summary>
@@ -136,6 +138,6 @@ public class PlayerAnimationController : MonoBehaviour
     void OnDisable()
     {
         playerHealthManager.OnTakeDamage -= OnDamageTaken;
-        WeaponManager.Instance.OnAttack -= EnableAttackingState;
+        weaponManager.OnAttack -= EnableAttackingState;
     }
 }
