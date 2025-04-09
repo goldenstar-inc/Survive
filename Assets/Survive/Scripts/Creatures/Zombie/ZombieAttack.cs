@@ -6,15 +6,7 @@ using UnityEngine;
 /// </summary>
 public class ZombieAttack : MonoBehaviour
 {
-    public int damage { get; private set; }
-
-    /// <summary>
-    /// Метод, вызывающийся при старте объекта
-    /// </summary>
-    void Start()
-    {
-        damage = 1;
-    }
+    public int damage { get; private set; } = 1;
 
     /// <summary>
     /// Метод, запускающийся при триггере объекта зомби

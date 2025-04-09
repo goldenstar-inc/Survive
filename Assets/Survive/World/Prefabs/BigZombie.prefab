@@ -193,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd340cecd9129f4fa651726f3e342f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 0}
   zombieAnimationController: {fileID: 8332997739307295690}
+  poolData: {fileID: 11400000, guid: 63faae7ccf1b17b438e8d4380259c607, type: 2}
 --- !u!114 &3440056687455435813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,9 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  moneyPrefab: {fileID: 6258729319954115926, guid: 1c2c874ca1f0bdb4da3d57a00ef39410, type: 3}
+  soundController: {fileID: 0}
+  moneyPrefab: {fileID: 0}
   gameOverScreen: {fileID: 0}
-  damagedCreatureSound: 15
+  damagedCreatureSound: {fileID: 0}
   invincibleCooldown: 0.5
 --- !u!95 &3027159898630168956
 Animator:

@@ -6,10 +6,9 @@ using UnityEngine.UI;
 public class DialogueController : MonoBehaviour
 {
     public static DialogueController Instance{get; private set;}
-    
-     public GameObject dialoguePanel;
-     public TMP_Text dialogueText, nameText;
-     public Image portraitImage;
+    public GameObject dialoguePanel;
+    public TMP_Text dialogueText, nameText;
+    public Image portraitImage;
 
     public Transform choiceContainer;
     public GameObject choiceBottonPrefab;

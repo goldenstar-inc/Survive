@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9a9e1c554e4184ab15ea560cc11e8b, type: 3}
+  m_Name: BigZombieLP
+  m_EditorClassIdentifier: 
+  Pool:
+  - {fileID: 11400000, guid: d8868d63a1991c449b2c5911fcdc8388, type: 2}
+  - {fileID: 11400000, guid: ed88756dc7198b64dbc5e560f59ff89e, type: 2}

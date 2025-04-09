@@ -8,13 +8,12 @@ public class NPC : MonoBehaviour, IInteractable
 {
     public NPCDialogue dialogueData;
     private DialogueController dialogueUI;
-    public Button nextButton; // Ссылка на кнопку "далее"
+    public Button nextButton; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅ"
     public GameObject gameOver;
-
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
 
-    public string helpPhrase => actionToPhrase[Action.PickUp]; // Реализация интерфейса IInteractable
+    public string helpPhrase => actionToPhrase[Action.PickUp]; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IInteractable
 
     private void Start()
     {
