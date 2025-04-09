@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 172632879d5af18498cbb4d05423ce5d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - JoePortrait: {instanceID: 0}
+  - MarkPortrait: {instanceID: 0}
+  - voiceSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
