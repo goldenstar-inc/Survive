@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class DialogueController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class DialogueController : MonoBehaviour
 
     public Transform choiceContainer;
     public GameObject choiceBottonPrefab;
+
+    private NPC currentNPC;
 
     void Awake()
     {
@@ -24,6 +27,8 @@ public class DialogueController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 
     public void ShowDialogueUI( bool show)
     {
@@ -46,10 +51,34 @@ public class DialogueController : MonoBehaviour
         foreach (Transform child in choiceContainer) Destroy(child.gameObject);
     }
 
-    public void  CreateChoiceButton(string choiceText, UnityEngine.Events.UnityAction onClick)
+    public void CreateChoiceButton(string choiceText, UnityEngine.Events.UnityAction onClick)
     {
         GameObject choiceButton = Instantiate(choiceBottonPrefab, choiceContainer);
         choiceButton.GetComponentInChildren<TMP_Text>().text = choiceText;
         choiceButton.GetComponent<Button>().onClick.AddListener(onClick);
+    }
+
+    public void Close()
+    {
+        if (currentNPC != null)
+        {
+            currentNPC.EndDialogue();
+        }
+    }
+
+    public void Next()
+    {
+        if (currentNPC != null)
+        {
+            currentNPC.OnNextButtonClick();
+        }
+    }
+
+    internal void SetDialogue(NPC currentNPC)
+    {
+        if (currentNPC != null)
+        {
+            this.currentNPC = currentNPC;
+        }
     }
 }

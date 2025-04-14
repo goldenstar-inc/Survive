@@ -19,7 +19,7 @@ MonoBehaviour:
   DropSound: {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
   ErrorSound: {fileID: 8300000, guid: bfad88e5f97b0814892ee6ce36c3b66f, type: 3}
   Description: Just a medkit.
-  MaxQuantity: 2
+  MaxQuantity: 5
   UseDuration: 10
   Sound: {fileID: 8300000, guid: df6ec8bddc609f342a3cf2c71b6b1c2d, type: 3}
   HealPoints: 3

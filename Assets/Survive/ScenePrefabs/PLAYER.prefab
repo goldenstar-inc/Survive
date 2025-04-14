@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 587742326422718023}
   - component: {fileID: 5502003391784471916}
   - component: {fileID: 728358649103248391}
+  - component: {fileID: 3003379697563213911}
   - component: {fileID: 1069411224918777790}
   - component: {fileID: 8896625041425756085}
   - component: {fileID: 6205479062810160229}
@@ -654,6 +655,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdf8d1a8778b7c4196d653045cc645e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3003379697563213911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881584487222497953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2c686436543b45a4a2955e1011adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1069411224918777790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +731,7 @@ MonoBehaviour:
   moneyHandler: {fileID: 5502003391784471916}
   soundController: {fileID: 2230408215552295838}
   playerSetting: {fileID: 11400000, guid: 283a67eee8f24ab4d98c413628839a7a, type: 2}
+  questManager: {fileID: 3003379697563213911}
   playerAnimator: {fileID: 494139080195456411}
   playerWeaponAnimator: {fileID: 1251210084233911900}
   playerRB: {fileID: 5797005307598262512}

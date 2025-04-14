@@ -1,13 +1,22 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasBootstrapper : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
     [SerializeField] HealthDisplay healthDisplay;
     [SerializeField] AmmoDisplay ammoDisplay;
+    [SerializeField] InventoryDisplay inventoryDisplay;
     private HealthManager healthManager;
     private AmmoHandler ammoHandler;
     private Camera renderCamera;
+    private InventoryController inventoryController;
+
+    [SerializeField] GameObject[] selectionFrames;
+    [SerializeField] Sprite emptySlotImage;
+    [SerializeField] Image[] inventoryItemImages;
+    [SerializeField] TextMeshProUGUI[] itemQuanityTextFields;
 
     /// <summary>
     /// Инициализация
@@ -17,18 +26,21 @@ public class CanvasBootstrapper : MonoBehaviour
     public void Init(
         HealthManager healthManager, 
         AmmoHandler ammoHandler,
-        Camera renderCamera
+        Camera renderCamera,
+        InventoryController inventoryController
         )
     {
         this.healthManager = healthManager;
         this.ammoHandler = ammoHandler;
         this.renderCamera = renderCamera;
+        this.inventoryController = inventoryController;
 
         if (!Validate()) return;
 
         InitCamera();
         InitHealthDisplay();
         InitAmmoDisplay();
+        InitInventoryDisplay();
     }
 
     /// <summary>
@@ -73,6 +85,11 @@ public class CanvasBootstrapper : MonoBehaviour
             return false;
         }
 
+        if (inventoryDisplay == null)
+        {
+            Debug.LogError("InventoryDisplay not loaded");
+        }
+
         return true;
     }
 
@@ -98,5 +115,19 @@ public class CanvasBootstrapper : MonoBehaviour
     private void InitAmmoDisplay()
     {
         ammoDisplay.Init(ammoHandler);
+    }
+
+    /// <summary>
+    /// Инициализация системы отображения боезапаса
+    /// </summary>
+    private void InitInventoryDisplay()
+    {
+        inventoryDisplay.Init(
+            selectionFrames,
+            emptySlotImage,
+            inventoryItemImages,
+            itemQuanityTextFields,
+            inventoryController
+            );
     }
 }

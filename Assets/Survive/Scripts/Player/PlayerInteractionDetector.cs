@@ -71,7 +71,7 @@ public class PlayerInteractionDetector : MonoBehaviour
         if (collision != null)
         {
             interactableInRange = null;
-            helpPhrase.enabled = false;
+            //helpPhrase.enabled = false;
         }
     }
 

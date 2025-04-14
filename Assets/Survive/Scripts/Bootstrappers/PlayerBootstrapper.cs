@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class PlayerBootstrapper : MonoBehaviour
     [SerializeField] private MoneyHandler moneyHandler;
     [SerializeField] private SoundController soundController;
     [SerializeField] private PlayerSetting playerSetting;
+    [SerializeField] private QuestManager questManager;
 
     [Header("Components")]
     [SerializeField] private Animator playerAnimator;
@@ -59,6 +61,7 @@ public class PlayerBootstrapper : MonoBehaviour
         InitAmmo();
         InitMoney();
         InitWeapon();
+        InitQuest();
         InitPlayerData();
         InitSoundHandler();
         InitMovement();
@@ -66,7 +69,8 @@ public class PlayerBootstrapper : MonoBehaviour
         InitAnimation();
         InitInventory();
         InitInteraction();
-    }   
+    }
+
 
     /// <summary>
     /// Валидация значений компонентов/сеттингов игрока
@@ -210,6 +214,16 @@ public class PlayerBootstrapper : MonoBehaviour
     }
 
     /// <summary>
+    /// Инициализация контроллера квестов
+    /// </summary>
+    private void InitQuest()
+    {
+        questManager.Init(
+            playerInventoryController
+            );
+    }
+
+    /// <summary>
     /// Инициализация фасада данных об игроке
     /// </summary>
     private void InitPlayerData()
@@ -220,7 +234,8 @@ public class PlayerBootstrapper : MonoBehaviour
             ammoHandler,
             moneyHandler,
             soundController,
-            weaponManager
+            weaponManager,
+            questManager
         );
     }
 

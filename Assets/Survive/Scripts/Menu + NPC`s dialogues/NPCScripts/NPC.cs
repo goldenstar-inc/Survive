@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using static HelpPhrasesModule;
 
 public class NPC : MonoBehaviour, IInteractable
 {
+    [SerializeField] List<Quest> activeQuests;
+
     public NPCDialogue dialogueData;
     private DialogueController dialogueUI;
-    public Button nextButton; // ������ �� ������ "�����"
+    public Button nextButton;
     public GameObject gameOver;
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
 
-    public string helpPhrase => actionToPhrase[Action.PickUp]; // ���������� ���������� IInteractable
+    public string helpPhrase => actionToPhrase[Action.PickUp];
 
     private void Start()
     {
@@ -27,8 +30,14 @@ public class NPC : MonoBehaviour, IInteractable
 
     public bool Interact(PlayerDataProvider interactor)
     {
-        if (dialogueData == null || (PauseController.IsGamePaused && !isDialogueActive) || gameOver.activeSelf)
+        if (dialogueData == null/* || (PauseController.IsGamePaused && !isDialogueActive) || gameOver.activeSelf*/)
             return false;
+
+        if (activeQuests.Count > 0)
+        {
+            RaiseQuest(interactor, activeQuests.First());
+            activeQuests.RemoveAt(0);
+        }
 
         if (isDialogueActive)
         {
@@ -42,6 +51,18 @@ public class NPC : MonoBehaviour, IInteractable
         }
 
         return true;
+    }
+
+    public void RaiseQuest(PlayerDataProvider interactor, Quest quest)
+    {
+        if (interactor != null)
+        {
+            if (interactor is IQuestProvider questProvider)
+            {
+                questProvider.QuestManager.AddQuest(quest);
+
+            }
+        }
     }
 
     void NextLine()
@@ -83,13 +104,15 @@ public class NPC : MonoBehaviour, IInteractable
 
     void StartDialogue()
     {
+        DialogueController.Instance.SetDialogue(this);
+
         isDialogueActive = true;
         dialogueIndex = 0;
 
         dialogueUI.SetNPCInfo(dialogueData.name, dialogueData.BrianPortrait);
         UpdateSpeakerUI();
         dialogueUI.ShowDialogueUI(true);
-        nextButton.gameObject.SetActive(true);
+        //nextButton.gameObject.SetActive(true);
         PauseController.SetPause(true);
 
         DisplayCurrentLine();
@@ -167,7 +190,7 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = false;
         dialogueUI.SetDialogueText("");
         dialogueUI.ShowDialogueUI(false);
-        nextButton.gameObject.SetActive(false);
+        //nextButton.gameObject.SetActive(false);
         PauseController.SetPause(false);
     }
 

@@ -33,7 +33,10 @@ public class InventoryDisplay : MonoBehaviour
         this.itemQuanityTextFields = itemQuanityTextFields;
         this.inventoryController = inventoryController;
 
-        inventoryController.OnInventoryUpdate += UpdateInventoryUI;
+        inventoryController.OnPickUp += AddItem;
+        inventoryController.OnDrop += DecreaseItemAmount;
+        inventoryController.OnUse += DecreaseItemAmount;
+        inventoryController.OnChangeSelection += SelectSlot;
 
         for (int i = 0; i < inventoryItemImages.Length; i++)
         {
@@ -41,37 +44,64 @@ public class InventoryDisplay : MonoBehaviour
         }
     }
     
-    private void Select()
-    {
-
-    }
-    private void UpdateInventoryUI(int index, int newQuantity)
+    private void SelectSlot(int index)
     {
         if (!ValidateIndex(index)) return;
-        if (!ValidateQuantity(newQuantity)) return;
 
-        if (newQuantity == 0)
+        foreach (GameObject selectionFrame in selectionFrames)
+        {
+            selectionFrame.SetActive(false);
+        }
+
+        selectionFrames[index].SetActive(true);
+    }
+    private void AddItem(int index, int quantity, InventoryItemData data)
+    {
+        if (!ValidateIndex(index)) return;
+        if (!ValidateQuantity(quantity)) return;
+        if (!ValidateData(data)) return;
+
+        ShowItemQuantity(index, quantity);
+        ShowItemImage(index, data);
+    }
+    private void DecreaseItemAmount(int index, int quantity)
+    {
+        if (!ValidateIndex(index)) return;
+        if (!ValidateQuantity(quantity)) return;
+
+        if (quantity == 0)
         {
             RemoveItem(index);
-        }  
+        }
         else
         {
-            ShowItemQuantity(index, newQuantity);
-        }   
+            ShowItemQuantity(index, quantity);
+        }
     }
+
+
+
     private void RemoveItem(int index)
     {
-        if (!ValidateIndex(index)) return;
-        inventoryItemImages[index] = null;
         inventoryItemImages[index].sprite = emptySlotImage;
         itemQuanityTextFields[index].text = string.Empty;
     }
 
     private void ShowItemQuantity(int index, int quantity)
     {
-        if (!ValidateIndex(index)) return;
-        if (!ValidateQuantity(quantity)) return;
-        itemQuanityTextFields[index].text = $"{quantity}";
+        if (quantity != 1)
+        {
+            itemQuanityTextFields[index].text = $"{quantity}";
+        }
+        else
+        {
+            itemQuanityTextFields[index].text = string.Empty;
+        }
+    }
+
+    private void ShowItemImage(int index, InventoryItemData data)
+    {
+        inventoryItemImages[index].sprite = data.InventoryImage;
     }
 
     private bool ValidateIndex(int index)
@@ -89,6 +119,16 @@ public class InventoryDisplay : MonoBehaviour
         if (quantity < 0)
         {
             Debug.LogError("Incorrect quanity");
+            return false;
+        }
+
+        return true;
+    }
+    private bool ValidateData(InventoryItemData data)
+    {
+        if (data == null)
+        {
+            Debug.LogError("Incorrect data");
             return false;
         }
 

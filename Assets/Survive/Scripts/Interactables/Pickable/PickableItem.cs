@@ -20,9 +20,9 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     /// Инициализация объекта
     /// </summary>
     /// <param name="quantity">Количество данного объекта</param>
-    public void Initialize(int quantity = 1)
+    public void Start()
     {
-        SetQuantity(quantity);
+        SetQuantity(1);
     }
     
     /// <summary>
