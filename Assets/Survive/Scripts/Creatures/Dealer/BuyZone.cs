@@ -51,7 +51,7 @@ public class BuyZone : MonoBehaviour, IInteractable
 
             if (playerMoneyHandler != null)
             {
-                if (playerMoneyHandler.Balance >= ItemPrice)
+                if (playerMoneyHandler.GetCurrentBalance() >= ItemPrice)
                 {
                     playerMoneyHandler.Pay(ItemPrice);
                     DropLoot();

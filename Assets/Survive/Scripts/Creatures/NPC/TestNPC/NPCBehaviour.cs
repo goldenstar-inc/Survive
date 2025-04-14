@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class NPCBehavior : MonoBehaviour
 
     public float detectionRadius = 10f;
     public float moveSpeed = 3f;
-    public int health => healthManager.currentHealth;
+    public int health => throw new NotImplementedException();
 
     private Vector2 searchDirection;
     private Vector2 searchStartPosition;
@@ -104,7 +105,7 @@ public class NPCBehavior : MonoBehaviour
             case "Search":
                 if (searchDirection == Vector2.zero) 
                 {
-                    searchDirection = Random.insideUnitCircle.normalized;
+                    //searchDirection = Random.insideUnitCircle.normalized;
                     searchStartPosition = transform.position;
                 }
 

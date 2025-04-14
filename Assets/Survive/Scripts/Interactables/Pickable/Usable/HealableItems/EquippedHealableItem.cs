@@ -16,7 +16,7 @@ public class EquippedHealableItem : IUseScript
     /// </summary>
     private int healPoints;
     private AudioClip useSound;
-    public void Initialize(HealableItemData data, PlayerDataProvider playerData)
+    public void Init(HealableItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
         healPoints = data.HealPoints;
@@ -31,7 +31,7 @@ public class EquippedHealableItem : IUseScript
 
             if (healthManager != null)
             {
-                if (healthManager.currentHealth != healthManager.maxHealth)
+                if (!healthManager.IsFullHealth())
                 {
                     ApplyHeal(healthManager);
                     playerData.SoundController?.PlayAudioClip(useSound);

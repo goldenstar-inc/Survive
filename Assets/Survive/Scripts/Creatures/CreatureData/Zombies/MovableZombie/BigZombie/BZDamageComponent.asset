@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8898ae28bbcd82940b8a14c3bf6184f1, type: 3}
-  m_Name: DPHealthComponent
+  m_Script: {fileID: 11500000, guid: 27e18c8079e23e34882e0fbcc3e4bbe7, type: 3}
+  m_Name: BZDamageComponent
   m_EditorClassIdentifier: 
-  MaxHealth: 6
-  DamageSound: {fileID: 8300000, guid: ae02f3a95e1f6e349a4229ef93116b9c, type: 3}
-  InvincibilityCooldown: 1.5
+  Damage: 2

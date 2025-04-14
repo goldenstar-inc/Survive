@@ -26,7 +26,7 @@ public class EquippedMeleeWeapon : IUseScript
     private Transform shotStartPoint;
     private AudioClip[] swingSounds;
     private WeaponManager weaponManager;
-    public void Initialize(MeleeWeaponItemData data, PlayerDataProvider playerData)
+    public void Init(MeleeWeaponItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
         weaponManager = playerData?.WeaponManager;

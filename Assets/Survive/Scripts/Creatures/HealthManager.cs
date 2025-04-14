@@ -1,27 +1,34 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] public int maxHealth;
-    [SerializeField] private SoundController soundController;
-    [SerializeField] private GameObject moneyPrefab;
-    [SerializeField] private GameOverScreen gameOverScreen;
-    [SerializeField] private AudioClip damagedCreatureSound;
-    [SerializeField] private float invincibleCooldown;
     public event Action<int, int> OnTakeDamage;
     public event Action<int, int> OnHeal;
     public event Action OnDeath;
-    public int currentHealth { get; private set; }
+
+    private int currentHealth;
+    private int maxHealth;
+    private  SoundController soundController;
+    private AudioClip damageSound;
+    private float invincibleCooldown;
     private float timeSinceLastDamageTaken = 0f;
     
     /// <summary>
-    /// Метод, инициализирующий здоровье игрока
+    /// Инициализация
     /// </summary>
-    /// <param name="maxHealth">Максимальное кличество очков здоровья</param>
-    public void Start()
+    /// <param name="maxHealth">Максимальное количество очков здоровья</param>
+    /// <param name="damageSound">Звук получения урона</param>
+    /// <param name="invincibleCooldown">Время иммунитета после получения урона</param>
+    /// <param name="soundController">Скрип, управляющий звуком</param>
+    public void Init(int maxHealth, AudioClip damageSound, float invincibleCooldown, SoundController soundController) 
     {
+        this.maxHealth = maxHealth;
+        this.damageSound = damageSound;
+        this.invincibleCooldown = invincibleCooldown;
+        this.soundController = soundController;
         SetCurrentHealth(maxHealth);
     }
 
@@ -40,7 +47,7 @@ public class HealthManager : MonoBehaviour
         {
             currentHealth = Mathf.Max(0, currentHealth - damage);
             SetCurrentHealth(currentHealth);
-            soundController?.PlayAudioClip(damagedCreatureSound);
+            soundController?.PlayAudioClip(damageSound);
             timeSinceLastDamageTaken = Time.time;
             OnTakeDamage?.Invoke(currentHealth, maxHealth);
             if(currentHealth <= 0)
@@ -68,25 +75,44 @@ public class HealthManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Проверка, обладает ли объект максимальным количеством очков здоровья
+    /// </summary>
+    public bool IsFullHealth()
+    {
+        return currentHealth == maxHealth;
+    }
+
+    /// <summary>
+    /// Получить текущее количество очков здоровья
+    /// </summary>
+    /// <returns>Текущее количество очков здоровья</returns>
+    public int GetCurrrentHealth()
+    {
+        return currentHealth;
+    }
+
+    /// <summary>
+    /// Получить максимальное количество очков здоровья
+    /// </summary>
+    /// <returns>Максимальное количество очков здоровья</returns>
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    /// <summary>
     /// Уничтожение объекта
     /// </summary>
     public void Kill()
     {
         OnDeath?.Invoke();
-
         Destroy(gameObject);
-
-        if (moneyPrefab != null)
-        {
-            DropMoney();
-        }
     }
 
-    /// <summary>
-    /// Метод, отвечающий за выпадение денег
-    /// </summary>
-    private void DropMoney()
+    private void OnDestroy()
     {
-        Instantiate(moneyPrefab, transform.position , Quaternion.identity);
+        OnTakeDamage = null;
+        OnHeal = null;
+        OnDeath = null;
     }
 }

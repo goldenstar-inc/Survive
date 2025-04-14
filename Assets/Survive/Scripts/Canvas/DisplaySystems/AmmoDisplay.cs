@@ -7,7 +7,19 @@ using UnityEngine.UI;
 public class AmmoDisplay : MonoBehaviour
 {
     [SerializeField] Image[] ammo;
-    [SerializeField] AmmoHandler playerAmmoHandler;
+    private AmmoHandler ammoHandler;
+
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="ammoHandler">Скрипт, управляющий боезапасом</param>
+    public void Init(AmmoHandler ammoHandler)
+    {
+        this.ammoHandler = ammoHandler;
+        ammoHandler.OnConsume += UpdateAmmoBar;
+        ammoHandler.OnCollect += UpdateAmmoBar;
+        UpdateAmmoBar(0, ammoHandler.maxAmmo);
+    }
     public void UpdateAmmoBar(int currentAmmo, int maxAmmo)
     {
         for (int i = 0; i < maxAmmo; i++)
@@ -15,19 +27,12 @@ public class AmmoDisplay : MonoBehaviour
             ammo[i].enabled = i < currentAmmo;
         }
     }
-    public void Start()
-    {
-        UpdateAmmoBar(0, playerAmmoHandler.maxAmmo);
-    }
-
-    void OnEnable()
-    {
-        playerAmmoHandler.OnConsume += UpdateAmmoBar;
-        playerAmmoHandler.OnCollect += UpdateAmmoBar;
-    }
     void OnDisable()
     {
-        playerAmmoHandler.OnConsume -= UpdateAmmoBar;
-        playerAmmoHandler.OnCollect -= UpdateAmmoBar;
+        if (ammoHandler != null)
+        {
+            ammoHandler.OnConsume -= UpdateAmmoBar;
+            ammoHandler.OnCollect -= UpdateAmmoBar;
+        }
     }
 }

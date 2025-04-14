@@ -11,14 +11,22 @@ using UnityEngine;
 [RequireComponent(typeof(AmmoHandler))]
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] Transform attackStartPoint;
     public event Action OnAttack;
     private Animator animator;
     private AmmoHandler ammoHandler;
-    private void Start()
+    private Transform attackStartPoint;
+
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="animator">Аниматор оружия</param>
+    /// <param name="ammoHandler">Скрипт, управляющий боезопасом</param>
+    /// <param name="attackStartPoint">Стартовая точка для атаки</param>
+    public void Init(Animator animator, AmmoHandler ammoHandler, Transform attackStartPoint)
     {
-        animator = GetComponent<Animator>();
-        ammoHandler = GetComponent<AmmoHandler>();
+        this.animator = animator;
+        this.ammoHandler = ammoHandler;
+        this.attackStartPoint = attackStartPoint;
     }
 
     /// <summary>
@@ -49,5 +57,10 @@ public class WeaponManager : MonoBehaviour
             animator.SetTrigger("Attack");
             OnAttack?.Invoke();
         }
+    }
+
+    private void OnDestroy()
+    {
+        OnAttack = null;
     }
 }

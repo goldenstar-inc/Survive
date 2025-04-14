@@ -6,24 +6,20 @@ using TMPro;
 /// </summary>
 public class NicknameFollow : MonoBehaviour
 {
-    [SerializeField] private Transform nicknameCanvas;
-    [SerializeField] private TextMeshProUGUI nicknameText;
-    [SerializeField] private Vector3 offset = new Vector3(0f, 0.75f, 0f);
-
-
-    public void Initialize(string nickName)
+    private Transform nicknameCanvas;
+    private TextMeshProUGUI nicknameText;
+    private Vector3 offset = new Vector3(0f, 0.75f, 0f);
+    public void Init(TextMeshProUGUI nicknameText, Transform nicknameCanvas, string nickName = "Mark")
     {
-        if (string.IsNullOrEmpty(nickName))
-        {
-            Debug.LogError("The nickname is null or empty");
-        }
+        this.nicknameText = nicknameText;
+        this.nicknameCanvas = nicknameCanvas;
         nicknameText.text = nickName;
     }
 
     /// <summary>
     /// Метод, вызывающийся каждый игровой кадр
     /// </summary>
-    private void FixedUpdate()
+    private void Update()
     {
         if (nicknameCanvas != null && !string.IsNullOrEmpty(nicknameText.text))
         {

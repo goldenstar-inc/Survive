@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8898ae28bbcd82940b8a14c3bf6184f1, type: 3}
-  m_Name: DPHealthComponent
+  m_Script: {fileID: 11500000, guid: a217a0b017791474d9bdcf4a981abf22, type: 3}
+  m_Name: BZCreatureDetectorComponent
   m_EditorClassIdentifier: 
-  MaxHealth: 6
-  DamageSound: {fileID: 8300000, guid: ae02f3a95e1f6e349a4229ef93116b9c, type: 3}
-  InvincibilityCooldown: 1.5
+  DetectCreatureRadius: 3

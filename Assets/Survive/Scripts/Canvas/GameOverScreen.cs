@@ -27,6 +27,9 @@ public class GameOverScreen : MonoBehaviour
     }
     void OnDisable()
     {
-        playerHealthManager.OnDeath -= Setup;
+        if (playerHealthManager != null)
+        {
+            playerHealthManager.OnDeath -= Setup;
+        }
     }
 }

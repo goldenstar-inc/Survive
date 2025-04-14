@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,14 +9,14 @@ using UnityEngine.Rendering;
 /// </summary>
 public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField] HealthManager playerHealthManager;
+    private HealthManager healthManager;
 
-    [SerializeField] WeaponManager weaponManager;
+    private WeaponManager weaponManager;
 
     /// <summary>
     /// Аниматор, отвечающий за анимирование игрока
     /// </summary>
-    private Animator playerAnimator;
+    private Animator animator;
 
     /// <summary>
     /// Текущая позиция курсора
@@ -22,12 +24,18 @@ public class PlayerAnimationController : MonoBehaviour
     private Vector3 currentMousePosition;
 
     /// <summary>
-    /// Метод, вызывающийся при старте объекта
+    /// 
     /// </summary>
-    public void Start()
+    /// <param name="animator"></param>
+    /// <param name="weaponManager"></param>
+    /// <param name="healthManager"></param>
+    public void Init(Animator animator, WeaponManager weaponManager, HealthManager healthManager)
     {
-        this.playerAnimator = GetComponent<Animator>();
-        playerHealthManager.OnTakeDamage += OnDamageTaken;
+        this.animator = animator;
+        this.weaponManager = weaponManager;
+        this.healthManager = healthManager;
+
+        healthManager.OnTakeDamage += OnDamageTaken;
         weaponManager.OnAttack += EnableAttackingState;
     }
 
@@ -36,62 +44,62 @@ public class PlayerAnimationController : MonoBehaviour
     /// </summary>
     public void UpdateMovementAnimation(Vector3 input)
     {
-        if (input != null && currentMousePosition != null && playerAnimator != null && playerAnimator.GetBool("IsDamaged") == false)
+        if (input != null && currentMousePosition != null && animator != null && animator.GetBool("IsDamaged") == false)
         {
             if (input.x != 0 || input.y != 0)
             {
                 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                playerAnimator.SetBool("IsIdle", false);
+                animator.SetBool("IsIdle", false);
                 float angle = Mathf.Atan2(currentMousePosition.y, currentMousePosition.x) * Mathf.Rad2Deg;
 
                 if (angle >= -45 && angle < 45)
                 {
-                    if (playerAnimator.GetBool("IsAttacking"))
+                    if (animator.GetBool("IsAttacking"))
                     {
-                        playerAnimator.Play("ArmlessWalkingRight");
+                        animator.Play("ArmlessWalkingRight");
                     }   
                     else
                     {
-                        playerAnimator.Play("WalkingRight");
+                        animator.Play("WalkingRight");
                     }
                 }
                 else if (angle >= 45 && angle < 135)
                 {
-                    if (playerAnimator.GetBool("IsAttacking"))
+                    if (animator.GetBool("IsAttacking"))
                     {
-                        playerAnimator.Play("ArmlessWalkingUp");
+                        animator.Play("ArmlessWalkingUp");
                     }   
                     else
                     {
-                        playerAnimator.Play("WalkingUp");
+                        animator.Play("WalkingUp");
                     }
                 }
                 else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135))
                 {
-                    if (playerAnimator.GetBool("IsAttacking"))
+                    if (animator.GetBool("IsAttacking"))
                     {
-                        playerAnimator.Play("ArmlessWalkingLeft");
+                        animator.Play("ArmlessWalkingLeft");
                     }
                     else
                     {
-                        playerAnimator.Play("WalkingLeft");
+                        animator.Play("WalkingLeft");
                     }
                 }
                 else if (angle >= -135 && angle < -45)
                 {
-                    if (playerAnimator.GetBool("IsAttacking"))
+                    if (animator.GetBool("IsAttacking"))
                     {
-                        playerAnimator.Play("ArmlessWalkingDown");
+                        animator.Play("ArmlessWalkingDown");
                     }   
                     else
                     {
-                        playerAnimator.Play("WalkingDown");
+                        animator.Play("WalkingDown");
                     }
                 }
             }
             else
             {
-                playerAnimator.SetBool("IsIdle", true);
+                animator.SetBool("IsIdle", true);
             }
         }
     }
@@ -103,9 +111,9 @@ public class PlayerAnimationController : MonoBehaviour
     /// <param name="maxHealth">Максимальное количество очков здоровья</param>
     public void OnDamageTaken(int currentHealth, int maxHealth)
     {
-        if (playerAnimator != null)
+        if (animator != null)
         {
-            playerAnimator.SetBool("IsDamaged", true);
+            animator.SetBool("IsDamaged", true);
         }
     }
 
@@ -114,30 +122,37 @@ public class PlayerAnimationController : MonoBehaviour
     /// </summary>
     public void ResetDamageState()
     {
-        if (playerAnimator != null)
+        if (animator != null)
         {
-            playerAnimator.SetBool("IsDamaged", false);
+            animator.SetBool("IsDamaged", false);
         }
     }
 
     public void EnableAttackingState()
     {
-        if (playerAnimator != null)
+        if (animator != null)
         {
-            playerAnimator.SetBool("IsAttacking", true);
+            animator.SetBool("IsAttacking", true);
         }
     }
 
     public void DisableAttackingState()
     {
-        if (playerAnimator != null)
+        if (animator != null)
         {
-            playerAnimator.SetBool("IsAttacking", false);
+            animator.SetBool("IsAttacking", false);
         }
     }
     void OnDisable()
     {
-        playerHealthManager.OnTakeDamage -= OnDamageTaken;
-        weaponManager.OnAttack -= EnableAttackingState;
+        if (healthManager != null)
+        {
+            healthManager.OnTakeDamage -= OnDamageTaken;
+        }
+
+        if (weaponManager != null)
+        {
+            weaponManager.OnAttack -= EnableAttackingState;
+        }
     }
 }

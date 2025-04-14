@@ -6,11 +6,19 @@ using Zenject;
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] Transform cameraTransform;
-    public float smoothTime = 0.3f;
-
+    private float smoothTime = 0.3f;
+    private Transform cameraTransform;
     private Vector3 velocity = Vector3.zero;
     
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="cameraTransform">Transform камеры</param>
+    public void Init(Transform cameraTransform)
+    {
+        this.cameraTransform = cameraTransform;
+    }
+
     /// <summary>
     /// Метод, вызывающийся каждый игровой кадр
     /// </summary>

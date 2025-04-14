@@ -28,7 +28,7 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     /// <summary>
     /// Метод, обеспечивающий взаимодействие с объектом
     /// </summary>
-    /// <param name="interactor">Данные о взаимодействующем персонаже</param>
+    /// <param name="interactor">Взаимодействующий персонаж</param>
     /// <returns>True - если взаимодействие произошло успешно, иначе false</returns>
     public virtual bool Interact(PlayerDataProvider interactor)
     {

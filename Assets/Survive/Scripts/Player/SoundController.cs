@@ -19,21 +19,18 @@ public class SoundController : MonoBehaviour
     /// <summary>
     /// Источник воспроизведения звука
     /// </summary>
-    [SerializeField] AudioSource audioSource;
+    private AudioSource audioSource;
 
     /// <summary>
     /// Экземпляр класса Random
     /// </summary>
     private System.Random random = new System.Random();
 
-    /// <summary>
-    /// Метод, который вызывается во время загрузки экземпляра сценария
-    /// </summary>
-    void Awake()
+    public void Init(AudioSource audioSource)
     {
+        this.audioSource = audioSource;
         InitializeSoundDictionary();
     }
-
     /// <summary>
     /// Инициализирует словарь звуков придавая каждому типу свой звук
     /// </summary>
@@ -70,7 +67,6 @@ public class SoundController : MonoBehaviour
             Debug.LogError("Массив пуст!");
             return;
         }
-
         int index = random.Next(clips.Length);
         PlayAudioClip(clips[index]);
     }

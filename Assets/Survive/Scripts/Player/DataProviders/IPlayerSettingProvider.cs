@@ -1,4 +1,4 @@
 public interface IPlayerSettingProvider
 {
-    PlayerSetting PlayerSetting { get; }
+    public PlayerSetting PlayerSetting { get; }
 }

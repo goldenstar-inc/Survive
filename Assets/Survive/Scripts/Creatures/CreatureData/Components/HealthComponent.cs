@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HealthComponent", menuName = "Components/Health")]
 public class HealthComponent : ScriptableObject
 {
-    public float MaxHealth;
+    public int MaxHealth;
 
-    public AudioClip DamagedSound;
+    public AudioClip DamageSound;
 
     public float InvincibilityCooldown;
 }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,20 @@ using UnityEngine.UI;
 /// </summary>
 public class HealthDisplay : MonoBehaviour
 {
-    [SerializeField] HealthManager playerHealthManager;
-    public Image[] hearts;
+    [SerializeField] Image[] hearts;
+    private HealthManager healthManager;
+
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="healthManager">Скрипт, отвечающий за управление здоровьем</param>
+    public void Init(HealthManager healthManager)
+    {
+        this.healthManager = healthManager;
+        healthManager.OnTakeDamage += UpdateHealthBar;
+        healthManager.OnHeal += UpdateHealthBar;
+        UpdateHealthBar(healthManager.GetCurrrentHealth(), healthManager.GetMaxHealth());
+    }
 
     /// <summary>
     /// Обновление очков здоровья в канвасе
@@ -21,15 +34,12 @@ public class HealthDisplay : MonoBehaviour
             hearts[i].enabled = i < currentHealth;
         }
     }
-
-    void OnEnable()
-    {
-        playerHealthManager.OnTakeDamage += UpdateHealthBar;
-        playerHealthManager.OnHeal += UpdateHealthBar;
-    }
     void OnDisable()
     {
-        playerHealthManager.OnTakeDamage -= UpdateHealthBar;
-        playerHealthManager.OnHeal -= UpdateHealthBar;
+        if (healthManager != null)
+        {
+            healthManager.OnTakeDamage -= UpdateHealthBar;
+            healthManager.OnHeal -= UpdateHealthBar;
+        }
     }
 }

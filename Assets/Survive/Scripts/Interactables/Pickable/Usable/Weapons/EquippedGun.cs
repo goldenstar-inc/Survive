@@ -28,7 +28,7 @@ public class EquippedGun : IUseScript
     private AudioClip shotSound;
     private float timeSinceLastShot = 0f;
     private WeaponManager weaponManager;
-    public void Initialize(RangedWeaponItemData data, PlayerDataProvider playerData)
+    public void Init(RangedWeaponItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
         weaponManager = playerData?.WeaponManager;

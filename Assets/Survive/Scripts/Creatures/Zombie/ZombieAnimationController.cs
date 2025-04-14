@@ -2,23 +2,20 @@
 
 public class ZombieAnimationController : MonoBehaviour
 {
-    [SerializeField] HealthManager zombieHealthManager;
+    private HealthManager zombieHealthManager;
 
     /// <summary>
     /// Аниматор, отвечающий за анимирование зомби
     /// </summary>
     private Animator zombieAnimator;
 
-    private Rigidbody2D rb;
-
-
     /// <summary>
     /// Метод, вызывающийся при старте объекта
     /// </summary>
-    void Start()
+    public void Init(HealthManager healthManager, Animator zombieAnimator)
     {
-        zombieAnimator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        healthManager.OnTakeDamage += EnableDamagedAnimation;
+        this.zombieAnimator = zombieAnimator;
     }
 
     /// <summary>
@@ -66,7 +63,7 @@ public class ZombieAnimationController : MonoBehaviour
     /// </summary>
     /// <param name="currentHealth">Текущее количество очков здоровья</param>
     /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    public void OnDamageTaken(int currentHealth, int maxHealth)
+    public void EnableDamagedAnimation(int currentHealth, int maxHealth)
     {
         if (zombieAnimator != null)
         {
@@ -84,13 +81,11 @@ public class ZombieAnimationController : MonoBehaviour
             zombieAnimator.SetBool("IsDamaged", false);
         }
     }
-
-    void OnEnable()
-    {
-        zombieHealthManager.OnTakeDamage += OnDamageTaken;
-    }
     void OnDisable()
     {
-        zombieHealthManager.OnTakeDamage -= OnDamageTaken;
+        if (zombieHealthManager != null)
+        {
+            zombieHealthManager.OnTakeDamage -= EnableDamagedAnimation;
+        }
     }
 }

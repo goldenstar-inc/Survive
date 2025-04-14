@@ -4,13 +4,18 @@ using UnityEngine.UI;
 using static Ammo;
 public class AmmoHandler : MonoBehaviour
 {
-    [SerializeField] public int maxAmmo;
     public int currentAmmo { get; private set; }
+    public int maxAmmo { get; private set; }
     public event Action<int, int> OnConsume;
     public event Action<int, int> OnCollect;
-    void Start()
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="maxAmmo">Максимальный боезапас</param>
+    public void Init(int maxAmmo)
     {
         currentAmmo = 0;
+        this.maxAmmo = maxAmmo;
     }
     
     public void ConsumeAmmo()

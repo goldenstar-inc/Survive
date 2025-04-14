@@ -6,24 +6,34 @@ using UnityEngine;
 /// </summary>
 public class ZombieAttack : MonoBehaviour
 {
-    public int damage { get; private set; } = 1;
+    private ZombieChase zombieChase;
+    private int damage { get; set; }
 
     /// <summary>
-    /// Метод, запускающийся при триггере объекта зомби
+    /// Инициализация скрипта [DI]
     /// </summary>
-    /// <param name="collision">Объект коллизии</param>
-    void OnTriggerEnter2D(Collider2D collision)
+    /// <param name="damage">Урон</param>
+    public void Init(int damage, ZombieChase zombieChase)
     {
-        if (collision != null) 
+        this.damage = damage;
+        this.zombieChase = zombieChase;
+        zombieChase.OnCaughtTarget += Attack;
+    }
+
+    /// <summary>
+    /// Атака зомби
+    /// </summary>
+    /// <param name="targetHealthManager">Скрипт цели, отвечающий за здоровье</param>
+    public void Attack(HealthManager targetHealthManager)
+    {
+        if (targetHealthManager != null)
         {
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                HealthManager damageHandler = collision.GetComponent<HealthManager>();
-                if (damageHandler != null)
-                {
-                    damageHandler.TakeDamage(damage);
-                }
-            }
+            targetHealthManager.TakeDamage(damage);
         }
+    }
+
+    void OnDisable()
+    {
+        zombieChase.OnCaughtTarget -= Attack;
     }
 }

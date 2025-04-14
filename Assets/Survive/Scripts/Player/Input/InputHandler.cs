@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] PlayerInput playerInput;
-    [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] PlayerAnimationController animationController;
-    [SerializeField] SoundHandler soundController;
+    private PlayerInput playerInput;
+    private PlayerMovement playerMovement;
+    private PlayerAnimationController animationController;
+    private SoundHandler soundHandler;
 
-    public void Initialize(PlayerInput playerInput, PlayerMovement playerMovement, PlayerAnimationController animationController, SoundHandler soundController)
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="playerInput">Скрипт ввода</param>
+    /// <param name="playerMovement">Скрипт движения</param>
+    /// <param name="animationController">Контроллер анимаций</param>
+    /// <param name="soundHandler">Скрипт, хранящий звуки</param>
+    public void Init(PlayerInput playerInput, PlayerMovement playerMovement, PlayerAnimationController animationController, SoundHandler soundHandler)
     {
         this.playerInput = playerInput;
         this.playerMovement = playerMovement;
         this.animationController = animationController;
-        this.soundController = soundController;
+        this.soundHandler = soundHandler;
     }
     private void FixedUpdate()
     {
@@ -22,7 +29,7 @@ public class InputHandler : MonoBehaviour
         playerMovement.Move(movement, isRunning);
 
         animationController.UpdateMovementAnimation(movement);
-
-        soundController.PlayStepSoundIfNeeded(movement);
+        
+        soundHandler.PlayStepSoundIfNeeded(movement);
     }
 }

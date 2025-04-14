@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.LookDev;
 using static HelpPhrasesModule;
 
@@ -9,13 +10,9 @@ using static HelpPhrasesModule;
 /// </summary>
 public class PlayerInteractionDetector : MonoBehaviour
 {
-    [SerializeField] PlayerDataProvider dataProvider;
-    [SerializeField] InventoryController inventoryController;
-
-    /// <summary>
-    /// Компонент "Transform" игрока
-    /// </summary>
-    public Transform player;
+    private PlayerDataProvider playerData;
+    
+    private InventoryController inventoryController;
 
     /// <summary>
     /// Текст, отображающий подсказки
@@ -25,7 +22,18 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// <summary>
     /// Ближайший объект для взаимодействия
     /// </summary>
-    IInteractable interactableInRange = null;
+    private IInteractable interactableInRange = null;
+
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="playerData">Данные игрока</param>
+    /// <param name="inventoryController">Контроллер игрока</param>
+    public void Init(PlayerDataProvider playerData, InventoryController inventoryController)
+    {
+        this.playerData = playerData;
+        this.inventoryController = inventoryController;
+    }
 
     /// <summary>
     /// Метод, вызывающийся каждый игровой кадр
@@ -70,7 +78,7 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// <summary>
     /// Метод, отвечающий за попытку взаимодействия с объектом
     /// </summary>
-    private void TryInteract()
+    public void TryInteract()
     {
         if (interactableInRange != null && interactableInRange is IInteractable interactable)
         {
@@ -80,7 +88,7 @@ public class PlayerInteractionDetector : MonoBehaviour
                 {
                     if (UpdateInventory())
                     {
-                        interactable.Interact(dataProvider);
+                        interactable.Interact(playerData);
                     }
                     else
                     {
@@ -89,12 +97,12 @@ public class PlayerInteractionDetector : MonoBehaviour
                 }
                 else
                 {
-                    interactable.Interact(dataProvider);
+                    interactable.Interact(playerData);
                 }
             }
             else
             {
-                interactable.Interact(dataProvider);
+                interactable.Interact(playerData);
             }
         }
     }

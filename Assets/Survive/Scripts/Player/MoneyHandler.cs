@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,18 +12,19 @@ public class MoneyHandler : MonoBehaviour
     /// <summary>
     /// Текстовое поле баланса игрока
     /// </summary>
-    public TextMeshProUGUI currentBalance;
+    private TextMeshProUGUI currentBalancePlaceholder;
 
     /// <summary>
     /// Денежный баланс
     /// </summary>
-    public int Balance; 
+    private int Balance; 
 
     /// <summary>
     /// Метод, который вызывается во время загрузки экземпляра сценария
     /// </summary>
-    private void Start()
+    public void Init(TextMeshProUGUI currentBalancePlaceholder)
     {
+        this.currentBalancePlaceholder = currentBalancePlaceholder;
         Balance = 0;
         UpdateUI();
     }
@@ -30,7 +32,10 @@ public class MoneyHandler : MonoBehaviour
     /// <summary>
     /// Метод, вызывающийся для обновления текущего баланса в интерфейсе
     /// </summary>
-    public void UpdateUI() => currentBalance.text = $"{Balance}";
+    public void UpdateUI() 
+    {
+        //currentBalancePlaceholder.text = $"{Balance}";
+    }
 
     /// <summary>
     /// Метод, вызывающийся для добавления денег к балансу
@@ -49,5 +54,14 @@ public class MoneyHandler : MonoBehaviour
         Balance -= amount;
         Balance = Math.Max(0, Balance);
         UpdateUI();
+    }
+
+    /// <summary>
+    /// Возвращает текущий денежный баланс
+    /// </summary>
+    /// <returns>Текущий денежный баланс</returns>
+    public int GetCurrentBalance()
+    {
+        return Balance;
     }
 }
