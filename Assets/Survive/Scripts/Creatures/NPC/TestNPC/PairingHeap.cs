@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class PairingHeapNode<T>
 {
@@ -49,7 +50,7 @@ public class PairingHeap<T> : ITaskQueue
             else
             {
                 var sibling = node.Parent.Child;
-                while (sibling != null && sibling.Sibling != node)
+                 while (sibling != null && sibling.Sibling != node)
                     sibling = sibling.Sibling;
                 if (sibling != null)
                     sibling.Sibling = node.Sibling;
@@ -89,7 +90,6 @@ public class PairingHeap<T> : ITaskQueue
         var a = node;
         var b = node.Sibling;
         var rest = b.Sibling;
-
         a.Sibling = b.Sibling = null;
 
         return Merge(Merge(a, b), MergeSiblings(rest));

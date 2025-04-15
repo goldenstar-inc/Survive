@@ -1880,7 +1880,7 @@ GameObject:
   - component: {fileID: 1781653389}
   - component: {fileID: 1781653388}
   - component: {fileID: 1781653387}
-  - component: {fileID: 1781653386}
+  - component: {fileID: 1781653390}
   m_Layer: 5
   m_Name: Joe
   m_TagString: Untagged
@@ -1888,22 +1888,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1781653386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781653385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7390d1e66327c0148992ca36ad8d8ccf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npc: {fileID: 0}
-  dialogueData: {fileID: 11400000, guid: 48a6079a1792dd04d8a1677ce47e752e, type: 2}
-  nextButtonJoe: {fileID: 0}
-  gameOver: {fileID: 0}
 --- !u!61 &1781653387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2021,9 +2005,25 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.42, y: -1.39}
+  m_AnchoredPosition: {x: 2.83, y: -1.37}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1781653390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781653385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e4d6b1bce98f04ba631bd138dbbc22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeQuests: []
+  dialogueData: {fileID: 11400000, guid: 48a6079a1792dd04d8a1677ce47e752e, type: 2}
+  nextButton: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!1001 &1811538044
 PrefabInstance:
   m_ObjectHideFlags: 0
