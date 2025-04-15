@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529d0f5e82299e449afd279255171581, type: 3}
   m_Name: TestQuest
   m_EditorClassIdentifier: 
+  Name: TestName
+  Description: Find 5 medkits!
+  MaxProgress: 5
   questItem: 4
-  questItemAmount: 5

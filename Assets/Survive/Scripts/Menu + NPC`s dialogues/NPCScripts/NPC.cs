@@ -1,56 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
-using static HelpPhrasesModule;
+using System.Linq;
 
 public class NPC : MonoBehaviour, IInteractable
 {
+    [SerializeField] NPCDialogue dialogueData;
     [SerializeField] List<Quest> activeQuests;
 
-    public NPCDialogue dialogueData;
     private DialogueController dialogueUI => DialogueController.Instance;
-    public Button nextButton;
-    public GameObject gameOver;
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
     private Sprite interactorPortrait;
 
-    public string helpPhrase => actionToPhrase[Action.PickUp];
-
-    public bool CanInteract()
-    {
-        return !isDialogueActive;
-    }
-
     public bool Interact(PlayerDataProvider interactor)
     {
-        if (dialogueData == null/* || (PauseController.IsGamePaused && !isDialogueActive) || gameOver.activeSelf*/)
-            return false;
-
-        if (activeQuests.Count > 0)
+        if (dialogueData == null)
         {
-            RaiseQuest(interactor, activeQuests.First());
-            activeQuests.RemoveAt(0);
+            return false;
         }
+
+        CheckForAvailableQuests(interactor);
 
         if (isDialogueActive)
         {
-            UpdateSpeakerUI();
             NextLine();
         }
         else
         {
-            UpdateSpeakerUI();
             StartDialogue();
         }
         interactorPortrait = interactor.PlayerSetting.Portrait;
-
+        UpdateSpeakerUI();
         return true;
     }
 
+    private void CheckForAvailableQuests(PlayerDataProvider interactor)
+    {
+        if (activeQuests.Count > 0)
+        {
+            Quest availableQuest = activeQuests.First(); 
+            RaiseQuest(interactor, availableQuest);
+            availableQuest.OnQuestCompleted += GiveReward;
+            activeQuests.Remove(availableQuest);
+        }
+    }
+    private void GiveReward()
+    {
+        Debug.Log("Good job!");
+    }
     public void RaiseQuest(PlayerDataProvider interactor, Quest quest)
     {
         if (interactor != null)
@@ -58,7 +59,6 @@ public class NPC : MonoBehaviour, IInteractable
             if (interactor is IQuestProvider questProvider)
             {
                 questProvider.QuestManager.AddQuest(quest);
-
             }
         }
     }
@@ -103,15 +103,12 @@ public class NPC : MonoBehaviour, IInteractable
     void StartDialogue()
     {
         DialogueController.Instance.SetDialogue(this);
-
         isDialogueActive = true;
         dialogueIndex = 0;
         dialogueUI.SetNPCInfo(dialogueData.name, dialogueData.Portrait);
         UpdateSpeakerUI();
         dialogueUI.ShowDialogueUI(true);
-        //nextButton.gameObject.SetActive(true);
         PauseController.SetPause(true);
-
         DisplayCurrentLine();
     }
 

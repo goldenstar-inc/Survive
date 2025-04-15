@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс, отображающий инвентарь
+/// </summary>
 public class InventoryDisplay : MonoBehaviour
 {
     private GameObject[] selectionFrames;
@@ -44,6 +47,10 @@ public class InventoryDisplay : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Смена активного слота
+    /// </summary>
+    /// <param name="index">Индекс нового активного слота</param>
     private void SelectSlot(int index)
     {
         if (!ValidateIndex(index)) return;
@@ -55,6 +62,13 @@ public class InventoryDisplay : MonoBehaviour
 
         selectionFrames[index].SetActive(true);
     }
+
+    /// <summary>
+    /// Отображение подобранного предмета
+    /// </summary>
+    /// <param name="index">Индекс</param>
+    /// <param name="quantity">Количество</param>
+    /// <param name="data">Данные о подобранном предмете</param>
     private void AddItem(int index, int quantity, InventoryItemData data)
     {
         if (!ValidateIndex(index)) return;
@@ -64,6 +78,12 @@ public class InventoryDisplay : MonoBehaviour
         ShowItemQuantity(index, quantity);
         ShowItemImage(index, data);
     }
+
+    /// <summary>
+    /// Выброс предмета
+    /// </summary>
+    /// <param name="index">Индекс</param>
+    /// <param name="quantity">Новое количество предмета</param>
     private void DecreaseItemAmount(int index, int quantity)
     {
         if (!ValidateIndex(index)) return;
@@ -79,14 +99,21 @@ public class InventoryDisplay : MonoBehaviour
         }
     }
 
-
-
+    /// <summary>
+    /// Удаление предмета
+    /// </summary>
+    /// <param name="index"Индекс></param>
     private void RemoveItem(int index)
     {
         inventoryItemImages[index].sprite = emptySlotImage;
         itemQuanityTextFields[index].text = string.Empty;
     }
 
+    /// <summary>
+    /// Отображение количества предмета в инвентаре
+    /// </summary>
+    /// <param name="index">Индекс</param>
+    /// <param name="quantity">Количество</param>
     private void ShowItemQuantity(int index, int quantity)
     {
         if (quantity != 1)
@@ -99,11 +126,21 @@ public class InventoryDisplay : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Отображение картинки предмета
+    /// </summary>
+    /// <param name="index">Индекс</param>
+    /// <param name="data"Данные предмета></param>
     private void ShowItemImage(int index, InventoryItemData data)
     {
         inventoryItemImages[index].sprite = data.InventoryImage;
     }
 
+    /// <summary>
+    /// Валидация индекса
+    /// </summary>
+    /// <param name="index">Индекс</param>
+    /// <returns>True - если индекс корректный, иначе - false</returns>
     private bool ValidateIndex(int index)
     {
         if (index < 0 || index >= inventoryItemImages.Length)
@@ -114,6 +151,12 @@ public class InventoryDisplay : MonoBehaviour
 
         return true;
     }
+
+    /// <summary>
+    /// Валидация количества
+    /// </summary>
+    /// <param name="quantity">Количество</param>
+    /// <returns>True - если количество предмета корректное, иначе - false</returns>
     private bool ValidateQuantity(int quantity)
     {
         if (quantity < 0)
@@ -124,6 +167,12 @@ public class InventoryDisplay : MonoBehaviour
 
         return true;
     }
+
+    /// <summary>
+    /// Валидация данных
+    /// </summary>
+    /// <param name="data">Данные</param>
+    /// <returns>True - если данные переданы корректно, иначе - false</returns>
     private bool ValidateData(InventoryItemData data)
     {
         if (data == null)

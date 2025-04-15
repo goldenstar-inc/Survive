@@ -8,15 +8,19 @@ public class CanvasBootstrapper : MonoBehaviour
     [SerializeField] HealthDisplay healthDisplay;
     [SerializeField] AmmoDisplay ammoDisplay;
     [SerializeField] InventoryDisplay inventoryDisplay;
+    [SerializeField] QuestDisplay questDisplay;
     private HealthManager healthManager;
     private AmmoHandler ammoHandler;
     private Camera renderCamera;
     private InventoryController inventoryController;
-
+    private QuestManager questManager;
     [SerializeField] GameObject[] selectionFrames;
     [SerializeField] Sprite emptySlotImage;
     [SerializeField] Image[] inventoryItemImages;
     [SerializeField] TextMeshProUGUI[] itemQuanityTextFields;
+
+    [SerializeField] TextMeshProUGUI questNamePlaceholder;
+    [SerializeField] TextMeshProUGUI questDescriptionPlaceholder;
 
     /// <summary>
     /// Инициализация
@@ -27,13 +31,15 @@ public class CanvasBootstrapper : MonoBehaviour
         HealthManager healthManager, 
         AmmoHandler ammoHandler,
         Camera renderCamera,
-        InventoryController inventoryController
+        InventoryController inventoryController,
+        QuestManager questManager
         )
     {
         this.healthManager = healthManager;
         this.ammoHandler = ammoHandler;
         this.renderCamera = renderCamera;
         this.inventoryController = inventoryController;
+        this.questManager = questManager;
 
         if (!Validate()) return;
 
@@ -41,6 +47,7 @@ public class CanvasBootstrapper : MonoBehaviour
         InitHealthDisplay();
         InitAmmoDisplay();
         InitInventoryDisplay();
+        InitQuestDisplay();
     }
 
     /// <summary>
@@ -90,6 +97,11 @@ public class CanvasBootstrapper : MonoBehaviour
             Debug.LogError("InventoryDisplay not loaded");
         }
 
+        if (questManager == null)
+        {
+            Debug.LogError("QuestManager not loaded");
+        }
+
         return true;
     }
 
@@ -129,5 +141,17 @@ public class CanvasBootstrapper : MonoBehaviour
             itemQuanityTextFields,
             inventoryController
             );
+    }
+
+    /// <summary>
+    /// Инициализация системы отображения активного квеста
+    /// </summary>
+    private void InitQuestDisplay()
+    {
+        questDisplay.Init(
+            questNamePlaceholder,
+            questDescriptionPlaceholder,
+            questManager
+        );
     }
 }
