@@ -162,6 +162,36 @@ public class NPC : MonoBehaviour, IInteractable
         Characters currentSpeaker = dialogueData.Speakers[dialogueIndex];
         switch (currentSpeaker)
         {
+            case Characters.Antonio:
+                if (dialogueData.Portrait != null)
+                {
+                    dialogueUI.SetNPCInfo(dialogueData.Name.ToString(), dialogueData.Portrait);
+                }
+                break;
+            case Characters.Cody:
+                if (dialogueData.Portrait != null)
+                {
+                    dialogueUI.SetNPCInfo(dialogueData.Name.ToString(), dialogueData.Portrait);
+                }
+                break;
+            case Characters.Jacques:
+                if (dialogueData.Portrait != null)
+                {
+                    dialogueUI.SetNPCInfo(dialogueData.Name.ToString(), dialogueData.Portrait);
+                }
+                break;
+            case Characters.Alice:
+                if (dialogueData.Portrait != null)
+                {
+                    dialogueUI.SetNPCInfo(dialogueData.Name.ToString(), dialogueData.Portrait);
+                }
+                break;
+            case Characters.Joe:
+                if (dialogueData.Portrait != null)
+                {
+                    dialogueUI.SetNPCInfo(dialogueData.Name.ToString(), dialogueData.Portrait);
+                }
+                break;
             case Characters.Brian:
                 if (dialogueData.Portrait != null)
                 {

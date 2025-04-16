@@ -8,5 +8,6 @@ public enum Characters
     Joe,
     Antonio,
     Cody,
-    Brian
+    Brian,
+    Jacques
 }
