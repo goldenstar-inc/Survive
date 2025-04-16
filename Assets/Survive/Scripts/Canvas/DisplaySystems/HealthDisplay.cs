@@ -7,19 +7,26 @@ using UnityEngine.UI;
 /// </summary>
 public class HealthDisplay : MonoBehaviour
 {
-    [SerializeField] Image[] hearts;
     private HealthManager healthManager;
+    private Slider healthBar;
 
     /// <summary>
     /// Инициализация
     /// </summary>
     /// <param name="healthManager">Скрипт, отвечающий за управление здоровьем</param>
-    public void Init(HealthManager healthManager)
+    public void Init(
+        HealthManager healthManager, 
+        Slider healthBar)
     {
+        this.healthBar = healthBar;
+        healthBar.minValue = 0;
+        healthBar.maxValue = healthManager.GetMaxHealth();
+        
         this.healthManager = healthManager;
         healthManager.OnTakeDamage += UpdateHealthBar;
         healthManager.OnHeal += UpdateHealthBar;
-        UpdateHealthBar(healthManager.GetCurrrentHealth(), healthManager.GetMaxHealth());
+
+        UpdateHealthBar(healthManager.GetMaxHealth(), healthManager.GetMaxHealth());
     }
 
     /// <summary>
@@ -29,10 +36,7 @@ public class HealthDisplay : MonoBehaviour
     /// <param name="maxHealth">Максимальное здоровье</param>
     private void UpdateHealthBar(int currentHealth, int maxHealth)
     {
-        for (int i = 0; i < maxHealth; i++)
-        {
-            hearts[i].enabled = i < currentHealth;
-        }
+        healthBar.value = currentHealth;
     }
     void OnDisable()
     {

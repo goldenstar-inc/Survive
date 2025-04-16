@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alice
   m_EditorClassIdentifier: 
   Name: 1
-  Portrait: {fileID: 1140872182862958375, guid: 5aa254c4db6374347b7783fdb453ef95, type: 3}
+  Portrait: {fileID: 7638124331246718997, guid: 1c576abf71124164fb371078b65dda7e, type: 3}
   DialogueLines:
   - "\u041F\u0440\u0438\u0432\u0435\u0442, \u0442\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0448\u044C
     \u043D\u0430 \u044D\u0442\u043E\u0439 \u0444\u0435\u0440\u043C\u0435?"

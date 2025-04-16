@@ -59,7 +59,7 @@ public class QuestDisplay : MonoBehaviour
     /// <summary>
     /// Метод завершения квеста
     /// </summary>
-    private void CompleteQuest()
+    private void CompleteQuest(Quest quest)
     {
         questNamePlaceholder.text = "DONE!";
         questProgressPlaceholder.text = $"<s>{questProgressPlaceholder.text}</s>";

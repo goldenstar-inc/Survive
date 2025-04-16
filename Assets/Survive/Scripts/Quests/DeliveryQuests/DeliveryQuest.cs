@@ -55,7 +55,7 @@ public class DeliveryQuest : Quest
     private void CompleteQuest()
     {
         OnQuestCompleted?.Invoke();
-        questManager.CompeteQuest();
+        questManager.CompleteQuest();
         Dispose();
     }
 

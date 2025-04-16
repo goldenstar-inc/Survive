@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529d0f5e82299e449afd279255171581, type: 3}
-  m_Name: TestQuest
+  m_Script: {fileID: 11500000, guid: 4d656c33bbb33af419053699c8a77d49, type: 3}
+  m_Name: TestExplorationQuest
   m_EditorClassIdentifier: 
-  Name: TestName
-  Description: Find 5 medkits!
-  MaxProgress: 5
+  Name: Is that even legal?
+  Description: Go find a dealer
+  MaxProgress: 1
   QuestComplete: {fileID: 8300000, guid: 040d21d1c87e48c47b8abae0effe0bda, type: 3}
-  questItem: 4

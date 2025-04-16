@@ -110,7 +110,7 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// <summary>
     /// Подсказка: "Инвентарь заполнен"
     /// </summary>
-    private void ShowInventoryFullTip() => helpPhrase.text = actionToPhrase[Action.InventoryFull];
+    private void ShowInventoryFullTip() => Debug.Log("[TO FIX]"); /*helpPhrase.text = actionToPhrase[Action.InventoryFull];*/
 
     /// <summary>
     /// Метод, обновляющий инвентарь

@@ -10,7 +10,7 @@ public class QuestManager : MonoBehaviour
 {
     public event Action<Quest> OnQuestAdded;
     public event Action<Quest, int> OnProgressUpdated;
-    public event Action OnQuestCompleted;
+    public event Action<Quest> OnQuestCompleted;
     private Quest currentQuest;
     private InventoryController inventoryController;
 
@@ -35,6 +35,12 @@ public class QuestManager : MonoBehaviour
             currentQuest = deliveryQuest;
             OnQuestAdded?.Invoke(currentQuest);
         }
+        else if (quest is ExplorationQuest explorationQuest)
+        {
+            explorationQuest.Init(this);
+            currentQuest = explorationQuest;
+            OnQuestAdded?.Invoke(currentQuest);
+        }
     }
 
     /// <summary>
@@ -50,8 +56,18 @@ public class QuestManager : MonoBehaviour
     /// <summary>
     /// Метод, зажигающий событие при завершении квеста
     /// </summary>
-    public void CompeteQuest()
+    public void CompleteQuest()
     {
-        OnQuestCompleted?.Invoke();
+        OnQuestCompleted?.Invoke(currentQuest);
+        currentQuest = null;
+    }
+
+    /// <summary>
+    /// Получение текущего квеста
+    /// </summary>
+    /// <returns>Текущий квест</returns>
+    public Quest GetCurrentQuest()
+    {
+        return currentQuest;
     }
 }

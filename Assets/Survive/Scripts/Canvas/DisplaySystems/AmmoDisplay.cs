@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,16 +6,17 @@ using UnityEngine.UI;
 /// Класс, отображающий количество патронов игрока
 /// </summary>
 public class AmmoDisplay : MonoBehaviour
-{
-    [SerializeField] Image[] ammo;
+{    
     private AmmoHandler ammoHandler;
-
+    private TextMeshProUGUI ammoAmountPlaceholder;
+    
     /// <summary>
     /// Инициализация
     /// </summary>
     /// <param name="ammoHandler">Скрипт, управляющий боезапасом</param>
-    public void Init(AmmoHandler ammoHandler)
+    public void Init(AmmoHandler ammoHandler, TextMeshProUGUI ammoAmountPlaceholder)
     {
+        this.ammoAmountPlaceholder = ammoAmountPlaceholder;
         this.ammoHandler = ammoHandler;
         ammoHandler.OnConsume += UpdateAmmoBar;
         ammoHandler.OnCollect += UpdateAmmoBar;
@@ -22,10 +24,7 @@ public class AmmoDisplay : MonoBehaviour
     }
     public void UpdateAmmoBar(int currentAmmo, int maxAmmo)
     {
-        for (int i = 0; i < maxAmmo; i++)
-        {
-            ammo[i].enabled = i < currentAmmo;
-        }
+        ammoAmountPlaceholder.text = $"{currentAmmo}";
     }
     void OnDisable()
     {

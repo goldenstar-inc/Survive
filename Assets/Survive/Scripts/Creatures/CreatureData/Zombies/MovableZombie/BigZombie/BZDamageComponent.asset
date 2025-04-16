@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e18c8079e23e34882e0fbcc3e4bbe7, type: 3}
   m_Name: BZDamageComponent
   m_EditorClassIdentifier: 
-  Damage: 2
+  Damage: 10

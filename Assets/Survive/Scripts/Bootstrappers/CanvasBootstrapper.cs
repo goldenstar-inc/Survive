@@ -9,6 +9,7 @@ public class CanvasBootstrapper : MonoBehaviour
     [SerializeField] AmmoDisplay ammoDisplay;
     [SerializeField] InventoryDisplay inventoryDisplay;
     [SerializeField] QuestDisplay questDisplay;
+    [SerializeField] Slider healthBar;
     private HealthManager healthManager;
     private AmmoHandler ammoHandler;
     private Camera renderCamera;
@@ -21,6 +22,7 @@ public class CanvasBootstrapper : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI questNamePlaceholder;
     [SerializeField] TextMeshProUGUI questDescriptionPlaceholder;
+    [SerializeField] TextMeshProUGUI ammoAmountPlaceholder;
 
     /// <summary>
     /// Инициализация
@@ -101,6 +103,11 @@ public class CanvasBootstrapper : MonoBehaviour
         {
             Debug.LogError("QuestManager not loaded");
         }
+         
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar not loaded");
+        }
 
         return true;
     }
@@ -118,7 +125,10 @@ public class CanvasBootstrapper : MonoBehaviour
     /// </summary>
     private void InitHealthDisplay()
     {
-        healthDisplay.Init(healthManager);
+        healthDisplay.Init(
+            healthManager, 
+            healthBar
+            );
     }
 
     /// <summary>
@@ -126,7 +136,10 @@ public class CanvasBootstrapper : MonoBehaviour
     /// </summary>
     private void InitAmmoDisplay()
     {
-        ammoDisplay.Init(ammoHandler);
+        ammoDisplay.Init(
+            ammoHandler,
+            ammoAmountPlaceholder
+            );
     }
 
     /// <summary>

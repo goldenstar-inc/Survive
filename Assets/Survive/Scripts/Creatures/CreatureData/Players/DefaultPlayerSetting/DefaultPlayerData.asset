@@ -18,4 +18,4 @@ MonoBehaviour:
   CreatureDetectorComponent: {fileID: 11400000, guid: deaf897fb8207814ca0d84ea13451bd0, type: 2}
   RunComponent: {fileID: 11400000, guid: 3f3dd1f1e196db645a564dafc5cd60e9, type: 2}
   MaxAmmo: 6
-  Portrait: {fileID: 2107640420712911333, guid: c3b8c2387695bc64bbbd533f3e1a8e1e, type: 3}
+  Portrait: {fileID: 4292525099528768676, guid: 7cf7c1f8e387d304caf3f24a1b7b815f, type: 3}

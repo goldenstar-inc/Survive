@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172632879d5af18498cbb4d05423ce5d, type: 3}
   m_Name: Jacques
   m_EditorClassIdentifier: 
-  Name: 0
-  Portrait: {fileID: 1140872182862958375, guid: 5aa254c4db6374347b7783fdb453ef95, type: 3}
+  Name: 6
+  Portrait: {fileID: 9036597567450474526, guid: c67a3b1b1d8070048b6c5da1ae1c471d, type: 3}
   DialogueLines:
   - "\u042D\u0439 \u0442\u044B. \u041F\u043E\u0447\u0438\u0441\u0442\u0438\u0448\u044C
     \u043C\u043D\u0435 \u0431\u043E\u0442\u0438\u043D\u043A\u0438!?"

@@ -255,7 +255,8 @@ public class PlayerBootstrapper : MonoBehaviour
         soundHandler.Init(
             run.StepSounds,
             run.StepInterval,
-            soundController
+            soundController,
+            questManager
             );
     }
 
