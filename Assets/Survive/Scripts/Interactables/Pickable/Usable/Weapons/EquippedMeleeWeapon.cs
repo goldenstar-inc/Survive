@@ -68,6 +68,9 @@ public class EquippedMeleeWeapon : IUseScript
             if (enemy.gameObject.CompareTag("Enemy"))
             {
                 HealthManager foundEnemy = enemy.GetComponent<HealthManager>();
+                KillDetector killDetector = foundEnemy.GetComponent<KillDetector>();
+
+                killDetector?.SetPlayerData(playerData);
                 foundEnemy?.TakeDamage(damage);
             }
         }

@@ -9,7 +9,7 @@ using System;
 [RequireComponent(typeof(ZombieAttack))]
 [RequireComponent(typeof(DropLoot))]
 [RequireComponent(typeof(ZombieChase))]
-public class ZombieManager : MonoBehaviour
+public class ZombieManager : MonoBehaviour, IEnemy
 {
     [SerializeField] Animator zombieAnimator;
     [SerializeField] LootPool poolData;
@@ -20,6 +20,9 @@ public class ZombieManager : MonoBehaviour
     [SerializeField] ZombieAttack zombieAttack;
     [SerializeField] DropLoot dropLoot;
     [SerializeField] ZombieChase zombieChase;
+    [SerializeField] KillDetector killDetector;
+
+    public CreatureType creatureType { get; private set; }
 
     void Start()
     {
@@ -27,6 +30,8 @@ public class ZombieManager : MonoBehaviour
         int damage = setting.DamageComponent.Damage;
         int moveSpeed = setting.MovementComponent.WalkSpeed;
         float invincibleCooldown = setting.HealthComponent.InvincibilityCooldown;
+
+        creatureType = setting.Type;
 
         AudioClip damageSound = setting.HealthComponent.DamageSound;
 
@@ -63,6 +68,10 @@ public class ZombieManager : MonoBehaviour
         zombieAttack.Init(
             damage, 
             zombieChase
+            );
+
+        killDetector.Init(
+            healthManager
             );
     }
 }

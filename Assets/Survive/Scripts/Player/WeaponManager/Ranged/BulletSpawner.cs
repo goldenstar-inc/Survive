@@ -14,11 +14,11 @@ public class BulletSpawner : MonoBehaviour
             Destroy(Instance);
         }
     }
-    public void SpawnBullet(GameObject prefab, Transform shotStartPoint, int damage, float velocity, float lifeTime)
+    public void SpawnBullet(GameObject prefab, Transform shotStartPoint, int damage, float velocity, float lifeTime, PlayerDataProvider playerData)
     {
         GameObject bulletInstance = Instantiate(prefab, shotStartPoint.position, shotStartPoint.rotation);
         Bullet bullet = bulletInstance.GetComponentInChildren<Bullet>();
-        bullet?.Initialize(damage);
+        bullet?.Initialize(damage, playerData);
         Rigidbody2D bulletPrefabRB = bulletInstance.GetComponentInChildren<Rigidbody2D>();
         bulletPrefabRB.linearVelocity = shotStartPoint.right * velocity;
         Destroy(bulletInstance, lifeTime);

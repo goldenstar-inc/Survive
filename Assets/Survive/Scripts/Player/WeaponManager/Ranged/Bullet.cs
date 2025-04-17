@@ -11,9 +11,13 @@ public class Bullet : MonoBehaviour
     /// </summary>
     private int damage;
 
-    public void Initialize(int damage)
+    PlayerDataProvider playerData;
+
+    public void Initialize(int damage, PlayerDataProvider playerData)
     {
         this.damage = damage;
+
+        this.playerData = playerData;
     }
 
     /// <summary>
@@ -27,12 +31,11 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 HealthManager damageHandler = collision.GetComponent<HealthManager>();
+                KillDetector killDetector = collision.GetComponent<KillDetector>();
 
-                if (damageHandler != null)
-                {
-                    damageHandler.TakeDamage(damage);
-                    Destroy(gameObject);
-                }
+                killDetector?.SetPlayerData(playerData);
+                damageHandler?.TakeDamage(damage);
+                Destroy(gameObject);
             }
         }
     }

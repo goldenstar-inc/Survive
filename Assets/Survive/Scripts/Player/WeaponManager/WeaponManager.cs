@@ -12,6 +12,8 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public event Action OnAttack;
+    public event Action<CreatureType> OnKill;
+
     private Animator animator;
     private AmmoHandler ammoHandler;
     private Transform attackStartPoint;
@@ -62,5 +64,10 @@ public class WeaponManager : MonoBehaviour
     private void OnDestroy()
     {
         OnAttack = null;
+    }
+
+    public void Kill(CreatureType enemyType)
+    {
+        OnKill.Invoke(enemyType);
     }
 }

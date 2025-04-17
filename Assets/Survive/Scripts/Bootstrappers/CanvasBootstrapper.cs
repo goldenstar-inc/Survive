@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +11,13 @@ public class CanvasBootstrapper : MonoBehaviour
     [SerializeField] InventoryDisplay inventoryDisplay;
     [SerializeField] QuestDisplay questDisplay;
     [SerializeField] Slider healthBar;
+    [SerializeField] DialogueDisplay dialogueDisplay;
     private HealthManager healthManager;
     private AmmoHandler ammoHandler;
     private Camera renderCamera;
     private InventoryController inventoryController;
     private QuestManager questManager;
+    private DialogueManager dialogueManager;
     [SerializeField] GameObject[] selectionFrames;
     [SerializeField] Sprite emptySlotImage;
     [SerializeField] Image[] inventoryItemImages;
@@ -23,6 +26,14 @@ public class CanvasBootstrapper : MonoBehaviour
     [SerializeField] TextMeshProUGUI questNamePlaceholder;
     [SerializeField] TextMeshProUGUI questDescriptionPlaceholder;
     [SerializeField] TextMeshProUGUI ammoAmountPlaceholder;
+    [SerializeField] TextMeshProUGUI dialogueText;
+    [SerializeField] GameObject dialoguePanel;
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] Image portraitImage;
+    [SerializeField] Transform choiceContainer;
+    [SerializeField] GameObject choiceButtonPrefab;
+    [SerializeField] Button closeButton;
+    [SerializeField] Button nextLineButton;
 
     /// <summary>
     /// Инициализация
@@ -34,7 +45,8 @@ public class CanvasBootstrapper : MonoBehaviour
         AmmoHandler ammoHandler,
         Camera renderCamera,
         InventoryController inventoryController,
-        QuestManager questManager
+        QuestManager questManager,
+        DialogueManager dialogueManager
         )
     {
         this.healthManager = healthManager;
@@ -42,6 +54,7 @@ public class CanvasBootstrapper : MonoBehaviour
         this.renderCamera = renderCamera;
         this.inventoryController = inventoryController;
         this.questManager = questManager;
+        this.dialogueManager = dialogueManager;
 
         if (!Validate()) return;
 
@@ -50,6 +63,8 @@ public class CanvasBootstrapper : MonoBehaviour
         InitAmmoDisplay();
         InitInventoryDisplay();
         InitQuestDisplay();
+        InitDialogueDisplay();
+        InitDialogueManager();
     }
 
     /// <summary>
@@ -109,6 +124,26 @@ public class CanvasBootstrapper : MonoBehaviour
             Debug.LogError("HealthBar not loaded");
         }
 
+        if (dialogueDisplay == null)
+        {
+            Debug.LogError("DialogueController not loaded");
+        }
+
+        if (dialogueManager == null)
+        {
+            Debug.LogError("DialogueController not loaded");
+        }
+
+        if (closeButton == null)
+        {
+            Debug.LogError("CloseButton not loaded");
+        }
+
+        if (nextLineButton == null)
+        {
+            Debug.LogError("NextLineButton not loaded");
+        }
+
         return true;
     }
 
@@ -166,5 +201,28 @@ public class CanvasBootstrapper : MonoBehaviour
             questDescriptionPlaceholder,
             questManager
         );
+    }
+
+    /// <summary>
+    /// Инициализация системы отображения диалогов
+    /// </summary>
+    private void InitDialogueDisplay()
+    {
+        dialogueDisplay.Init(
+            closeButton,
+            nextLineButton,
+            dialogueText,
+            dialoguePanel,
+            nameText,
+            portraitImage,
+            choiceContainer,
+            choiceButtonPrefab,
+            dialogueManager
+        );
+    }
+
+    private void InitDialogueManager()
+    {
+        dialogueManager.Init();
     }
 }

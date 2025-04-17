@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7749dd456f2d54249b603ccc6d397e05, type: 3}
   m_Name: BigZombieSetting
   m_EditorClassIdentifier: 
-  Type: 6
+  Type: 7
   HealthComponent: {fileID: 11400000, guid: 79e11524c11d070429f7c70f21e38338, type: 2}
   DamageComponent: {fileID: 11400000, guid: 42a341e524d573d46914c9026bd1b2b3, type: 2}
   CreatureDetectorComponent: {fileID: 11400000, guid: 110f23d0031de654094708a8f46d0339, type: 2}

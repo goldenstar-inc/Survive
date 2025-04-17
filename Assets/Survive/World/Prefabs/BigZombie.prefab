@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 5442245085613570877}
   - component: {fileID: 7571007190531920560}
   - component: {fileID: 5651537909820195360}
+  - component: {fileID: 8142475410500015177}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -250,6 +251,7 @@ MonoBehaviour:
   zombieAttack: {fileID: 6710815579575528775}
   dropLoot: {fileID: 7571007190531920560}
   zombieChase: {fileID: 5442245085613570877}
+  killDetector: {fileID: 8142475410500015177}
 --- !u!114 &8332997739307295690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +325,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+--- !u!114 &8142475410500015177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079689751734497547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7825aa96259a1745a7949b0891e6d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8331600043279015808
 GameObject:
   m_ObjectHideFlags: 0

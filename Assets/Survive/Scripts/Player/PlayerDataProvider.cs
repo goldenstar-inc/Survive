@@ -6,7 +6,7 @@ using Zenject;
 /// <summary>
 /// Интерфейс, содержащий ссылки на компоненты игрока
 /// </summary>
-public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealthProvider, IAmmoProvider, IMoneyProvider, ISoundProvider, IWeaponProvider, IQuestProvider
+public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealthProvider, IAmmoProvider, IMoneyProvider, ISoundProvider, IWeaponProvider, IQuestProvider, IDialogueProvider
 {
     public PlayerSetting PlayerSetting { get; private set; }
     public HealthManager HealthManager { get; private set; }
@@ -15,6 +15,7 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
     public SoundController SoundController { get; private set; }
     public WeaponManager WeaponManager { get; private set; }
     public QuestManager QuestManager { get; private set; }
+    public DialogueManager DialogueManager { get; private set; }
 
     /// <summary>
     /// Инициализация фасада
@@ -33,7 +34,8 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
         MoneyHandler MoneyHandler,
         SoundController SoundController,
         WeaponManager WeaponManager,
-        QuestManager QuestManager
+        QuestManager QuestManager,
+        DialogueManager DialogueManager
         )
     {
         this.PlayerSetting = PlayerSetting;
@@ -43,5 +45,6 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
         this.SoundController = SoundController;
         this.WeaponManager = WeaponManager;
         this.QuestManager = QuestManager;
+        this.DialogueManager = DialogueManager;
     }
 }

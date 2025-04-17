@@ -9,5 +9,6 @@ public enum CreatureType
     Zombie,
     DamagedNPC,
     RunableZombie,
-    MovableZombie
+    MovableZombie,
+    BigZombie
 }

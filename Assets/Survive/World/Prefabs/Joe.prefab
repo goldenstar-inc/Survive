@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: 48a6079a1792dd04d8a1677ce47e752e, type: 2}
-  activeQuests: []
+  activeQuests:
+  - {fileID: 11400000, guid: f7524ede0b8cf264ea8c9f04c110876c, type: 2}
 --- !u!61 &5881203995586919500
 BoxCollider2D:
   m_ObjectHideFlags: 0

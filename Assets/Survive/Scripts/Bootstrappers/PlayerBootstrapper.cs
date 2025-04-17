@@ -23,6 +23,7 @@ public class PlayerBootstrapper : MonoBehaviour
     [SerializeField] private SoundController soundController;
     [SerializeField] private PlayerSetting playerSetting;
     [SerializeField] private QuestManager questManager;
+    [SerializeField] private DialogueManager dialogueManager;
 
     [Header("Components")]
     [SerializeField] private Animator playerAnimator;
@@ -62,6 +63,7 @@ public class PlayerBootstrapper : MonoBehaviour
         InitMoney();
         InitWeapon();
         InitQuest();
+        InitDialogue();
         InitPlayerData();
         InitSoundHandler();
         InitMovement();
@@ -219,8 +221,17 @@ public class PlayerBootstrapper : MonoBehaviour
     private void InitQuest()
     {
         questManager.Init(
-            playerInventoryController
+            playerInventoryController,
+            weaponManager
             );
+    }
+
+    /// <summary>
+    /// Инициализация менеджера диалога
+    /// </summary>
+    private void InitDialogue()
+    {
+        dialogueManager.Init();  
     }
 
     /// <summary>
@@ -235,7 +246,8 @@ public class PlayerBootstrapper : MonoBehaviour
             moneyHandler,
             soundController,
             weaponManager,
-            questManager
+            questManager,
+            dialogueManager
         );
     }
 

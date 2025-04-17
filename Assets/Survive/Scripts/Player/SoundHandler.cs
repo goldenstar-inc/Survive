@@ -43,5 +43,9 @@ public class SoundHandler : MonoBehaviour
         {
             soundController?.PlayAudioClip(explorationQuest.QuestComplete);
         }
+        else if (quest is KillQuest killQuest)
+        {
+            soundController?.PlayAudioClip(killQuest.QuestComplete);
+        }
     }
 }

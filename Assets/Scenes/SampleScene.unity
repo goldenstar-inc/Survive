@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 1
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -486,7 +486,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 291648702989707150, guid: 577be60483f249a4b96f486a34fa6870, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4158179
+      value: -1.3634331
       objectReference: {fileID: 0}
     - target: {fileID: 291648702989707150, guid: 577be60483f249a4b96f486a34fa6870, type: 3}
       propertyPath: m_LocalPosition.y
@@ -852,7 +852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9163287221015384190, guid: a1b5565aa76a67243ad6797bc6e297c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.64
+      value: -8.39
       objectReference: {fileID: 0}
     - target: {fileID: 9163287221015384190, guid: a1b5565aa76a67243ad6797bc6e297c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1015,7 +1015,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2945722638673154655, guid: 1c2c874ca1f0bdb4da3d57a00ef39410, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2383404
+      value: -1.1859556
       objectReference: {fileID: 0}
     - target: {fileID: 2945722638673154655, guid: 1c2c874ca1f0bdb4da3d57a00ef39410, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1475,7 +1475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672274702237157573, guid: 5461cc141d68452498fcc0839dca89d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.47238472
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 8672274702237157573, guid: 5461cc141d68452498fcc0839dca89d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1837,7 +1837,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5610762419788479579, guid: d54914ebc79e4b946824417ce9e040d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6111622
+      value: 0.6635469
       objectReference: {fileID: 0}
     - target: {fileID: 5610762419788479579, guid: d54914ebc79e4b946824417ce9e040d6, type: 3}
       propertyPath: m_LocalPosition.y

@@ -13,14 +13,17 @@ public class QuestManager : MonoBehaviour
     public event Action<Quest> OnQuestCompleted;
     private Quest currentQuest;
     private InventoryController inventoryController;
+    private WeaponManager weaponManager;
 
     /// <summary>
     /// Инициализация
     /// </summary>
     /// <param name="inventoryController">Скрипт, управляющий инвентарем</param>
-    public void Init(InventoryController inventoryController)
+    /// <param name="weaponManager">Скрипт, управляющий оружием</param>
+    public void Init(InventoryController inventoryController, WeaponManager weaponManager)
     {
         this.inventoryController = inventoryController;
+        this.weaponManager = weaponManager;
     }
 
     /// <summary>
@@ -39,6 +42,12 @@ public class QuestManager : MonoBehaviour
         {
             explorationQuest.Init(this);
             currentQuest = explorationQuest;
+            OnQuestAdded?.Invoke(currentQuest);
+        }
+        else if (quest is KillQuest killQuest)
+        {
+            killQuest.Init(this, weaponManager);
+            currentQuest = killQuest;
             OnQuestAdded?.Invoke(currentQuest);
         }
     }

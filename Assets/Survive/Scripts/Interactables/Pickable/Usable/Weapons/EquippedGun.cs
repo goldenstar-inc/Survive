@@ -79,7 +79,7 @@ public class EquippedGun : IUseScript
     {
         if (bulletPrefab != null)
         {
-            BulletSpawner.Instance.SpawnBullet(bulletPrefab, shotStartPoint, damage, bulletVelocity, bulletLifeTime);
+            BulletSpawner.Instance.SpawnBullet(bulletPrefab, shotStartPoint, damage, bulletVelocity, bulletLifeTime, playerData);
             timeSinceLastShot = Time.time;
             playerData.SoundController?.PlayAudioClip(shotSound);
         }
