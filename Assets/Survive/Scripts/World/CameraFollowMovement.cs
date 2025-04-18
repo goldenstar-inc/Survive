@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     private Transform cameraTransform;
     private Vector3 velocity = Vector3.zero;
     
+    public Camera camera2;
     /// <summary>
     /// Инициализация
     /// </summary>
@@ -29,6 +30,8 @@ public class CameraFollow : MonoBehaviour
             Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, cameraTransform.position.z);
         
             cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, targetPosition, ref velocity, smoothTime);
+
+            camera2.transform.position = Vector3.SmoothDamp(camera2.transform.position, targetPosition, ref velocity, smoothTime);
         }
     }
 }

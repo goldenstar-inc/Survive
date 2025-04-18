@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Joe
   m_EditorClassIdentifier: 
   Name: 2
-  Portrait: {fileID: 209429714688522176, guid: 7706ee11d08a1814d98ea9065a4b1212, type: 3}
+  Portrait: {fileID: 8301184681038307108, guid: c950ea5afa2a5744f9eaeb3ebd455e02, type: 3}
   DialogueLines:
   - "\u042D\u0439, \u043F\u0430\u0440\u0435\u043D\u044C, \u0442\u044B \u0447\u0442\u043E
     \u0442\u0443\u0442 \u0434\u0435\u043B\u0430\u0435\u0448\u044C?"

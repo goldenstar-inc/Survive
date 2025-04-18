@@ -68,6 +68,6 @@ public class WeaponManager : MonoBehaviour
 
     public void Kill(CreatureType enemyType)
     {
-        OnKill.Invoke(enemyType);
+        OnKill?.Invoke(enemyType);
     }
 }

@@ -5,27 +5,31 @@ using UnityEngine.UI;
 
 public class CanvasBootstrapper : MonoBehaviour
 {
+    [Header("Main canvas")]
     [SerializeField] Canvas canvas;
+
+    [Header("Display systems")]
     [SerializeField] HealthDisplay healthDisplay;
     [SerializeField] AmmoDisplay ammoDisplay;
     [SerializeField] InventoryDisplay inventoryDisplay;
     [SerializeField] QuestDisplay questDisplay;
-    [SerializeField] Slider healthBar;
     [SerializeField] DialogueDisplay dialogueDisplay;
-    private HealthManager healthManager;
-    private AmmoHandler ammoHandler;
-    private Camera renderCamera;
-    private InventoryController inventoryController;
-    private QuestManager questManager;
-    private DialogueManager dialogueManager;
+
+    [Header("Inventory components")]
     [SerializeField] GameObject[] selectionFrames;
     [SerializeField] Sprite emptySlotImage;
     [SerializeField] Image[] inventoryItemImages;
     [SerializeField] TextMeshProUGUI[] itemQuanityTextFields;
 
+    [Header("Player Bar components")]
+    [SerializeField] Slider healthBar;
+    [SerializeField] TextMeshProUGUI ammoAmountPlaceholder;
+
+    [Header("Quest components")]
     [SerializeField] TextMeshProUGUI questNamePlaceholder;
     [SerializeField] TextMeshProUGUI questDescriptionPlaceholder;
-    [SerializeField] TextMeshProUGUI ammoAmountPlaceholder;
+
+    [Header("Dialogue components")]
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI nameText;
@@ -34,6 +38,16 @@ public class CanvasBootstrapper : MonoBehaviour
     [SerializeField] GameObject choiceButtonPrefab;
     [SerializeField] Button closeButton;
     [SerializeField] Button nextLineButton;
+
+    [Header("Minimap")]
+    [SerializeField] RawImage minimapImage;
+
+    private HealthManager healthManager;
+    private AmmoHandler ammoHandler;
+    private Camera renderCamera;
+    private InventoryController inventoryController;
+    private QuestManager questManager;
+    private DialogueManager dialogueManager;
 
     /// <summary>
     /// Инициализация
@@ -64,7 +78,6 @@ public class CanvasBootstrapper : MonoBehaviour
         InitInventoryDisplay();
         InitQuestDisplay();
         InitDialogueDisplay();
-        InitDialogueManager();
     }
 
     /// <summary>
@@ -112,36 +125,49 @@ public class CanvasBootstrapper : MonoBehaviour
         if (inventoryDisplay == null)
         {
             Debug.LogError("InventoryDisplay not loaded");
+            return false;
         }
 
         if (questManager == null)
         {
             Debug.LogError("QuestManager not loaded");
+            return false;
         }
          
         if (healthBar == null)
         {
             Debug.LogError("HealthBar not loaded");
+            return false;
         }
 
         if (dialogueDisplay == null)
         {
             Debug.LogError("DialogueController not loaded");
+            return false;
         }
 
         if (dialogueManager == null)
         {
             Debug.LogError("DialogueController not loaded");
+            return false;
         }
 
         if (closeButton == null)
         {
             Debug.LogError("CloseButton not loaded");
+            return false;
         }
 
         if (nextLineButton == null)
         {
             Debug.LogError("NextLineButton not loaded");
+            return false;
+        }
+
+        if (minimapImage == null)
+        {
+            Debug.LogError("MinimapImage not loaded");
+            return false;
         }
 
         return true;
@@ -219,10 +245,5 @@ public class CanvasBootstrapper : MonoBehaviour
             choiceButtonPrefab,
             dialogueManager
         );
-    }
-
-    private void InitDialogueManager()
-    {
-        dialogueManager.Init();
     }
 }

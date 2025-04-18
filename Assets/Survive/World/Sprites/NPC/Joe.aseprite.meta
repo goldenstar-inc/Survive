@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7706ee11d08a1814d98ea9065a4b1212
+guid: c950ea5afa2a5744f9eaeb3ebd455e02
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638803465762939941
+  platformSettingsDirtyTick: 638805841503674110
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,7 +123,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: MadGrandfather
+  - name: Joe
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -134,8 +134,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 16
-      height: 24
-    spriteID: e7f776a004a7c174dba01c280b0ed070
+      height: 25
+    spriteID: 160cc315553a54e45a83babf84e295b3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,8 +147,8 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1587468904
-    name: MadGrandfather
+    guid: 1502599772
+    name: Joe
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -160,8 +160,8 @@ ScriptedImporter:
         x: 0
         y: 0
         width: 16
-        height: 24
-      spriteId: e7f776a004a7c174dba01c280b0ed070
+        height: 25
+      spriteId: 160cc315553a54e45a83babf84e295b3
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -201,20 +201,8 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
-  - name: Windows Store Apps
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 16384
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 24}
-  previousTextureSize: {x: 32, y: 32}
+  canvasSize: {x: 16, y: 25}
+  previousTextureSize: {x: 32, y: 64}
