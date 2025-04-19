@@ -39,10 +39,10 @@ public class QuestDisplay : MonoBehaviour
     /// Метод добавления квеста
     /// </summary>
     /// <param name="quest">Квест</param>
-    private void AddQuest(Quest quest)
+    private void AddQuest(IQuest quest)
     {
-        questNamePlaceholder.text = quest.Name;
-        questProgressPlaceholder.text = quest.Description;
+        questNamePlaceholder.text = quest.QuestConfig.Name;
+        questProgressPlaceholder.text = quest.QuestConfig.Description;
     }
 
     /// <summary>
@@ -50,16 +50,16 @@ public class QuestDisplay : MonoBehaviour
     /// </summary>
     /// <param name="quest"></param>
     /// <param name="currentProgress"></param>
-    private void UpdateProgress(Quest quest, int currentProgress)
+    private void UpdateProgress(IQuest quest, int currentProgress)
     {
-        questProgressPlaceholder.text = quest.Description;
-        questProgressPlaceholder.text += " " + $"{currentProgress} / {quest.MaxProgress}";
+        questProgressPlaceholder.text = quest.QuestConfig.Description;
+        questProgressPlaceholder.text += " " + $"{currentProgress} / {quest.QuestConfig.MaxProgress}";
     }
 
     /// <summary>
     /// Метод завершения квеста
     /// </summary>
-    private void CompleteQuest(Quest quest)
+    private void CompleteQuest(IQuest quest)
     {
         questNamePlaceholder.text = "DONE!";
         questProgressPlaceholder.text = $"<s>{questProgressPlaceholder.text}</s>";

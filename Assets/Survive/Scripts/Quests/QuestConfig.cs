@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// РљР»Р°СЃСЃ, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РєРІРµСЃС‚
+/// Класс, представляющий квест
 /// </summary>
-public abstract class Quest : ScriptableObject
+public abstract class QuestConfig : ScriptableObject
 {
     [SerializeField] public string Name;
     [SerializeField] public string Description;

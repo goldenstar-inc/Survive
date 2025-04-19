@@ -4,23 +4,29 @@ using UnityEngine;
 /// <summary>
 ///  ласс, представл€ющий квест, св€занный с доставкой предметов
 /// </summary>
-[CreateAssetMenu(fileName = "KillQuest", menuName = "Quests/Kill Quest")]
-public class KillQuest : Quest
+public class KillQuest : IQuest, IDisposable
 {
-    [SerializeField] private CreatureType questTargetType;
-    public override event Action OnQuestCompleted;
+    public KillQuestConfig questConfig;
+
     private int currentQuantity;
     private QuestManager questManager;
     private WeaponManager weaponManager;
+    public event Action OnCompleted;
+
+    private CreatureType questTargetType => questConfig.QuestTargetType;
+    private int maxProgress => questConfig.MaxProgress;
+    public QuestConfig QuestConfig => questConfig;
+
 
     /// <summary>
     /// »нициализаци€
     /// </summary>
     /// <param name="questManager">—крипт, управл€ющий квестами</param>
-    /// <param name="inventoryController">—крипт, управл€ющий инвентарем</param>
-    public void Init(QuestManager questManager, WeaponManager weaponManager)
+    /// <param name="weaponManager">—крипт, управл€ющий атакой</param>
+    public void Init(KillQuestConfig questConfig, QuestManager questManager, WeaponManager weaponManager)
     {
         currentQuantity = 0;
+        this.questConfig = questConfig;
         this.questManager = questManager;
         this.weaponManager = weaponManager;
         this.weaponManager.OnKill += UpdateProgress;
@@ -40,7 +46,7 @@ public class KillQuest : Quest
             questManager?.UpdateProgress(this, currentQuantity);
         }
 
-        if (currentQuantity == MaxProgress)
+        if (currentQuantity == maxProgress)
         {
             CompleteQuest();
         }
@@ -49,9 +55,9 @@ public class KillQuest : Quest
     /// <summary>
     /// ћетод завершени€ квеста
     /// </summary>
-    private void CompleteQuest()
+    public void CompleteQuest()
     {
-        OnQuestCompleted?.Invoke();
+        OnCompleted?.Invoke();
         questManager.CompleteQuest();
         Dispose();
     }
@@ -59,7 +65,7 @@ public class KillQuest : Quest
     /// <summary>
     /// ”ничтожение скрипта
     /// </summary>
-    public override void Dispose()
+    public void Dispose()
     {
         if (weaponManager != null)
         {

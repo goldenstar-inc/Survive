@@ -8,10 +8,10 @@ using UnityEngine;
 /// </summary>
 public class QuestManager : MonoBehaviour
 {
-    public event Action<Quest> OnQuestAdded;
-    public event Action<Quest, int> OnProgressUpdated;
-    public event Action<Quest> OnQuestCompleted;
-    private Quest currentQuest;
+    public event Action<IQuest> OnQuestAdded;
+    public event Action<IQuest, int> OnProgressUpdated;
+    public event Action<IQuest> OnQuestCompleted;
+    private IQuest currentQuest;
     private InventoryController inventoryController;
     private WeaponManager weaponManager;
 
@@ -30,26 +30,10 @@ public class QuestManager : MonoBehaviour
     /// Метод добавления нового квеста
     /// </summary>
     /// <param name="quest">Новый квест</param>
-    public void AddQuest(Quest quest)
+    public void AddQuest(IQuest quest)
     {
-        if (quest is DeliveryQuest deliveryQuest)
-        {
-            deliveryQuest.Init(this, inventoryController);
-            currentQuest = deliveryQuest;
-            OnQuestAdded?.Invoke(currentQuest);
-        }
-        else if (quest is ExplorationQuest explorationQuest)
-        {
-            explorationQuest.Init(this);
-            currentQuest = explorationQuest;
-            OnQuestAdded?.Invoke(currentQuest);
-        }
-        else if (quest is KillQuest killQuest)
-        {
-            killQuest.Init(this, weaponManager);
-            currentQuest = killQuest;
-            OnQuestAdded?.Invoke(currentQuest);
-        }
+        currentQuest = quest;
+        OnQuestAdded?.Invoke(currentQuest);
     }
 
     /// <summary>
@@ -57,7 +41,7 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     /// <param name="quest">Квест</param>
     /// <param name="currentProgress">Текущий прогресс</param>
-    public void UpdateProgress(Quest quest, int currentProgress)
+    public void UpdateProgress(IQuest quest, int currentProgress)
     {
         OnProgressUpdated?.Invoke(quest, currentProgress);
     }
@@ -75,7 +59,7 @@ public class QuestManager : MonoBehaviour
     /// Получение текущего квеста
     /// </summary>
     /// <returns>Текущий квест</returns>
-    public Quest GetCurrentQuest()
+    public IQuest GetCurrentQuest()
     {
         return currentQuest;
     }

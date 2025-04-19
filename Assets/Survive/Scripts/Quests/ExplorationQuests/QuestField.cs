@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class QuestField : MonoBehaviour
 {
-    [SerializeField] ExplorationQuest explorationQuest;
+    private QuestManager interactor;
+
+    public void Init(QuestManager interactor)
+    {
+        this.interactor = interactor;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerDataProvider>(out PlayerDataProvider playerDataProvider))
+        if (collision.gameObject.TryGetComponent(out QuestManager questManager))
         {
-            if (playerDataProvider.QuestManager.GetCurrentQuest() is ExplorationQuest explorationQuest)
+            if (questManager == interactor)
             {
-                if(explorationQuest == this.explorationQuest)
-                {
-                    explorationQuest.CompleteQuest();
-                    Destroy(gameObject);
-                }
+                questManager.CompleteQuest();
+                Destroy(gameObject);
             }
         }
     }

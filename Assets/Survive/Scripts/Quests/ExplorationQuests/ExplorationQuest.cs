@@ -4,35 +4,50 @@ using UnityEngine;
 /// <summary>
 /// �����, �������������� �����
 /// </summary>
-[CreateAssetMenu(fileName = "ExplorationQuest", menuName = "Quests/Exploration Quest")]
-public class ExplorationQuest : Quest
+public class ExplorationQuest : IQuest
 {
-    public override event Action OnQuestCompleted;
+    private ExplorationQuestConfig questConfig;
+
+    public event Action OnCompleted;
     private QuestManager questManager;
 
+    private float x => questConfig.X;
+    private float y => questConfig.Y;
+    private float radius => questConfig.Radius;
+    public QuestConfig QuestConfig => questConfig;
+
     /// <summary>
-    /// �������������
+    /// Инициализация
     /// </summary>
-    /// <param name="questManager">������, ����������� ��������</param>
-    public void Init(QuestManager questManager)
+    /// <param name="questConfig">Конфиг квеста</param>
+    public ExplorationQuest(ExplorationQuestConfig questConfig, QuestManager questManager)
     {
+        this.questConfig = questConfig;
         this.questManager = questManager;
+
+        CreateQuestZone();
     }
-    
+
+    /// <summary>
+    /// Create quest zone
+    /// </summary>
+    private void CreateQuestZone()
+    {
+        GameObject questZone = new GameObject("QuestZone");
+        CircleCollider2D questCollider = questZone.AddComponent<CircleCollider2D>();
+        questCollider.radius = radius;
+        questCollider.isTrigger = true;
+        questZone.transform.position = new Vector2(x, y);
+        QuestField questField = questZone.AddComponent<QuestField>();
+        questField.Init(questManager);
+    }
+
     /// <summary>
     /// ����� ���������� ������
     /// </summary>
     public void CompleteQuest()
     {
-        OnQuestCompleted?.Invoke();
+        OnCompleted?.Invoke();
         questManager.CompleteQuest();
-        Dispose();
-    }
-
-    /// <summary>
-    /// ����������� �������
-    /// </summary>
-    public override void Dispose()
-    {
     }
 }

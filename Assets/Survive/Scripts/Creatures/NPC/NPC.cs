@@ -8,13 +8,13 @@ using System.Linq;
 
 public class NPC : MonoBehaviour, IInteractable
 {
+    [SerializeField] QuestGiver questGiver;
     [SerializeField] NPCDialogue dialogueData;
-    [SerializeField] List<Quest> activeQuests;
     public bool Interact(PlayerDataProvider interactor)
     {
         if (interactor != null && interactor is IDialogueProvider dialogueProvider)
         {
-            CheckForAvailableQuests(interactor); 
+            CheckForAvailableQuests(interactor);
             dialogueProvider.DialogueManager.StartDialogue(dialogueData);
             return true;
         }
@@ -24,19 +24,14 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void CheckForAvailableQuests(PlayerDataProvider interactor)
     {
-        if (activeQuests.Count > 0)
+        IQuest availableQuest = questGiver.GiveQuest(interactor.QuestManager);
+        Debug.Log(availableQuest);
+        if (availableQuest != null)
         {
-            Quest availableQuest = activeQuests.First(); 
             RaiseQuest(interactor, availableQuest);
-            availableQuest.OnQuestCompleted += GiveReward;
-            activeQuests.Remove(availableQuest);
         }
     }
-    private void GiveReward()
-    {
-        Debug.Log("Good job!");
-    }
-    public void RaiseQuest(PlayerDataProvider interactor, Quest quest)
+    public void RaiseQuest(PlayerDataProvider interactor, IQuest quest)
     {
         if (interactor != null)
         {

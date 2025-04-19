@@ -33,19 +33,8 @@ public class SoundHandler : MonoBehaviour
             timeSinceLastStep = Time.time;
         }
     }
-    public void PlayQuestCompleteSound(Quest quest)
+    public void PlayQuestCompleteSound(IQuest quest)
     {
-        if (quest is DeliveryQuest deliveryQuest)
-        {
-            soundController?.PlayAudioClip(deliveryQuest.QuestComplete);
-        }
-        else if (quest is ExplorationQuest explorationQuest)
-        {
-            soundController?.PlayAudioClip(explorationQuest.QuestComplete);
-        }
-        else if (quest is KillQuest killQuest)
-        {
-            soundController?.PlayAudioClip(killQuest.QuestComplete);
-        }
+        soundController?.PlayAudioClip(quest.QuestConfig.QuestComplete);
     }
 }
