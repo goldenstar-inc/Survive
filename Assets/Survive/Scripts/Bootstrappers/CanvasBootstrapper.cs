@@ -42,6 +42,9 @@ public class CanvasBootstrapper : MonoBehaviour
     [Header("Minimap")]
     [SerializeField] RawImage minimapImage;
 
+    // 👇 ДОБАВЛЕНО: QuestGiver
+    private QuestGiver questGiver;
+
     private HealthManager healthManager;
     private AmmoHandler ammoHandler;
     private Camera renderCamera;
@@ -52,15 +55,14 @@ public class CanvasBootstrapper : MonoBehaviour
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="healthManager">Скрипт, отвечающий за управление здоровьем</param>
-    /// <param name="ammoHandler">Скрипт, управляющий боезапасом</param>
     public void Init(
-        HealthManager healthManager, 
+        HealthManager healthManager,
         AmmoHandler ammoHandler,
         Camera renderCamera,
         InventoryController inventoryController,
         QuestManager questManager,
-        DialogueManager dialogueManager
+        DialogueManager dialogueManager,
+        QuestGiver questGiver // ДОБАВЛЕНО
         )
     {
         this.healthManager = healthManager;
@@ -69,6 +71,7 @@ public class CanvasBootstrapper : MonoBehaviour
         this.inventoryController = inventoryController;
         this.questManager = questManager;
         this.dialogueManager = dialogueManager;
+        this.questGiver = questGiver; // ДОБАВЛЕНО
 
         if (!Validate()) return;
 
@@ -77,13 +80,9 @@ public class CanvasBootstrapper : MonoBehaviour
         InitAmmoDisplay();
         InitInventoryDisplay();
         InitQuestDisplay();
-        InitDialogueDisplay();
+        InitDialogueDisplay(); // QuestGiver будет передан сюда
     }
 
-    /// <summary>
-    /// Валидация скриптов и систем канваса
-    /// </summary>
-    /// <returns>True - если все скрипты и системы пргружены корректно, иначе - false</returns>
     private bool Validate()
     {
         if (canvas == null)
@@ -133,7 +132,7 @@ public class CanvasBootstrapper : MonoBehaviour
             Debug.LogError("QuestManager not loaded");
             return false;
         }
-         
+
         if (healthBar == null)
         {
             Debug.LogError("HealthBar not loaded");
@@ -148,7 +147,7 @@ public class CanvasBootstrapper : MonoBehaviour
 
         if (dialogueManager == null)
         {
-            Debug.LogError("DialogueController not loaded");
+            Debug.LogError("DialogueManager not loaded");
             return false;
         }
 
@@ -173,39 +172,27 @@ public class CanvasBootstrapper : MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    /// Инициализация камеры
-    /// </summary>
     private void InitCamera()
     {
         canvas.worldCamera = renderCamera;
     }
 
-    /// <summary>
-    /// Инициализация системы отображения здоровья
-    /// </summary>
     private void InitHealthDisplay()
     {
         healthDisplay.Init(
-            healthManager, 
+            healthManager,
             healthBar
-            );
+        );
     }
 
-    /// <summary>
-    /// Инициализация системы отображения боезапаса
-    /// </summary>
     private void InitAmmoDisplay()
     {
         ammoDisplay.Init(
             ammoHandler,
             ammoAmountPlaceholder
-            );
+        );
     }
 
-    /// <summary>
-    /// Инициализация системы отображения боезапаса
-    /// </summary>
     private void InitInventoryDisplay()
     {
         inventoryDisplay.Init(
@@ -214,12 +201,9 @@ public class CanvasBootstrapper : MonoBehaviour
             inventoryItemImages,
             itemQuanityTextFields,
             inventoryController
-            );
+        );
     }
 
-    /// <summary>
-    /// Инициализация системы отображения активного квеста
-    /// </summary>
     private void InitQuestDisplay()
     {
         questDisplay.Init(
@@ -229,9 +213,6 @@ public class CanvasBootstrapper : MonoBehaviour
         );
     }
 
-    /// <summary>
-    /// Инициализация системы отображения диалогов
-    /// </summary>
     private void InitDialogueDisplay()
     {
         dialogueDisplay.Init(
@@ -243,7 +224,9 @@ public class CanvasBootstrapper : MonoBehaviour
             portraitImage,
             choiceContainer,
             choiceButtonPrefab,
-            dialogueManager
+            dialogueManager,
+            questGiver,     //  ПЕРЕДАЁМ QuestGiver
+            questManager    //  И QuestManager
         );
     }
 }

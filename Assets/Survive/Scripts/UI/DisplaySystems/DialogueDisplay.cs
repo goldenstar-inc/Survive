@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 
 public class DialogueDisplay : MonoBehaviour
 {
+
+    public event Action<NPCDialogue, NPC> OnDialogueStarted;
+
     private Button closeButton;
     private Button nextLineButton;
     private TextMeshProUGUI dialogueText;
@@ -21,16 +25,10 @@ public class DialogueDisplay : MonoBehaviour
     private Sprite interactorPortrait;
     private NPCDialogue dialogueData;
 
-    /// <summary>
-    /// Инициализация
-    /// </summary>
-    /// <param name="dialogueText">Текст для отображения диалога</param>
-    /// <param name="dialoguePanel">Панель диалога</param>
-    /// <param name="nameText">Текст для отображения имени</param>
-    /// <param name="portraitImage">Изображение для вывода портрета говорящего</param>
-    /// <param name="choiceContainer">Контейнер для кнопок ответа</param>
-    /// <param name="choiceButtonPrefab">Префаб кнопки ответа</param>
-    /// <param name="dialogueManager">Скрипт, управляющий диалогами</param>
+    private QuestGiver questGiver;
+    private QuestManager questManager;
+    private NPC currentNpc;
+
     public void Init(
         Button closeButton,
         Button nextLineButton,
@@ -40,7 +38,9 @@ public class DialogueDisplay : MonoBehaviour
         Image portraitImage,
         Transform choiceContainer,
         GameObject choiceButtonPrefab,
-        DialogueManager dialogueManager
+        DialogueManager dialogueManager,
+        QuestGiver questGiver,
+        QuestManager questManager
     )
     {
         this.closeButton = closeButton;
@@ -52,6 +52,8 @@ public class DialogueDisplay : MonoBehaviour
         this.choiceContainer = choiceContainer;
         this.choiceButtonPrefab = choiceButtonPrefab;
         this.dialogueManager = dialogueManager;
+        this.questGiver = questGiver;
+        this.questManager = questManager;
 
         dialogueManager.OnDialogueStarted += StartDialogue;
         dialogueManager.OnDialogueEnded += EndDialogue;
@@ -59,6 +61,21 @@ public class DialogueDisplay : MonoBehaviour
         closeButton.onClick.AddListener(EndDialogue);
         nextLineButton.onClick.AddListener(NextLine);
     }
+
+    private void StartDialogue(NPCDialogue dialogueData, NPC npc)
+    {
+        this.dialogueData = dialogueData;
+        this.currentNpc = npc;
+        dialogueIndex = 0;
+        isDialogueActive = true;
+
+        dialoguePanel.SetActive(true);
+        PauseController.SetPause(true);
+
+        DisplayCurrentLine();
+        UpdateSpeakerUI();
+    }
+
     private void NextLine()
     {
         if (isTyping && isDialogueActive)
@@ -66,6 +83,7 @@ public class DialogueDisplay : MonoBehaviour
             StopAllCoroutines();
             dialogueText.text = dialogueData.DialogueLines[dialogueIndex];
             isTyping = false;
+            return;
         }
 
         ClearChoices();
@@ -76,19 +94,20 @@ public class DialogueDisplay : MonoBehaviour
             return;
         }
 
-        foreach (DialogueChoice dialogueChoice in dialogueData.Choices)
+        foreach (DialogueChoice choice in dialogueData.Choices)
         {
-            if (dialogueChoice.dialogueIndex == dialogueIndex)
+            if (choice.dialogueIndex == dialogueIndex)
             {
                 UpdateSpeakerUI();
-                DisplayChoices(dialogueChoice);
+                DisplayChoices(choice);
                 return;
             }
         }
+
         if (++dialogueIndex < dialogueData.DialogueLines.Length)
         {
-            UpdateSpeakerUI();
             DisplayCurrentLine();
+            UpdateSpeakerUI();
         }
         else
         {
@@ -96,36 +115,17 @@ public class DialogueDisplay : MonoBehaviour
         }
     }
 
-    private void ClearChoices()
+    private void DisplayCurrentLine()
     {
-        foreach (Transform child in choiceContainer) 
-        {
-            Destroy(child?.gameObject);
-        }
-    }
-    private void StartDialogue(NPCDialogue dialogueData)
-    {
-        this.dialogueData = dialogueData;
-
-        if (dialogueData == null)
-        {
-            Debug.LogError("DialogueData not loaded");
-            return;
-        }
-
-        isDialogueActive = true;
-        dialogueIndex = 0;
-        SetNPCInfo(dialogueData.name, dialogueData.Portrait);
+        StopAllCoroutines();
+        StartCoroutine(TypeLine());
         UpdateSpeakerUI();
-        dialoguePanel.SetActive(true);
-        PauseController.SetPause(true);
-        DisplayCurrentLine();
     }
 
     private IEnumerator TypeLine()
     {
         isTyping = true;
-        dialogueText.text = string.Empty;
+        dialogueText.text = "";
 
         foreach (char letter in dialogueData.DialogueLines[dialogueIndex])
         {
@@ -144,31 +144,79 @@ public class DialogueDisplay : MonoBehaviour
 
     private void DisplayChoices(DialogueChoice choice)
     {
+        ClearChoices();
+
         for (int i = 0; i < choice.choices.Length; i++)
         {
-            int nextIndex = choice.nextDialogueIndexes[i];
-            CreateChoiceButton(choice.choices[i], () => ChooseOption(nextIndex));
+            string choiceText = choice.choices[i];
+
+            int nextIndex = (i < choice.nextDialogueIndexes.Length) ? choice.nextDialogueIndexes[i] : -1;
+
+            bool isTakeQuest = (choice.isTakeQuestOption != null && i < choice.isTakeQuestOption.Length) ? choice.isTakeQuestOption[i] : false;
+
+
+            Debug.Log("nextIndex: " + nextIndex);
+            Debug.Log("isTakeQuest: " + isTakeQuest);
+
+            // Копируем переменные, чтобы лямбда не глючила
+            int capturedIndex = nextIndex;
+            bool capturedIsTakeQuest = isTakeQuest;
+
+            CreateChoiceButton(choiceText, () => ChooseOption(capturedIndex, capturedIsTakeQuest));
         }
     }
+
+
     private void CreateChoiceButton(string choiceText, UnityAction onClick)
     {
-        GameObject choiceButton = Instantiate(choiceButtonPrefab, choiceContainer);
-        choiceButton.GetComponentInChildren<TextMeshProUGUI>().text = choiceText;
-        choiceButton.GetComponent<Button>().onClick.AddListener(onClick);
-    }
-    private void ChooseOption(int nextIndex)
-    {
-        dialogueIndex = nextIndex;
-        ClearChoices();
-        DisplayCurrentLine();
-        UpdateSpeakerUI();
+        GameObject button = Instantiate(choiceButtonPrefab, choiceContainer);
+        button.GetComponentInChildren<TextMeshProUGUI>().text = choiceText;
+        button.GetComponent<Button>().onClick.AddListener(onClick);
     }
 
-    private void DisplayCurrentLine()
+    private void ChooseOption(int nextIndex, bool isTakeQuest)
     {
-        StopAllCoroutines();
-        StartCoroutine(TypeLine());
-        UpdateSpeakerUI();
+        Debug.Log("bool " + isTakeQuest);
+        Debug.Log("quest manager " + questManager);
+        Debug.Log("квест " + questGiver);
+        if (isTakeQuest && questGiver == null && questManager != null)
+        {
+            var quest = questGiver.GiveQuest(questManager);
+            Debug.Log("квест " + quest);
+            if (quest != null)
+            {
+                questManager.AddQuest(quest);
+
+                Debug.Log("[Dialogue] Квест выдан игроку.");
+            }
+            else
+            {
+                Debug.Log("[Dialogue] Нет доступных квестов.");
+            }
+
+            currentNpc?.CheckForAvailableQuests(FindFirstObjectByType<PlayerDataProvider>());
+        }
+
+        if (nextIndex == -1)
+        {
+            EndDialogue();
+        }
+        else
+        {
+            dialogueIndex = nextIndex;
+            ClearChoices();
+            DisplayCurrentLine();
+            UpdateSpeakerUI();
+        }
+    }
+
+
+    private void ClearChoices()
+    {
+        foreach (Transform child in choiceContainer)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     private void UpdateSpeakerUI()
@@ -201,7 +249,7 @@ public class DialogueDisplay : MonoBehaviour
     {
         StopAllCoroutines();
         isDialogueActive = false;
-        dialogueText.text = string.Empty;
+        dialogueText.text = "";
         dialoguePanel.SetActive(false);
         PauseController.SetPause(false);
     }
@@ -221,3 +269,4 @@ public class DialogueDisplay : MonoBehaviour
         }
     }
 }
+

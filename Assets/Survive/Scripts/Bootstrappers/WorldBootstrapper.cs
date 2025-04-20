@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class WorldBootstrapper : MonoBehaviour
 {
+   // [SerializeField] private QuestGiver questGiver;
+
     public GameObject player;
     public GameObject playerCanvas;
     void Start()
@@ -39,9 +41,13 @@ public class WorldBootstrapper : MonoBehaviour
         InventoryController inventoryController = spawnedPlayer.GetComponentInChildren<InventoryController>();
         QuestManager questManager = spawnedPlayer.GetComponentInChildren<QuestManager>();
         DialogueManager dialogueManager = spawnedPlayer.GetComponentInChildren<DialogueManager>();
+
         
         GameObject spawnedCanvas = Instantiate(playerCanvas);
         CanvasBootstrapper canvasBootstrapper = spawnedCanvas.GetComponentInChildren<CanvasBootstrapper>();
-        canvasBootstrapper.Init(healthManager, ammoHandler, camera, inventoryController, questManager, dialogueManager);
+        QuestGiver questGiver = GetComponentInChildren<QuestGiver>();
+
+        canvasBootstrapper.Init(healthManager, ammoHandler, camera, inventoryController, questManager, dialogueManager, questGiver);
+
     }
 }

@@ -240,7 +240,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aba48c2c615a1a4db034fb6d7da299d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quests: []
+  quests:
+  - {fileID: 11400000, guid: fbb3fa70d55a13641b6afa0937096725, type: 2}
+--- !u!114 &402115323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9102552258011801035, guid: d165308f39065f44f8fbf80b7b293e89, type: 3}
+  m_PrefabInstance: {fileID: 806276566044685877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402115315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e4d6b1bce98f04ba631bd138dbbc22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &426557685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -943,6 +955,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9102552258011801035, guid: d165308f39065f44f8fbf80b7b293e89, type: 3}
+      propertyPath: npc
+      value: 
+      objectReference: {fileID: 402115323}
     - target: {fileID: 9102552258011801035, guid: d165308f39065f44f8fbf80b7b293e89, type: 3}
       propertyPath: questGiver
       value: 

@@ -10,19 +10,20 @@ public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] QuestGiver questGiver;
     [SerializeField] NPCDialogue dialogueData;
+    [SerializeField] NPC npc;
     public bool Interact(PlayerDataProvider interactor)
     {
-        if (interactor != null && interactor is IDialogueProvider dialogueProvider)
+        if (interactor is IDialogueProvider dialogueProvider)
         {
-            CheckForAvailableQuests(interactor);
-            dialogueProvider.DialogueManager.StartDialogue(dialogueData);
+            dialogueProvider.DialogueManager.StartDialogue(dialogueData,npc); // передаём this
             return true;
         }
+
 
         return false;
     }
 
-    private void CheckForAvailableQuests(PlayerDataProvider interactor)
+    public void CheckForAvailableQuests(PlayerDataProvider interactor)
     {
         IQuest availableQuest = questGiver.GiveQuest(interactor.QuestManager);
         Debug.Log(availableQuest);
