@@ -221,8 +221,8 @@ public class PlayerBootstrapper : MonoBehaviour
     private void InitQuest()
     {
         questManager.Init(
-            playerInventoryController,
-            weaponManager
+            // playerInventoryController,
+            // weaponManager
             );
     }
 

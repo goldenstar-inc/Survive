@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
+    public event Action OnHealthChanged;
     public event Action<int, int> OnTakeDamage;
     public event Action<int, int> OnHeal;
     public event Action OnDeath;
@@ -15,7 +16,7 @@ public class HealthManager : MonoBehaviour
     private AudioClip damageSound;
     private float invincibleCooldown;
     private float timeSinceLastDamageTaken = 0f;
-    
+
     /// <summary>
     /// Инициализация
     /// </summary>

@@ -10,7 +10,7 @@ public class QuestGiver : MonoBehaviour
     {
         this.quests = quests;
     }*/
-    public IQuest GiveQuest(QuestManager questManager)
+    public IQuest GiveQuest(PlayerDataProvider interactor)
     {
         if (quests != null)
         {
@@ -24,9 +24,19 @@ public class QuestGiver : MonoBehaviour
                     IQuest quest = new DeliveryQuest(deliveryQuestConfig);
                     return quest;
                 }
+                
                 if (foundQuestConfig is ExplorationQuestConfig explorationQuestConfig)
                 {
+                    QuestManager questManager = interactor.QuestManager;
                     IQuest quest = new ExplorationQuest(explorationQuestConfig, questManager);
+                    return quest;
+                }
+
+                if (foundQuestConfig is KillQuestConfig killQuestConfig)
+                {
+                    QuestManager questManager = interactor.QuestManager;
+                    WeaponManager weaponManager = interactor.WeaponManager;
+                    IQuest quest = new KillQuest(killQuestConfig, questManager, weaponManager);
                     return quest;
                 }
             }

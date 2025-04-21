@@ -8,22 +8,18 @@ using UnityEngine;
 /// </summary>
 public class QuestManager : MonoBehaviour
 {
+    public event Action<PlayerDataProvider> OnQuestChosen;
     public event Action<IQuest> OnQuestAdded;
     public event Action<IQuest, int> OnProgressUpdated;
     public event Action<IQuest> OnQuestCompleted;
     private IQuest currentQuest;
-    private InventoryController inventoryController;
-    private WeaponManager weaponManager;
 
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="inventoryController">Скрипт, управляющий инвентарем</param>
-    /// <param name="weaponManager">Скрипт, управляющий оружием</param>
-    public void Init(InventoryController inventoryController, WeaponManager weaponManager)
+    public void Init()
     {
-        this.inventoryController = inventoryController;
-        this.weaponManager = weaponManager;
+
     }
 
     /// <summary>
@@ -62,5 +58,18 @@ public class QuestManager : MonoBehaviour
     public IQuest GetCurrentQuest()
     {
         return currentQuest;
+    }
+
+    public void QuestChosen(PlayerDataProvider interactor)
+    {
+        OnQuestChosen?.Invoke(interactor);
+    }
+
+    private void OnDestroy()
+    {
+        OnQuestChosen = null;
+        OnQuestAdded = null;
+        OnProgressUpdated = null;
+        OnQuestCompleted = null;
     }
 }

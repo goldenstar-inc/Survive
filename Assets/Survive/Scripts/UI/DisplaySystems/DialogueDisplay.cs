@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class DialogueDisplay : MonoBehaviour
 {
-
-    public event Action<NPCDialogue, NPC> OnDialogueStarted;
-
     private Button closeButton;
     private Button nextLineButton;
     private TextMeshProUGUI dialogueText;
@@ -25,7 +22,6 @@ public class DialogueDisplay : MonoBehaviour
     private Sprite interactorPortrait;
     private NPCDialogue dialogueData;
 
-    private QuestGiver questGiver;
     private QuestManager questManager;
     private NPC currentNpc;
 
@@ -39,7 +35,6 @@ public class DialogueDisplay : MonoBehaviour
         Transform choiceContainer,
         GameObject choiceButtonPrefab,
         DialogueManager dialogueManager,
-        QuestGiver questGiver,
         QuestManager questManager
     )
     {
@@ -52,20 +47,19 @@ public class DialogueDisplay : MonoBehaviour
         this.choiceContainer = choiceContainer;
         this.choiceButtonPrefab = choiceButtonPrefab;
         this.dialogueManager = dialogueManager;
-        this.questGiver = questGiver;
         this.questManager = questManager;
 
         dialogueManager.OnDialogueStarted += StartDialogue;
         dialogueManager.OnDialogueEnded += EndDialogue;
 
-        closeButton.onClick.AddListener(EndDialogue);
+        closeButton.onClick.AddListener(() => dialogueManager?.EndDialogue());
         nextLineButton.onClick.AddListener(NextLine);
     }
 
-    private void StartDialogue(NPCDialogue dialogueData, NPC npc)
+    private void StartDialogue(NPCDialogue dialogueData, NPC currentNpc)
     {
         this.dialogueData = dialogueData;
-        this.currentNpc = npc;
+        this.currentNpc = currentNpc;
         dialogueIndex = 0;
         isDialogueActive = true;
 
@@ -154,15 +148,7 @@ public class DialogueDisplay : MonoBehaviour
 
             bool isTakeQuest = (choice.isTakeQuestOption != null && i < choice.isTakeQuestOption.Length) ? choice.isTakeQuestOption[i] : false;
 
-
-            Debug.Log("nextIndex: " + nextIndex);
-            Debug.Log("isTakeQuest: " + isTakeQuest);
-
-            // Копируем переменные, чтобы лямбда не глючила
-            int capturedIndex = nextIndex;
-            bool capturedIsTakeQuest = isTakeQuest;
-
-            CreateChoiceButton(choiceText, () => ChooseOption(capturedIndex, capturedIsTakeQuest));
+            CreateChoiceButton(choiceText, () => ChooseOption(nextIndex, isTakeQuest));
         }
     }
 
@@ -174,27 +160,11 @@ public class DialogueDisplay : MonoBehaviour
         button.GetComponent<Button>().onClick.AddListener(onClick);
     }
 
-    private void ChooseOption(int nextIndex, bool isTakeQuest)
+    private void ChooseOption(int nextIndex, bool isQuestTaken)
     {
-        Debug.Log("bool " + isTakeQuest);
-        Debug.Log("quest manager " + questManager);
-        Debug.Log("квест " + questGiver);
-        if (isTakeQuest && questGiver == null && questManager != null)
+        if (isQuestTaken)
         {
-            var quest = questGiver.GiveQuest(questManager);
-            Debug.Log("квест " + quest);
-            if (quest != null)
-            {
-                questManager.AddQuest(quest);
-
-                Debug.Log("[Dialogue] Квест выдан игроку.");
-            }
-            else
-            {
-                Debug.Log("[Dialogue] Нет доступных квестов.");
-            }
-
-            currentNpc?.CheckForAvailableQuests(FindFirstObjectByType<PlayerDataProvider>());
+            //questManager?.QuestChosen();
         }
 
         if (nextIndex == -1)

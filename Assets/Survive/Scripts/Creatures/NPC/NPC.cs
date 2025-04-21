@@ -5,41 +5,39 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using System.Linq;
+using System.Security.Cryptography;
 
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] QuestGiver questGiver;
     [SerializeField] NPCDialogue dialogueData;
-    [SerializeField] NPC npc;
+
     public bool Interact(PlayerDataProvider interactor)
     {
-        if (interactor is IDialogueProvider dialogueProvider)
+        if (interactor is IDialogueProvider dialogueProvider && interactor is IQuestProvider questProvider)
         {
-            dialogueProvider.DialogueManager.StartDialogue(dialogueData,npc); // передаём this
+            DialogueManager dialogueManager = dialogueProvider.DialogueManager;
+            QuestManager questManager = questProvider.QuestManager;
+            questManager.OnQuestChosen += GiveQuest;
+            dialogueManager.OnDialogueEnded += () => questManager.OnQuestChosen -= GiveQuest;
+            dialogueManager.StartDialogue(dialogueData, this);
             return true;
         }
 
-
         return false;
     }
-
-    public void CheckForAvailableQuests(PlayerDataProvider interactor)
+    private void GiveQuest(PlayerDataProvider interactor)
     {
-        IQuest availableQuest = questGiver.GiveQuest(interactor.QuestManager);
-        Debug.Log(availableQuest);
-        if (availableQuest != null)
+        if (AreAnyQuestsAvailable(out IQuest availableQuest, interactor))
         {
-            RaiseQuest(interactor, availableQuest);
+            QuestManager questManager = interactor.QuestManager;
+            questManager.AddQuest(availableQuest);
         }
     }
-    public void RaiseQuest(PlayerDataProvider interactor, IQuest quest)
+
+    private bool AreAnyQuestsAvailable(out IQuest availableQuest, PlayerDataProvider interactor)
     {
-        if (interactor != null)
-        {
-            if (interactor is IQuestProvider questProvider)
-            {
-                questProvider.QuestManager.AddQuest(quest);
-            }
-        }
+        availableQuest = questGiver.GiveQuest(interactor);
+        return availableQuest != null;
     }
 }

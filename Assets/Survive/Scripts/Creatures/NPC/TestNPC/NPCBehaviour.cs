@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private HealthManager healthManager;
+    public Transform player;
 
-    public float detectionRadius = 10f;
-    public float moveSpeed = 3f;
-    public int health => throw new NotImplementedException();
+    private HealthManager healthManager;
+    private float detectionRadius = 10f;
+    private float moveSpeed = 3f;
+    public int health => healthManager.GetCurrrentHealth();
 
     private Vector2 searchDirection;
     private Vector2 searchStartPosition;
@@ -19,8 +21,11 @@ public class NPCBehavior : MonoBehaviour
     private List<Task> allTasks = new();
     private Task currentTask;
 
-    private void Start()
+    public void Init(HealthManager healthManager, float moveSpeed, float detectionRadius)
     {
+        this.healthManager = healthManager;
+        this.moveSpeed = moveSpeed;
+        this.detectionRadius = detectionRadius;
         taskQueue = new PairingHeap<Task>();
     }
 
@@ -35,14 +40,15 @@ public class NPCBehavior : MonoBehaviour
     {
         float distToPlayer = Vector3.Distance(player.position, transform.position);
         bool playerClose = distToPlayer < detectionRadius;
+        bool playerFar = distToPlayer > detectionRadius + 2f;
         bool lowHealth = health < 50;
-        bool farEnough = distToPlayer > detectionRadius + 2f;
-        bool allGood = !playerClose && !lowHealth;
+        bool safeAndHealthy = !playerClose && !lowHealth;
+        
 
+        HandleOrInsertTask("Heal", lowHealth && playerFar, Mathf.Clamp(health, 1, 100));
+        HandleOrInsertTask("Search", safeAndHealthy, 100);
         HandleOrInsertTask("Attack", playerClose && !lowHealth, Mathf.Clamp((int)distToPlayer, 1, 100));
-        HandleOrInsertTask("RunAway", playerClose && lowHealth, Mathf.Clamp(health, 1, 100));
-        HandleOrInsertTask("Heal", lowHealth && farEnough, Mathf.Clamp(health, 1, 100));
-        HandleOrInsertTask("Search", allGood, 100);
+        HandleOrInsertTask("RunAway", playerClose && lowHealth, Mathf.Clamp(100 - health, 1, 100));
     }
 
     private void HandleOrInsertTask(string taskName, bool shouldExist, int priority)
@@ -63,7 +69,7 @@ public class NPCBehavior : MonoBehaviour
         }
         else if (task != null)
         {
-            taskQueue.DecreaseKey(task, 9999);
+            taskQueue.DecreaseKey(task, int.MaxValue);
         }
     }
 
@@ -73,7 +79,6 @@ public class NPCBehavior : MonoBehaviour
         {
             currentTask = taskQueue.ExtractMin();
             Debug.Log($"[NPC] Now executing: {currentTask.Name} (priority {currentTask.Priority})");
-
             StartCoroutine(ExecuteTask(currentTask));
         }
     }
@@ -81,7 +86,7 @@ public class NPCBehavior : MonoBehaviour
     private IEnumerator ExecuteTask(Task task)
     {
         yield return new WaitForSeconds(1f);
-
+        
         allTasks.Remove(task);
         currentTask = null;
     }
@@ -105,7 +110,6 @@ public class NPCBehavior : MonoBehaviour
             case "Search":
                 if (searchDirection == Vector2.zero) 
                 {
-                    //searchDirection = Random.insideUnitCircle.normalized;
                     searchStartPosition = transform.position;
                 }
 
@@ -126,6 +130,17 @@ public class NPCBehavior : MonoBehaviour
         if (direction != Vector2.zero)
         {
             transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                player = gameObject.transform;
+            }
         }
     }
 }

@@ -225,7 +225,6 @@ public class CanvasBootstrapper : MonoBehaviour
             choiceContainer,
             choiceButtonPrefab,
             dialogueManager,
-            questGiver,     //  ПЕРЕДАЁМ QuestGiver
             questManager    //  И QuestManager
         );
     }

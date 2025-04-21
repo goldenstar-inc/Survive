@@ -10,4 +10,15 @@ public class DialogueManager : MonoBehaviour
     {
         OnDialogueStarted?.Invoke(dialogueData, npc);
     }
+
+    public void EndDialogue()
+    {
+        OnDialogueEnded?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        OnDialogueStarted = null;
+        OnDialogueEnded = null;
+    }
 }

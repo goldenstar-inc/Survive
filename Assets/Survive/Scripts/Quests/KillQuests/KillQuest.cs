@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// Класс, представляющий квест, связанный с доставкой предметов
+/// пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /// </summary>
 public class KillQuest : IQuest, IDisposable
 {
@@ -19,11 +19,11 @@ public class KillQuest : IQuest, IDisposable
 
 
     /// <summary>
-    /// Инициализация
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
-    /// <param name="questManager">Скрипт, управляющий квестами</param>
-    /// <param name="weaponManager">Скрипт, управляющий атакой</param>
-    public void Init(KillQuestConfig questConfig, QuestManager questManager, WeaponManager weaponManager)
+    /// <param name="questManager">пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</param>
+    /// <param name="weaponManager">пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ</param>
+    public KillQuest(KillQuestConfig questConfig, QuestManager questManager, WeaponManager weaponManager)
     {
         currentQuantity = 0;
         this.questConfig = questConfig;
@@ -33,11 +33,11 @@ public class KillQuest : IQuest, IDisposable
     }
 
     /// <summary>
-    /// Обновление прогресса
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
-    /// <param name="index">Индекс</param>
-    /// <param name="quantity">Количество подобранного предмета</param>
-    /// <param name="data">Данные о подобранном предмете</param>
+    /// <param name="index">пїЅпїЅпїЅпїЅпїЅпїЅ</param>
+    /// <param name="quantity">пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</param>
+    /// <param name="data">пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</param>
     private void UpdateProgress(CreatureType enemyType)
     {
         if (questTargetType == enemyType)
@@ -53,7 +53,7 @@ public class KillQuest : IQuest, IDisposable
     }
 
     /// <summary>
-    /// Метод завершения квеста
+    /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void CompleteQuest()
     {
@@ -63,7 +63,7 @@ public class KillQuest : IQuest, IDisposable
     }
 
     /// <summary>
-    /// Уничтожение скрипта
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void Dispose()
     {
