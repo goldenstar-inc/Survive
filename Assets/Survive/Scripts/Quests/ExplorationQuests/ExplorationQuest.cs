@@ -20,12 +20,15 @@ public class ExplorationQuest : IQuest
     /// Инициализация
     /// </summary>
     /// <param name="questConfig">Конфиг квеста</param>
-    public ExplorationQuest(ExplorationQuestConfig questConfig, QuestManager questManager)
+    public ExplorationQuest(ExplorationQuestConfig questConfig)
     {
         this.questConfig = questConfig;
-        this.questManager = questManager;
-
         CreateQuestZone();
+    }
+
+    public void SetQuestManager(QuestManager questManager)
+    {
+        this.questManager = questManager;    
     }
 
     /// <summary>

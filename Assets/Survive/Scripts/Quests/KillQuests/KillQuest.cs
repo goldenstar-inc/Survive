@@ -23,7 +23,7 @@ public class KillQuest : IQuest, IDisposable
     /// </summary>
     /// <param name="questManager">������, ����������� ��������</param>
     /// <param name="weaponManager">������, ����������� ������</param>
-    public KillQuest(KillQuestConfig questConfig, QuestManager questManager, WeaponManager weaponManager)
+    public KillQuest(KillQuestConfig questConfig, QuestManager questManager = null, WeaponManager weaponManager = null)
     {
         currentQuantity = 0;
         this.questConfig = questConfig;

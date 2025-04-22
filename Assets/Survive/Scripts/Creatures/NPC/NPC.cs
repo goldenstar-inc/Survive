@@ -12,6 +12,8 @@ public class NPC : MonoBehaviour, IInteractable
     [SerializeField] QuestGiver questGiver;
     [SerializeField] NPCDialogue dialogueData;
 
+    public event Action<IQuest> OnQuestGiven;
+
     public bool Interact(PlayerDataProvider interactor)
     {
         if (interactor is IDialogueProvider dialogueProvider && interactor is IQuestProvider questProvider)
@@ -19,6 +21,7 @@ public class NPC : MonoBehaviour, IInteractable
             DialogueManager dialogueManager = dialogueProvider.DialogueManager;
             QuestManager questManager = questProvider.QuestManager;
             questManager.OnQuestChosen += GiveQuest;
+            OnQuestGiven += questManager.AddQuest;
             dialogueManager.OnDialogueEnded += () => questManager.OnQuestChosen -= GiveQuest;
             dialogueManager.StartDialogue(dialogueData, this);
             return true;
@@ -26,18 +29,26 @@ public class NPC : MonoBehaviour, IInteractable
 
         return false;
     }
-    private void GiveQuest(PlayerDataProvider interactor)
+    private void GiveQuest()
     {
-        if (AreAnyQuestsAvailable(out IQuest availableQuest, interactor))
+        if (AreAnyQuestsAvailable(out IQuest availableQuest))
         {
-            QuestManager questManager = interactor.QuestManager;
-            questManager.AddQuest(availableQuest);
+            OnQuestGiven?.Invoke(availableQuest);
         }
     }
 
-    private bool AreAnyQuestsAvailable(out IQuest availableQuest, PlayerDataProvider interactor)
+    private bool AreAnyQuestsAvailable(out IQuest availableQuest)
     {
-        availableQuest = questGiver.GiveQuest(interactor);
+        availableQuest = questGiver.GiveQuest();
         return availableQuest != null;
+    }
+
+    private void OnDestroy()
+    {
+        if (questManager != null)
+    {
+        questManager.OnQuestChosen -= GiveQuest;
+    }
+        OnQuestGiven = null;
     }
 }

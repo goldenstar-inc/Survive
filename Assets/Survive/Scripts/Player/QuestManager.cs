@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class QuestManager : MonoBehaviour
 {
-    public event Action<PlayerDataProvider> OnQuestChosen;
+    public event Action OnQuestChosen;
     public event Action<IQuest> OnQuestAdded;
     public event Action<IQuest, int> OnProgressUpdated;
     public event Action<IQuest> OnQuestCompleted;
@@ -19,7 +19,7 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     public void Init()
     {
-
+        currentQuest = null;
     }
 
     /// <summary>
@@ -37,6 +37,7 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     /// <param name="quest">Квест</param>
     /// <param name="currentProgress">Текущий прогресс</param>
+    
     public void UpdateProgress(IQuest quest, int currentProgress)
     {
         OnProgressUpdated?.Invoke(quest, currentProgress);
@@ -60,9 +61,9 @@ public class QuestManager : MonoBehaviour
         return currentQuest;
     }
 
-    public void QuestChosen(PlayerDataProvider interactor)
+    public void QuestChosen()
     {
-        OnQuestChosen?.Invoke(interactor);
+        OnQuestChosen?.Invoke();
     }
 
     private void OnDestroy()
