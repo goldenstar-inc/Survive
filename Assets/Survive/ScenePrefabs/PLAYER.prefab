@@ -540,7 +540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b6c375d72fd884c892cddb5c1fd314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera2: {fileID: 4739325649131653774}
 --- !u!114 &1170609502949178461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +776,8 @@ MonoBehaviour:
   playerInteractionDetector: {fileID: 542797462289884731}
   playerPauseController: {fileID: 7641567199403349509}
   cameraFollow: {fileID: 7063358413584521747}
-  cameraTransform: {fileID: 3288950681159726879}
+  mainCamera: {fileID: 3288950681159726879}
+  minimapCamera: {fileID: 4101564526849608403}
   attackStartPoint: {fileID: 4207527484467156195}
   inventoryCapacity: 2
   questEvents: {fileID: 6375517688259816323}
@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 2082671513248018821}
   - component: {fileID: 4528386841690856097}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

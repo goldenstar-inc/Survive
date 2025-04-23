@@ -1,23 +1,31 @@
 using UnityEngine;
-using Zenject;
+using UnityEngine.Rendering;
+using Zenject.Asteroids;
 
 /// <summary>
 /// Класс, отвечающий за следование камеры за игроком
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
+    private Transform mainCamera;
+    private Transform minimapCamera;
     private float smoothTime = 0.3f;
-    private Transform cameraTransform;
+    private Vector3 targetPosition;
     private Vector3 velocity = Vector3.zero;
-    
-    public Camera camera2;
+    private float freezedZ = -10f;
+
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="cameraTransform">Transform камеры</param>
-    public void Init(Transform cameraTransform)
+    /// <param name="mainCamera">Главная камера</param>
+    /// <param name="minimapCamera">Камера мини-карты</param>
+    public void Init(
+        Transform mainCamera,
+        Transform minimapCamera
+        )
     {
-        this.cameraTransform = cameraTransform;
+        this.mainCamera = mainCamera;
+        this.minimapCamera = minimapCamera;
     }
 
     /// <summary>
@@ -25,13 +33,38 @@ public class CameraFollow : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (cameraTransform != null)
-        {
-            Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, cameraTransform.position.z);
-        
-            cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, targetPosition, ref velocity, smoothTime);
+        CalculateCurrentTargetPosition();
+        MoveMainViewCamera();
+        MoveMinimapCamera();
+    }
 
-            camera2.transform.position = Vector3.SmoothDamp(camera2.transform.position, targetPosition, ref velocity, smoothTime);
+    /// <summary>
+    /// Передвижение главной камеры
+    /// </summary>
+    private void MoveMainViewCamera()
+    {
+        if (mainCamera != null)
+        {
+            mainCamera.position = Vector3.SmoothDamp(mainCamera.position, targetPosition, ref velocity, smoothTime);
         }
+    }
+
+    /// <summary>
+    /// Передвижение камеры мини-карты
+    /// </summary>
+    private void MoveMinimapCamera()
+    {
+        if (minimapCamera != null)
+        {
+            minimapCamera.transform.position = targetPosition;
+        }
+    }
+
+    /// <summary>
+    /// Вычисление позиции цели
+    /// </summary>
+    private void CalculateCurrentTargetPosition()
+    {
+        targetPosition = new Vector3(transform.position.x, transform.position.y, freezedZ);
     }
 }

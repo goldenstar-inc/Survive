@@ -42,7 +42,8 @@ public class PlayerBootstrapper : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private CameraFollow cameraFollow;
-    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform mainCamera;
+    [SerializeField] private Transform minimapCamera;
     
     [Header("Weapon")]
     [SerializeField] private Transform attackStartPoint;
@@ -131,6 +132,12 @@ public class PlayerBootstrapper : MonoBehaviour
             return false;
         }
 
+        if (mainCamera == null || minimapCamera == null)
+        {
+            Debug.LogError("Cameras aren't properly set");
+            return false;
+        }
+
         return true;
     }
 
@@ -152,7 +159,8 @@ public class PlayerBootstrapper : MonoBehaviour
     private void InitCamera()
     {
         cameraFollow.Init(
-            cameraTransform
+            mainCamera,
+            minimapCamera
         );
     }
 

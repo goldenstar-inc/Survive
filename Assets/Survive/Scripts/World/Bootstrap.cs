@@ -1,11 +1,11 @@
 using UnityEngine;
 using static ItemConfigsLoader;
 
-public class Bootstrap : MonoBehaviour
+public class ItitializeConfigs : MonoBehaviour
 {
     [SerializeField] ItemDatabase configs;
 
-    private void Start()
+    private void Init()
     {
         Initialize(configs.Items);
     }
