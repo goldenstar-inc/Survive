@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class WorldBootstrapper : MonoBehaviour
 {
-   // [SerializeField] private QuestGiver questGiver;
-    [SerializeField] NPCBehavior npc;
     public GameObject player;
     public GameObject playerCanvas;
     void Start()
@@ -32,7 +30,6 @@ public class WorldBootstrapper : MonoBehaviour
     private void SpawnNewPlayer()
     {
         GameObject spawnedPlayer = Instantiate(player);
-        npc.player = spawnedPlayer.transform;
         PlayerBootstrapper playerBootstrapper = spawnedPlayer.GetComponentInChildren<PlayerBootstrapper>();
         playerBootstrapper.Init();
 

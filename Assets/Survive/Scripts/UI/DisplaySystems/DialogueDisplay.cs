@@ -24,6 +24,7 @@ public class DialogueDisplay : MonoBehaviour
 
     private QuestManager questManager;
     private NPC currentNpc;
+    private Action callback;
 
     public void Init(
         Button closeButton,
@@ -56,10 +57,12 @@ public class DialogueDisplay : MonoBehaviour
         nextLineButton.onClick.AddListener(NextLine);
     }
 
-    private void StartDialogue(NPCDialogue dialogueData, NPC currentNpc)
+    private void StartDialogue(NPCDialogue dialogueData, NPC currentNpc, Action callback)
     {
         this.dialogueData = dialogueData;
         this.currentNpc = currentNpc;
+        this.callback = callback;
+        
         dialogueIndex = 0;
         isDialogueActive = true;
 
@@ -164,7 +167,7 @@ public class DialogueDisplay : MonoBehaviour
     {
         if (isQuestTaken)
         {
-            //questManager?.QuestChosen();
+            callback();
         }
 
         if (nextIndex == -1)

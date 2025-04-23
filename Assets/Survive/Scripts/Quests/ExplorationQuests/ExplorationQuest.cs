@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// �����, �������������� �����
 /// </summary>
-public class ExplorationQuest : IQuest
+public class ExplorationQuest : IQuest, IDisposable
 {
     private ExplorationQuestConfig questConfig;
 
@@ -20,15 +20,12 @@ public class ExplorationQuest : IQuest
     /// Инициализация
     /// </summary>
     /// <param name="questConfig">Конфиг квеста</param>
-    public ExplorationQuest(ExplorationQuestConfig questConfig)
+    public ExplorationQuest(ExplorationQuestConfig questConfig, QuestManager questManager)
     {
         this.questConfig = questConfig;
+        this.questManager = questManager;
+        OnCompleted += questManager.CompleteQuest;
         CreateQuestZone();
-    }
-
-    public void SetQuestManager(QuestManager questManager)
-    {
-        this.questManager = questManager;    
     }
 
     /// <summary>
@@ -48,9 +45,13 @@ public class ExplorationQuest : IQuest
     /// <summary>
     /// ����� ���������� ������
     /// </summary>
-    public void CompleteQuest()
+    public void CompleteQuest(IQuest quest)
     {
         OnCompleted?.Invoke();
-        questManager.CompleteQuest();
+    }
+
+    public void Dispose()
+    {
+        OnCompleted = null;
     }
 }

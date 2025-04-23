@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529d0f5e82299e449afd279255171581, type: 3}
-  m_Name: MedicineDelivery
+  m_Script: {fileID: 11500000, guid: 57ce44729b7ea2a42ae9c34c28c74ee3, type: 3}
+  m_Name: KillQuestConfig
   m_EditorClassIdentifier: 
-  Name: AVITAMINOSIS
-  Description: Get some vitamins
-  MaxProgress: 3
+  Name: RAMPAGE!
+  Description: Damn boy
+  MaxProgress: 1
   QuestComplete: {fileID: 8300000, guid: 040d21d1c87e48c47b8abae0effe0bda, type: 3}
-  questItem: 6
+  QuestTargetType: 7

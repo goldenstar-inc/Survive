@@ -23,11 +23,12 @@ public class KillQuest : IQuest, IDisposable
     /// </summary>
     /// <param name="questManager">������, ����������� ��������</param>
     /// <param name="weaponManager">������, ����������� ������</param>
-    public KillQuest(KillQuestConfig questConfig, QuestManager questManager = null, WeaponManager weaponManager = null)
+    public KillQuest(KillQuestConfig questConfig, QuestManager questManager, WeaponManager weaponManager)
     {
         currentQuantity = 0;
         this.questConfig = questConfig;
         this.questManager = questManager;
+        OnCompleted += questManager.CompleteQuest;
         this.weaponManager = weaponManager;
         this.weaponManager.OnKill += UpdateProgress;
     }
@@ -48,17 +49,16 @@ public class KillQuest : IQuest, IDisposable
 
         if (currentQuantity == maxProgress)
         {
-            CompleteQuest();
+            CompleteQuest(this);
         }
     }
 
     /// <summary>
     /// ����� ���������� ������
     /// </summary>
-    public void CompleteQuest()
+    public void CompleteQuest(IQuest quest)
     {
         OnCompleted?.Invoke();
-        questManager.CompleteQuest();
         Dispose();
     }
 
@@ -67,9 +67,15 @@ public class KillQuest : IQuest, IDisposable
     /// </summary>
     public void Dispose()
     {
+        OnCompleted = null;
+        
         if (weaponManager != null)
         {
             weaponManager.OnKill -= UpdateProgress;
+        }
+        if (questManager != null)
+        {
+            questManager.OnQuestCompleted -= CompleteQuest;
         }
     }
 }

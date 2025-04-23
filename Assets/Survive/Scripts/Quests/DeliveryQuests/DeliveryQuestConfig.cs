@@ -7,5 +7,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DeliveryQuestConfig", menuName = "Quests/Delivery Quest Config")]
 public class DeliveryQuestConfig : QuestConfig
 {
-    [SerializeField] public PickableItems QuestItem { get; }
+    [SerializeField] public PickableItems QuestItem;
 }

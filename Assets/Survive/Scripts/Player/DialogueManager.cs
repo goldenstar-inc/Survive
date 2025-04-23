@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    public event Action<NPCDialogue, NPC> OnDialogueStarted;
+    public event Action<NPCDialogue, NPC, Action> OnDialogueStarted;
     public event Action OnDialogueEnded;
     public void Init() { }
-    public void StartDialogue(NPCDialogue dialogueData, NPC npc)
+    public void StartDialogue(NPCDialogue dialogueData, NPC npc, Action callBack)
     {
-        OnDialogueStarted?.Invoke(dialogueData, npc);
+        OnDialogueStarted?.Invoke(dialogueData, npc, callBack);
     }
 
     public void EndDialogue()

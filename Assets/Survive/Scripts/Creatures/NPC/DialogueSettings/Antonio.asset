@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Antonio
   m_EditorClassIdentifier: 
   Name: 3
-  Portrait: {fileID: 2660883679416939355, guid: f25b9c0adf5eb2f42b6609304e86afcf, type: 3}
+  Portrait: {fileID: 1776169431711068629, guid: f25b9c0adf5eb2f42b6609304e86afcf, type: 3}
   DialogueLines:
   - "\u041C\u0430\u043C\u043C\u0430 \u043C\u0438\u044F! \u041A\u0442\u043E \u0442\u0430\u043A\u043E\u0439
     \u0438\u0441\u0445\u0443\u0434\u0430\u0432\u0448\u0438\u0439 \u0445\u043E\u0434\u0438\u0442
@@ -80,3 +80,4 @@ MonoBehaviour:
     - "\u041F\u0440\u0438\u0434\u0443"
     - "\u041D\u0435 \u043D\u0435 \u0445\u043E\u0447\u0443"
     nextDialogueIndexes: 0c0000000d000000
+    isTakeQuestOption: 0100

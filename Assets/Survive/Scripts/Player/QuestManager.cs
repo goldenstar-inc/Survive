@@ -12,14 +12,15 @@ public class QuestManager : MonoBehaviour
     public event Action<IQuest> OnQuestAdded;
     public event Action<IQuest, int> OnProgressUpdated;
     public event Action<IQuest> OnQuestCompleted;
+    public QuestEvents questEvents { get; private set; }
     private IQuest currentQuest;
 
     /// <summary>
     /// Инициализация
     /// </summary>
-    public void Init()
+    public void Init(QuestEvents questEvents)
     {
-        currentQuest = null;
+        this.questEvents = questEvents;
     }
 
     /// <summary>

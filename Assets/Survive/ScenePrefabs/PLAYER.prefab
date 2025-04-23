@@ -345,10 +345,11 @@ GameObject:
   - component: {fileID: 5502003391784471916}
   - component: {fileID: 728358649103248391}
   - component: {fileID: 5429371008183437115}
+  - component: {fileID: 4958877223029956064}
+  - component: {fileID: 6375517688259816323}
   - component: {fileID: 1069411224918777790}
   - component: {fileID: 8896625041425756085}
   - component: {fileID: 6205479062810160229}
-  - component: {fileID: 4958877223029956064}
   m_Layer: 0
   m_Name: Model
   m_TagString: Player
@@ -670,6 +671,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f77feb23beff5a4284e49ea83fe0ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4958877223029956064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881584487222497953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee45c6a6dbfc6764593f128ccc8caf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6375517688259816323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881584487222497953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a94623e4d68f649855eea08f699599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1069411224918777790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,18 +776,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 3288950681159726879}
   attackStartPoint: {fileID: 4207527484467156195}
   inventoryCapacity: 2
---- !u!114 &4958877223029956064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881584487222497953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee45c6a6dbfc6764593f128ccc8caf25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  questEvents: {fileID: 6375517688259816323}
 --- !u!1 &5501620430452021061
 GameObject:
   m_ObjectHideFlags: 0

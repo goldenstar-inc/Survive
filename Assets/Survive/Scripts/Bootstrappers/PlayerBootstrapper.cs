@@ -48,6 +48,9 @@ public class PlayerBootstrapper : MonoBehaviour
     [SerializeField] private Transform attackStartPoint;
     [SerializeField] private int inventoryCapacity;
 
+    [Header("Mediators")]
+    [SerializeField] private QuestEvents questEvents;
+
     /// <summary>
     /// Инициализация
     /// </summary>
@@ -62,7 +65,6 @@ public class PlayerBootstrapper : MonoBehaviour
         InitAmmo();
         InitMoney();
         InitWeapon();
-        InitQuest();
         InitDialogue();
         InitPlayerData();
         InitSoundHandler();
@@ -71,6 +73,8 @@ public class PlayerBootstrapper : MonoBehaviour
         InitAnimation();
         InitInventory();
         InitInteraction();
+        InitQuestEvents();
+        InitQuest();
     }
 
 
@@ -216,17 +220,6 @@ public class PlayerBootstrapper : MonoBehaviour
     }
 
     /// <summary>
-    /// Инициализация контроллера квестов
-    /// </summary>
-    private void InitQuest()
-    {
-        questManager.Init(
-            // playerInventoryController,
-            // weaponManager
-            );
-    }
-
-    /// <summary>
     /// Инициализация менеджера диалога
     /// </summary>
     private void InitDialogue()
@@ -331,5 +324,25 @@ public class PlayerBootstrapper : MonoBehaviour
             playerData,
             playerInventoryController
             );
+    }
+
+    /// <summary>
+    /// Инициализация квестовых событий игрока
+    /// </summary>
+    public void InitQuestEvents()
+    {
+        questEvents.Init(
+            playerInventoryController
+            );
+    }
+
+    /// <summary>
+    /// Инициализация контроллера квестов
+    /// </summary>
+    private void InitQuest()
+    {
+        questManager.Init(
+            questEvents
+        );
     }
 }

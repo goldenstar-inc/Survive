@@ -11,12 +11,15 @@ public class QuestField : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out QuestManager questManager))
+        if (collision != null)
         {
-            if (questManager == interactor)
+            if (collision.gameObject.TryGetComponent(out QuestManager questManager))
             {
-                questManager.CompleteQuest();
-                Destroy(gameObject);
+                if (questManager == interactor)
+                {
+                    questManager.CompleteQuest();
+                    Destroy(gameObject);
+                }
             }
         }
     }
