@@ -36,7 +36,8 @@ public class DialogueDisplay : MonoBehaviour
         Transform choiceContainer,
         GameObject choiceButtonPrefab,
         DialogueManager dialogueManager,
-        QuestManager questManager
+        QuestManager questManager,
+        Sprite interactorPortrait
     )
     {
         this.closeButton = closeButton;
@@ -49,10 +50,11 @@ public class DialogueDisplay : MonoBehaviour
         this.choiceButtonPrefab = choiceButtonPrefab;
         this.dialogueManager = dialogueManager;
         this.questManager = questManager;
+        this.interactorPortrait = interactorPortrait;
 
         dialogueManager.OnDialogueStarted += StartDialogue;
         dialogueManager.OnDialogueEnded += EndDialogue;
-
+        
         closeButton.onClick.AddListener(() => dialogueManager?.EndDialogue());
         nextLineButton.onClick.AddListener(NextLine);
     }
@@ -62,13 +64,14 @@ public class DialogueDisplay : MonoBehaviour
         this.dialogueData = dialogueData;
         this.currentNpc = currentNpc;
         this.callback = callback;
-        
+
         dialogueIndex = 0;
         isDialogueActive = true;
 
         dialoguePanel.SetActive(true);
         PauseController.SetPause(true);
-
+        
+        ClearChoices();
         DisplayCurrentLine();
         UpdateSpeakerUI();
     }

@@ -45,15 +45,15 @@ public class BuyZone : MonoBehaviour, IInteractable
     /// </summary>
     public bool Interact(PlayerDataProvider interactor)
     {
-        if (interactor != null)
+        if (interactor != null && interactor is IMoneyProvider moneyProvider)
         {
-            MoneyHandler playerMoneyHandler = interactor.MoneyHandler;
+            MoneyHandler playerMoneyHandler = moneyProvider.MoneyHandler;
 
             if (playerMoneyHandler != null)
             {
                 if (playerMoneyHandler.GetCurrentBalance() >= ItemPrice)
                 {
-                    playerMoneyHandler.Pay(ItemPrice);
+                    playerMoneyHandler.Spend(ItemPrice);
                     DropLoot();
                     interactor.SoundController.PlayAudioClip(dealerSpeech);
                     return true;

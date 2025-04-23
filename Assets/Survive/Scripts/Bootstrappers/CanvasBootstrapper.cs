@@ -11,6 +11,7 @@ public class CanvasBootstrapper : MonoBehaviour
     [Header("Display systems")]
     [SerializeField] HealthDisplay healthDisplay;
     [SerializeField] AmmoDisplay ammoDisplay;
+    [SerializeField] MoneyDisplay moneyDisplay;
     [SerializeField] InventoryDisplay inventoryDisplay;
     [SerializeField] QuestDisplay questDisplay;
     [SerializeField] DialogueDisplay dialogueDisplay;
@@ -24,6 +25,7 @@ public class CanvasBootstrapper : MonoBehaviour
     [Header("Player Bar components")]
     [SerializeField] Slider healthBar;
     [SerializeField] TextMeshProUGUI ammoAmountPlaceholder;
+    [SerializeField] TextMeshProUGUI balancePlaceholder;
 
     [Header("Quest components")]
     [SerializeField] TextMeshProUGUI questNamePlaceholder;
@@ -38,15 +40,14 @@ public class CanvasBootstrapper : MonoBehaviour
     [SerializeField] GameObject choiceButtonPrefab;
     [SerializeField] Button closeButton;
     [SerializeField] Button nextLineButton;
+    [SerializeField] Sprite interactorPortrait;
 
     [Header("Minimap")]
     [SerializeField] RawImage minimapImage;
 
-    // 👇 ДОБАВЛЕНО: QuestGiver
-    private QuestGiver questGiver;
-
     private HealthManager healthManager;
     private AmmoHandler ammoHandler;
+    private MoneyHandler moneyHandler;
     private Camera renderCamera;
     private InventoryController inventoryController;
     private QuestManager questManager;
@@ -58,29 +59,30 @@ public class CanvasBootstrapper : MonoBehaviour
     public void Init(
         HealthManager healthManager,
         AmmoHandler ammoHandler,
+        MoneyHandler moneyHandler,
         Camera renderCamera,
         InventoryController inventoryController,
         QuestManager questManager,
-        DialogueManager dialogueManager,
-        QuestGiver questGiver // ДОБАВЛЕНО
+        DialogueManager dialogueManager
         )
     {
         this.healthManager = healthManager;
         this.ammoHandler = ammoHandler;
+        this.moneyHandler = moneyHandler;
         this.renderCamera = renderCamera;
         this.inventoryController = inventoryController;
         this.questManager = questManager;
         this.dialogueManager = dialogueManager;
-        this.questGiver = questGiver; // ДОБАВЛЕНО
 
         if (!Validate()) return;
 
         InitCamera();
         InitHealthDisplay();
         InitAmmoDisplay();
+        InitMoneyDisplay();
         InitInventoryDisplay();
         InitQuestDisplay();
-        InitDialogueDisplay(); // QuestGiver будет передан сюда
+        InitDialogueDisplay();
     }
 
     private bool Validate()
@@ -99,13 +101,19 @@ public class CanvasBootstrapper : MonoBehaviour
 
         if (healthDisplay == null)
         {
-            Debug.LogError("Health display system isn't loaded correctly");
+            Debug.LogError("HealthDisplay system isn't loaded correctly");
             return false;
         }
 
         if (ammoDisplay == null)
         {
-            Debug.LogError("Ammo display system isn't loaded correctly");
+            Debug.LogError("AmmoDisplay system isn't loaded correctly");
+            return false;
+        }
+
+        if (moneyDisplay == null)
+        {
+            Debug.LogError("MoneyDisplay system isn't loaded correctly");
             return false;
         }
 
@@ -118,6 +126,12 @@ public class CanvasBootstrapper : MonoBehaviour
         if (ammoHandler == null)
         {
             Debug.LogError("AmmoHandler not loaded");
+            return false;
+        }
+
+        if (moneyHandler == null)
+        {
+            Debug.LogError("MoneyHandler not loaded");
             return false;
         }
 
@@ -193,6 +207,14 @@ public class CanvasBootstrapper : MonoBehaviour
         );
     }
 
+    private void InitMoneyDisplay()
+    {
+        moneyDisplay.Init(
+            moneyHandler,
+            balancePlaceholder
+        );
+    }
+
     private void InitInventoryDisplay()
     {
         inventoryDisplay.Init(
@@ -225,7 +247,8 @@ public class CanvasBootstrapper : MonoBehaviour
             choiceContainer,
             choiceButtonPrefab,
             dialogueManager,
-            questManager    //  И QuestManager
+            questManager,
+            interactorPortrait
         );
     }
 }

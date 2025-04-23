@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class QuestDisplay : MonoBehaviour
         questManager.OnQuestAdded += AddQuest;
         questManager.OnProgressUpdated += UpdateProgress;
         questManager.OnQuestCompleted += CompleteQuest;
+
+        ClearQuestBar();
     }
 
     /// <summary>
@@ -63,6 +66,13 @@ public class QuestDisplay : MonoBehaviour
     {
         questNamePlaceholder.text = "DONE!";
         questProgressPlaceholder.text = $"<s>{questProgressPlaceholder.text}</s>";
+        Invoke(nameof(ClearQuestBar), 3f);
+    }
+
+    private void ClearQuestBar()
+    {
+        questNamePlaceholder.text = string.Empty;
+        questProgressPlaceholder.text = string.Empty;
     }
 
     /// <summary>

@@ -7,7 +7,6 @@ using UnityEngine.Animations;
 public class PlayerBootstrapper : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI currentBalancePlaceholder;
     [SerializeField] private TextMeshProUGUI nicknamePlaceholder;
     
     [Header("Nickname")]
@@ -39,6 +38,7 @@ public class PlayerBootstrapper : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private InventoryController playerInventoryController;
     [SerializeField] private PlayerInteractionDetector playerInteractionDetector;
+    [SerializeField] private PlayerPauseController playerPauseController;
 
     [Header("Camera")]
     [SerializeField] private CameraFollow cameraFollow;
@@ -131,12 +131,6 @@ public class PlayerBootstrapper : MonoBehaviour
             return false;
         }
 
-        if (currentBalancePlaceholder == null)
-        {
-            Debug.Log("The CurrentBalancePlaceholder isn't properly set");
-            return true;
-        }
-
         return true;
     }
 
@@ -202,9 +196,7 @@ public class PlayerBootstrapper : MonoBehaviour
     /// </summary>
     private void InitMoney()
     {
-        moneyHandler.Init(
-            currentBalancePlaceholder
-        );
+        moneyHandler.Init();
     }
 
     /// <summary>
@@ -224,7 +216,9 @@ public class PlayerBootstrapper : MonoBehaviour
     /// </summary>
     private void InitDialogue()
     {
-        dialogueManager.Init();  
+        dialogueManager.Init(
+            playerPauseController
+        );  
     }
 
     /// <summary>
@@ -311,7 +305,8 @@ public class PlayerBootstrapper : MonoBehaviour
     {
         playerInventoryController.Init(
             inventoryCapacity,
-            playerData
+            playerData,
+            playerPauseController
         );
     }
 

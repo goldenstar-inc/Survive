@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6628d7893923554c80ca247b66493bf, type: 3}
   m_Name: DeliveryQuestConfig
   m_EditorClassIdentifier: 
-  Name: Medkits
-  Description: Find 3 medkits!
+  Name: "\u041B\u0435\u043A\u0430\u0440\u044C"
+  Description: "\u041D\u0430\u0439\u0442\u0438 \u0430\u043F\u0442\u0435\u0447\u043A\u0438"
   MaxProgress: 3
   QuestComplete: {fileID: 8300000, guid: 040d21d1c87e48c47b8abae0effe0bda, type: 3}
   QuestItem: 4

@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UI;
-using System.Linq;
-using System.Security.Cryptography;
 
 public class NPC : MonoBehaviour, IInteractable
 {

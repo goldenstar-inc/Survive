@@ -8,7 +8,6 @@ public class DeliveryQuest : IQuest, IDisposable
 {
     public event Action OnCompleted;
     public QuestConfig questConfig;
-    private int currentQuantity;
     private int maxProgress => questConfig.MaxProgress;
     private PickableItems questType;
     public QuestConfig QuestConfig => questConfig;
@@ -20,11 +19,12 @@ public class DeliveryQuest : IQuest, IDisposable
     /// <param name="questConfig">Конфиг квеста</param>
     public DeliveryQuest(DeliveryQuestConfig questConfig, PlayerDataProvider playerData, QuestEvents questEvents)
     {
-        currentQuantity = 0;
         this.questConfig = questConfig;
         this.questEvents = questEvents;
         questType = questConfig.QuestItem;
         questEvents.OnItemPickedUp += UpdateProgress;
+        questEvents.OnItemDropped += UpdateProgress;
+        questEvents.OnItemUsed += UpdateProgress;
 
         if (playerData is IQuestProvider questProvider)
         {
@@ -34,11 +34,10 @@ public class DeliveryQuest : IQuest, IDisposable
         }
     }
 
-    public void UpdateProgress(int quantity, PickableItems itemType)
+    public void UpdateProgress(int currentQuantity, PickableItems itemType)
     {
         if (questType == itemType)
         {
-            currentQuantity += quantity;
             questManager?.UpdateProgress(this, currentQuantity);
             if (currentQuantity >= maxProgress)
             {
@@ -63,6 +62,8 @@ public class DeliveryQuest : IQuest, IDisposable
         if (questEvents != null)
         {
             questEvents.OnItemPickedUp -= UpdateProgress;
+            questEvents.OnItemDropped -= UpdateProgress;
+            questEvents.OnItemUsed -= UpdateProgress;
         }
     }
 }

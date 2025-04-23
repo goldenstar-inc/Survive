@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e4d6b1bce98f04ba631bd138dbbc22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questGiver: {fileID: 0}
   dialogueData: {fileID: 11400000, guid: 6c2baa8b972dccd488055468e7b91a6d, type: 2}
-  activeQuests: []
 --- !u!61 &3325201783637009409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 2021552714715255174}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.12, y: -0.43, z: -0.0531639}
+  m_LocalPosition: {x: 7.096, y: -0.294, z: -0.0531639}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

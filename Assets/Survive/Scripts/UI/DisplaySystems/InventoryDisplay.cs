@@ -84,7 +84,7 @@ public class InventoryDisplay : MonoBehaviour
     /// </summary>
     /// <param name="index">Индекс</param>
     /// <param name="quantity">Новое количество предмета</param>
-    private void DecreaseItemAmount(int index, int quantity)
+    private void DecreaseItemAmount(int index, int quantity, InventoryItemData itemData)
     {
         if (!ValidateIndex(index)) return;
         if (!ValidateQuantity(quantity)) return;

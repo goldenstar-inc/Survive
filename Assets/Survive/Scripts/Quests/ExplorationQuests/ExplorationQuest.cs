@@ -10,7 +10,8 @@ public class ExplorationQuest : IQuest, IDisposable
 
     public event Action OnCompleted;
     private QuestManager questManager;
-
+    private int currentProgress;
+    private int maxProgress => questConfig.MaxProgress;
     private float x => questConfig.X;
     private float y => questConfig.Y;
     private float radius => questConfig.Radius;
@@ -39,7 +40,17 @@ public class ExplorationQuest : IQuest, IDisposable
         questCollider.isTrigger = true;
         questZone.transform.position = new Vector2(x, y);
         QuestField questField = questZone.AddComponent<QuestField>();
-        questField.Init(questManager);
+        questField.Init(this);
+    }
+
+    public void UpdateProgress()
+    {
+        currentProgress += 1;
+        questManager?.UpdateProgress(this, currentProgress);
+        if (currentProgress >= maxProgress)
+        {
+            CompleteQuest(this);
+        }
     }
 
     /// <summary>

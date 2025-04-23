@@ -36,6 +36,7 @@ public class WorldBootstrapper : MonoBehaviour
         Camera camera = spawnedPlayer.GetComponentInChildren<Camera>();
         HealthManager healthManager = spawnedPlayer.GetComponentInChildren<HealthManager>();
         AmmoHandler ammoHandler = spawnedPlayer.GetComponentInChildren<AmmoHandler>();
+        MoneyHandler moneyHandler = spawnedPlayer.GetComponentInChildren<MoneyHandler>();
         InventoryController inventoryController = spawnedPlayer.GetComponentInChildren<InventoryController>();
         QuestManager questManager = spawnedPlayer.GetComponentInChildren<QuestManager>();
         DialogueManager dialogueManager = spawnedPlayer.GetComponentInChildren<DialogueManager>();
@@ -43,9 +44,7 @@ public class WorldBootstrapper : MonoBehaviour
         
         GameObject spawnedCanvas = Instantiate(playerCanvas);
         CanvasBootstrapper canvasBootstrapper = spawnedCanvas.GetComponentInChildren<CanvasBootstrapper>();
-        QuestGiver questGiver = GetComponentInChildren<QuestGiver>();
 
-        canvasBootstrapper.Init(healthManager, ammoHandler, camera, inventoryController, questManager, dialogueManager, questGiver);
-
+        canvasBootstrapper.Init(healthManager, ammoHandler, moneyHandler, camera, inventoryController, questManager, dialogueManager);
     }
 }

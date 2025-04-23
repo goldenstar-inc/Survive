@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class QuestField : MonoBehaviour
 {
-    private QuestManager interactor;
+    private ExplorationQuest fieldQuest;
 
-    public void Init(QuestManager interactor)
+    public void Init(ExplorationQuest fieldQuest)
     {
-        this.interactor = interactor;
+        this.fieldQuest = fieldQuest;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -15,9 +15,9 @@ public class QuestField : MonoBehaviour
         {
             if (collision.gameObject.TryGetComponent(out QuestManager questManager))
             {
-                if (questManager == interactor)
+                if (questManager.GetCurrentQuest() == fieldQuest)
                 {
-                    questManager.CompleteQuest();
+                    fieldQuest.UpdateProgress();
                     Destroy(gameObject);
                 }
             }

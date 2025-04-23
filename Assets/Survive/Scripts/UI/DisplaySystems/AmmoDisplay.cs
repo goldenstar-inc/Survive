@@ -20,7 +20,7 @@ public class AmmoDisplay : MonoBehaviour
         this.ammoHandler = ammoHandler;
         ammoHandler.OnConsume += UpdateAmmoBar;
         ammoHandler.OnCollect += UpdateAmmoBar;
-        UpdateAmmoBar(0, ammoHandler.maxAmmo);
+        UpdateAmmoBar(ammoHandler.currentAmmo, ammoHandler.maxAmmo);
     }
     public void UpdateAmmoBar(int currentAmmo, int maxAmmo)
     {

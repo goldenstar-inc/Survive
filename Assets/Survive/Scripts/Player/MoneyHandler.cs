@@ -9,51 +9,36 @@ using UnityEngine;
 /// </summary>
 public class MoneyHandler : MonoBehaviour
 {
-    /// <summary>
-    /// Текстовое поле баланса игрока
-    /// </summary>
-    private TextMeshProUGUI currentBalancePlaceholder;
-
-    /// <summary>
-    /// Денежный баланс
-    /// </summary>
-    private int Balance; 
+    public event Action<int> OnBalanceChanged;
+    private int currentBalance; 
 
     /// <summary>
     /// Метод, который вызывается во время загрузки экземпляра сценария
     /// </summary>
-    public void Init(TextMeshProUGUI currentBalancePlaceholder)
+    public void Init()
     {
-        this.currentBalancePlaceholder = currentBalancePlaceholder;
-        Balance = 0;
-        UpdateUI();
+        currentBalance = 0;
     }
 
     /// <summary>
-    /// Метод, вызывающийся для обновления текущего баланса в интерфейсе
+    /// Подбор денег
     /// </summary>
-    public void UpdateUI() 
+    /// <param name="amount">Количество</param>
+    public void Collect(int amount) 
     {
-        //currentBalancePlaceholder.text = $"{Balance}";
+        currentBalance += amount;
+        OnBalanceChanged?.Invoke(currentBalance);
     }
 
     /// <summary>
-    /// Метод, вызывающийся для добавления денег к балансу
+    /// Трата определенного количества денег
     /// </summary>
-    public void AddMoney(int amount) 
+    /// <param name="amount">Количество</param>
+    public void Spend(int amount)
     {
-        Balance += amount;
-        UpdateUI();
-    }
-
-    /// <summary>
-    /// Метод, вызывающийся для оплаты 
-    /// </summary>
-    public void Pay(int amount)
-    {
-        Balance -= amount;
-        Balance = Math.Max(0, Balance);
-        UpdateUI();
+        currentBalance -= amount;
+        currentBalance = Math.Max(0, currentBalance);
+        OnBalanceChanged?.Invoke(currentBalance);
     }
 
     /// <summary>
@@ -62,6 +47,6 @@ public class MoneyHandler : MonoBehaviour
     /// <returns>Текущий денежный баланс</returns>
     public int GetCurrentBalance()
     {
-        return Balance;
+        return currentBalance;
     }
 }

@@ -13,7 +13,7 @@ public class Money : PickableItem
             
             if (moneyHandler != null)
             {
-                moneyHandler.AddMoney(Random.Range(20, 50));
+                moneyHandler.Collect(Random.Range(20, 50));
                 Destroy(gameObject);
 
                 if (interactor is ISoundProvider soundProvider)
