@@ -9,7 +9,7 @@ public class NPCBehavior : MonoBehaviour
 {
     public Transform player;
 
-    private HealthManager healthManager;
+    private HealthHandler healthManager;
     private float detectionRadius = 10f;
     private float moveSpeed = 3f;
     public int health => healthManager.GetCurrrentHealth();
@@ -21,7 +21,7 @@ public class NPCBehavior : MonoBehaviour
     private List<Task> allTasks = new();
     private Task currentTask;
 
-    public void Init(HealthManager healthManager, float moveSpeed, float detectionRadius)
+    public void Init(HealthHandler healthManager, float moveSpeed, float detectionRadius)
     {
         this.healthManager = healthManager;
         this.moveSpeed = moveSpeed;

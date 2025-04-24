@@ -3,9 +3,7 @@ using static ItemConfigsLoader;
 
 public class ItitializeConfigs : MonoBehaviour
 {
-    [SerializeField] ItemDatabase configs;
-
-    private void Init()
+    public void Init(ItemDatabase configs)
     {
         Initialize(configs.Items);
     }

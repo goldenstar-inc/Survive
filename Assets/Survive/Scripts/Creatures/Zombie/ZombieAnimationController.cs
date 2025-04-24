@@ -2,7 +2,7 @@
 
 public class ZombieAnimationController : MonoBehaviour
 {
-    private HealthManager zombieHealthManager;
+    private HealthHandler zombieHealthManager;
 
     /// <summary>
     /// Аниматор, отвечающий за анимирование зомби
@@ -12,7 +12,7 @@ public class ZombieAnimationController : MonoBehaviour
     /// <summary>
     /// Метод, вызывающийся при старте объекта
     /// </summary>
-    public void Init(HealthManager healthManager, Animator zombieAnimator)
+    public void Init(HealthHandler healthManager, Animator zombieAnimator)
     {
         healthManager.OnTakeDamage += EnableDamagedAnimation;
         this.zombieAnimator = zombieAnimator;

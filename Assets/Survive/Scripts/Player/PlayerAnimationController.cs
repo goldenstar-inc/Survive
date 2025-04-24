@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 /// </summary>
 public class PlayerAnimationController : MonoBehaviour
 {
-    private HealthManager healthManager;
+    private HealthHandler healthManager;
 
     private WeaponManager weaponManager;
 
@@ -29,7 +29,7 @@ public class PlayerAnimationController : MonoBehaviour
     /// <param name="animator"></param>
     /// <param name="weaponManager"></param>
     /// <param name="healthManager"></param>
-    public void Init(Animator animator, WeaponManager weaponManager, HealthManager healthManager)
+    public void Init(Animator animator, WeaponManager weaponManager, HealthHandler healthManager)
     {
         this.animator = animator;
         this.weaponManager = weaponManager;

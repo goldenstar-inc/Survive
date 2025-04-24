@@ -937,7 +937,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1527
+    m_Bits: 1399
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1383,11 +1383,11 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1920
+    m_Bits: 6016
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6eb8318273b9afa4e88dd0a67f427de4, type: 2}
   m_TargetDisplay: 0
@@ -1453,7 +1453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9062999633947536291}
   - component: {fileID: 7377726946380165920}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,8 +1469,8 @@ Transform:
   m_GameObject: {fileID: 9130360715167373764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.261, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8126835769866081017}
@@ -1516,8 +1516,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1458016923
-  m_SortingLayer: 9
+  m_SortingLayerID: -1391925931
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 7905874349316626514, guid: 985264cbafdedc849abaa39abfbead8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

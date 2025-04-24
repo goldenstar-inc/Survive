@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7296760608452934168}
   - component: {fileID: 4036474652010346977}
   - component: {fileID: 3325201783637009409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7881097535689997200}
   - component: {fileID: 2019854726279089483}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: MinimmapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,9 +174,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021552714715255174}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5812016597070756108}
@@ -222,8 +222,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1458016923
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 624496376838767969, guid: 26a858f393214164f81649132aa5a25c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

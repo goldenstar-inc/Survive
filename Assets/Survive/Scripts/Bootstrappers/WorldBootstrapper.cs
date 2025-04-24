@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -11,6 +12,10 @@ public class WorldBootstrapper : MonoBehaviour
     [SerializeField] AudioSource worldAudioSource;
     [SerializeField] GameObject worldEvents;    
 
+    [Header("Configs")]
+    [SerializeField] ItitializeConfigs configLoader; 
+    [SerializeField] ItemDatabase database;   
+
     [Header("Player")]
     [SerializeField] GameObject player;
 
@@ -19,6 +24,7 @@ public class WorldBootstrapper : MonoBehaviour
 
     [Header("NPCs")]
     [SerializeField] GameObject[] NPCs;
+    [SerializeField] Vector3[] spawnPoints;
 
     [Header("BuyZones")]
     [SerializeField] GameObject[] buyZones;
@@ -27,19 +33,27 @@ public class WorldBootstrapper : MonoBehaviour
     {
         if (!ValidatePrefabs()) return;
 
+        configLoader.Init(database);
+
         CreateNewWorld();
         SpawnWorldLight();
         SpawnWorldAudioSource();
         SpawnWorldEvents();
         SpawnNewPlayer();
         
-        foreach (GameObject npc in NPCs)
+        for (int i = 0; i < NPCs.Length; i++)
         {
-            Spawn(npc);
+            Spawn(NPCs[i], spawnPoints[i], Quaternion.identity);
         }
     }
     private bool ValidatePrefabs()
     {
+        if (configLoader == null || database == null)
+        {
+            Debug.LogError("Configs not loaded");
+            return false;
+        }
+        
         if (world == null)
         {
             Debug.LogError("World isn't loaded");
@@ -97,7 +111,7 @@ public class WorldBootstrapper : MonoBehaviour
         PlayerBootstrapper playerBootstrapper = spawnedPlayer.GetComponentInChildren<PlayerBootstrapper>();
         playerBootstrapper.Init();
         Camera camera = spawnedPlayer.GetComponentInChildren<Camera>();
-        HealthManager healthManager = spawnedPlayer.GetComponentInChildren<HealthManager>();
+        HealthHandler healthManager = spawnedPlayer.GetComponentInChildren<HealthHandler>();
         AmmoHandler ammoHandler = spawnedPlayer.GetComponentInChildren<AmmoHandler>();
         MoneyHandler moneyHandler = spawnedPlayer.GetComponentInChildren<MoneyHandler>();
         InventoryController inventoryController = spawnedPlayer.GetComponentInChildren<InventoryController>();
@@ -111,26 +125,26 @@ public class WorldBootstrapper : MonoBehaviour
 
     private void CreateNewWorld()
     {
-        Spawn(world);
+        Spawn(world, Vector2.zero, Quaternion.identity);
     }
 
     private void SpawnWorldLight()
     {
-        Spawn(worldLight);
+        Spawn(worldLight, Vector2.zero, Quaternion.identity);
     }
 
     private void SpawnWorldAudioSource()
     {
-        Spawn(worldAudioSource);
+        Spawn(worldAudioSource, Vector2.zero, Quaternion.identity);
     }
 
     private void SpawnWorldEvents()
     {
-        Spawn(worldEvents);
+        Spawn(worldEvents, Vector2.zero, Quaternion.identity);
     }
 
-    private void Spawn(Object objectToSpawn)
+    private void Spawn(Object objectToSpawn, Vector3 position, Quaternion rotation)
     {
-        Instantiate(objectToSpawn);
+        Instantiate(objectToSpawn, position, rotation);
     }
 }

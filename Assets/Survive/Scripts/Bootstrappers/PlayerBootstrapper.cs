@@ -15,7 +15,7 @@ public class PlayerBootstrapper : MonoBehaviour
 
     [Header("Player Data")]
     [SerializeField] private PlayerDataProvider playerData;
-    [SerializeField] private HealthManager healthManager;
+    [SerializeField] private HealthHandler healthManager;
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private AmmoHandler ammoHandler;
     [SerializeField] private MoneyHandler moneyHandler;

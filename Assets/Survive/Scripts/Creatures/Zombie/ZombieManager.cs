@@ -5,7 +5,7 @@ using System;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(ZombieAnimationController))]
-[RequireComponent(typeof(HealthManager))]
+[RequireComponent(typeof(HealthHandler))]
 [RequireComponent(typeof(ZombieAttack))]
 [RequireComponent(typeof(DropLoot))]
 [RequireComponent(typeof(ZombieChase))]
@@ -15,7 +15,7 @@ public class ZombieManager : MonoBehaviour, IEnemy
     [SerializeField] LootPool poolData;
     [SerializeField] MovableZombieSetting setting;
     [SerializeField] ZombieAnimationController zombieAnimationController;
-    [SerializeField] HealthManager healthManager;
+    [SerializeField] HealthHandler healthManager;
     [SerializeField] SoundController soundController;
     [SerializeField] ZombieAttack zombieAttack;
     [SerializeField] DropLoot dropLoot;

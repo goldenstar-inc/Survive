@@ -9,7 +9,7 @@ using Zenject;
 public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealthProvider, IAmmoProvider, IMoneyProvider, ISoundProvider, IWeaponProvider, IQuestProvider, IDialogueProvider
 {
     public PlayerSetting PlayerSetting { get; private set; }
-    public HealthManager HealthManager { get; private set; }
+    public HealthHandler HealthManager { get; private set; }
     public AmmoHandler AmmoHandler { get; private set; }
     public MoneyHandler MoneyHandler { get; private set; }
     public SoundController SoundController { get; private set; }
@@ -29,7 +29,7 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
     /// <param name="QuestManager">Скрипт, управляющий квестами</param>
     public void Init(
         PlayerSetting PlayerSetting,
-        HealthManager HealthManager,
+        HealthHandler HealthManager,
         AmmoHandler AmmoHandler,
         MoneyHandler MoneyHandler,
         SoundController SoundController,

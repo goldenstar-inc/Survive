@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7244980146216697244}
   - component: {fileID: 7364608577212171702}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: JakIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,9 +25,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597648009548939156}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3671067807798781975}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1458016923
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: -1825608286692879087, guid: 08baf4b14f9733a468fe9b51ae85362d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 5816157426870483377}
   - component: {fileID: 5407194911353679773}
   - component: {fileID: 8932155790224263779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

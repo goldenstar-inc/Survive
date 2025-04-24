@@ -14,6 +14,7 @@ public class QuestManager : MonoBehaviour
     public event Action<IQuest> OnQuestCompleted;
     public QuestEvents questEvents { get; private set; }
     private IQuest currentQuest;
+    private List<IQuest> completedQuests = new ();
 
     /// <summary>
     /// Инициализация
@@ -49,6 +50,7 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     public void CompleteQuest()
     {
+        completedQuests.Add(currentQuest);
         OnQuestCompleted?.Invoke(currentQuest);
         currentQuest = null;
     }

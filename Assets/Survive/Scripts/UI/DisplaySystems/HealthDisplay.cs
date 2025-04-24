@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class HealthDisplay : MonoBehaviour
 {
-    private HealthManager healthManager;
+    private HealthHandler healthManager;
     private Slider healthBar;
 
     /// <summary>
@@ -15,7 +15,7 @@ public class HealthDisplay : MonoBehaviour
     /// </summary>
     /// <param name="healthManager">Скрипт, отвечающий за управление здоровьем</param>
     public void Init(
-        HealthManager healthManager, 
+        HealthHandler healthManager, 
         Slider healthBar)
     {
         this.healthBar = healthBar;

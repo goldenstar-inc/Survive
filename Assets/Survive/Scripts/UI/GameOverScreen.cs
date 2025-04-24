@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameOverScreen : MonoBehaviour
 {
-    [SerializeField] HealthManager playerHealthManager;
+    [SerializeField] HealthHandler playerHealthManager;
     [SerializeField] GameObject gameOverScreen;
 
     /// <summary>

@@ -4,7 +4,7 @@ using System;
 
 public class ZombieChase : MonoBehaviour
 {
-    public event Action<HealthManager> OnCaughtTarget;
+    public event Action<HealthHandler> OnCaughtTarget;
     private Vector2 currentDirection = Vector2.zero;
     private ZombieAnimationController controller;
     private GameObject target;
@@ -32,7 +32,7 @@ public class ZombieChase : MonoBehaviour
 
             if (CheckIfTargetIsCaught(zombiePosition, targetPosition))
             {
-                HealthManager targetHealthManager = TryGetTargetHealthManager(target);
+                HealthHandler targetHealthManager = TryGetTargetHealthManager(target);
                 OnCaughtTarget?.Invoke(targetHealthManager);
             }
 
@@ -127,8 +127,8 @@ public class ZombieChase : MonoBehaviour
     /// </summary>
     /// <param name="target">Цель</param>
     /// <returns>Компонент HealthManager у цели</returns>
-    private HealthManager TryGetTargetHealthManager(GameObject target)
+    private HealthHandler TryGetTargetHealthManager(GameObject target)
     {
-        return target?.GetComponent<HealthManager>();
+        return target?.GetComponent<HealthHandler>();
     }
 }

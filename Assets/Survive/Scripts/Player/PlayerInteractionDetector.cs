@@ -40,7 +40,7 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             TryInteract();
         }
@@ -70,8 +70,15 @@ public class PlayerInteractionDetector : MonoBehaviour
     {
         if (collision != null)
         {
+            if (collision.TryGetComponent(out NPC _))
+            {
+                if (playerData is IDialogueProvider dialogueProvider)
+                {
+                    DialogueManager dialogueManager = dialogueProvider.DialogueManager;
+                    dialogueManager.EndDialogue();
+                }
+            }
             interactableInRange = null;
-            //helpPhrase.enabled = false;
         }
     }
 

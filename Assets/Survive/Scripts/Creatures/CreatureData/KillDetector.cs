@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class KillDetector : MonoBehaviour
 {
-    private HealthManager healthManager;
+    private HealthHandler healthManager;
     private PlayerDataProvider playerData;
 
-    public void Init(HealthManager healthManager)
+    public void Init(HealthHandler healthManager)
     {
         this.healthManager = healthManager;
         healthManager.OnDeath += KillDetected;

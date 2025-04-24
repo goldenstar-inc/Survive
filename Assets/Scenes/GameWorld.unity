@@ -190,6 +190,12 @@ MonoBehaviour:
   - {fileID: 5808279771350158419, guid: d165308f39065f44f8fbf80b7b293e89, type: 3}
   - {fileID: 5745511152646723011, guid: 011b4ea45dd040741be78e102ba8bdb4, type: 3}
   - {fileID: 6678613951079757169, guid: bac8dd2f265642947b9161fd41203529, type: 3}
+  spawnPoints:
+  - {x: 3, y: 5, z: 0}
+  - {x: 2, y: 3, z: 0}
+  - {x: 6, y: 12, z: 0}
+  - {x: 5, y: 6, z: 0}
+  - {x: 9, y: 4, z: 0}
   buyZones: []
 --- !u!4 &2081346499
 Transform:

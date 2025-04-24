@@ -27,7 +27,7 @@ public class EquippedHealableItem : IUseScript
     {
         if (playerData != null)
         {
-            HealthManager healthManager = playerData.HealthManager;
+            HealthHandler healthManager = playerData.HealthManager;
 
             if (healthManager != null)
             {
@@ -46,7 +46,7 @@ public class EquippedHealableItem : IUseScript
     /// <summary>
     /// Метод лечения
     /// </summary>
-    private void ApplyHeal(HealthManager healthManager)
+    private void ApplyHeal(HealthHandler healthManager)
     {
         healthManager?.Heal(healPoints);
     }

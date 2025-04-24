@@ -1,4 +1,4 @@
 public interface IHealthProvider
 {
-    HealthManager HealthManager { get; }
+    HealthHandler HealthManager { get; }
 }

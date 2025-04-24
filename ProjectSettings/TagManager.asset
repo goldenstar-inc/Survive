@@ -7,6 +7,8 @@ TagManager:
   - Interactable
   - Enemy
   - BuyZone
+  - ship
+  - asteroid
   layers:
   - Default
   - TransparentFX
@@ -17,10 +19,10 @@ TagManager:
   - World Enviroment
   - 
   - Light Source
-  - Minimap
+  - 
   - World
   - 
-  - 
+  - Minimap
   - 
   - 
   - 

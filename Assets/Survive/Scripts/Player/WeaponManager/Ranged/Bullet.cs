@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                HealthManager damageHandler = collision.GetComponent<HealthManager>();
+                HealthHandler damageHandler = collision.GetComponent<HealthHandler>();
                 KillDetector killDetector = collision.GetComponent<KillDetector>();
 
                 killDetector?.SetPlayerData(playerData);

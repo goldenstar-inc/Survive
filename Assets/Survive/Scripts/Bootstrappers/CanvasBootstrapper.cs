@@ -45,7 +45,7 @@ public class CanvasBootstrapper : MonoBehaviour
     [Header("Minimap")]
     [SerializeField] RawImage minimapImage;
 
-    private HealthManager healthManager;
+    private HealthHandler healthManager;
     private AmmoHandler ammoHandler;
     private MoneyHandler moneyHandler;
     private Camera renderCamera;
@@ -57,7 +57,7 @@ public class CanvasBootstrapper : MonoBehaviour
     /// Инициализация
     /// </summary>
     public void Init(
-        HealthManager healthManager,
+        HealthHandler healthManager,
         AmmoHandler ammoHandler,
         MoneyHandler moneyHandler,
         Camera renderCamera,

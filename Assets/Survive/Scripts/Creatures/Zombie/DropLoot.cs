@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DropLoot : MonoBehaviour
 {
-    private HealthManager healthManager;
+    private HealthHandler healthManager;
     private List<Loot> lootPool;
-    public void Init(List<Loot> lootPool, HealthManager healthManager)
+    public void Init(List<Loot> lootPool, HealthHandler healthManager)
     {
         this.lootPool = lootPool;
         this.healthManager = healthManager;

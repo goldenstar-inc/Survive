@@ -24,7 +24,7 @@ public class ZombieAttack : MonoBehaviour
     /// Атака зомби
     /// </summary>
     /// <param name="targetHealthManager">Скрипт цели, отвечающий за здоровье</param>
-    public void Attack(HealthManager targetHealthManager)
+    public void Attack(HealthHandler targetHealthManager)
     {
         if (targetHealthManager != null)
         {
