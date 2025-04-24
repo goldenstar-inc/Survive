@@ -20,6 +20,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         return false;
     }
+    
     private void GiveQuest(PlayerDataProvider data, QuestEvents playerEvents)
     {
         if (AreAnyQuestsAvailable(out IQuest availableQuest, data, playerEvents))

@@ -32,6 +32,11 @@ public class WorldBootstrapper : MonoBehaviour
         SpawnWorldAudioSource();
         SpawnWorldEvents();
         SpawnNewPlayer();
+        
+        foreach (GameObject npc in NPCs)
+        {
+            Spawn(npc);
+        }
     }
     private bool ValidatePrefabs()
     {
@@ -106,21 +111,26 @@ public class WorldBootstrapper : MonoBehaviour
 
     private void CreateNewWorld()
     {
-        Instantiate(world);
+        Spawn(world);
     }
 
     private void SpawnWorldLight()
     {
-        Instantiate(worldLight);
+        Spawn(worldLight);
     }
 
     private void SpawnWorldAudioSource()
     {
-        Instantiate(worldAudioSource);
+        Spawn(worldAudioSource);
     }
 
     private void SpawnWorldEvents()
     {
-        Instantiate(worldEvents);
+        Spawn(worldEvents);
+    }
+
+    private void Spawn(Object objectToSpawn)
+    {
+        Instantiate(objectToSpawn);
     }
 }
