@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 /// </summary>
 public class PlayerAnimationController : MonoBehaviour
 {
+    private System.Action<WeaponItemData> attackCallback;
     private HealthHandler healthManager;
 
     private WeaponManager weaponManager;
@@ -35,8 +36,10 @@ public class PlayerAnimationController : MonoBehaviour
         this.weaponManager = weaponManager;
         this.healthManager = healthManager;
 
-        healthManager.OnTakeDamage += OnDamageTaken;
-        weaponManager.OnAttack += EnableAttackingState;
+        healthManager.OnDamageTaken += OnDamageTaken;
+
+        attackCallback = _ => EnableAttackingState();
+        weaponManager.OnAttack += attackCallback;
     }
 
     /// <summary>
@@ -147,12 +150,12 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if (healthManager != null)
         {
-            healthManager.OnTakeDamage -= OnDamageTaken;
+            healthManager.OnDamageTaken -= OnDamageTaken;
         }
 
-        if (weaponManager != null)
+        if (weaponManager != null && attackCallback != null)
         {
-            weaponManager.OnAttack -= EnableAttackingState;
+            weaponManager.OnAttack -= attackCallback;
         }
     }
 }

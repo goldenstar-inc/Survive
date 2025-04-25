@@ -1,15 +1,14 @@
+using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.LookDev;
-using static HelpPhrasesModule;
 
 /// <summary>
 /// Класс, отвечающий за управление детектором взаимодействий игрока
 /// </summary>
 public class PlayerInteractionDetector : MonoBehaviour
 {
+    public event Action<IPickable> OnPickUp;
+    public event Action<IInteractable> OnInteract;
     private PlayerDataProvider playerData;
     
     private InventoryController inventoryController;
@@ -57,7 +56,6 @@ public class PlayerInteractionDetector : MonoBehaviour
             if (collision.TryGetComponent(out IInteractable interactable))
             {
                 interactableInRange = interactable; 
-                ShowHelpPhrase();
             }
         }
     }
@@ -99,25 +97,22 @@ public class PlayerInteractionDetector : MonoBehaviour
                     }
                     else
                     {
-                        ShowInventoryFullTip();
+                        // INVENTORY FULL TIP
                     }
                 }
                 else
                 {
                     interactable.Interact(playerData);
+                    OnPickUp?.Invoke(pickable);
                 }
             }
             else
             {
                 interactable.Interact(playerData);
+                OnInteract?.Invoke(interactable);
             }
         }
     }
-
-    /// <summary>
-    /// Подсказка: "Инвентарь заполнен"
-    /// </summary>
-    private void ShowInventoryFullTip() => Debug.Log("[TO FIX]"); /*helpPhrase.text = actionToPhrase[Action.InventoryFull];*/
 
     /// <summary>
     /// Метод, обновляющий инвентарь
@@ -131,17 +126,5 @@ public class PlayerInteractionDetector : MonoBehaviour
         }
 
         return false;
-    }
-
-    /// <summary>
-    /// Метод, высвечивающий всплывающую подсказку для игрока
-    /// </summary>
-    private void ShowHelpPhrase()
-    {
-        if (helpPhrase != null && interactableInRange is IInteractable interactable)
-        {
-            helpPhrase.text = actionToPhrase[Action.PickUp];
-            helpPhrase.enabled = true;
-        }
     }
 }

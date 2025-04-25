@@ -14,15 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 3
   Prefab: {fileID: 4574501512894558458, guid: 9ba917dd44104d14d82eedaa974f2848, type: 3}
-  PickSound: {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
+  PickUpSound:
+  - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   InventoryImage: {fileID: 5693247247877351285, guid: 92e50733b6c6f2648883b87217047f0e, type: 3}
-  DropSound: {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
+  DropSound:
+  - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
   ErrorSound: {fileID: 8300000, guid: 86d9a89b56f18bd4ebb9d9d1e1fbfffb, type: 3}
   Description: One shot - two-pieced.
   Damage: 45
   AttackCooldown: 1
   Animator: {fileID: 22100000, guid: 9aa40403939727b4d9cc0a26551e1ac5, type: 2}
+  AttackSound:
+  - {fileID: 8300000, guid: 0d0da83125991df49b8b76542a10b886, type: 3}
   BulletPrefab: {fileID: 1122090440930801634, guid: 5a818b607c4c6984aae5c2cdc11de0c4, type: 3}
   BulletVelocity: 50
   BulletLifeTime: 3
-  ShotSound: {fileID: 8300000, guid: 0d0da83125991df49b8b76542a10b886, type: 3}

@@ -22,10 +22,6 @@ public class Ammo : PickableItem
                 {
                     ammoHandler.CollectAmmo(1);
                     Destroy(gameObject);
-                    if (interactor is ISoundProvider soundProvider)
-                    {
-                        soundProvider.SoundController?.PlayAudioClip(PickSound);
-                    }
                     return true;
                 }
             }

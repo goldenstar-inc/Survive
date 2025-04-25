@@ -23,7 +23,7 @@ public class HealthDisplay : MonoBehaviour
         healthBar.maxValue = healthManager.GetMaxHealth();
         
         this.healthManager = healthManager;
-        healthManager.OnTakeDamage += UpdateHealthBar;
+        healthManager.OnDamageTaken += UpdateHealthBar;
         healthManager.OnHeal += UpdateHealthBar;
 
         UpdateHealthBar(healthManager.GetMaxHealth(), healthManager.GetMaxHealth());
@@ -42,7 +42,7 @@ public class HealthDisplay : MonoBehaviour
     {
         if (healthManager != null)
         {
-            healthManager.OnTakeDamage -= UpdateHealthBar;
+            healthManager.OnDamageTaken -= UpdateHealthBar;
             healthManager.OnHeal -= UpdateHealthBar;
         }
     }

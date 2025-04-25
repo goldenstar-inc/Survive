@@ -5,7 +5,6 @@ public class InputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerMovement playerMovement;
     private PlayerAnimationController animationController;
-    private SoundHandler soundHandler;
 
     /// <summary>
     /// Инициализация
@@ -14,12 +13,15 @@ public class InputHandler : MonoBehaviour
     /// <param name="playerMovement">Скрипт движения</param>
     /// <param name="animationController">Контроллер анимаций</param>
     /// <param name="soundHandler">Скрипт, хранящий звуки</param>
-    public void Init(PlayerInput playerInput, PlayerMovement playerMovement, PlayerAnimationController animationController, SoundHandler soundHandler)
+    public void Init(
+        PlayerInput playerInput, 
+        PlayerMovement playerMovement, 
+        PlayerAnimationController animationController
+    )
     {
         this.playerInput = playerInput;
         this.playerMovement = playerMovement;
         this.animationController = animationController;
-        this.soundHandler = soundHandler;
     }
     private void FixedUpdate()
     {
@@ -29,7 +31,5 @@ public class InputHandler : MonoBehaviour
         playerMovement.Move(movement, isRunning);
 
         animationController.UpdateMovementAnimation(movement);
-        
-        soundHandler.PlayStepSoundIfNeeded(movement);
     }
 }

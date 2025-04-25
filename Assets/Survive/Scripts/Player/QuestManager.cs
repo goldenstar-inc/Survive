@@ -31,6 +31,7 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(IQuest quest)
     {
         currentQuest = quest;
+        currentQuest.OnCompleted += CompleteQuest;
         OnQuestAdded?.Invoke(currentQuest);
     }
 
@@ -51,6 +52,7 @@ public class QuestManager : MonoBehaviour
     public void CompleteQuest()
     {
         completedQuests.Add(currentQuest);
+        Debug.Log(2);
         OnQuestCompleted?.Invoke(currentQuest);
         currentQuest = null;
     }

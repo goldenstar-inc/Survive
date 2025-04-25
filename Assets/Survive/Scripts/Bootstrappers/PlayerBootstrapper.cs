@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -15,7 +16,7 @@ public class PlayerBootstrapper : MonoBehaviour
 
     [Header("Player Data")]
     [SerializeField] private PlayerDataProvider playerData;
-    [SerializeField] private HealthHandler healthManager;
+    [SerializeField] private HealthHandler healthHandler;
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private AmmoHandler ammoHandler;
     [SerializeField] private MoneyHandler moneyHandler;
@@ -26,19 +27,18 @@ public class PlayerBootstrapper : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private Animator playerWeaponAnimator;
+    [SerializeField] private Animator weaponAnimator;
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private AudioSource audioSource;
 
     [Header("Controllers")]
-    [SerializeField] private SoundHandler soundHandler;
     [SerializeField] private PlayerAnimationController playerAnimationController;
     [SerializeField] private InputHandler inputHandler; 
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private InventoryController playerInventoryController;
-    [SerializeField] private PlayerInteractionDetector playerInteractionDetector;
-    [SerializeField] private PlayerPauseController playerPauseController;
+    [SerializeField] private InventoryController inventoryController;
+    [SerializeField] private PlayerInteractionDetector interactionDetector;
+    [SerializeField] private PlayerPauseController pauseController;
 
     [Header("Camera")]
     [SerializeField] private CameraFollow cameraFollow;
@@ -61,14 +61,13 @@ public class PlayerBootstrapper : MonoBehaviour
 
         InitCamera();
         InitNickname();
-        InitSound();
         InitHealth();
         InitAmmo();
         InitMoney();
         InitWeapon();
         InitDialogue();
         InitPlayerData();
-        InitSoundHandler();
+        InitSound();
         InitMovement();
         InitInput();
         InitAnimation();
@@ -109,17 +108,17 @@ public class PlayerBootstrapper : MonoBehaviour
             return false;
         }
 
-        if (playerAnimator == null || weaponManager == null || healthManager == null)
+        if (playerAnimator == null || weaponManager == null || healthHandler == null)
         {
             Debug.LogError("The params of PlayerAnimationController aren't properly set");
             return false;
         }
         
         int maxHealth = playerSetting.HealthComponent.MaxHealth;
-        AudioClip damageSound = playerSetting.HealthComponent.DamageSound;
+        AudioClip[] damageSound = playerSetting.HealthComponent.DamagedSound;
         float invincibilityCooldown =  playerSetting.HealthComponent.InvincibilityCooldown;
         
-        if (maxHealth <= 0 || damageSound == null || invincibilityCooldown < 0)
+        if (maxHealth <= 0 || damageSound == null  || damageSound.Length == 0 ||invincibilityCooldown < 0)
         {
             Debug.LogError("The params of HealthManager aren't properly set");
             return false;
@@ -165,27 +164,15 @@ public class PlayerBootstrapper : MonoBehaviour
     }
 
     /// <summary>
-    /// Инициализация звукового контроллера игрока
-    /// </summary>
-    private void InitSound()
-    {
-        soundController.Init(
-            audioSource
-        );
-    }
-
-    /// <summary>
     /// Инициализация здоровья игрока
     /// </summary>
     private void InitHealth()
     {
         var health = playerSetting.HealthComponent;
 
-        healthManager.Init(
+        healthHandler.Init(
             health.MaxHealth,
-            health.DamageSound,
-            health.InvincibilityCooldown,
-            soundController
+            health.InvincibilityCooldown
         );
     }
 
@@ -213,7 +200,7 @@ public class PlayerBootstrapper : MonoBehaviour
     private void InitWeapon()
     {
         weaponManager.Init(
-            playerWeaponAnimator,
+            weaponAnimator,
             ammoHandler,
             attackStartPoint
         );
@@ -225,7 +212,7 @@ public class PlayerBootstrapper : MonoBehaviour
     private void InitDialogue()
     {
         dialogueManager.Init(
-            playerPauseController
+            pauseController
         );  
     }
 
@@ -236,10 +223,9 @@ public class PlayerBootstrapper : MonoBehaviour
     {
         playerData.Init(
             playerSetting,
-            healthManager,
+            healthHandler,
             ammoHandler,
             moneyHandler,
-            soundController,
             weaponManager,
             questManager,
             dialogueManager
@@ -247,24 +233,20 @@ public class PlayerBootstrapper : MonoBehaviour
     }
 
     /// <summary>
-    /// [TO FIX]
-    /// [TO FIX]
-    /// [TO FIX]
-    /// Инициализация звукового контроллера для управления звуком ходьбы
-    /// [TO FIX]
-    /// [TO FIX]
-    /// [TO FIX]
+    /// Инициализация звукового контроллера игрока
     /// </summary>
-    private void InitSoundHandler()
+    private void InitSound()
     {
-        var run = playerSetting.RunComponent;
-
-        soundHandler.Init(
-            run.StepSounds,
-            run.StepInterval,
-            soundController,
-            questManager
-            );
+        soundController.Init(
+            audioSource,
+            playerData,
+            healthHandler,
+            inventoryController,
+            questManager,
+            playerMovement,
+            weaponManager,
+            interactionDetector
+        );
     }
 
     /// <summary>
@@ -277,7 +259,8 @@ public class PlayerBootstrapper : MonoBehaviour
         playerMovement.Init(
             playerRB,
             run.WalkSpeed,
-            run.RunSpeed
+            run.RunSpeed,
+            run.StepInterval
             );
     }
 
@@ -289,8 +272,7 @@ public class PlayerBootstrapper : MonoBehaviour
         inputHandler.Init(
             playerInput,
             playerMovement,
-            playerAnimationController,
-            soundHandler
+            playerAnimationController
             );
     }
 
@@ -302,7 +284,7 @@ public class PlayerBootstrapper : MonoBehaviour
         playerAnimationController.Init(
             playerAnimator,
             weaponManager,
-            healthManager
+            healthHandler
             );
     }
 
@@ -311,10 +293,10 @@ public class PlayerBootstrapper : MonoBehaviour
     /// </summary>
     private void InitInventory()
     {
-        playerInventoryController.Init(
+        inventoryController.Init(
             inventoryCapacity,
             playerData,
-            playerPauseController
+            pauseController
         );
     }
 
@@ -323,9 +305,9 @@ public class PlayerBootstrapper : MonoBehaviour
     /// </summary>
     private void InitInteraction()
     {
-        playerInteractionDetector.Init(
+        interactionDetector.Init(
             playerData,
-            playerInventoryController
+            inventoryController
             );
     }
 
@@ -335,7 +317,8 @@ public class PlayerBootstrapper : MonoBehaviour
     public void InitQuestEvents()
     {
         questEvents.Init(
-            playerInventoryController
+            inventoryController,
+            weaponManager
             );
     }
 

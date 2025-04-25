@@ -11,8 +11,8 @@ using UnityEngine;
 [RequireComponent(typeof(AmmoHandler))]
 public class WeaponManager : MonoBehaviour
 {
-    public event Action OnAttack;
-    public event Action<CreatureType> OnKill;
+    public event Action<WeaponItemData> OnAttack;
+    public event Action<CreatureType, HealthHandler> OnKill;
 
     private Animator animator;
     private AmmoHandler ammoHandler;
@@ -57,7 +57,6 @@ public class WeaponManager : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Attack");
-            OnAttack?.Invoke();
         }
     }
 
@@ -66,8 +65,14 @@ public class WeaponManager : MonoBehaviour
         OnAttack = null;
     }
 
-    public void Kill(CreatureType enemyType)
+    public void Kill(CreatureType creatureType, HealthHandler killedCreature)
     {
-        OnKill?.Invoke(enemyType);
+        OnKill?.Invoke(creatureType, killedCreature);
+    }
+
+    public void Attack(WeaponItemData weaponItemData)
+    {
+        PlayAttackAnimation();
+        OnAttack?.Invoke(weaponItemData);
     }
 }

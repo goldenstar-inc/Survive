@@ -36,10 +36,10 @@ public class InventoryDisplay : MonoBehaviour
         this.itemQuanityTextFields = itemQuanityTextFields;
         this.inventoryController = inventoryController;
 
-        inventoryController.OnPickUp += AddItem;
-        inventoryController.OnDrop += DecreaseItemAmount;
-        inventoryController.OnUse += DecreaseItemAmount;
-        inventoryController.OnChangeSelection += SelectSlot;
+        inventoryController.OnItemPickedUp += AddItem;
+        inventoryController.OnItemDropped += DecreaseItemAmount;
+        inventoryController.OnItemUsed += DecreaseItemAmount;
+        inventoryController.OnSelectionChanged += SelectSlot;
 
         for (int i = 0; i < inventoryItemImages.Length; i++)
         {

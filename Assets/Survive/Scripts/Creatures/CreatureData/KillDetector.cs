@@ -19,9 +19,9 @@ public class KillDetector : MonoBehaviour
 
     private void KillDetected()
     {
-        if (TryGetComponent<IEnemy>(out IEnemy enemy))
+        if (TryGetComponent(out IEnemy enemy))
         {
-            playerData?.WeaponManager?.Kill(enemy.creatureType);
+            playerData?.WeaponManager?.Kill(enemy.creatureType, healthManager);
         }
     }
 

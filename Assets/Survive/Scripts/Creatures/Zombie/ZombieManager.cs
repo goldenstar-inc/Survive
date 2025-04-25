@@ -33,7 +33,7 @@ public class ZombieManager : MonoBehaviour, IEnemy
 
         creatureType = setting.Type;
 
-        AudioClip damageSound = setting.HealthComponent.DamageSound;
+        AudioClip[] damageSound = setting.HealthComponent.DamagedSound;
 
         List<Loot> lootPool = poolData.Pool;
 
@@ -45,9 +45,7 @@ public class ZombieManager : MonoBehaviour, IEnemy
 
         healthManager.Init(
             maxHealth, 
-            damageSound, 
-            invincibleCooldown,
-            soundController 
+            invincibleCooldown
             );
 
         dropLoot.Init(

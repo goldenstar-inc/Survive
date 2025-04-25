@@ -755,7 +755,7 @@ MonoBehaviour:
   nicknameFollow: {fileID: 728358649103248391}
   nicknamePosition: {fileID: 4360079872921360818}
   playerData: {fileID: 329327119013885366}
-  healthManager: {fileID: 7518056988933187476}
+  healthHandler: {fileID: 7518056988933187476}
   weaponManager: {fileID: 1764037475788728081}
   ammoHandler: {fileID: 587742326422718023}
   moneyHandler: {fileID: 5502003391784471916}
@@ -764,7 +764,7 @@ MonoBehaviour:
   questManager: {fileID: 5429371008183437115}
   dialogueManager: {fileID: 4958877223029956064}
   playerAnimator: {fileID: 494139080195456411}
-  playerWeaponAnimator: {fileID: 1251210084233911900}
+  weaponAnimator: {fileID: 1251210084233911900}
   playerRB: {fileID: 5797005307598262512}
   audioSource: {fileID: 7367670240000576975}
   soundHandler: {fileID: 6599950559459134771}
@@ -772,9 +772,9 @@ MonoBehaviour:
   inputHandler: {fileID: 3554086770550848757}
   playerInput: {fileID: 1069411224918777790}
   playerMovement: {fileID: 1170609502949178461}
-  playerInventoryController: {fileID: 8896625041425756085}
-  playerInteractionDetector: {fileID: 542797462289884731}
-  playerPauseController: {fileID: 7641567199403349509}
+  inventoryController: {fileID: 8896625041425756085}
+  interactionDetector: {fileID: 542797462289884731}
+  pauseController: {fileID: 7641567199403349509}
   cameraFollow: {fileID: 7063358413584521747}
   mainCamera: {fileID: 3288950681159726879}
   minimapCamera: {fileID: 4101564526849608403}
@@ -1207,12 +1207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a568d0903468bf4b8591494c65badd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 8300000, guid: ae02f3a95e1f6e349a4229ef93116b9c, type: 3}
-  - {fileID: 8300000, guid: 22b04177d78a0874faeedcfd097792a6, type: 3}
-  - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
-  - {fileID: 8300000, guid: 86d9a89b56f18bd4ebb9d9d1e1fbfffb, type: 3}
-  - {fileID: 8300000, guid: bfad88e5f97b0814892ee6ce36c3b66f, type: 3}
 --- !u!1 &8066830702777714188
 GameObject:
   m_ObjectHideFlags: 0

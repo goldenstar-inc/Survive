@@ -12,7 +12,4 @@ public class RangedWeaponItemData : WeaponItemData
 
     [Tooltip("Время жизни пули")] 
     [SerializeField, Range(1, 10)] public float BulletLifeTime;
-
-    [Tooltip("Звук выстрела")] 
-    public AudioClip ShotSound;
 }

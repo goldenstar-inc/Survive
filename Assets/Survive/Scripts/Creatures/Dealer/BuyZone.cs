@@ -1,6 +1,5 @@
 using UnityEngine;
 using static HelpPhrasesModule;
-using static SoundController;
 public class BuyZone : MonoBehaviour, IInteractable
 {  
     /// <summary>
@@ -55,7 +54,7 @@ public class BuyZone : MonoBehaviour, IInteractable
                 {
                     playerMoneyHandler.Spend(ItemPrice);
                     DropLoot();
-                    interactor.SoundController.PlayAudioClip(dealerSpeech);
+                    //interactor.SoundController.PlayAudioClip(dealerSpeech);
                     return true;
                 }
             }

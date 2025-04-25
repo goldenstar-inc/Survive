@@ -25,7 +25,6 @@ public class ExplorationQuest : IQuest, IDisposable
     {
         this.questConfig = questConfig;
         this.questManager = questManager;
-        OnCompleted += questManager.CompleteQuest;
         CreateQuestZone();
     }
 

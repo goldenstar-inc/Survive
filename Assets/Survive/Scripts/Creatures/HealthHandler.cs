@@ -6,14 +6,12 @@ using UnityEngine;
 public class HealthHandler : MonoBehaviour
 {
     public event Action OnHealthChanged;
-    public event Action<int, int> OnTakeDamage;
+    public event Action<int, int> OnDamageTaken;
     public event Action<int, int> OnHeal;
     public event Action OnDeath;
 
     private int currentHealth;
     private int maxHealth;
-    private SoundController soundController;
-    private AudioClip damageSound;
     private float invincibilityCooldown;
     private float timeSinceLastDamageTaken = 0f;
 
@@ -21,15 +19,11 @@ public class HealthHandler : MonoBehaviour
     /// Инициализация
     /// </summary>
     /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    /// <param name="damageSound">Звук получения урона</param>
     /// <param name="invincibleCooldown">Время иммунитета после получения урона</param>
-    /// <param name="soundController">Скрип, управляющий звуком</param>
-    public void Init(int maxHealth, AudioClip damageSound, float invincibleCooldown, SoundController soundController) 
+    public void Init(int maxHealth, float invincibleCooldown) 
     {
         this.maxHealth = maxHealth;
-        this.damageSound = damageSound;
         this.invincibilityCooldown = invincibleCooldown;
-        this.soundController = soundController;
         SetCurrentHealth(maxHealth);
     }
 
@@ -48,9 +42,8 @@ public class HealthHandler : MonoBehaviour
         {
             currentHealth = Mathf.Max(0, currentHealth - damage);
             SetCurrentHealth(currentHealth);
-            soundController?.PlayAudioClip(damageSound);
             timeSinceLastDamageTaken = Time.time;
-            OnTakeDamage?.Invoke(currentHealth, maxHealth);
+            OnDamageTaken?.Invoke(currentHealth, maxHealth);
             if(currentHealth <= 0)
             {
                 Kill();
@@ -112,7 +105,7 @@ public class HealthHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-        OnTakeDamage = null;
+        OnDamageTaken = null;
         OnHeal = null;
         OnDeath = null;
     }

@@ -29,7 +29,6 @@ public class DeliveryQuest : IQuest, IDisposable
         if (playerData is IQuestProvider questProvider)
         {
             QuestManager questManager = questProvider.QuestManager;
-            OnCompleted += questManager.CompleteQuest;
             this.questManager = questManager;
         }
     }

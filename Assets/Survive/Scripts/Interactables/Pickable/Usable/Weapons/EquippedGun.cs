@@ -25,7 +25,6 @@ public class EquippedGun : IUseScript
     private float bulletVelocity;
     private float bulletLifeTime;
     private float attackCooldown;
-    private AudioClip shotSound;
     private float timeSinceLastShot = 0f;
     private WeaponManager weaponManager;
     public void Init(RangedWeaponItemData data, PlayerDataProvider playerData)
@@ -45,7 +44,6 @@ public class EquippedGun : IUseScript
         damage = data.Damage;
         bulletVelocity = data.BulletVelocity;
         bulletLifeTime = data.BulletLifeTime;
-        shotSound = data.ShotSound;
         attackCooldown = data.AttackCooldown;
     }
 
@@ -64,7 +62,7 @@ public class EquippedGun : IUseScript
                 {
                     Shoot();
                     ammoHandler.ConsumeAmmo();
-                    playerData.WeaponManager.PlayAttackAnimation();
+                    weaponManager.Attack(data);
                     return true;
                 }
             }
@@ -81,7 +79,6 @@ public class EquippedGun : IUseScript
         {
             BulletSpawner.Instance.SpawnBullet(bulletPrefab, shotStartPoint, damage, bulletVelocity, bulletLifeTime, playerData);
             timeSinceLastShot = Time.time;
-            playerData.SoundController?.PlayAudioClip(shotSound);
         }
     }
 }

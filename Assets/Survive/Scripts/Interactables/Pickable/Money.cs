@@ -15,11 +15,6 @@ public class Money : PickableItem
             {
                 moneyHandler.Collect(Random.Range(20, 50));
                 Destroy(gameObject);
-
-                if (interactor is ISoundProvider soundProvider)
-                {
-                    soundProvider.SoundController?.PlayAudioClip(PickSound);
-                }
                 return true;
             }
         }

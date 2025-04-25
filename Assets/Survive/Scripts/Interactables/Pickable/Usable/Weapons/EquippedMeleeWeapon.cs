@@ -24,7 +24,6 @@ public class EquippedMeleeWeapon : IUseScript
     private float attackCooldown;
     private float timeSinceLastAttack = 0f;
     private Transform shotStartPoint;
-    private AudioClip[] swingSounds;
     private WeaponManager weaponManager;
     public void Init(MeleeWeaponItemData data, PlayerDataProvider playerData)
     {
@@ -41,7 +40,6 @@ public class EquippedMeleeWeapon : IUseScript
         damage = data.Damage;
         attackRadius = data.AttackRange;
         attackCooldown = data.AttackCooldown;
-        swingSounds = data.SwingSounds; 
     }
     
     /// <summary>
@@ -53,13 +51,12 @@ public class EquippedMeleeWeapon : IUseScript
         {
             Attack();
         }   
-        // КОСТЫЛЬ
         return true;
     }
 
     private void Attack()
     {
-        weaponManager.PlayAttackAnimation();
+        weaponManager.Attack(data);
         
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(shotStartPoint.position, attackRadius);
 
@@ -75,7 +72,6 @@ public class EquippedMeleeWeapon : IUseScript
             }
         }
 
-        playerData.SoundController?.PlayRandomSound(swingSounds);
         timeSinceLastAttack = Time.time;
     }
 }

@@ -28,7 +28,6 @@ public class KillQuest : IQuest, IDisposable
         currentQuantity = 0;
         this.questConfig = questConfig;
         this.questManager = questManager;
-        OnCompleted += questManager.CompleteQuest;
         this.weaponManager = weaponManager;
         this.weaponManager.OnKill += UpdateProgress;
     }
@@ -39,7 +38,7 @@ public class KillQuest : IQuest, IDisposable
     /// <param name="index">������</param>
     /// <param name="quantity">���������� ������������ ��������</param>
     /// <param name="data">������ � ����������� ��������</param>
-    private void UpdateProgress(CreatureType enemyType)
+    private void UpdateProgress(CreatureType enemyType, HealthHandler enemy)
     {
         if (questTargetType == enemyType)
         {

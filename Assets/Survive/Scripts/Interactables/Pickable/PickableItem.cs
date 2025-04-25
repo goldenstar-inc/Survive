@@ -12,14 +12,13 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     [SerializeField] PickableItemData data;
     public PickableItemData Data => data;
     public PickableItems Name => data.Name;
-    public AudioClip PickSound => data.PickSound;
+    public AudioClip[] PickUpSound => data.PickUpSound;
     public int Quantity => quantity;
     private int quantity;
 
     /// <summary>
     /// Инициализация объекта
     /// </summary>
-    /// <param name="quantity">Количество данного объекта</param>
     public void Start()
     {
         SetQuantity(1);
@@ -35,10 +34,6 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
         if (interactor != null)
         {
             Destroy(gameObject);
-            if (interactor is ISoundProvider soundProvider)
-            {
-                soundProvider.SoundController?.PlayAudioClip(PickSound);
-            }
             return true;
         }
         return false;

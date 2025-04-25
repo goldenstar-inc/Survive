@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 9
   Prefab: {fileID: 3690118918252715936, guid: 577be60483f249a4b96f486a34fa6870, type: 3}
-  PickSound: {fileID: 8300000, guid: 7d88fd460ef428549bedafcacd590699, type: 3}
+  PickUpSound:
+  - {fileID: 8300000, guid: 7d88fd460ef428549bedafcacd590699, type: 3}

@@ -3,17 +3,23 @@ using UnityEngine;
 
 public class QuestEvents : MonoBehaviour
 {
+    public event Action<CreatureType, HealthHandler> OnCreatureKilled;
     public event Action<int, PickableItems> OnItemPickedUp;
     public event Action<int, PickableItems> OnItemDropped;
     public event Action<int, PickableItems> OnItemUsed;
     private InventoryController inventoryController;
 
-    public void Init(InventoryController inventoryController)
+    public void Init(InventoryController inventoryController, WeaponManager weaponManager)
     {
         this.inventoryController = inventoryController;
-        inventoryController.OnPickUp += ItemPickedUp;
-        inventoryController.OnDrop += ItemDropped;
-        inventoryController.OnUse += ItemUsed;
+        weaponManager.OnKill += CreatureKilled;
+        inventoryController.OnItemPickedUp += ItemPickedUp;
+        inventoryController.OnItemDropped += ItemDropped;
+        inventoryController.OnItemUsed += ItemUsed;
+    }
+    private void CreatureKilled(CreatureType creatureType, HealthHandler killedCreature)
+    {
+        OnCreatureKilled?.Invoke(creatureType, killedCreature);
     }
     private void ItemPickedUp(int slot, int currentQuantity, InventoryItemData data)
     {
@@ -36,9 +42,9 @@ public class QuestEvents : MonoBehaviour
     {
         if (inventoryController != null)
         {
-            inventoryController.OnPickUp -= ItemPickedUp;
-            inventoryController.OnDrop -= ItemDropped;
-            inventoryController.OnUse -= ItemUsed;
+            inventoryController.OnItemPickedUp -= ItemPickedUp;
+            inventoryController.OnItemDropped -= ItemDropped;
+            inventoryController.OnItemUsed -= ItemUsed;
         }
         OnItemPickedUp = null;
         OnItemDropped = null;

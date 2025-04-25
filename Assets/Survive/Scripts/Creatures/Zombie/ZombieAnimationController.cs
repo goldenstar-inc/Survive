@@ -14,7 +14,7 @@ public class ZombieAnimationController : MonoBehaviour
     /// </summary>
     public void Init(HealthHandler healthManager, Animator zombieAnimator)
     {
-        healthManager.OnTakeDamage += EnableDamagedAnimation;
+        healthManager.OnDamageTaken += EnableDamagedAnimation;
         this.zombieAnimator = zombieAnimator;
     }
 
@@ -85,7 +85,7 @@ public class ZombieAnimationController : MonoBehaviour
     {
         if (zombieHealthManager != null)
         {
-            zombieHealthManager.OnTakeDamage -= EnableDamagedAnimation;
+            zombieHealthManager.OnDamageTaken -= EnableDamagedAnimation;
         }
     }
 }

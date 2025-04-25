@@ -20,7 +20,7 @@ public class EquippedHealableItem : IUseScript
     {
         this.playerData = playerData;
         healPoints = data.HealPoints;
-        useSound = data.Sound;
+        useSound = null;
     }
 
     public bool Use()
@@ -34,7 +34,6 @@ public class EquippedHealableItem : IUseScript
                 if (!healthManager.IsFullHealth())
                 {
                     ApplyHeal(healthManager);
-                    playerData.SoundController?.PlayAudioClip(useSound);
                     return true;
                 }
             }

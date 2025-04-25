@@ -45,6 +45,16 @@ public class QuestGiver : MonoBehaviour
                         return quest;
                     }
                 }
+
+                if (foundQuestConfig is ResqueQuestConfig resqueQuestConfig)
+                {
+                    if (data is IQuestProvider questProvider && data is IWeaponProvider weaponProvider)
+                    {
+                        QuestManager questManager = questProvider.QuestManager;
+                        IQuest quest = new ResqueQuest(resqueQuestConfig, questManager, playerEvents);
+                        return quest;
+                    }
+                }
             }
         }
         return null;
