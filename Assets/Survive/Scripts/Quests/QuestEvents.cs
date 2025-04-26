@@ -21,18 +21,18 @@ public class QuestEvents : MonoBehaviour
     {
         OnCreatureKilled?.Invoke(creatureType, killedCreature);
     }
-    private void ItemPickedUp(int slot, int currentQuantity, InventoryItemData data)
+    private void ItemPickedUp(int _, int __, int entireQuantity, InventoryItemData data)
     {
         PickableItems itemType = data.Name;
-        OnItemPickedUp?.Invoke(currentQuantity, itemType);
+        OnItemPickedUp?.Invoke(entireQuantity, itemType);
     }
 
-    private void ItemDropped(int slot, int currentQuantity, InventoryItemData data)
+    private void ItemDropped(int _, int currentQuantity, InventoryItemData data)
     {
         PickableItems itemType = data.Name;
         OnItemDropped?.Invoke(currentQuantity, itemType);
     }
-    private void ItemUsed(int slot, int currentQuantity, InventoryItemData data)
+    private void ItemUsed(int _, int currentQuantity, InventoryItemData data)
     {
         PickableItems itemType = data.Name;
         OnItemUsed?.Invoke(currentQuantity, itemType);

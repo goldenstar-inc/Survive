@@ -51,7 +51,8 @@ public class InventoryDisplay : MonoBehaviour
     /// Смена активного слота
     /// </summary>
     /// <param name="index">Индекс нового активного слота</param>
-    private void SelectSlot(int index)
+    /// <param name="UISoundPack">Пак со звуками UI</param>
+    private void SelectSlot(int index, UISoundPack UISoundPack)
     {
         if (!ValidateIndex(index)) return;
 
@@ -69,13 +70,13 @@ public class InventoryDisplay : MonoBehaviour
     /// <param name="index">Индекс</param>
     /// <param name="quantity">Количество</param>
     /// <param name="data">Данные о подобранном предмете</param>
-    private void AddItem(int index, int quantity, InventoryItemData data)
+    private void AddItem(int index, int slotQuantity, int _, InventoryItemData data)
     {
         if (!ValidateIndex(index)) return;
-        if (!ValidateQuantity(quantity)) return;
+        if (!ValidateQuantity(slotQuantity)) return;
         if (!ValidateData(data)) return;
 
-        ShowItemQuantity(index, quantity);
+        ShowItemQuantity(index, slotQuantity);
         ShowItemImage(index, data);
     }
 

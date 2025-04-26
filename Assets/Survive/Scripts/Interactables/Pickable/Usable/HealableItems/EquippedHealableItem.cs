@@ -15,12 +15,10 @@ public class EquippedHealableItem : IUseScript
     /// Количество очков здоровья для лечения
     /// </summary>
     private int healPoints;
-    private AudioClip useSound;
     public void Init(HealableItemData data, PlayerDataProvider playerData)
     {
         this.playerData = playerData;
         healPoints = data.HealPoints;
-        useSound = null;
     }
 
     public bool Use()

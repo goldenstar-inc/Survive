@@ -7,11 +7,6 @@ using UnityEngine;
 public interface IPickable : IInteractable, IAmountable
 {
     /// <summary>
-    /// Информация об объекте
-    /// </summary>
-    public PickableItemData Data { get; }
-
-    /// <summary>
     /// Тип поднимаемого объекта
     /// </summary>
     public PickableItems Name { get; }

@@ -22,6 +22,7 @@ public class ZombieManager : MonoBehaviour, IEnemy
     [SerializeField] ZombieChase zombieChase;
     [SerializeField] KillDetector killDetector;
 
+
     public CreatureType creatureType { get; private set; }
 
     void Start()
@@ -31,6 +32,8 @@ public class ZombieManager : MonoBehaviour, IEnemy
         int moveSpeed = setting.MovementComponent.WalkSpeed;
         float invincibleCooldown = setting.HealthComponent.InvincibilityCooldown;
 
+        var healthComponent = setting.HealthComponent;
+        
         creatureType = setting.Type;
 
         AudioClip[] damageSound = setting.HealthComponent.DamagedSound;
@@ -44,6 +47,7 @@ public class ZombieManager : MonoBehaviour, IEnemy
         }
 
         healthManager.Init(
+            healthComponent,
             maxHealth, 
             invincibleCooldown
             );

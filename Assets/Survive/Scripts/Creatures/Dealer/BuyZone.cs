@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
-using static HelpPhrasesModule;
+using Random = UnityEngine.Random;
 public class BuyZone : MonoBehaviour, IInteractable
 {  
+    public event Action OnInteract;
+    [SerializeField] IntreractableData data;
+    public IntreractableData Data => data;
     /// <summary>
     /// Точка спавна предметов
     /// </summary>
@@ -16,11 +20,6 @@ public class BuyZone : MonoBehaviour, IInteractable
     /// Массив объектов которые могут выпасть
     /// </summary>
     public GameObject[] itemsToDrop;
-
-    /// <summary>
-    /// Вспомогательная фраза
-    /// </summary>
-    public string helpPhrase => actionToPhrase[Action.Buy];
 
     /// <summary>
     /// Цена за предмет
@@ -52,9 +51,9 @@ public class BuyZone : MonoBehaviour, IInteractable
             {
                 if (playerMoneyHandler.GetCurrentBalance() >= ItemPrice)
                 {
+                    OnInteract?.Invoke();
                     playerMoneyHandler.Spend(ItemPrice);
                     DropLoot();
-                    //interactor.SoundController.PlayAudioClip(dealerSpeech);
                     return true;
                 }
             }

@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d826420d75207459b266cfdcb6ce5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 13377582317707044921d3bf2aa2b7f3, type: 2}
   spawnPoint: {fileID: 229226788588597066}
   audioSource: {fileID: 7548288414203537145}
   itemsToDrop:

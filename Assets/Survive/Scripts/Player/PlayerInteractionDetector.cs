@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerInteractionDetector : MonoBehaviour
 {
-    public event Action<IPickable> OnPickUp;
     public event Action<IInteractable> OnInteract;
     private PlayerDataProvider playerData;
     
@@ -21,7 +21,7 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// <summary>
     /// Ближайший объект для взаимодействия
     /// </summary>
-    private IInteractable interactableInRange = null;
+    private List<IInteractable> interactablesInRange = new ();
 
     /// <summary>
     /// Инициализация
@@ -55,7 +55,7 @@ public class PlayerInteractionDetector : MonoBehaviour
         {
             if (collision.TryGetComponent(out IInteractable interactable))
             {
-                interactableInRange = interactable; 
+                interactablesInRange.Add(interactable); 
             }
         }
     }
@@ -68,6 +68,11 @@ public class PlayerInteractionDetector : MonoBehaviour
     {
         if (collision != null)
         {
+            if (collision.TryGetComponent(out IInteractable interactable))
+            {
+                interactablesInRange.Remove(interactable);
+            }
+
             if (collision.TryGetComponent(out NPC _))
             {
                 if (playerData is IDialogueProvider dialogueProvider)
@@ -76,7 +81,6 @@ public class PlayerInteractionDetector : MonoBehaviour
                     dialogueManager.EndDialogue();
                 }
             }
-            interactableInRange = null;
         }
     }
 
@@ -85,13 +89,15 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// </summary>
     public void TryInteract()
     {
-        if (interactableInRange != null && interactableInRange is IInteractable interactable)
+        if (interactablesInRange != null && interactablesInRange.Count > 0)
         {
+            IInteractable interactable = interactablesInRange[0];
+
             if (interactable is IPickable pickable)
             {
                 if (pickable.Data is InventoryItemData)
                 {
-                    if (UpdateInventory())
+                    if (UpdateInventory(pickable))
                     {
                         interactable.Interact(playerData);
                     }
@@ -102,14 +108,18 @@ public class PlayerInteractionDetector : MonoBehaviour
                 }
                 else
                 {
-                    interactable.Interact(playerData);
-                    OnPickUp?.Invoke(pickable);
+                    if (interactable.Interact(playerData))
+                    {
+                        OnInteract?.Invoke(interactable);
+                    }
                 }
             }
             else
             {
-                interactable.Interact(playerData);
-                OnInteract?.Invoke(interactable);
+                if (interactable.Interact(playerData))
+                {
+                    OnInteract?.Invoke(interactable);
+                }
             }
         }
     }
@@ -118,9 +128,9 @@ public class PlayerInteractionDetector : MonoBehaviour
     /// Метод, обновляющий инвентарь
     /// </summary>
     /// <returns>True - если предмет был успешно подобран и передан в инвентарь, иначе - false</returns>
-    private bool UpdateInventory()
+    private bool UpdateInventory(IPickable pickable)
     {
-        if (inventoryController != null && interactableInRange != null && interactableInRange is IPickable pickable)
+        if (inventoryController != null)
         {
             return inventoryController.AddItemToInventory(pickable);
         }

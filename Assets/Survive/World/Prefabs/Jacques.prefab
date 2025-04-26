@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e4d6b1bce98f04ba631bd138dbbc22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: acf1c9427b7c6bc4c82a08f5c5fd76c1, type: 2}
   questGiver: {fileID: 0}
   dialogueData: {fileID: 11400000, guid: fe797aebea87ee44cb0d4ebb23bfa5e5, type: 2}
 --- !u!61 &8932155790224263779

@@ -335,7 +335,6 @@ GameObject:
   - component: {fileID: 494139080195456411}
   - component: {fileID: 7063358413584521747}
   - component: {fileID: 1170609502949178461}
-  - component: {fileID: 6599950559459134771}
   - component: {fileID: 3554086770550848757}
   - component: {fileID: 398704538373846141}
   - component: {fileID: 7518056988933187476}
@@ -552,18 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2473d65794b794cb7ed8956467f82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6599950559459134771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881584487222497953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af3b694be4ad37d44b3fe3aed7610187, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3554086770550848757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,8 +724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52d670f43622d245bfce148943feeb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectSound: {fileID: 8300000, guid: 22b04177d78a0874faeedcfd097792a6, type: 3}
-  dropSound: {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
 --- !u!114 &6205479062810160229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +752,6 @@ MonoBehaviour:
   weaponAnimator: {fileID: 1251210084233911900}
   playerRB: {fileID: 5797005307598262512}
   audioSource: {fileID: 7367670240000576975}
-  soundHandler: {fileID: 6599950559459134771}
   playerAnimationController: {fileID: 398704538373846141}
   inputHandler: {fileID: 3554086770550848757}
   playerInput: {fileID: 1069411224918777790}
@@ -781,6 +765,7 @@ MonoBehaviour:
   attackStartPoint: {fileID: 4207527484467156195}
   inventoryCapacity: 2
   questEvents: {fileID: 6375517688259816323}
+  UISoundPack: {fileID: 11400000, guid: 552a633b2eba4534eaaf25c741b44d77, type: 2}
 --- !u!1 &5501620430452021061
 GameObject:
   m_ObjectHideFlags: 0

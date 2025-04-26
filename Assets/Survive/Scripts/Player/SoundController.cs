@@ -11,12 +11,15 @@ using Unity.Multiplayer.Center.Common.Analytics;
 public class SoundController : MonoBehaviour
 {
     private PlayerDataProvider playerData;
-    private Dictionary<SoundType, AudioClip[]> typeToSound = new ();
     
     /// <summary>
     /// Источник воспроизведения звука
     /// </summary>
     private AudioSource audioSource;
+    private float pitchVariation = 0.05f;
+    public float volumeVariation = 0.1f;
+    private float lastPlayTime = 0f;
+    private float playCooldown = 0.1f;
 
     /// <summary>
     /// Экземпляр класса Random
@@ -28,6 +31,7 @@ public class SoundController : MonoBehaviour
     private PlayerMovement movement;
     private WeaponManager weaponManager;
     private PlayerInteractionDetector interactionDetector;
+
     public void Init(
         AudioSource audioSource,
         PlayerDataProvider playerData,
@@ -48,28 +52,58 @@ public class SoundController : MonoBehaviour
         this.weaponManager = weaponManager;
         this.interactionDetector = interactionDetector;
 
-        InitSoundMap();
-
-        healthHandler.OnDamageTaken += (_, _) => PlaySound(SoundType.BeingDamaged);
-        movement.OnStepTaken += () => PlaySound(SoundType.Steps);
-        inventoryController.OnSelectionChanged += (_) => PlaySound(SoundType.Select);
-        inventoryController.OnItemUsed += (_, _, itemData) => PlayItemUseSound(itemData);
-        inventoryController.OnItemDropped += (_, _, itemData) => PlayItemDropSound(itemData);
-        inventoryController.OnItemPickedUp += (_, _, itemData) => PlayItemPickUpSound(itemData);
-        weaponManager.OnAttack += PlayWeaponSound;
-        interactionDetector.OnPickUp += PlayPickUpSound;
+        healthHandler.OnDamageTaken += PlaySound;
+        movement.OnStepTaken += PlaySound;
+        inventoryController.OnSelectionChanged += PlaySelectionChangedSound;
         interactionDetector.OnInteract += PlayInteractSound;
+        inventoryController.OnItemPickedUp += PlayItemPickUpSound;
+        inventoryController.OnItemUsed += PlayItemUseSound;
+        inventoryController.OnItemDropped += PlayItemDropSound;
+        weaponManager.OnAttack += PlaySound;
+        questManager.OnQuestCompleted += PlaySound;
     }
-
-    private void PlayWeaponSound(WeaponItemData itemData)
+    private void PlaySound(int _, int __, HealthComponent component)
     {
-        if (itemData != null)
+        if (component != null)
         {
-            AudioClip[] clips = itemData.AttackSound;
+            AudioClip[] clips = component.DamagedSound;
             PlaySound(clips);
         }
     }
-    private void PlayItemUseSound(InventoryItemData itemData)
+    private void PlaySound(MovementComponent component)
+    {
+        if (component != null)
+        {
+            AudioClip[] clips = component.StepSounds;
+            PlaySound(clips);
+        }
+    }
+    private void PlaySelectionChangedSound(int _, UISoundPack pack)
+    {
+        if (pack != null)
+        {
+            AudioClip[] clips = pack.InventorySelectionChanged;
+            PlaySound(clips);
+        }
+    }
+    private void PlayInteractSound(IInteractable interactable)
+    {
+        if (interactable != null)
+        {
+            IntreractableData data = interactable.Data;
+            AudioClip[] clips = data.InteractionSound;
+            PlaySound(clips);
+        }
+    }
+    private void PlayItemPickUpSound(int _, int __, int ___, InventoryItemData itemData)
+    {
+        if (itemData != null)
+        {
+            AudioClip[] clips = itemData.InteractionSound;
+            PlaySound(clips);
+        }
+    }
+    private void PlayItemUseSound(int _, int __, InventoryItemData itemData)
     {
         if (itemData != null)
         {
@@ -80,7 +114,7 @@ public class SoundController : MonoBehaviour
             }
         }
     }
-    private void PlayItemDropSound(InventoryItemData itemData)
+    private void PlayItemDropSound(int _, int __, InventoryItemData itemData)
     {
         if (itemData != null)
         {
@@ -88,48 +122,20 @@ public class SoundController : MonoBehaviour
             PlaySound(clips);
         }
     }
-    private void PlayPickUpSound(IPickable pickable)
-    {
-        if (pickable != null)
-        {
-            AudioClip[] clips = pickable.PickUpSound;
-            PlaySound(clips);
-        }
-    }
-    private void PlayInteractSound(IInteractable interactable)
-    {
-        if (interactable != null)
-        {
-            
-        }
-    }
-    private void PlayItemPickUpSound(InventoryItemData itemData)
+    private void PlaySound(WeaponItemData itemData)
     {
         if (itemData != null)
         {
-            AudioClip[] clips = itemData.PickUpSound;
+            AudioClip[] clips = itemData.AttackSound;
             PlaySound(clips);
         }
     }
-    private void InitSoundMap()
+    private void PlaySound(IQuest quest)
     {
-        if (playerData is IPlayerSettingProvider settingProvider)
+        if (quest != null && quest.QuestConfig != null)
         {
-            PlayerSetting playerSetting = settingProvider.PlayerSetting;
-            typeToSound.Add(SoundType.BeingDamaged, playerSetting.HealthComponent.DamagedSound);
-            typeToSound.Add(SoundType.Steps, playerSetting.RunComponent.StepSounds);
-        }
-    }
-    private void PlaySound(SoundType soundType)
-    {
-        if (typeToSound.ContainsKey(soundType))
-        {
-            PlayRandomSound(typeToSound[soundType]);
-        }
-        else
-        {
-            Debug.LogError("Sound type not found");
-            return;
+            AudioClip[] clips = quest.QuestConfig.QuestComplete;
+            PlaySound(clips);
         }
     }
 
@@ -168,7 +174,49 @@ public class SoundController : MonoBehaviour
     {
         if (audioSource != null && clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            if (Time.time - lastPlayTime >= playCooldown)
+            {
+                float randomVolume = UnityEngine.Random.Range(1f - volumeVariation, 1f + volumeVariation);
+                audioSource.pitch = UnityEngine.Random.Range(1f - pitchVariation, 1f + pitchVariation);
+                audioSource.PlayOneShot(clip, randomVolume);
+                audioSource.pitch = 1f;
+                lastPlayTime = Time.time;
+            }
+        }
+    }
+    private void OnDisable()
+    {
+        if (healthHandler != null)
+        {
+            healthHandler.OnDamageTaken -= PlaySound;
+        }
+
+        if (inventoryController != null)
+        {
+            inventoryController.OnSelectionChanged -= PlaySelectionChangedSound;
+            inventoryController.OnItemPickedUp -= PlayItemPickUpSound;
+            inventoryController.OnItemUsed -= PlayItemUseSound;
+            inventoryController.OnItemDropped -= PlayItemDropSound;
+        }
+
+        if (questManager != null)
+        {
+            
+        }
+
+        if (movement != null)
+        {
+            movement.OnStepTaken -= PlaySound;
+        }
+         
+        if (weaponManager != null)
+        {
+            weaponManager.OnAttack -= PlaySound;
+        }
+
+        if (interactionDetector != null)
+        {
+            interactionDetector.OnInteract -= PlayInteractSound;
         }
     }
 }

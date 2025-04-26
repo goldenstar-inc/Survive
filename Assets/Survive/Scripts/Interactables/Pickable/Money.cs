@@ -13,8 +13,9 @@ public class Money : PickableItem
             
             if (moneyHandler != null)
             {
+                InvokeInteract();
                 moneyHandler.Collect(Random.Range(20, 50));
-                Destroy(gameObject);
+                Destroy(transform.root.gameObject);
                 return true;
             }
         }

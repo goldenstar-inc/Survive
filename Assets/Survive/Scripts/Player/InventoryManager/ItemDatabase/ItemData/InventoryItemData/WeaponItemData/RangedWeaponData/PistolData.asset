@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99b10f11508fed488433ff0fc21bb01, type: 3}
   m_Name: PistolData
   m_EditorClassIdentifier: 
+  InteractionSound:
+  - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   Name: 2
   Prefab: {fileID: 2754018163563420593, guid: 7755271ac7a65b94c9dd56df11d9a8ed, type: 3}
-  PickUpSound:
-  - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   InventoryImage: {fileID: -1773908920937926555, guid: 6da85283d9fbf4c4f8f8a56f48f1debc, type: 3}
   DropSound:
   - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}

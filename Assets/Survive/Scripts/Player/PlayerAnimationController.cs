@@ -9,7 +9,6 @@ using UnityEngine.Rendering;
 /// </summary>
 public class PlayerAnimationController : MonoBehaviour
 {
-    private System.Action<WeaponItemData> attackCallback;
     private HealthHandler healthManager;
 
     private WeaponManager weaponManager;
@@ -35,11 +34,8 @@ public class PlayerAnimationController : MonoBehaviour
         this.animator = animator;
         this.weaponManager = weaponManager;
         this.healthManager = healthManager;
-
         healthManager.OnDamageTaken += OnDamageTaken;
-
-        attackCallback = _ => EnableAttackingState();
-        weaponManager.OnAttack += attackCallback;
+        weaponManager.OnAttack += EnableAttackingState;
     }
 
     /// <summary>
@@ -112,7 +108,7 @@ public class PlayerAnimationController : MonoBehaviour
     /// </summary>
     /// <param name="currentHealth">Текущее количество очков здоровья</param>
     /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    public void OnDamageTaken(int currentHealth, int maxHealth)
+    public void OnDamageTaken(int currentHealth, int maxHealth, HealthComponent healthComponent)
     {
         if (animator != null)
         {
@@ -131,7 +127,7 @@ public class PlayerAnimationController : MonoBehaviour
         }
     }
 
-    public void EnableAttackingState()
+    public void EnableAttackingState(WeaponItemData data)
     {
         if (animator != null)
         {
@@ -152,10 +148,9 @@ public class PlayerAnimationController : MonoBehaviour
         {
             healthManager.OnDamageTaken -= OnDamageTaken;
         }
-
-        if (weaponManager != null && attackCallback != null)
+        if (weaponManager != null)
         {
-            weaponManager.OnAttack -= attackCallback;
+            weaponManager.OnAttack -= EnableAttackingState;
         }
     }
 }

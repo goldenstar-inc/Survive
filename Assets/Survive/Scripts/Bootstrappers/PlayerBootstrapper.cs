@@ -52,6 +52,9 @@ public class PlayerBootstrapper : MonoBehaviour
     [Header("Mediators")]
     [SerializeField] private QuestEvents questEvents;
 
+    [Header("SoundPacks")]
+    [SerializeField] private UISoundPack UISoundPack;
+
     /// <summary>
     /// Инициализация
     /// </summary>
@@ -171,6 +174,7 @@ public class PlayerBootstrapper : MonoBehaviour
         var health = playerSetting.HealthComponent;
 
         healthHandler.Init(
+            health,
             health.MaxHealth,
             health.InvincibilityCooldown
         );
@@ -257,6 +261,7 @@ public class PlayerBootstrapper : MonoBehaviour
         var run = playerSetting.RunComponent;
 
         playerMovement.Init(
+            run,
             playerRB,
             run.WalkSpeed,
             run.RunSpeed,
@@ -296,7 +301,8 @@ public class PlayerBootstrapper : MonoBehaviour
         inventoryController.Init(
             inventoryCapacity,
             playerData,
-            pauseController
+            pauseController,
+            UISoundPack
         );
     }
 

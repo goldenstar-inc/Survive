@@ -1,5 +1,4 @@
 using System;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class Ammo : PickableItem
 {
+
     /// <summary>
     /// Переопределенный метод, обеспечивающий взаимодействие с объектом
     /// </summary>
@@ -20,8 +20,9 @@ public class Ammo : PickableItem
             {
                 if (ammoHandler.currentAmmo != ammoHandler.maxAmmo)
                 {
+                    InvokeInteract();
                     ammoHandler.CollectAmmo(1);
-                    Destroy(gameObject);
+                    Destroy(transform.root.gameObject);
                     return true;
                 }
             }

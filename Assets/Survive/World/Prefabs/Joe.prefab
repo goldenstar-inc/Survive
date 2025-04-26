@@ -130,8 +130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2456001485865180368}
   - component: {fileID: 6121716115623957090}
-  - component: {fileID: 9102552258011801035}
   - component: {fileID: 5881203995586919500}
+  - component: {fileID: 9102552258011801035}
+  - component: {fileID: 3317548676249112514}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -209,20 +210,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9102552258011801035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083152771198719892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e4d6b1bce98f04ba631bd138dbbc22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questGiver: {fileID: 0}
-  dialogueData: {fileID: 11400000, guid: 48a6079a1792dd04d8a1677ce47e752e, type: 2}
 --- !u!61 &5881203995586919500
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -269,3 +256,32 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.55645293, y: 0.98711145}
   m_EdgeRadius: 0
+--- !u!114 &9102552258011801035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083152771198719892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e4d6b1bce98f04ba631bd138dbbc22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: acf1c9427b7c6bc4c82a08f5c5fd76c1, type: 2}
+  questGiver: {fileID: 3317548676249112514}
+  dialogueData: {fileID: 11400000, guid: 48a6079a1792dd04d8a1677ce47e752e, type: 2}
+--- !u!114 &3317548676249112514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083152771198719892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aba48c2c615a1a4db034fb6d7da299d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quests:
+  - {fileID: 11400000, guid: 37e8548bfa56e2f48af3073c7f5990a1, type: 2}

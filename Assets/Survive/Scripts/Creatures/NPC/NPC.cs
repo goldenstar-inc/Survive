@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour, IInteractable
 {
+    [SerializeField] IntreractableData data;
     [SerializeField] QuestGiver questGiver;
     [SerializeField] NPCDialogue dialogueData;
+    public event Action OnInteract;
+    public IntreractableData Data => data;
 
     public bool Interact(PlayerDataProvider interactor)
     {
         if (interactor is IDialogueProvider dialogueProvider && interactor is IQuestProvider questProvider)
         {
+            OnInteract?.Invoke();
             DialogueManager dialogueManager = dialogueProvider.DialogueManager;
             QuestManager questManager = questProvider.QuestManager;
             QuestEvents questEvents = questManager?.questEvents;

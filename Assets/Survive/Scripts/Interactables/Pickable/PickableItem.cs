@@ -6,16 +6,14 @@ using UnityEngine;
 /// </summary>
 public class PickableItem : MonoBehaviour, IInteractable, IPickable
 {
-    /// <summary>
-    /// Информация об объекте
-    /// </summary>
     [SerializeField] PickableItemData data;
-    public PickableItemData Data => data;
+    public event Action OnInteract;
+    public IntreractableData Data => data;
     public PickableItems Name => data.Name;
-    public AudioClip[] PickUpSound => data.PickUpSound;
+    public AudioClip[] PickUpSound => data.InteractionSound;
     public int Quantity => quantity;
-    private int quantity;
 
+    private int quantity;
     /// <summary>
     /// Инициализация объекта
     /// </summary>
@@ -33,7 +31,8 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     {
         if (interactor != null)
         {
-            Destroy(gameObject);
+            OnInteract?.Invoke();
+            Destroy(transform.root.gameObject);
             return true;
         }
         return false;
@@ -47,5 +46,9 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
             return;
         }
         this.quantity = quantity;
+    }
+    protected void InvokeInteract()
+    {
+        OnInteract?.Invoke();
     }
 }

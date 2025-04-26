@@ -1,15 +1,13 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthHandler : MonoBehaviour
 {
-    public event Action OnHealthChanged;
-    public event Action<int, int> OnDamageTaken;
+    public event Action<int, int, HealthComponent> OnDamageTaken;
     public event Action<int, int> OnHeal;
     public event Action OnDeath;
 
+    private HealthComponent healthComponent;
     private int currentHealth;
     private int maxHealth;
     private float invincibilityCooldown;
@@ -18,12 +16,18 @@ public class HealthHandler : MonoBehaviour
     /// <summary>
     /// Инициализация
     /// </summary>
+    /// <param name="healthComponent">Компонент, хранащий информацию, связанную со здоровьем</param>
     /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    /// <param name="invincibleCooldown">Время иммунитета после получения урона</param>
-    public void Init(int maxHealth, float invincibleCooldown) 
+    /// <param name="invincibilityCooldown">Время иммунитета после получения урона</param>
+    public void Init(
+        HealthComponent healthComponent,
+        int maxHealth, 
+        float invincibilityCooldown
+        ) 
     {
+        this.healthComponent = healthComponent;
         this.maxHealth = maxHealth;
-        this.invincibilityCooldown = invincibleCooldown;
+        this.invincibilityCooldown = invincibilityCooldown;
         SetCurrentHealth(maxHealth);
     }
 
@@ -43,7 +47,7 @@ public class HealthHandler : MonoBehaviour
             currentHealth = Mathf.Max(0, currentHealth - damage);
             SetCurrentHealth(currentHealth);
             timeSinceLastDamageTaken = Time.time;
-            OnDamageTaken?.Invoke(currentHealth, maxHealth);
+            OnDamageTaken?.Invoke(currentHealth, maxHealth, healthComponent);
             if(currentHealth <= 0)
             {
                 Kill();

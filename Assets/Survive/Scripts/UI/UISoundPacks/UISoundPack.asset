@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 027ebd2b525f51e4ba4f54d92f6bdf26, type: 3}
-  m_Name: SingleAmmo
+  m_Script: {fileID: 11500000, guid: 1b5e6dd0c8700e84a95e5aef9b6f8a4c, type: 3}
+  m_Name: UISoundPack
   m_EditorClassIdentifier: 
-  InteractionSound:
-  - {fileID: 8300000, guid: 7d88fd460ef428549bedafcacd590699, type: 3}
-  Name: 9
-  Prefab: {fileID: 3690118918252715936, guid: 577be60483f249a4b96f486a34fa6870, type: 3}
+  InventorySelectionChanged:
+  - {fileID: 8300000, guid: 22b04177d78a0874faeedcfd097792a6, type: 3}

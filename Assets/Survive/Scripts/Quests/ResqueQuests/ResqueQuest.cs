@@ -19,10 +19,10 @@ public class ResqueQuest : IQuest, IDisposable
         this.questEvents = questEvents;
         CreateQuestNPC();
         CreateQuestEnemy();
-        questEvents.OnCreatureKilled += (_, killedEnemy) => UpdateProgress(killedEnemy);
+        questEvents.OnCreatureKilled += UpdateProgress;
     }
 
-    private void UpdateProgress(HealthHandler enemy)
+    private void UpdateProgress(CreatureType enemyType, HealthHandler enemy)
     {
         if (questEnemies.Contains(enemy))
         {

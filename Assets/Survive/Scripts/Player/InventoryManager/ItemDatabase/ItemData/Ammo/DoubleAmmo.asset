@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027ebd2b525f51e4ba4f54d92f6bdf26, type: 3}
   m_Name: DoubleAmmo
   m_EditorClassIdentifier: 
+  InteractionSound:
+  - {fileID: 8300000, guid: 7d88fd460ef428549bedafcacd590699, type: 3}
   Name: 10
   Prefab: {fileID: 1342302396400192757, guid: 5461cc141d68452498fcc0839dca89d2, type: 3}
-  PickUpSound:
-  - {fileID: 8300000, guid: 7d88fd460ef428549bedafcacd590699, type: 3}

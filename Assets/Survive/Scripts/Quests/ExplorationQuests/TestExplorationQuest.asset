@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: "\u041D\u0435\u043B\u0435\u0433\u0430\u043B"
   Description: "\u041D\u0430\u0439\u0442\u0438 \u0434\u0438\u043B\u0435\u0440\u0430"
   MaxProgress: 1
-  QuestComplete: {fileID: 8300000, guid: 040d21d1c87e48c47b8abae0effe0bda, type: 3}
+  QuestComplete:
+  - {fileID: 8300000, guid: 040d21d1c87e48c47b8abae0effe0bda, type: 3}
   X: 15
   Y: -4
   Radius: 5
