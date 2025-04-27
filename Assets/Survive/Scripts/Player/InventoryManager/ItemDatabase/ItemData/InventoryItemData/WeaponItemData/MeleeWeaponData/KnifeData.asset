@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7801bff129cfe5c4aa9f3e3da169452a, type: 3}
   m_Name: KnifeData
   m_EditorClassIdentifier: 
-  InteractionSound:
+  InteractionSounds:
   - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   Name: 1
   Prefab: {fileID: 901933793069096313, guid: e26deb283589dd141b243b29ae54e237, type: 3}
   InventoryImage: {fileID: -8275616929961906424, guid: 74de333025002094a991b341b11a4815, type: 3}
-  DropSound:
+  DropSounds:
   - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
   ErrorSound: {fileID: 8300000, guid: bfad88e5f97b0814892ee6ce36c3b66f, type: 3}
   Description: Cautious! That thing is sharp...
   Damage: 10
   AttackCooldown: 0.18
   Animator: {fileID: 22100000, guid: ef94fba113dfe4f43bf92678ebbfc14f, type: 2}
-  AttackSound:
+  AttackSounds:
   - {fileID: 8300000, guid: 5af16e6d1ebbb8d4b80f8a03258a4243, type: 3}
   - {fileID: 8300000, guid: f27f0cc1e49539d47b7c3f98a2397041, type: 3}
   AttackRange: 0.2

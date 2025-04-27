@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027ebd2b525f51e4ba4f54d92f6bdf26, type: 3}
   m_Name: Money
   m_EditorClassIdentifier: 
-  InteractionSound:
+  InteractionSounds:
   - {fileID: 8300000, guid: 66d061ba1a6779e46bed7a7be48ccaa7, type: 3}
   Name: 8
   Prefab: {fileID: 6258729319954115926, guid: 1c2c874ca1f0bdb4da3d57a00ef39410, type: 3}

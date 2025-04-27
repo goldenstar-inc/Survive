@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99b10f11508fed488433ff0fc21bb01, type: 3}
   m_Name: PistolData
   m_EditorClassIdentifier: 
-  InteractionSound:
+  InteractionSounds:
   - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   Name: 2
   Prefab: {fileID: 2754018163563420593, guid: 7755271ac7a65b94c9dd56df11d9a8ed, type: 3}
   InventoryImage: {fileID: -1773908920937926555, guid: 6da85283d9fbf4c4f8f8a56f48f1debc, type: 3}
-  DropSound:
+  DropSounds:
   - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
   ErrorSound: {fileID: 8300000, guid: 86d9a89b56f18bd4ebb9d9d1e1fbfffb, type: 3}
   Description: Glock-18. Sweet!
   Damage: 25
   AttackCooldown: 0.5
   Animator: {fileID: 22100000, guid: eacf865baeeec01418ea62edc2c2c284, type: 2}
-  AttackSound:
+  AttackSounds:
   - {fileID: 8300000, guid: 91b57dc8eb19d5741ae5ad3f2f98a2ab, type: 3}
   BulletPrefab: {fileID: 4503826973908181090, guid: 2afcae5d1e5c9c64d826592a0be81376, type: 3}
   BulletVelocity: 70

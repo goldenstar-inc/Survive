@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310f74845cc45d14e958ca201863efc7, type: 3}
   m_Name: MedicineData
   m_EditorClassIdentifier: 
-  InteractionSound:
+  InteractionSounds:
   - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
   Name: 6
   Prefab: {fileID: 6192780169557577017, guid: f2c913a7cdff86444a957d003a685e25, type: 3}
   InventoryImage: {fileID: 9208150451487685380, guid: 0c43543807e7bac4eaefcb5b7e6ccfbd, type: 3}
-  DropSound:
+  DropSounds:
   - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
   ErrorSound: {fileID: 8300000, guid: bfad88e5f97b0814892ee6ce36c3b66f, type: 3}
   Description: Delicious, sour vitamins. LOVE THAT!
   MaxQuantity: 6
   UseDuration: 3
-  Sound:
+  UseSounds:
   - {fileID: 8300000, guid: b7b50de6d6328d4498007f5f146fb18f, type: 3}
   HealPoints: 2

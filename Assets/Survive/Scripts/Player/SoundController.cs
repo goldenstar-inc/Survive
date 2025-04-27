@@ -10,14 +10,12 @@ using Unity.Multiplayer.Center.Common.Analytics;
 /// </summary>
 public class SoundController : MonoBehaviour
 {
-    private PlayerDataProvider playerData;
-    
     /// <summary>
     /// Источник воспроизведения звука
     /// </summary>
     private AudioSource audioSource;
     private float pitchVariation = 0.05f;
-    public float volumeVariation = 0.1f;
+    private float volumeVariation = 0.1f;
     private float lastPlayTime = 0f;
     private float playCooldown = 0.1f;
 
@@ -34,7 +32,6 @@ public class SoundController : MonoBehaviour
 
     public void Init(
         AudioSource audioSource,
-        PlayerDataProvider playerData,
         HealthHandler healthHandler,
         InventoryController inventoryController,
         QuestManager questManager,
@@ -44,7 +41,6 @@ public class SoundController : MonoBehaviour
         )
     {
         this.audioSource = audioSource;
-        this.playerData = playerData;
         this.healthHandler = healthHandler;
         this.inventoryController = inventoryController;
         this.questManager = questManager;
@@ -66,7 +62,7 @@ public class SoundController : MonoBehaviour
     {
         if (component != null)
         {
-            AudioClip[] clips = component.DamagedSound;
+            AudioClip[] clips = component.DamagedSounds;
             PlaySound(clips);
         }
     }
@@ -82,7 +78,7 @@ public class SoundController : MonoBehaviour
     {
         if (pack != null)
         {
-            AudioClip[] clips = pack.InventorySelectionChanged;
+            AudioClip[] clips = pack.InventorySelectionChangedSounds;
             PlaySound(clips);
         }
     }
@@ -91,7 +87,7 @@ public class SoundController : MonoBehaviour
         if (interactable != null)
         {
             IntreractableData data = interactable.Data;
-            AudioClip[] clips = data.InteractionSound;
+            AudioClip[] clips = data.InteractionSounds;
             PlaySound(clips);
         }
     }
@@ -99,7 +95,7 @@ public class SoundController : MonoBehaviour
     {
         if (itemData != null)
         {
-            AudioClip[] clips = itemData.InteractionSound;
+            AudioClip[] clips = itemData.InteractionSounds;
             PlaySound(clips);
         }
     }
@@ -109,7 +105,7 @@ public class SoundController : MonoBehaviour
         {
             if (itemData is UsableItemData usableItemData)
             {
-                AudioClip[] clips = usableItemData.Sound;
+                AudioClip[] clips = usableItemData.UseSounds;
                 PlaySound(clips);
             }
         }
@@ -118,7 +114,7 @@ public class SoundController : MonoBehaviour
     {
         if (itemData != null)
         {
-            AudioClip[] clips = itemData.DropSound;
+            AudioClip[] clips = itemData.DropSounds;
             PlaySound(clips);
         }
     }
@@ -126,7 +122,7 @@ public class SoundController : MonoBehaviour
     {
         if (itemData != null)
         {
-            AudioClip[] clips = itemData.AttackSound;
+            AudioClip[] clips = itemData.AttackSounds;
             PlaySound(clips);
         }
     }
@@ -134,7 +130,7 @@ public class SoundController : MonoBehaviour
     {
         if (quest != null && quest.QuestConfig != null)
         {
-            AudioClip[] clips = quest.QuestConfig.QuestComplete;
+            AudioClip[] clips = quest.QuestConfig.CompletedQuestSounds;
             PlaySound(clips);
         }
     }

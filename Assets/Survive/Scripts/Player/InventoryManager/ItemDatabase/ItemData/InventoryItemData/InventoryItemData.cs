@@ -4,7 +4,7 @@ using UnityEngine;
 public class InventoryItemData : PickableItemData
 {
     public Sprite InventoryImage;
-    public AudioClip[] DropSound;
+    public AudioClip[] DropSounds;
     public AudioClip ErrorSound;
     public string Description;
 }

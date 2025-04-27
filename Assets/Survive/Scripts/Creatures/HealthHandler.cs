@@ -47,6 +47,11 @@ public class HealthHandler : MonoBehaviour
             currentHealth = Mathf.Max(0, currentHealth - damage);
             SetCurrentHealth(currentHealth);
             timeSinceLastDamageTaken = Time.time;
+            
+            if (TryGetComponent(out Rigidbody2D rb))
+            {
+                rb.AddForce(new Vector2(0, 0.2f), ForceMode2D.Force);
+            }
             OnDamageTaken?.Invoke(currentHealth, maxHealth, healthComponent);
             if(currentHealth <= 0)
             {

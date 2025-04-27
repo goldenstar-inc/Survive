@@ -118,7 +118,7 @@ public class PlayerBootstrapper : MonoBehaviour
         }
         
         int maxHealth = playerSetting.HealthComponent.MaxHealth;
-        AudioClip[] damageSound = playerSetting.HealthComponent.DamagedSound;
+        AudioClip[] damageSound = playerSetting.HealthComponent.DamagedSounds;
         float invincibilityCooldown =  playerSetting.HealthComponent.InvincibilityCooldown;
         
         if (maxHealth <= 0 || damageSound == null  || damageSound.Length == 0 ||invincibilityCooldown < 0)
@@ -243,7 +243,6 @@ public class PlayerBootstrapper : MonoBehaviour
     {
         soundController.Init(
             audioSource,
-            playerData,
             healthHandler,
             inventoryController,
             questManager,

@@ -9,7 +9,7 @@ public class ZombieChase : MonoBehaviour
     private ZombieAnimationController controller;
     private GameObject target;
     private float moveSpeed;
-    private float attackRange = 0.75f;
+    private float attackRange = 0.9f;
 
     /// <summary>
     /// Инициализация скрипта [DI]
@@ -34,11 +34,14 @@ public class ZombieChase : MonoBehaviour
             {
                 HealthHandler targetHealthManager = TryGetTargetHealthManager(target);
                 OnCaughtTarget?.Invoke(targetHealthManager);
+                controller?.UpdateMovementAnimation(Vector2.zero);
             }
-
+            else
+            {
+                MoveTowardsTarget(targetTransform);
+                controller?.UpdateMovementAnimation(currentDirection);
+            }
             currentDirection = (targetPosition - zombiePosition).normalized;
-            MoveTowardsTarget(targetTransform);
-            controller?.UpdateMovementAnimation(currentDirection);
         }
     }
 

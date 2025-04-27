@@ -16,6 +16,6 @@ MonoBehaviour:
   Description: "\u0423\u0431\u0435\u0439 \u0431\u043E\u043B\u044C\u0448\u043E\u0433\u043E
     \u0437\u043E\u043C\u0431\u0438"
   MaxProgress: 1
-  QuestComplete:
+  CompletedQuestSounds:
   - {fileID: 8300000, guid: 040d21d1c87e48c47b8abae0effe0bda, type: 3}
   QuestTargetType: 7

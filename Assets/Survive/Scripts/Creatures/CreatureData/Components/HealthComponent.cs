@@ -5,7 +5,7 @@ public class HealthComponent : ScriptableObject
 {
     public int MaxHealth;
 
-    public AudioClip[] DamagedSound;
+    public AudioClip[] DamagedSounds;
 
     public float InvincibilityCooldown;
 }

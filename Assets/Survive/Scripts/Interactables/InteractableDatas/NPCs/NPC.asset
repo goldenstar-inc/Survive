@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c4d3d54be99a84e8b978ef8911a03e, type: 3}
   m_Name: NPC
   m_EditorClassIdentifier: 
-  InteractionSound:
+  InteractionSounds:
   - {fileID: 8300000, guid: 3fc85c4ed6860fd4298a95083641da5e, type: 3}

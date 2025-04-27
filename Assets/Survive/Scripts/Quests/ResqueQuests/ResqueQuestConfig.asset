@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: 123
   Description: 333
   MaxProgress: 2
-  QuestComplete:
+  CompletedQuestSounds:
   - {fileID: 8300000, guid: 040d21d1c87e48c47b8abae0effe0bda, type: 3}
   ResqueNPC: {fileID: 5587394888964703577, guid: 48c3f88387009ac43a16f279ec743e47, type: 3}
   Coords: {x: 10, y: 10, z: 0}

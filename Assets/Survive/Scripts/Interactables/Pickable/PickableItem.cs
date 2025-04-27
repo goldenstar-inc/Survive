@@ -10,7 +10,7 @@ public class PickableItem : MonoBehaviour, IInteractable, IPickable
     public event Action OnInteract;
     public IntreractableData Data => data;
     public PickableItems Name => data.Name;
-    public AudioClip[] PickUpSound => data.InteractionSound;
+    public AudioClip[] PickUpSound => data.InteractionSounds;
     public int Quantity => quantity;
 
     private int quantity;

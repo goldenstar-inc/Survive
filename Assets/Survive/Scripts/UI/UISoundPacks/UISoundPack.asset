@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5e6dd0c8700e84a95e5aef9b6f8a4c, type: 3}
   m_Name: UISoundPack
   m_EditorClassIdentifier: 
-  InventorySelectionChanged:
+  InventorySelectionChangedSounds:
   - {fileID: 8300000, guid: 22b04177d78a0874faeedcfd097792a6, type: 3}

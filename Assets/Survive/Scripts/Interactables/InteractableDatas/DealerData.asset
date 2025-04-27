@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c4d3d54be99a84e8b978ef8911a03e, type: 3}
   m_Name: DealerData
   m_EditorClassIdentifier: 
-  InteractionSound:
+  InteractionSounds:
   - {fileID: 8300000, guid: e5e08a0bdbdf6ea45b81366dccaa70cd, type: 3}

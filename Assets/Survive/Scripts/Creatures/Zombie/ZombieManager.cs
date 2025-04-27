@@ -36,7 +36,7 @@ public class ZombieManager : MonoBehaviour, IEnemy
         
         creatureType = setting.Type;
 
-        AudioClip[] damageSound = setting.HealthComponent.DamagedSound;
+        AudioClip[] damageSound = setting.HealthComponent.DamagedSounds;
 
         List<Loot> lootPool = poolData.Pool;
 
