@@ -67,8 +67,12 @@ public class EquippedMeleeWeapon : IUseScript
                 HealthHandler foundEnemy = enemy.GetComponent<HealthHandler>();
                 KillDetector killDetector = foundEnemy.GetComponent<KillDetector>();
 
+                if (playerData is IHealthProvider healthProvider)
+                {
+                    HealthHandler healthHandler = healthProvider.HealthHandler;
+                    foundEnemy?.TakeDamage(damage, healthHandler.transform.position);
+                }
                 killDetector?.SetPlayerData(playerData);
-                foundEnemy?.TakeDamage(damage);
             }
         }
 

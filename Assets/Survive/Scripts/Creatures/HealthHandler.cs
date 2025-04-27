@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthHandler : MonoBehaviour
 {
-    public event Action<int, int, HealthComponent> OnDamageTaken;
+    public event Action<int, int, HealthComponent, Vector3> OnDamageTaken;
     public event Action<int, int> OnHeal;
     public event Action OnDeath;
 
@@ -40,19 +40,14 @@ public class HealthHandler : MonoBehaviour
     /// Метод, уменьшающий количество очков здоровья игрока на переданное значение урона
     /// </summary>
     /// <param name="damage">Значение урона</param>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3 attackerPosition)
     {
         if (Time.time - timeSinceLastDamageTaken > invincibilityCooldown)
         {
             currentHealth = Mathf.Max(0, currentHealth - damage);
             SetCurrentHealth(currentHealth);
             timeSinceLastDamageTaken = Time.time;
-            
-            if (TryGetComponent(out Rigidbody2D rb))
-            {
-                rb.AddForce(new Vector2(0, 0.2f), ForceMode2D.Force);
-            }
-            OnDamageTaken?.Invoke(currentHealth, maxHealth, healthComponent);
+            OnDamageTaken?.Invoke(currentHealth, maxHealth, healthComponent, attackerPosition);
             if(currentHealth <= 0)
             {
                 Kill();

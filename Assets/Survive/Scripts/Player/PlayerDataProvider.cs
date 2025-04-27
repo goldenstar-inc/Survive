@@ -9,7 +9,7 @@ using Zenject;
 public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealthProvider, IAmmoProvider, IMoneyProvider, IWeaponProvider, IQuestProvider, IDialogueProvider
 {
     public PlayerSetting PlayerSetting { get; private set; }
-    public HealthHandler HealthManager { get; private set; }
+    public HealthHandler HealthHandler { get; private set; }
     public AmmoHandler AmmoHandler { get; private set; }
     public MoneyHandler MoneyHandler { get; private set; }
     public WeaponManager WeaponManager { get; private set; }
@@ -36,7 +36,7 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
         )
     {
         this.PlayerSetting = PlayerSetting;
-        this.HealthManager = HealthManager;
+        this.HealthHandler = HealthManager;
         this.AmmoHandler = AmmoHandler;
         this.MoneyHandler = MoneyHandler;
         this.WeaponManager = WeaponManager;

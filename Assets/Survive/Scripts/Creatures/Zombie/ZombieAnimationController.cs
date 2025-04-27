@@ -61,10 +61,7 @@ public class ZombieAnimationController : MonoBehaviour
     /// <summary>
     /// Метод, вызывающийся при получении урона
     /// </summary>
-    /// <param name="currentHealth">Текущее количество очков здоровья</param>
-    /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    /// <param name="healthComponent">Информация, свзяанная со здоровьем</param>
-    public void EnableDamagedAnimation(int currentHealth, int maxHealth, HealthComponent healthComponent)
+    public void EnableDamagedAnimation(int _, int __, HealthComponent ___, Vector3 ____)
     {
         if (zombieAnimator != null)
         {

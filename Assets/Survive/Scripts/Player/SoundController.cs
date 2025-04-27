@@ -58,7 +58,7 @@ public class SoundController : MonoBehaviour
         weaponManager.OnAttack += PlaySound;
         questManager.OnQuestCompleted += PlaySound;
     }
-    private void PlaySound(int _, int __, HealthComponent component)
+    private void PlaySound(int _, int __, HealthComponent component, Vector3 ___)
     {
         if (component != null)
         {

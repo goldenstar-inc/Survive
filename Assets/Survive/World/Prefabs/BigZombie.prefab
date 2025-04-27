@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 7571007190531920560}
   - component: {fileID: 5651537909820195360}
   - component: {fileID: 8142475410500015177}
+  - component: {fileID: 299991462603654586}
+  - component: {fileID: 1629376909791422983}
   m_Layer: 0
   m_Name: Model
   m_TagString: Enemy
@@ -111,7 +113,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -160,7 +162,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0023094416, y: -0.039257944}
+  m_Offset: {x: 0.0023094416, y: -0.08417559}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,7 +172,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7552154, y: 0.6505276}
+  m_Size: {x: 0.7552154, y: 0.7403629}
   m_EdgeRadius: 0
 --- !u!95 &3027159898630168956
 Animator:
@@ -210,12 +212,15 @@ MonoBehaviour:
   poolData: {fileID: 11400000, guid: 63faae7ccf1b17b438e8d4380259c607, type: 2}
   setting: {fileID: 11400000, guid: 27cc9dd07a579d14280cd4537788c93b, type: 2}
   zombieAnimationController: {fileID: 8332997739307295690}
-  healthManager: {fileID: 3440056687455435813}
+  healthHandler: {fileID: 3440056687455435813}
   soundController: {fileID: 5651537909820195360}
   zombieAttack: {fileID: 6710815579575528775}
   dropLoot: {fileID: 7571007190531920560}
   zombieChase: {fileID: 5442245085613570877}
   killDetector: {fileID: 8142475410500015177}
+  stateHandler: {fileID: 299991462603654586}
+  knockbackHandler: {fileID: 1629376909791422983}
+  rb: {fileID: 8755650485047805200}
 --- !u!114 &8332997739307295690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +303,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7825aa96259a1745a7949b0891e6d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &299991462603654586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079689751734497547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856b8df2ad5bda748a04013ea89f52b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1629376909791422983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079689751734497547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 792b44fcd98cf764ab042d674285cba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5432040155741567166

@@ -29,11 +29,7 @@ public class ZombieAttack : MonoBehaviour
     {
         if (targetHealthManager != null)
         {
-            targetHealthManager.TakeDamage(damage);
-            if (targetHealthManager.TryGetComponent(out Rigidbody2D rb))
-            {
-                rb.AddForce(new Vector2(0, 0.2f), ForceMode2D.Force);
-            }
+            targetHealthManager.TakeDamage(damage, transform.position);
         }
     }
 

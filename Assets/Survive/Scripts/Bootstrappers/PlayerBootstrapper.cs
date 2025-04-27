@@ -25,6 +25,10 @@ public class PlayerBootstrapper : MonoBehaviour
     [SerializeField] private QuestManager questManager;
     [SerializeField] private DialogueManager dialogueManager;
 
+    [Header("Additional handlers")]
+    [SerializeField] private KnockbackHandler knockbackHandler;
+    [SerializeField] private StateHandler stateHandler;
+
     [Header("Components")]
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator weaponAnimator;
@@ -62,6 +66,7 @@ public class PlayerBootstrapper : MonoBehaviour
     {
         if (!ValidateSettings()) return;
 
+        InitState();
         InitCamera();
         InitNickname();
         InitHealth();
@@ -78,6 +83,7 @@ public class PlayerBootstrapper : MonoBehaviour
         InitInteraction();
         InitQuestEvents();
         InitQuest();
+        InitKnockbackHandler();
     }
 
 
@@ -140,7 +146,27 @@ public class PlayerBootstrapper : MonoBehaviour
             return false;
         }
 
+        if (knockbackHandler == null)
+        {
+            Debug.LogError("KnockbackHandler isn't properly set");
+            return false;
+        }
+
+        if (stateHandler == null)
+        {
+            Debug.LogError("StateHandler isn't properly set");
+            return false;
+        }
+
         return true;
+    }
+
+    /// <summary>
+    /// Инициализация контроллера квестов
+    /// </summary>
+    private void InitState()
+    {
+        stateHandler.Init();
     }
 
     /// <summary>
@@ -151,7 +177,7 @@ public class PlayerBootstrapper : MonoBehaviour
         nicknameFollow.Init(
             nicknamePlaceholder,
             nicknamePosition,
-            "Melnik"
+            "Mark"
         );
     }
 
@@ -260,6 +286,7 @@ public class PlayerBootstrapper : MonoBehaviour
         var run = playerSetting.RunComponent;
 
         playerMovement.Init(
+            stateHandler,
             run,
             playerRB,
             run.WalkSpeed,
@@ -334,6 +361,18 @@ public class PlayerBootstrapper : MonoBehaviour
     {
         questManager.Init(
             questEvents
+        );
+    }
+
+    /// <summary>
+    /// Инициализация контроллера квестов
+    /// </summary>
+    private void InitKnockbackHandler()
+    {
+        knockbackHandler.Init(
+            playerRB,
+            stateHandler,   
+            healthHandler
         );
     }
 }

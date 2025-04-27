@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(ZombieAnimationController))]
@@ -15,14 +16,15 @@ public class ZombieManager : MonoBehaviour, IEnemy
     [SerializeField] LootPool poolData;
     [SerializeField] MovableZombieSetting setting;
     [SerializeField] ZombieAnimationController zombieAnimationController;
-    [SerializeField] HealthHandler healthManager;
+    [SerializeField] HealthHandler healthHandler;
     [SerializeField] SoundController soundController;
     [SerializeField] ZombieAttack zombieAttack;
     [SerializeField] DropLoot dropLoot;
     [SerializeField] ZombieChase zombieChase;
     [SerializeField] KillDetector killDetector;
-
-
+    [SerializeField] StateHandler stateHandler;
+    [SerializeField] KnockbackHandler knockbackHandler;
+    [SerializeField] Rigidbody2D rb;
     public CreatureType creatureType { get; private set; }
 
     void Start()
@@ -46,7 +48,15 @@ public class ZombieManager : MonoBehaviour, IEnemy
             return;
         }
 
-        healthManager.Init(
+        stateHandler.Init();
+
+        knockbackHandler.Init(
+            rb,
+            stateHandler,
+            healthHandler
+        );
+
+        healthHandler.Init(
             healthComponent,
             maxHealth, 
             invincibleCooldown
@@ -54,17 +64,19 @@ public class ZombieManager : MonoBehaviour, IEnemy
 
         dropLoot.Init(
             lootPool, 
-            healthManager
+            healthHandler
             );
 
         zombieAnimationController.Init(
-            healthManager, 
+            healthHandler, 
             zombieAnimator
             );
         
         zombieChase.Init(
             moveSpeed, 
-            zombieAnimationController
+            rb,
+            zombieAnimationController,
+            stateHandler
             );
 
         zombieAttack.Init(
@@ -73,7 +85,7 @@ public class ZombieManager : MonoBehaviour, IEnemy
             );
 
         killDetector.Init(
-            healthManager
+            healthHandler
             );
     }
 }

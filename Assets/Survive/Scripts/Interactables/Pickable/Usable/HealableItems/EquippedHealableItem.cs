@@ -25,7 +25,7 @@ public class EquippedHealableItem : IUseScript
     {
         if (playerData != null)
         {
-            HealthHandler healthManager = playerData.HealthManager;
+            HealthHandler healthManager = playerData.HealthHandler;
 
             if (healthManager != null)
             {

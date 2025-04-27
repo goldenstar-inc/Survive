@@ -33,9 +33,7 @@ public class HealthDisplay : MonoBehaviour
     /// Обновление очков здоровья в канвасе при получении урона
     /// </summary>
     /// <param name="currentHealth">Текущее здоровье</param>
-    /// <param name="maxHealth">Максимальное здоровье</param>
-    /// <param name="healthComponent">Информация, связанная со здоровьем</param>
-    private void UpdateHealthBar(int currentHealth, int maxHealth, HealthComponent healthComponent)
+    private void UpdateHealthBar(int currentHealth, int _, HealthComponent __, Vector3 ___)
     {
         healthBar.value = currentHealth;
     }

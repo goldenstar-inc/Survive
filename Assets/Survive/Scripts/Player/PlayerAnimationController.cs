@@ -106,9 +106,7 @@ public class PlayerAnimationController : MonoBehaviour
     /// <summary>
     /// Метод, вызывающийся при получении урона
     /// </summary>
-    /// <param name="currentHealth">Текущее количество очков здоровья</param>
-    /// <param name="maxHealth">Максимальное количество очков здоровья</param>
-    public void OnDamageTaken(int currentHealth, int maxHealth, HealthComponent healthComponent)
+    public void OnDamageTaken(int _, int __, HealthComponent ___, Vector3 ____)
     {
         if (animator != null)
         {

@@ -347,6 +347,8 @@ GameObject:
   - component: {fileID: 4958877223029956064}
   - component: {fileID: 6375517688259816323}
   - component: {fileID: 7641567199403349509}
+  - component: {fileID: 5874011277941753244}
+  - component: {fileID: 2272514768265262023}
   - component: {fileID: 1069411224918777790}
   - component: {fileID: 8896625041425756085}
   - component: {fileID: 6205479062810160229}
@@ -444,7 +446,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -695,6 +697,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b52364e6c7d0b4b86f4f4c20247591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5874011277941753244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881584487222497953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 792b44fcd98cf764ab042d674285cba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2272514768265262023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881584487222497953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856b8df2ad5bda748a04013ea89f52b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1069411224918777790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,6 +774,8 @@ MonoBehaviour:
   playerSetting: {fileID: 11400000, guid: 283a67eee8f24ab4d98c413628839a7a, type: 2}
   questManager: {fileID: 5429371008183437115}
   dialogueManager: {fileID: 4958877223029956064}
+  knockbackHandler: {fileID: 5874011277941753244}
+  stateHandler: {fileID: 2272514768265262023}
   playerAnimator: {fileID: 494139080195456411}
   weaponAnimator: {fileID: 1251210084233911900}
   playerRB: {fileID: 5797005307598262512}

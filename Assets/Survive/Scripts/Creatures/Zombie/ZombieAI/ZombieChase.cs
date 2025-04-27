@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using UnityEditor.Callbacks;
 
 public class ZombieChase : MonoBehaviour
 {
@@ -10,19 +11,38 @@ public class ZombieChase : MonoBehaviour
     private GameObject target;
     private float moveSpeed;
     private float attackRange = 0.9f;
+    private StateHandler stateHandler;
+    private CreatureState currentState;
+    private Rigidbody2D rb;
 
     /// <summary>
     /// Инициализация скрипта [DI]
     /// </summary>
     /// <param name="moveSpeed">Скорость передвижения</param>
     /// <param name="controller">Контроллер анимаций</param>
-    public void Init(float moveSpeed, ZombieAnimationController controller)
+    public void Init(
+        float moveSpeed, 
+        Rigidbody2D rb,
+        ZombieAnimationController controller,
+        StateHandler stateHandler
+        )
     {
         this.moveSpeed = moveSpeed;
+        this.rb = rb;
         this.controller = controller;
+        this.stateHandler = stateHandler;
+
+        stateHandler.OnStateChanged += SetCurrentState;
+    }
+
+    private void Update()
+    {
+        Move();
     }
     private void Move()
     {
+        if (currentState != CreatureState.Normal) return;
+
         if (target != null)
         {
             Transform targetTransform = TryGetTargetTransform(target);
@@ -42,6 +62,10 @@ public class ZombieChase : MonoBehaviour
                 controller?.UpdateMovementAnimation(currentDirection);
             }
             currentDirection = (targetPosition - zombiePosition).normalized;
+        }
+        else
+        {
+            rb.linearVelocity = Vector3.zero;
         }
     }
 
@@ -101,21 +125,6 @@ public class ZombieChase : MonoBehaviour
     }
 
     /// <summary>
-    /// Детект коллизии с объектом
-    /// </summary>
-    /// <param name="collision">Коллизия</param>
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision != null)
-        {
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                Move();
-            }
-        }
-    }
-
-    /// <summary>
     /// Получение компонента Tranform у цели
     /// </summary>
     /// <param name="target">Цель</param>
@@ -133,5 +142,18 @@ public class ZombieChase : MonoBehaviour
     private HealthHandler TryGetTargetHealthManager(GameObject target)
     {
         return target?.GetComponent<HealthHandler>();
+    }
+
+    public void SetCurrentState(CreatureState currentState)
+    {
+        this.currentState = currentState;
+    }
+
+    private void OnDestroy()
+    {
+        if (stateHandler != null)
+        {
+            stateHandler.OnStateChanged -= SetCurrentState; 
+        }
     }
 }

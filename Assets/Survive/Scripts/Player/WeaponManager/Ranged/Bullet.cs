@@ -6,17 +6,15 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
-    /// <summary>
-    /// Урон пули пистолета
-    /// </summary>
     private int damage;
+    private PlayerDataProvider playerData;
 
-    PlayerDataProvider playerData;
-
-    public void Initialize(int damage, PlayerDataProvider playerData)
+    public void Initialize(
+        int damage, 
+        PlayerDataProvider playerData
+        )
     {
         this.damage = damage;
-
         this.playerData = playerData;
     }
 
@@ -33,8 +31,12 @@ public class Bullet : MonoBehaviour
                 HealthHandler damageHandler = collision.GetComponent<HealthHandler>();
                 KillDetector killDetector = collision.GetComponent<KillDetector>();
 
+                if (playerData is IHealthProvider healthProvider)
+                {
+                    HealthHandler healthHandler = healthProvider.HealthHandler;
+                    damageHandler?.TakeDamage(damage, healthHandler.transform.position);
+                }
                 killDetector?.SetPlayerData(playerData);
-                damageHandler?.TakeDamage(damage);
                 Destroy(gameObject);
             }
         }
