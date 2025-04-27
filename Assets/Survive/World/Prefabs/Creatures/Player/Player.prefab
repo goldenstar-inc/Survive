@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2746934767045728543}
   - component: {fileID: 7572213417431895997}
   - component: {fileID: 264838769102451390}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 17783
+    m_Bits: 116087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 5693382660875955691}
   - component: {fileID: 729485483001778680}
   - component: {fileID: 6039527059572151352}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PlayerSoundSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 4675852780059315298}
   - component: {fileID: 4993090857316056473}
   - component: {fileID: 9085158650275799636}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: InteractionDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2462821839592621295}
   - component: {fileID: 2906588685448916150}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: AimPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 1571220389961813596}
   - component: {fileID: 2267481104267739942}
   - component: {fileID: 2280508101391333135}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: WeaponManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7506618963948533900}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 8608093115665131965}
   - component: {fileID: 6974981801600040316}
   - component: {fileID: 1199732363722683602}
-  m_Layer: 5
+  m_Layer: 16
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 2306070442232764389}
   - component: {fileID: 501914245565996175}
   - component: {fileID: 8969823579106785168}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: MinimapCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 6016
+    m_Bits: 120704
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6eb8318273b9afa4e88dd0a67f427de4, type: 2}
   m_TargetDisplay: 0
@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 7415050556395875051}
   - component: {fileID: 6987289539130499966}
   - component: {fileID: 1223203523104989017}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Model
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -966,8 +966,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
+  m_Mass: 2
+  m_LinearDamping: 8
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -1324,7 +1324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6956198161323069003}
   - component: {fileID: 1138360561441238685}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1412,7 +1412,7 @@ GameObject:
   - component: {fileID: 8759053496368533304}
   - component: {fileID: 2861750780260306228}
   - component: {fileID: 3413045413472305444}
-  m_Layer: 5
+  m_Layer: 16
   m_Name: Nickname
   m_TagString: Untagged
   m_Icon: {fileID: 0}

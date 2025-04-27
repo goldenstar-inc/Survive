@@ -100,6 +100,7 @@ public class ZombieChase : MonoBehaviour
     {
         if (collision != null)
         {
+            Debug.Log(collision.gameObject.tag);
             if (collision.gameObject.CompareTag("Player"))
             {
                 target = collision.gameObject;

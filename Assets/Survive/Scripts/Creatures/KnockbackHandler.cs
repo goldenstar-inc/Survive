@@ -8,7 +8,7 @@ public class KnockbackHandler : MonoBehaviour
     private Rigidbody2D rb;
     private HealthHandler healthHandler;
     private ForceMode2D forceMode;
-    private float knockbackForce = 5f;
+    private float knockbackForce = 4f;
     public void Init(
         Rigidbody2D rb,
         StateHandler stateHandler,
