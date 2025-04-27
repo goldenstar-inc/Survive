@@ -3,5 +3,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MeleeWeaponItemData", menuName = "Items/Melee Weapon Item Data")]
 public class MeleeWeaponItemData : WeaponItemData
 {
-    [SerializeField] public float AttackRange;
+    [SerializeField] public GameObject AttackArea;
 }

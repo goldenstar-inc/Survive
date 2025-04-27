@@ -27,4 +27,4 @@ MonoBehaviour:
   AttackSounds:
   - {fileID: 8300000, guid: 5af16e6d1ebbb8d4b80f8a03258a4243, type: 3}
   - {fileID: 8300000, guid: f27f0cc1e49539d47b7c3f98a2397041, type: 3}
-  AttackRange: 0.2
+  AttackArea: {fileID: 3308916112171192970, guid: 5db2217f7dfe7774087bbf3307acdd8e, type: 3}

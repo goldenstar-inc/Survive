@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Data.Common;
 using System.Linq;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using static InventoryController;
@@ -20,7 +21,7 @@ public class EquippedMeleeWeapon : IUseScript
     /// </summary>
     private MeleeWeaponItemData data;
     private int damage;
-    private float attackRadius;
+    private Collider2D attackAreaCollider;
     private float attackCooldown;
     private float timeSinceLastAttack = 0f;
     private Transform shotStartPoint;
@@ -38,8 +39,16 @@ public class EquippedMeleeWeapon : IUseScript
         
         this.data = data;
         damage = data.Damage;
-        attackRadius = data.AttackRange;
         attackCooldown = data.AttackCooldown;
+
+        GameObject attackArea = data.AttackArea;
+        if (attackArea != null)
+        {
+            GameObject spawnedArea = Spawner.Instance.Spawn(attackArea, shotStartPoint.transform.position, Quaternion.identity);
+            spawnedArea.transform.SetParent(weaponManager.transform);
+            attackAreaCollider = spawnedArea.GetComponentInChildren<Collider2D>();
+            attackAreaCollider.enabled = false;
+        }
     }
     
     /// <summary>
@@ -57,11 +66,26 @@ public class EquippedMeleeWeapon : IUseScript
     private void Attack()
     {
         weaponManager.Attack(data);
-        
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(shotStartPoint.position, attackRadius);
 
-        foreach (Collider2D enemy in hitEnemies)
+        if (attackAreaCollider == null)
         {
+            Debug.LogError("Attack area collider missing!");
+            return;
+        }
+
+        attackAreaCollider.enabled = true;
+
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(LayerMask.GetMask("Enemy"));
+        filter.useTriggers = true;
+
+        Collider2D[] hitEnemies = new Collider2D[10];
+
+        int hitEnemiesCount = attackAreaCollider.Overlap(filter, hitEnemies);
+
+        for (int i = 0; i < hitEnemiesCount; i++)
+        {
+            Collider2D enemy = hitEnemies[i];
             if (enemy.gameObject.CompareTag("Enemy"))
             {
                 HealthHandler foundEnemy = enemy.GetComponent<HealthHandler>();
@@ -74,8 +98,9 @@ public class EquippedMeleeWeapon : IUseScript
                 }
                 killDetector?.SetPlayerData(playerData);
             }
-        }
+        }        
 
+        attackAreaCollider.enabled = false;
         timeSinceLastAttack = Time.time;
     }
 }

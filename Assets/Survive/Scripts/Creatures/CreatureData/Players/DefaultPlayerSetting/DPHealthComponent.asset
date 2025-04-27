@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8898ae28bbcd82940b8a14c3bf6184f1, type: 3}
   m_Name: DPHealthComponent
   m_EditorClassIdentifier: 
-  MaxHealth: 50
+  MaxHealth: 99999
   DamagedSounds:
   - {fileID: 8300000, guid: ae02f3a95e1f6e349a4229ef93116b9c, type: 3}
   InvincibilityCooldown: 1.5
