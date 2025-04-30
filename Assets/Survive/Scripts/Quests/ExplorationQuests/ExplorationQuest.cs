@@ -29,7 +29,7 @@ public class ExplorationQuest : IQuest, IDisposable
     }
 
     /// <summary>
-    /// Create quest zone
+    /// Метод, создающий зоны выполнения задания
     /// </summary>
     private void CreateQuestZone()
     {
@@ -42,6 +42,9 @@ public class ExplorationQuest : IQuest, IDisposable
         questField.Init(this);
     }
 
+    /// <summary>
+    /// Метод, обновляющий прогресс
+    /// </summary>
     public void UpdateProgress()
     {
         currentProgress += 1;

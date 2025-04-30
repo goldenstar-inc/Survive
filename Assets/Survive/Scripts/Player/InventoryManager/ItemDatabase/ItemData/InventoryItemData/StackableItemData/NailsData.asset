@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d10b2b7549df2e4087fc0ca13b9f870, type: 3}
+  m_Name: NailsData
+  m_EditorClassIdentifier: 
+  InteractionSounds:
+  - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
+  Name: 12
+  Prefab: {fileID: 5730196285203437410, guid: 1eed40063351b0f4aaf2337ebfca101a, type: 3}
+  InventoryImage: {fileID: -970554169927220058, guid: cb8b63ecd9e197e4dae08a070efd6062, type: 3}
+  DropSounds:
+  - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
+  ErrorSound: {fileID: 8300000, guid: bfad88e5f97b0814892ee6ce36c3b66f, type: 3}
+  Description: Nails
+  MaxQuantity: 3

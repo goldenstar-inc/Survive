@@ -24,7 +24,7 @@ public class SoundController : MonoBehaviour
     /// </summary>
     private Random random = new Random();
     private HealthHandler healthHandler;
-    private InventoryController inventoryController;
+    private Inventory inventory;
     private QuestManager questManager;
     private PlayerMovement movement;
     private WeaponManager weaponManager;
@@ -33,7 +33,7 @@ public class SoundController : MonoBehaviour
     public void Init(
         AudioSource audioSource,
         HealthHandler healthHandler,
-        InventoryController inventoryController,
+        Inventory inventory,
         QuestManager questManager,
         PlayerMovement movement,
         WeaponManager weaponManager,
@@ -42,7 +42,7 @@ public class SoundController : MonoBehaviour
     {
         this.audioSource = audioSource;
         this.healthHandler = healthHandler;
-        this.inventoryController = inventoryController;
+        this.inventory = inventory;
         this.questManager = questManager;
         this.movement = movement;
         this.weaponManager = weaponManager;
@@ -50,11 +50,11 @@ public class SoundController : MonoBehaviour
 
         healthHandler.OnDamageTaken += PlaySound;
         movement.OnStepTaken += PlaySound;
-        inventoryController.OnSelectionChanged += PlaySelectionChangedSound;
+        inventory.OnSelectionChanged += PlaySelectionChangedSound;
         interactionDetector.OnInteract += PlayInteractSound;
-        inventoryController.OnItemPickedUp += PlayItemPickUpSound;
-        inventoryController.OnItemUsed += PlayItemUseSound;
-        inventoryController.OnItemDropped += PlayItemDropSound;
+        inventory.OnItemPickedUp += PlayItemPickUpSound;
+        inventory.OnItemUsed += PlayItemUseSound;
+        inventory.OnItemDropped += PlayItemDropSound;
         weaponManager.OnAttack += PlaySound;
         questManager.OnQuestCompleted += PlaySound;
     }
@@ -187,12 +187,12 @@ public class SoundController : MonoBehaviour
             healthHandler.OnDamageTaken -= PlaySound;
         }
 
-        if (inventoryController != null)
+        if (inventory != null)
         {
-            inventoryController.OnSelectionChanged -= PlaySelectionChangedSound;
-            inventoryController.OnItemPickedUp -= PlayItemPickUpSound;
-            inventoryController.OnItemUsed -= PlayItemUseSound;
-            inventoryController.OnItemDropped -= PlayItemDropSound;
+            inventory.OnSelectionChanged -= PlaySelectionChangedSound;
+            inventory.OnItemPickedUp -= PlayItemPickUpSound;
+            inventory.OnItemUsed -= PlayItemUseSound;
+            inventory.OnItemDropped -= PlayItemDropSound;
         }
 
         if (questManager != null)

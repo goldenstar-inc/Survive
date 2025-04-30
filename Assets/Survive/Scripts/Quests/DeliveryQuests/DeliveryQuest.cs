@@ -33,6 +33,11 @@ public class DeliveryQuest : IQuest, IDisposable
         }
     }
 
+    /// <summary>
+    /// Метод, обновляющий прогресс
+    /// </summary>
+    /// <param name="currentQuantity">Количество предметов в инвентаре</param>
+    /// <param name="itemType">Тип предмета</param>
     public void UpdateProgress(int currentQuantity, PickableItems itemType)
     {
         if (questType == itemType)

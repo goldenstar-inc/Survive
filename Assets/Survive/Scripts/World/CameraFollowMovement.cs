@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
-using Zenject.Asteroids;
 
 /// <summary>
 /// Класс, отвечающий за следование камеры за игроком

@@ -52,6 +52,7 @@ public class CanvasBootstrapper : MonoBehaviour
     private InventoryController inventoryController;
     private QuestManager questManager;
     private DialogueManager dialogueManager;
+    private Inventory inventory;
 
     /// <summary>
     /// Инициализация
@@ -63,7 +64,8 @@ public class CanvasBootstrapper : MonoBehaviour
         Camera renderCamera,
         InventoryController inventoryController,
         QuestManager questManager,
-        DialogueManager dialogueManager
+        DialogueManager dialogueManager,
+        Inventory inventory
         )
     {
         this.healthManager = healthManager;
@@ -73,6 +75,7 @@ public class CanvasBootstrapper : MonoBehaviour
         this.inventoryController = inventoryController;
         this.questManager = questManager;
         this.dialogueManager = dialogueManager;
+        this.inventory = inventory;
 
         if (!Validate()) return;
 
@@ -222,7 +225,7 @@ public class CanvasBootstrapper : MonoBehaviour
             emptySlotImage,
             inventoryItemImages,
             itemQuanityTextFields,
-            inventoryController
+            inventory
         );
     }
 

@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using Zenject.SpaceFighter;
-
 /// <summary>
 /// Класс, отвечающий за передвижение игрока
 /// </summary>

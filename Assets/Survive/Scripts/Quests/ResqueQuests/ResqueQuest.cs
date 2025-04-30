@@ -12,6 +12,12 @@ public class ResqueQuest : IQuest, IDisposable
     private QuestEvents questEvents;
     private int maxProgress => questConfig.MaxProgress;
     private List<HealthHandler> questEnemies = new();
+    /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <param name="questConfig">Конфиг задания</param>
+    /// <param name="questManager">Менеджер заданий</param>
+    /// <param name="questEvents">Event Bus заданий игрока</param>
     public ResqueQuest(ResqueQuestConfig questConfig, QuestManager questManager, QuestEvents questEvents)
     {
         this.questConfig = questConfig;
@@ -22,6 +28,11 @@ public class ResqueQuest : IQuest, IDisposable
         questEvents.OnCreatureKilled += UpdateProgress;
     }
 
+    /// <summary>
+    /// Метод, обновляющий прогресс
+    /// </summary>
+    /// <param name="enemyType">Тип врага</param>
+    /// <param name="enemy">Объект класса, управляющий здоровьем</param>
     private void UpdateProgress(CreatureType enemyType, HealthHandler enemy)
     {
         if (questEnemies.Contains(enemy))
@@ -37,11 +48,17 @@ public class ResqueQuest : IQuest, IDisposable
         }
     }
 
+    /// <summary>
+    /// Метод, создающий спасаемого NPC
+    /// </summary>
     private void CreateQuestNPC()
     {
         Spawner.Instance.Spawn(questConfig.ResqueNPC, questConfig.Coords, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Метод, создающий врагов
+    /// </summary>
     private void CreateQuestEnemy()
     {
         for (int i = 0; i < maxProgress; i++)
@@ -56,6 +73,13 @@ public class ResqueQuest : IQuest, IDisposable
         }
     }
 
+    /// <summary>
+    /// Метод, генерирующий координаты случайной точки в кругу по заданным условиям
+    /// </summary>
+    /// <param name="center">Центр круга</param>
+    /// <param name="minDistance">Минимальная дистанция от центра</param>
+    /// <param name="maxDistance">Максимальная дистанция от центра</param>
+    /// <returns>Координаты случайной точки</returns>
     private Vector3 GenerateRandomPointInRing(Vector2 center, float minDistance, float maxDistance)
     {
         float randomAngle = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
@@ -65,7 +89,10 @@ public class ResqueQuest : IQuest, IDisposable
         return new Vector3(x, y);
     }
 
-    public void CompleteQuest(IQuest quest)
+    /// <summary>
+    /// Метод завершения квеста
+    /// </summary>
+    public void CompleteQuest(IQuest _)
     {
         OnCompleted?.Invoke();
         Dispose();

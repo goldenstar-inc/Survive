@@ -253,7 +253,7 @@ public class PlayerBootstrapper : MonoBehaviour
     /// </summary>
     private void InitInventory()
     {
-        inventory.Init(2);
+        inventory.Init(2, UISoundPack);
     }
 
     /// <summary>
@@ -281,7 +281,7 @@ public class PlayerBootstrapper : MonoBehaviour
         soundController.Init(
             audioSource,
             healthHandler,
-            inventoryController,
+            inventory,
             questManager,
             playerMovement,
             weaponManager,
@@ -337,8 +337,7 @@ public class PlayerBootstrapper : MonoBehaviour
     {
         inventoryController.Init(
             playerData,
-            pauseController,
-            UISoundPack
+            pauseController
         );
     }
 
@@ -359,7 +358,7 @@ public class PlayerBootstrapper : MonoBehaviour
     public void InitQuestEvents()
     {
         questEvents.Init(
-            inventoryController,
+            inventory,
             weaponManager
             );
     }

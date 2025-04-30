@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7801bff129cfe5c4aa9f3e3da169452a, type: 3}
+  m_Name: NailedBatData
+  m_EditorClassIdentifier: 
+  InteractionSounds:
+  - {fileID: 8300000, guid: c0a37f9a5e91d8a46b06fddf339dc0af, type: 3}
+  Name: 14
+  Prefab: {fileID: 8708701814132985673, guid: b1dcb7728f947f248a648daca6e72b9c, type: 3}
+  InventoryImage: {fileID: -8006834311614888571, guid: 2b913203f1d607d4d821a5134c975466, type: 3}
+  DropSounds:
+  - {fileID: 8300000, guid: 78c222d10b726bc4e9b18d7b06cffdf6, type: 3}
+  ErrorSound: {fileID: 8300000, guid: bfad88e5f97b0814892ee6ce36c3b66f, type: 3}
+  Description: Bat
+  Damage: 44
+  AttackCooldown: 0.54
+  Animator: {fileID: 22100000, guid: ef94fba113dfe4f43bf92678ebbfc14f, type: 2}
+  AttackSounds:
+  - {fileID: 8300000, guid: 5af16e6d1ebbb8d4b80f8a03258a4243, type: 3}
+  - {fileID: 8300000, guid: f27f0cc1e49539d47b7c3f98a2397041, type: 3}
+  AttackArea: {fileID: 3308916112171192970, guid: 5db2217f7dfe7774087bbf3307acdd8e, type: 3}

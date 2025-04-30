@@ -25,7 +25,6 @@ public static class UseScriptFabric
         }
         else
         {
-            Debug.LogError("Use script not found!");
             return null;
         }
     }

@@ -117,10 +117,20 @@ public class WorldBootstrapper : MonoBehaviour
         InventoryController inventoryController = spawnedPlayer.GetComponentInChildren<InventoryController>();
         QuestManager questManager = spawnedPlayer.GetComponentInChildren<QuestManager>();
         DialogueManager dialogueManager = spawnedPlayer.GetComponentInChildren<DialogueManager>();
-        
+        Inventory inventory = spawnedPlayer.GetComponentInChildren<Inventory>();
+
         GameObject spawnedCanvas = Instantiate(playerCanvas);
         CanvasBootstrapper canvasBootstrapper = spawnedCanvas.GetComponentInChildren<CanvasBootstrapper>();
-        canvasBootstrapper.Init(healthManager, ammoHandler, moneyHandler, camera, inventoryController, questManager, dialogueManager);
+        canvasBootstrapper.Init(
+            healthManager, 
+            ammoHandler, 
+            moneyHandler, 
+            camera, 
+            inventoryController, 
+            questManager, 
+            dialogueManager, 
+            inventory
+            );
     }
 
     private void CreateNewWorld()

@@ -4,6 +4,10 @@ public class QuestField : MonoBehaviour
 {
     private ExplorationQuest fieldQuest;
 
+    /// <summary>
+    /// Метод, инициализирующий зону задания
+    /// </summary>
+    /// <param name="fieldQuest">Задание исследования</param>
     public void Init(ExplorationQuest fieldQuest)
     {
         this.fieldQuest = fieldQuest;

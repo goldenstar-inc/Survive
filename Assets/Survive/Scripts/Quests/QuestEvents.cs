@@ -7,15 +7,20 @@ public class QuestEvents : MonoBehaviour
     public event Action<int, PickableItems> OnItemPickedUp;
     public event Action<int, PickableItems> OnItemDropped;
     public event Action<int, PickableItems> OnItemUsed;
-    private InventoryController inventoryController;
+    private Inventory inventory;
 
-    public void Init(InventoryController inventoryController, WeaponManager weaponManager)
+    /// <summary>
+    /// �����, ���������������� Event Bus ��� ������
+    /// </summary>
+    /// <param name="inventory">���������� ���������</param>
+    /// <param name="weaponManager">������, ����������� ������ ������</param>
+    public void Init(Inventory inventory, WeaponManager weaponManager)
     {
-        this.inventoryController = inventoryController;
+        this.inventory = inventory;
         weaponManager.OnKill += CreatureKilled;
-        inventoryController.OnItemPickedUp += ItemPickedUp;
-        inventoryController.OnItemDropped += ItemDropped;
-        inventoryController.OnItemUsed += ItemUsed;
+        inventory.OnItemPickedUp += ItemPickedUp;
+        inventory.OnItemDropped += ItemDropped;
+        inventory.OnItemUsed += ItemUsed;
     }
     private void CreatureKilled(CreatureType creatureType, HealthHandler killedCreature)
     {
@@ -40,11 +45,11 @@ public class QuestEvents : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (inventoryController != null)
+        if (inventory != null)
         {
-            inventoryController.OnItemPickedUp -= ItemPickedUp;
-            inventoryController.OnItemDropped -= ItemDropped;
-            inventoryController.OnItemUsed -= ItemUsed;
+            inventory.OnItemPickedUp -= ItemPickedUp;
+            inventory.OnItemDropped -= ItemDropped;
+            inventory.OnItemUsed -= ItemUsed;
         }
         OnItemPickedUp = null;
         OnItemDropped = null;

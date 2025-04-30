@@ -13,7 +13,7 @@ public class InventoryDisplay : MonoBehaviour
     private Sprite emptySlotImage;
     private Image[] inventoryItemImages;
     private TextMeshProUGUI[] itemQuanityTextFields;
-    private InventoryController inventoryController;
+    private Inventory inventory;
 
     /// <summary>
     /// Инициализация
@@ -27,19 +27,19 @@ public class InventoryDisplay : MonoBehaviour
         Sprite emptySlotImage,
         Image[] inventoryItemImages,
         TextMeshProUGUI[] itemQuanityTextFields,
-        InventoryController inventoryController
+        Inventory inventory
     )
     {
         this.selectionFrames = selectionFrames;
         this.emptySlotImage = emptySlotImage;
         this.inventoryItemImages = inventoryItemImages;
         this.itemQuanityTextFields = itemQuanityTextFields;
-        this.inventoryController = inventoryController;
+        this.inventory = inventory;
 
-        inventoryController.OnItemPickedUp += AddItem;
-        inventoryController.OnItemDropped += DecreaseItemAmount;
-        inventoryController.OnItemUsed += DecreaseItemAmount;
-        inventoryController.OnSelectionChanged += SelectSlot;
+        inventory.OnItemPickedUp += AddItem;
+        inventory.OnItemDropped += DecreaseItemAmount;
+        inventory.OnItemUsed += DecreaseItemAmount;
+        inventory.OnSelectionChanged += SelectSlot;
 
         for (int i = 0; i < inventoryItemImages.Length; i++)
         {
@@ -90,7 +90,7 @@ public class InventoryDisplay : MonoBehaviour
         if (!ValidateIndex(index)) return;
         if (!ValidateQuantity(quantity)) return;
 
-        if (quantity == 0)
+        if (quantity <= 0)
         {
             RemoveItem(index);
         }

@@ -11,7 +11,12 @@ public class Recipe : ScriptableObject
     /// <summary>
     /// Список ингридиентов и их количества для крафта предмета
     /// </summary>
-    [SerializeField] public List<RequiredItems> requiredItems;
+    [SerializeField] public List<RequiredItems> RequiredItems;
+
+    /// <summary>
+    /// Итоговый предмет
+    /// </summary>
+    [SerializeField] public GameObject ResultItem;
 
     /// <summary>
     /// Метод, проверяющий может ли скрафтиться предмет на основе текщуего инвентаря
@@ -20,7 +25,7 @@ public class Recipe : ScriptableObject
     /// <returns>True - если предмет может быть создан, иначе - false</returns>
     public bool CanCraft(Dictionary<PickableItems, int> inventory)
     {
-        foreach (RequiredItems required in requiredItems)
+        foreach (RequiredItems required in RequiredItems)
         {
             PickableItems item = required.Item;
             int requiredAmount = required.Amount;
@@ -31,9 +36,11 @@ public class Recipe : ScriptableObject
                     return false;
                 }
             }
+            else 
+            {
+                return false;
+            }
         }
-
-        Debug.Log(this);
         return true;
     }
 }

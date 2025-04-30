@@ -1,7 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
 
 /// <summary>
 /// Интерфейс, содержащий ссылки на компоненты игрока

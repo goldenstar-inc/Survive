@@ -6,10 +6,21 @@ using UnityEngine;
 public class QuestGiver : MonoBehaviour 
 {
     [SerializeField] private List<QuestConfig> quests;
-    /*public void Init(List<QuestConfig> quests)
+    /// <summary>
+    /// Метод, инициализирующий задания в NPC
+    /// </summary>
+    /// <param name="quests">Список заданий</param>
+    public void Init(List<QuestConfig> quests)
     {
         this.quests = quests;
-    }*/
+    }
+
+    /// <summary>
+    /// Метод выдающий задание
+    /// </summary>
+    /// <param name="data">Данные игрока</param>
+    /// <param name="playerEvents">События связанные с конкретным игроком</param>
+    /// <returns>Задание</returns>
     public IQuest GiveQuest(PlayerDataProvider data, QuestEvents playerEvents)
     {
         if (quests != null)

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+///  ласс, представл€ющий квест, св€занный со спасением
+/// </summary>
 [CreateAssetMenu(fileName = "ResqueQuestConfig", menuName = "Quests/Resque Quest Config")]
 public class ResqueQuestConfig : QuestConfig
 {
