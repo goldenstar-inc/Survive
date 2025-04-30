@@ -1,5 +1,6 @@
-using System.Collections;
-
+/// <summary>
+///  ласс, представл€ющий материал дл€ крафта
+/// </summary>
 [System.Serializable]
 public class RequiredItems
 {

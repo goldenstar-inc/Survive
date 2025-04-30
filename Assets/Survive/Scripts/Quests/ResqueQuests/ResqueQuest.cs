@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+/// <summary>
+///  ласс, представл€ющий задание спасени€
+/// </summary>
 public class ResqueQuest : IQuest, IDisposable
 {
     private ResqueQuestConfig questConfig;
@@ -25,7 +28,7 @@ public class ResqueQuest : IQuest, IDisposable
         this.questEvents = questEvents;
         CreateQuestNPC();
         CreateQuestEnemy();
-        questEvents.OnCreatureKilled += UpdateProgress;
+        this.questEvents.OnCreatureKilled += UpdateProgress;
     }
 
     /// <summary>
@@ -100,5 +103,9 @@ public class ResqueQuest : IQuest, IDisposable
 
     public void Dispose()
     {
+        if (questEvents != null)
+        {
+            questEvents.OnCreatureKilled -= UpdateProgress;
+        }
     }
 }

@@ -1338,13 +1338,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6956198161323069003}
   - component: {fileID: 1138360561441238685}
-  m_Layer: 16
+  m_Layer: 12
   m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6956198161323069003
 Transform:
   m_ObjectHideFlags: 0

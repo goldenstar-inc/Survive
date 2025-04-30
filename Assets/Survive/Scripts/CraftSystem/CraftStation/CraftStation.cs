@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс, представляющий место крафта
+/// </summary>
 public class CraftStation : MonoBehaviour, IInteractable
 {
     [SerializeField] private IntreractableData data;
@@ -10,6 +13,11 @@ public class CraftStation : MonoBehaviour, IInteractable
     public IntreractableData Data => data;
     public event Action OnInteract;
 
+    /// <summary>
+    /// Метод взаимодействия
+    /// </summary>
+    /// <param name="interactor">Данные игрока, который взаимодействует</param>
+    /// <returns>true - если взаимодействие прошло успешно, иначе - false</returns>
     public bool Interact(PlayerDataProvider interactor)
     {
         if (interactor != null && interactor is IInventoryProvider inventoryProvider)
@@ -29,6 +37,11 @@ public class CraftStation : MonoBehaviour, IInteractable
         return false;
     }
 
+    /// <summary>
+    /// Получение доступных рецептов
+    /// </summary>
+    /// <param name="itemToCount">Словарь предмет-его количество в инвентаре</param>
+    /// <returns>Доступные рецепты</returns>
     private List<Recipe> GetAvailableRecipes(Dictionary<PickableItems, int> itemToCount)
     {
         List<Recipe> availableRecipes = new ();
