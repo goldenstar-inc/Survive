@@ -43,6 +43,7 @@ public class PlayerBootstrapper : MonoBehaviour
     [SerializeField] private InventoryController inventoryController;
     [SerializeField] private PlayerInteractionDetector interactionDetector;
     [SerializeField] private PlayerPauseController pauseController;
+    [SerializeField] private Inventory inventory;
 
     [Header("Camera")]
     [SerializeField] private CameraFollow cameraFollow;
@@ -74,12 +75,13 @@ public class PlayerBootstrapper : MonoBehaviour
         InitMoney();
         InitWeapon();
         InitDialogue();
+        InitInventory();
         InitPlayerData();
         InitSound();
         InitMovement();
         InitInput();
         InitAnimation();
-        InitInventory();
+        InitInventoryController();
         InitInteraction();
         InitQuestEvents();
         InitQuest();
@@ -247,6 +249,14 @@ public class PlayerBootstrapper : MonoBehaviour
     }
 
     /// <summary>
+    /// Инициализация инвентаря
+    /// </summary>
+    private void InitInventory()
+    {
+        inventory.Init(2);
+    }
+
+    /// <summary>
     /// Инициализация фасада данных об игроке
     /// </summary>
     private void InitPlayerData()
@@ -258,7 +268,8 @@ public class PlayerBootstrapper : MonoBehaviour
             moneyHandler,
             weaponManager,
             questManager,
-            dialogueManager
+            dialogueManager,
+            inventory
         );
     }
 
@@ -320,12 +331,11 @@ public class PlayerBootstrapper : MonoBehaviour
     }
 
     /// <summary>
-    /// Инициализация инвентаря
+    /// Инициализация контроллера инвентаря
     /// </summary>
-    private void InitInventory()
+    private void InitInventoryController()
     {
         inventoryController.Init(
-            inventoryCapacity,
             playerData,
             pauseController,
             UISoundPack

@@ -15,4 +15,7 @@ public enum PickableItems
     SingleAmmo,
     DoubleAmmo,
     TripleAmmo,
+    Nails,
+    Bat, 
+    NailedBat,
 }

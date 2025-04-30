@@ -871,6 +871,7 @@ GameObject:
   - component: {fileID: 280586527912349993}
   - component: {fileID: 7415050556395875051}
   - component: {fileID: 6987289539130499966}
+  - component: {fileID: 5882721879767138742}
   - component: {fileID: 1223203523104989017}
   m_Layer: 16
   m_Name: Model
@@ -1270,6 +1271,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52d670f43622d245bfce148943feeb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5882721879767138742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710194613339031162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fb69d7d52e8e5488360346b0baa755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1223203523104989017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1320,7 @@ MonoBehaviour:
   inventoryController: {fileID: 6987289539130499966}
   interactionDetector: {fileID: 9085158650275799636}
   pauseController: {fileID: 538273331147185244}
+  inventory: {fileID: 5882721879767138742}
   cameraFollow: {fileID: 1153030329835804995}
   mainCamera: {fileID: 3194643357857002155}
   minimapCamera: {fileID: 2306070442232764389}

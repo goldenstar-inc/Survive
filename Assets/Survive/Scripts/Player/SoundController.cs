@@ -17,7 +17,7 @@ public class SoundController : MonoBehaviour
     private float pitchVariation = 0.05f;
     private float volumeVariation = 0.1f;
     private float lastPlayTime = 0f;
-    private float playCooldown = 0.1f;
+    private float playCooldown = 0f;
 
     /// <summary>
     /// Экземпляр класса Random

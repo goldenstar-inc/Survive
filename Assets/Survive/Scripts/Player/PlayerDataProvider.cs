@@ -6,7 +6,7 @@ using Zenject;
 /// <summary>
 /// Интерфейс, содержащий ссылки на компоненты игрока
 /// </summary>
-public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealthProvider, IAmmoProvider, IMoneyProvider, IWeaponProvider, IQuestProvider, IDialogueProvider
+public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealthProvider, IAmmoProvider, IMoneyProvider, IWeaponProvider, IQuestProvider, IDialogueProvider, IInventoryProvider
 {
     public PlayerSetting PlayerSetting { get; private set; }
     public HealthHandler HealthHandler { get; private set; }
@@ -15,6 +15,7 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
     public WeaponManager WeaponManager { get; private set; }
     public QuestManager QuestManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
+    public Inventory Inventory { get; private set; }
 
     /// <summary>
     /// Инициализация фасада
@@ -25,6 +26,7 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
     /// <param name="MoneyHandler">Скрипт, управляющий денежным балансом игрока</param>
     /// <param name="WeaponManager">Скрипт, управляющий оружием игрока</param>
     /// <param name="QuestManager">Скрипт, управляющий квестами</param>
+    /// <param name="Inventory">Класс инвентаря</param>
     public void Init(
         PlayerSetting PlayerSetting,
         HealthHandler HealthManager,
@@ -32,7 +34,8 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
         MoneyHandler MoneyHandler,
         WeaponManager WeaponManager,
         QuestManager QuestManager,
-        DialogueManager DialogueManager
+        DialogueManager DialogueManager,
+        Inventory Inventory
         )
     {
         this.PlayerSetting = PlayerSetting;
@@ -42,5 +45,6 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
         this.WeaponManager = WeaponManager;
         this.QuestManager = QuestManager;
         this.DialogueManager = DialogueManager;
+        this.Inventory = Inventory;
     }
 }
