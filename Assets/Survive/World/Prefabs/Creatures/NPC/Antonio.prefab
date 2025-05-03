@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1158626851237335026}
   - component: {fileID: 3762173060085321205}
   - component: {fileID: 5841076652764850623}
+  - component: {fileID: 6191675139489995512}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -165,6 +166,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - {fileID: 11400000, guid: fbb3fa70d55a13641b6afa0937096725, type: 2}
+--- !u!95 &6191675139489995512
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229513834979193012}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aea11d84371cc8a42b01eae8c49380a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1680947845227135716
 GameObject:
   m_ObjectHideFlags: 0
