@@ -9,7 +9,7 @@ public class MoneyDisplay : MonoBehaviour
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="moneyHandler">Скрипт, управляющий деньгами</param>
+    /// <param name="moneyHandler">Класс, управляющий деньгами</param>
     public void Init(MoneyHandler moneyHandler, TextMeshProUGUI balancePlaceholder)
     {
         this.balancePlaceholder = balancePlaceholder;

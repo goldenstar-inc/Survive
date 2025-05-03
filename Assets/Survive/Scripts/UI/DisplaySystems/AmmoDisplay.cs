@@ -13,7 +13,7 @@ public class AmmoDisplay : MonoBehaviour
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="ammoHandler">Скрипт, управляющий боезапасом</param>
+    /// <param name="ammoHandler">Класс, управляющий боезапасом</param>
     public void Init(AmmoHandler ammoHandler, TextMeshProUGUI ammoAmountPlaceholder)
     {
         this.ammoAmountPlaceholder = ammoAmountPlaceholder;

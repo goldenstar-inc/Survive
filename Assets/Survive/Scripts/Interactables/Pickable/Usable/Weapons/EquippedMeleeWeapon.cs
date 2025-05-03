@@ -56,11 +56,12 @@ public class EquippedMeleeWeapon : IUseScript
     /// </summary>
     public bool Use()
     {
-        if (Time.time - timeSinceLastAttack > attackCooldown)
+        if (Time.time - weaponManager.GetTimeSinceLastAttack() > data.AttackCooldown)
         {
             Attack();
-        }   
-        return true;
+            return true;
+        }
+        return false;
     }
 
     private void Attack()

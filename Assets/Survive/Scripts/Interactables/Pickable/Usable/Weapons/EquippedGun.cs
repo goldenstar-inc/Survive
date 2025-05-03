@@ -52,22 +52,28 @@ public class EquippedGun : IUseScript
     /// </summary>
     public bool Use()
     {
+        if (Time.time - weaponManager.GetTimeSinceLastAttack() > data.AttackCooldown)
+        {
+            Attack();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void Attack()
+    {
         if (ammoHandler != null)
         {
-            if (Time.time - timeSinceLastShot > attackCooldown)
-            {
-                int currentAmmo = ammoHandler.currentAmmo;
+            int currentAmmo = ammoHandler.currentAmmo;
 
-                if (currentAmmo > 0)
-                {
-                    Shoot();
-                    ammoHandler.ConsumeAmmo();
-                    weaponManager.Attack(data);
-                    return true;
-                }
+            if (currentAmmo > 0)
+            {
+                Shoot();
+                ammoHandler.ConsumeAmmo();
+                weaponManager.Attack(data);
             }
         }
-        return false;
     }
 
     /// <summary>

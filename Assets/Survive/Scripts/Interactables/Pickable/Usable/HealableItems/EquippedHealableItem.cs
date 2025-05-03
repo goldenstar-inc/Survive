@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// Класс, представляющий скрипт лечащих предметов
+/// Класс, представляющий лечащий предмет
 /// </summary>
 public class EquippedHealableItem : IUseScript
 {
     /// <summary>
-    /// Скрипт, управляющий здоровьем
+    /// Класс, управляющий здоровьем
     /// </summary>
     private PlayerDataProvider playerData;
 

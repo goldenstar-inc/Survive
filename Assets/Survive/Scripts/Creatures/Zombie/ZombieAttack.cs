@@ -11,7 +11,7 @@ public class ZombieAttack : MonoBehaviour
     private int damage { get; set; }
 
     /// <summary>
-    /// Инициализация скрипта [DI]
+    /// Инициализация
     /// </summary>
     /// <param name="damage">Урон</param>
     public void Init(int damage, ZombieChase zombieChase)
@@ -24,7 +24,7 @@ public class ZombieAttack : MonoBehaviour
     /// <summary>
     /// Атака зомби
     /// </summary>
-    /// <param name="targetHealthManager">Скрипт цели, отвечающий за здоровье</param>
+    /// <param name="targetHealthManager">Класс цели, отвечающий за здоровье</param>
     public void Attack(HealthHandler targetHealthManager)
     {
         if (targetHealthManager != null)

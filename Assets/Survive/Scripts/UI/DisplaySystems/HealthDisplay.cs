@@ -13,7 +13,7 @@ public class HealthDisplay : MonoBehaviour
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="healthManager">Скрипт, отвечающий за управление здоровьем</param>
+    /// <param name="healthManager">Класс, отвечающий за управление здоровьем</param>
     public void Init(
         HealthHandler healthManager, 
         Slider healthBar)

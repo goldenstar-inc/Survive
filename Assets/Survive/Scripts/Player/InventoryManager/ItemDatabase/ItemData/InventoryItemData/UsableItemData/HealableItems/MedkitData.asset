@@ -25,4 +25,4 @@ MonoBehaviour:
   UseDuration: 10
   UseSounds:
   - {fileID: 8300000, guid: df6ec8bddc609f342a3cf2c71b6b1c2d, type: 3}
-  HealPoints: 3
+  HealPoints: 6

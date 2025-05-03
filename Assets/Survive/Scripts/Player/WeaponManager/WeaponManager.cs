@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(AmmoHandler))]
 public class WeaponManager : MonoBehaviour
 {
     public event Action<WeaponItemData> OnAttack;
@@ -17,12 +16,13 @@ public class WeaponManager : MonoBehaviour
     private Animator animator;
     private AmmoHandler ammoHandler;
     private Transform attackStartPoint;
+    private float timeSinceLastAttack = int.MinValue;
 
     /// <summary>
     /// Инициализация
     /// </summary>
     /// <param name="animator">Аниматор оружия</param>
-    /// <param name="ammoHandler">Скрипт, управляющий боезопасом</param>
+    /// <param name="ammoHandler">Класс, управляющий боезопасом</param>
     /// <param name="attackStartPoint">Стартовая точка для атаки</param>
     public void Init(Animator animator, AmmoHandler ammoHandler, Transform attackStartPoint)
     {
@@ -40,10 +40,19 @@ public class WeaponManager : MonoBehaviour
         return attackStartPoint;
     }
 
+    /// <summary>
+    /// Метод, возвращающий аниматор оружия
+    /// </summary>
+    /// <returns>Аниматор оружия</returns>
     public Animator GetWeaponAnimator()
     {
         return animator;
     }
+
+    /// <summary>
+    /// Метод, возвращающий класс, отвечающий за боеприпасы
+    /// </summary>
+    /// <returns>Класс, отвечающий за боеприпасы</returns>
     public AmmoHandler GetAmmoHandlerScript()
     {
         return ammoHandler;
@@ -60,19 +69,41 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        OnAttack = null;
-    }
-
+    /// <summary>
+    /// Метод, зажигающий событие, что существо был убит
+    /// </summary>
+    /// <param name="creatureType">Тип существа</param>
+    /// <param name="killedCreature">Класс, отвечающий за здоровье существа</param>
     public void Kill(CreatureType creatureType, HealthHandler killedCreature)
     {
         OnKill?.Invoke(creatureType, killedCreature);
     }
 
+    /// <summary>
+    /// Метод атаки
+    /// </summary>
+    /// <param name="weaponItemData">Данные об оружии</param>
     public void Attack(WeaponItemData weaponItemData)
     {
         PlayAttackAnimation();
-        OnAttack?.Invoke(weaponItemData);
+        OnAttack?.Invoke(weaponItemData);   
+        timeSinceLastAttack = Time.time;
+    }
+
+    /// <summary>
+    /// Метод, возвращающий время с последней атаки
+    /// </summary>
+    /// <returns>Время с последней атаки</returns>
+    public float GetTimeSinceLastAttack()
+    {
+        return timeSinceLastAttack;
+    }
+
+    /// <summary>
+    /// Метод, вызывающийся при уничтожении объекта
+    /// </summary>
+    private void OnDestroy()
+    {
+        OnAttack = null;
     }
 }

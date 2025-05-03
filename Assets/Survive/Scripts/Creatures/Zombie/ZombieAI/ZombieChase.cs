@@ -16,7 +16,7 @@ public class ZombieChase : MonoBehaviour
     private Rigidbody2D rb;
 
     /// <summary>
-    /// Инициализация скрипта [DI]
+    /// Инициализация
     /// </summary>
     /// <param name="moveSpeed">Скорость передвижения</param>
     /// <param name="controller">Контроллер анимаций</param>

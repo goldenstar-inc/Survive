@@ -22,9 +22,11 @@ MonoBehaviour:
   ErrorSound: {fileID: 8300000, guid: bfad88e5f97b0814892ee6ce36c3b66f, type: 3}
   Description: Bat
   Damage: 44
-  AttackCooldown: 0.54
-  Animator: {fileID: 22100000, guid: ef94fba113dfe4f43bf92678ebbfc14f, type: 2}
+  AttackCooldown: 0.7
+  Animator: {fileID: 22100000, guid: 21d9e31062fac1948b1031b0bb32ed21, type: 2}
   AttackSounds:
-  - {fileID: 8300000, guid: 5af16e6d1ebbb8d4b80f8a03258a4243, type: 3}
-  - {fileID: 8300000, guid: f27f0cc1e49539d47b7c3f98a2397041, type: 3}
+  - {fileID: 8300000, guid: d93ed9cd883300e40bc42efef748a2ee, type: 3}
+  - {fileID: 8300000, guid: efe7a7f7d6f5a2c4aae35cd2f09f0efe, type: 3}
+  - {fileID: 8300000, guid: 5ddf0350a2288894981f97ec600ffbe8, type: 3}
+  - {fileID: 8300000, guid: ff73ae020c574db419d6f65a84a7ce0c, type: 3}
   AttackArea: {fileID: 3308916112171192970, guid: 5db2217f7dfe7774087bbf3307acdd8e, type: 3}

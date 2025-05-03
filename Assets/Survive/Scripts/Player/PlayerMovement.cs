@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="stateHandler">Скрипт, управляющий состояниями</param>
+    /// <param name="stateHandler">Класс, управляющий состояниями</param>
     /// <param name="movementComponent">Конфиг, содержащий информацию, связанную с движением</param>
     /// <param name="playerRB">Rigidbody2D игрока</param>
     /// <param name="walkSpeed">Скорость ходьбы</param>

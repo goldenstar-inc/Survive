@@ -9,10 +9,10 @@ public class InputHandler : MonoBehaviour
     /// <summary>
     /// Инициализация
     /// </summary>
-    /// <param name="playerInput">Скрипт ввода</param>
-    /// <param name="playerMovement">Скрипт движения</param>
+    /// <param name="playerInput">Класс ввода</param>
+    /// <param name="playerMovement">Класс движения</param>
     /// <param name="animationController">Контроллер анимаций</param>
-    /// <param name="soundHandler">Скрипт, хранящий звуки</param>
+    /// <param name="soundHandler">Класс, хранящий звуки</param>
     public void Init(
         PlayerInput playerInput, 
         PlayerMovement playerMovement, 

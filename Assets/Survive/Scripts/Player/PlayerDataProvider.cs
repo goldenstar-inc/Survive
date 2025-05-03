@@ -18,11 +18,11 @@ public class PlayerDataProvider : MonoBehaviour, IPlayerSettingProvider, IHealth
     /// Инициализация фасада
     /// </summary>
     /// <param name="PlayerSetting">Конфиг игрока</param>
-    /// <param name="HealthManager">Скрипт, управляющий здоровьем игрока</param>
-    /// <param name="AmmoHandler">Скрипт, управляющий боеприпасами игрока</param>
-    /// <param name="MoneyHandler">Скрипт, управляющий денежным балансом игрока</param>
-    /// <param name="WeaponManager">Скрипт, управляющий оружием игрока</param>
-    /// <param name="QuestManager">Скрипт, управляющий квестами</param>
+    /// <param name="HealthManager">Класс, управляющий здоровьем игрока</param>
+    /// <param name="AmmoHandler">Класс, управляющий боеприпасами игрока</param>
+    /// <param name="MoneyHandler">Класс, управляющий денежным балансом игрока</param>
+    /// <param name="WeaponManager">Класс, управляющий оружием игрока</param>
+    /// <param name="QuestManager">Класс, управляющий квестами</param>
     /// <param name="Inventory">Класс инвентаря</param>
     public void Init(
         PlayerSetting PlayerSetting,

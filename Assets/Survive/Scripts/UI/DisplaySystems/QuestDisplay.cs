@@ -18,7 +18,7 @@ public class QuestDisplay : MonoBehaviour
     /// </summary>
     /// <param name="questNamePlaceholder">Текст с названием квеста</param>
     /// <param name="questProgressPlaceholder">Текст с текущим прогрессом по квесту</param>
-    /// <param name="questManager">Скрипт, управляющий квестами</param>
+    /// <param name="questManager">Класс, управляющий квестами</param>
     public void Init(
         TextMeshProUGUI questNamePlaceholder,
         TextMeshProUGUI questProgressPlaceholder,
